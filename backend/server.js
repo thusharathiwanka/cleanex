@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-	res.send("<h1>CLEANEX API 2021</h1>");
+	res.send("<h3>CLEANEX API 2021</h3>");
 });
 
 mongoose
