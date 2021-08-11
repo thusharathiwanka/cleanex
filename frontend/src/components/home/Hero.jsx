@@ -7,7 +7,11 @@ const Hero = () => {
 	return (
 		<div className="bg-lighter-blue">
 			<div className="max-w-screen-2xl mx-auto min-h-90 px-4 flex justify-between items-center">
-				<div className="flex flex-col items-start -mt-20 flex-wrap">
+				<div
+					data-aos="fade-up-right"
+					data-aos-offset="500"
+					className="flex flex-col items-start -mt-20 flex-wrap"
+				>
 					<h1 className="text-7xl font-extrabold pb-5">
 						Save Time for more Important Things
 					</h1>
@@ -21,7 +25,7 @@ const Hero = () => {
 						Get Started
 					</Link>
 				</div>
-				<div>
+				<div data-aos="fade-down-left" data-aos-offset="200">
 					<img src={HeroImage} alt="hero-img" className="transform scale-125" />
 				</div>
 			</div>
