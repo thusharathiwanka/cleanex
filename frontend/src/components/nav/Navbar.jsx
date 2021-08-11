@@ -7,7 +7,7 @@ import { navLinks } from "../../helpers/navbar";
 const Navbar = () => {
 	return (
 		<header>
-			<div className="container-xl flex mx-auto max-w-screen-xl min-h justify-between items-center py-8">
+			<div className="container-xl flex mx-auto max-w-screen-xl justify-between items-center py-8">
 				<img src={LogoBlue} alt="blue-logo" className="logo" />
 				<nav>
 					{navLinks.map((navLink) => (
