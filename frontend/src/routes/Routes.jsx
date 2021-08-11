@@ -6,12 +6,14 @@ import Home from "../pages/Home";
 
 const Routes = () => {
 	return (
-		<Switch>
+		<>
 			<Navbar />
-			<Route exact path="/">
-				<Home />
-			</Route>
-		</Switch>
+			<Switch>
+				<Route exact path="/">
+					<Home />
+				</Route>
+			</Switch>
+		</>
 	);
 };
 
