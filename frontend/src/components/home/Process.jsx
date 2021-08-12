@@ -1,6 +1,6 @@
 import React from "react";
 
-import { processSteps } from "../../helpers/process";
+import { processSteps } from "../../helpers/cardDetails";
 import LeftBubble from "../../assets/images/left-bubble-process.png";
 import RightBubble from "../../assets/images/right-bubble-process.png";
 import ProcessCard from "./ProcessCard";
@@ -15,7 +15,7 @@ const Process = () => {
 				>
 					This is How We Work
 				</h1>
-				<div className="flex justify-evenly items-center pb-20 pt-28">
+				<div className="flex justify-evenly items-center pb-20 pt-28 flex-wrap">
 					{processSteps.map((processStep) => (
 						<ProcessCard processStep={processStep} />
 					))}

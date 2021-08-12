@@ -9,6 +9,7 @@ module.exports = {
 			},
 			minHeight: {
 				10: "10vh",
+				70: "70vh",
 				90: "90vh",
 			},
 			zIndex: {
