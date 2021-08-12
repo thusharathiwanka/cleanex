@@ -11,7 +11,7 @@ const Process = () => {
 			<div className="max-w-screen-2xl mx-auto min-h-screen px-4 flex flex-col justify-center items-center">
 				<h1
 					data-aos="fade-up"
-					className="text-7xl font-extrabold pb-5 pseudo-header"
+					className="text-7xl font-extrabold pb-5 pseudo-header pt-10"
 				>
 					This is How We Work
 				</h1>
