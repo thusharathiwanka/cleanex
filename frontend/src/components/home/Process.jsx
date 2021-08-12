@@ -24,7 +24,7 @@ const Process = () => {
 			<img
 				src={RightBubble}
 				alt="right-bubble-img"
-				className="absolute right-0 -bottom-80 -z-2"
+				className="absolute right-0 -bottom-60 -z-2"
 				data-aos="fade-left"
 			/>
 			<img

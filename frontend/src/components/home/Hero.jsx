@@ -28,7 +28,7 @@ const Hero = () => {
 					<Link
 						data-aos-delay="200"
 						data-aos="fade-up-right"
-						className="font-medium bg-light-blue text-white py-4 px-14 rounded-full mt-8"
+						className="font-medium bg-light-blue text-white py-4 px-14 rounded-full mt-8 font-semibold text-lg"
 						to="/register"
 					>
 						Get Started

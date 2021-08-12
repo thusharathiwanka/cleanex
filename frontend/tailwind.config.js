@@ -8,7 +8,7 @@ module.exports = {
 				"lighter-blue": "#E8F8FE",
 			},
 			minHeight: {
-				10: "10vh",
+				12: "12vh",
 				70: "70vh",
 				90: "90vh",
 			},
