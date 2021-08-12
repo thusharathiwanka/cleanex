@@ -10,8 +10,12 @@ const Navbar = () => {
 			<div className="flex mx-auto max-w-screen-2xl justify-between items-center px-4 min-h-12">
 				<img src={LogoBlue} alt="blue-logo" />
 				<nav>
-					{navLinks.map((navLink) => (
-						<Link className="mx-5 font-semibold text-lg" to={navLink.path}>
+					{navLinks.map((navLink, index) => (
+						<Link
+							className="mx-5 font-semibold text-lg"
+							to={navLink.path}
+							key={index}
+						>
 							{navLink.name}
 						</Link>
 					))}

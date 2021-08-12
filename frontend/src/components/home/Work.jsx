@@ -11,8 +11,8 @@ const Work = () => {
 					What We Offer
 				</h1>
 				<div className="flex justify-evenly items-center pb-20 pt-28 flex-wrap">
-					{workDetails.map((work) => (
-						<WorkCard work={work} />
+					{workDetails.map((work, index) => (
+						<WorkCard work={work} key={index} />
 					))}
 				</div>
 			</div>

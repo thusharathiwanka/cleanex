@@ -16,8 +16,8 @@ const Process = () => {
 					This is How We Work
 				</h1>
 				<div className="flex justify-evenly items-center pb-20 pt-28 flex-wrap">
-					{processSteps.map((processStep) => (
-						<ProcessCard processStep={processStep} />
+					{processSteps.map((processStep, index) => (
+						<ProcessCard processStep={processStep} key={index} />
 					))}
 				</div>
 			</div>
