@@ -2,8 +2,9 @@ import React from "react";
 
 import Hero from "../components/home/Hero";
 import Process from "../components/home/Process";
-import Reasons from "../components/home/Reasons";
 import Work from "../components/home/Work";
+import Reasons from "../components/home/Reasons";
+import Feedback from "../components/home/Feedback";
 
 const Home = () => {
 	return (
@@ -12,6 +13,7 @@ const Home = () => {
 			<Process />
 			<Work />
 			<Reasons />
+			<Feedback />
 		</div>
 	);
 };

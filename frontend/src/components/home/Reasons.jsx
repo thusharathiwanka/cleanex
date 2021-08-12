@@ -28,9 +28,12 @@ const Reasons = () => {
 				</div>
 				<div className="flex items-center mt-20 justify-around">
 					<div className="w-1/2">
-						<img src={ReasonsImage} alt="reasons-img" />
+						<img src={ReasonsImage} alt="reasons-img" data-aos="fade-right" />
 					</div>
-					<div className="mx-5 text-2xl font-semibold pb-4 text-center">
+					<div
+						className="mx-5 text-2xl font-semibold pb-4 text-center"
+						data-aos="fade-left"
+					>
 						<div className="flex items-center py-5">
 							<img src={ReasonCheck} alt="check-img" />
 							<h3 className="px-5">100% Satisfaction</h3>
