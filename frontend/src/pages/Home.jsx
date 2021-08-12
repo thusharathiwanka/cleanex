@@ -5,6 +5,7 @@ import Process from "../components/home/Process";
 import Work from "../components/home/Work";
 import Reasons from "../components/home/Reasons";
 import Feedback from "../components/home/Feedback";
+import Footer from "../components/footer/Footer";
 
 const Home = () => {
 	return (
@@ -14,6 +15,7 @@ const Home = () => {
 			<Work />
 			<Reasons />
 			<Feedback />
+			<Footer />
 		</div>
 	);
 };

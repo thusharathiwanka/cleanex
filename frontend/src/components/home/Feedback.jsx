@@ -14,7 +14,7 @@ const Feedback = () => {
 					>
 						What our Clients Say
 					</h1>
-					<div className="flex justify-evenly items-center pb-20 pt-28 flex-wrap">
+					<div className="flex justify-evenly items-center pb-24 pt-32 flex-wrap">
 						{feedbackDetails.map((feedback, index) => (
 							<FeedbackCard feedback={feedback} key={index} />
 						))}
