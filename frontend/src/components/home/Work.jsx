@@ -7,7 +7,7 @@ const Work = () => {
 	return (
 		<div>
 			<div className="max-w-screen-2xl mx-auto min-h-screen px-4 flex flex-col justify-center items-center">
-				<h1 data-aos="fade-up" className="text-7xl font-extrabold pb-5">
+				<h1 data-aos="fade-up" className="text-6xl font-extrabold pb-5">
 					What We Offer
 				</h1>
 				<div className="flex justify-evenly items-center pb-20 pt-28 flex-wrap">

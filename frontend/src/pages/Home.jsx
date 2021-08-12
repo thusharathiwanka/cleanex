@@ -2,6 +2,7 @@ import React from "react";
 
 import Hero from "../components/home/Hero";
 import Process from "../components/home/Process";
+import Reasons from "../components/home/Reasons";
 import Work from "../components/home/Work";
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
 			<Hero />
 			<Process />
 			<Work />
+			<Reasons />
 		</div>
 	);
 };
