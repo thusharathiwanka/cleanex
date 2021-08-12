@@ -11,6 +11,9 @@ module.exports = {
 				10: "10vh",
 				90: "90vh",
 			},
+			zIndex: {
+				"-2": "-2",
+			},
 		},
 		fontFamily: {
 			sans: ["Inter", "sans-serif"],
