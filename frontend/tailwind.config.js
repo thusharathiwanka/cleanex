@@ -15,6 +15,12 @@ module.exports = {
 			zIndex: {
 				"-2": "-2",
 			},
+			width: {
+				85: "23rem",
+			},
+			scale: {
+				135: "1.35",
+			},
 		},
 		fontFamily: {
 			sans: ["Inter", "sans-serif"],

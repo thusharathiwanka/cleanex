@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 function App() {
 	useEffect(() => {
-		AOS.init({ duration: 1200, easing: "ease-in-out-quad" });
+		AOS.init({ duration: 1000, easing: "ease-in-out-quad" });
 	});
 
 	return (

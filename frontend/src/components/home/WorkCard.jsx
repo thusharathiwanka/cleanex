@@ -3,7 +3,7 @@ import React from "react";
 const WorkCard = ({ work }) => {
 	return (
 		<div
-			className="flex flex-col justify-between items-start w-96 m-10 min-h-60 h-auto text-left shadow-lg rounded-xl"
+			className="flex flex-col justify-between items-start w-85 m-10 min-h-60 h-auto text-left shadow-lg rounded-2xl"
 			data-aos-delay={work.delay}
 			data-aos="fade-up"
 			data-aos-offset="400"

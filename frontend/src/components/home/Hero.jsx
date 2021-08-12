@@ -35,7 +35,7 @@ const Hero = () => {
 					</Link>
 				</div>
 				<div data-aos="fade-down-left" data-aos-offset="200">
-					<img src={HeroImage} alt="hero-img" className="transform scale-125" />
+					<img src={HeroImage} alt="hero-img" className="transform scale-135" />
 				</div>
 			</div>
 		</div>
