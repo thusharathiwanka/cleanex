@@ -32,7 +32,7 @@ const Reasons = () => {
 							src={ReasonsImage}
 							alt="reasons-img"
 							data-aos="fade-right"
-							data-aos-offset="20"
+							data-aos-offset="50"
 						/>
 					</div>
 					<div

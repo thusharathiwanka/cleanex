@@ -21,7 +21,7 @@ const Navbar = () => {
 					))}
 					<Link
 						className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
-						to="/login"
+						to="/auth/login"
 					>
 						Sign in
 					</Link>
