@@ -78,7 +78,7 @@ const Register = () => {
 					</div>
 					<p data-aos-delay="200" data-aos="fade-up-left">
 						Already have an Account ? &nbsp;
-						<Link to="auth/login" className="text-light-blue">
+						<Link to="/auth/login" className="text-light-blue">
 							Sign In
 						</Link>
 					</p>

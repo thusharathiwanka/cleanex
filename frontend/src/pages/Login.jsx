@@ -48,7 +48,7 @@ const Login = () => {
 					</div>
 					<p data-aos-delay="100" data-aos="fade-up-left">
 						Don't have an Account ? &nbsp;
-						<Link to="auth/register" className="text-light-blue">
+						<Link to="/auth/register" className="text-light-blue">
 							Sign Up
 						</Link>
 					</p>
@@ -57,7 +57,7 @@ const Login = () => {
 						data-aos-delay="150"
 						data-aos="fade-up-left"
 					>
-						Sign Up
+						Sign In
 					</button>
 				</form>
 			</div>

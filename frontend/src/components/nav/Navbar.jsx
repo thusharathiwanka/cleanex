@@ -14,7 +14,9 @@ const Navbar = () => {
 			}
 		>
 			<div className="flex mx-auto max-w-screen-2xl justify-between items-center px-4 min-h-12">
-				<img src={LogoBlue} alt="blue-logo" />
+				<Link to="/">
+					<img src={LogoBlue} alt="blue-logo" />
+				</Link>
 				<nav>
 					{navLinks.map((navLink, index) => (
 						<Link
