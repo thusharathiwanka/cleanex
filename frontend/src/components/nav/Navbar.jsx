@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import LogoBlue from "../../assets/images/logo-blue.png";
 import { navLinks } from "../../helpers/navbar";
 
 const Navbar = () => {
 	return (
-		<header className="bg-lighter-blue">
+		<header className={useLocation().pathname === "/" ? "bg-lighter-blue" : ""}>
 			<div className="flex mx-auto max-w-screen-2xl justify-between items-center px-4 min-h-12">
 				<img src={LogoBlue} alt="blue-logo" />
 				<nav>
