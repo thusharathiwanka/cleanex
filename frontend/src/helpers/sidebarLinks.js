@@ -2,7 +2,7 @@ import { MdDashboard, MdStyle, MdFeedback } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { BsBookHalf } from "react-icons/bs";
 
-const sidebarLinks = [
+const sidebarLinksAdmin = [
 	{ name: "Dashboard", path: "/admin/dashbaord", icon: <MdDashboard /> },
 	{ name: "Pricing & Packages", path: "/admin/pricing", icon: <MdStyle /> },
 	{ name: "Customers", path: "admin/customers", icon: <FaUsers /> },
@@ -10,4 +10,4 @@ const sidebarLinks = [
 	{ name: "Blogs", path: "admin/blogs", icon: <BsBookHalf /> },
 ];
 
-export { sidebarLinks };
+export { sidebarLinksAdmin };
