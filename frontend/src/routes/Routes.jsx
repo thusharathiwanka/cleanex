@@ -5,6 +5,7 @@ import Navbar from "../components/nav/Navbar";
 import Home from "../pages/Home";
 import Worker from "../pages/Worker";
 import CreateBlog from "../pages/CreateBlog";
+import Register from "../pages/Register";
 
 const Routes = () => {
 	return (
@@ -13,6 +14,9 @@ const Routes = () => {
 			<Switch>
 				<Route exact path="/">
 					<Home />
+				</Route>
+				<Route exact path="/auth/register">
+					<Register />
 				</Route>
 				<Route exact path="/worker">
 					<Worker />

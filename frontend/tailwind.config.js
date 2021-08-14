@@ -12,6 +12,9 @@ module.exports = {
 				70: "70vh",
 				90: "90vh",
 			},
+			maxHeight: {
+				88: "88vh",
+			},
 			zIndex: {
 				"-2": "-2",
 			},
@@ -20,6 +23,9 @@ module.exports = {
 			},
 			scale: {
 				135: "1.35",
+			},
+			maxWidth: {
+				"screen-2.5xl": "1728px",
 			},
 		},
 		fontFamily: {
