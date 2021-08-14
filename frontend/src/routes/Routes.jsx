@@ -7,6 +7,7 @@ import Worker from "../pages/Worker";
 import CreateBlog from "../pages/CreateBlog";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import Packages from "../pages/Packages";
 
 const Routes = () => {
 	return (
@@ -21,6 +22,9 @@ const Routes = () => {
 				</Route>
 				<Route exact path="/auth/login">
 					<Login />
+				</Route>
+				<Route exact path="/auth/packages">
+					<Packages />
 				</Route>
 				<Route exact path="/worker">
 					<Worker />
