@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import LogoBlue from "../../assets/images/logo-blue.png";
-import { navLinks } from "../../helpers/navbar";
+import { navLinks } from "../../helpers/navbarLinks";
 
 const Navbar = () => {
 	return (

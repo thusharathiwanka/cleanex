@@ -15,7 +15,8 @@ const Packages = () => {
 						type="text"
 						name="search"
 						id="search"
-						className="outline-none rounded-full border px-4 py-3 focus:border-light-blue w-full"
+						className="outline-none rounded-full border px-8 py-3 focus:border-light-blue w-full"
+						placeholder="Search here..."
 					/>
 					<button className="text-white bg-light-blue absolute right-0 top-0 h-full rounded-full w-24 flex items-center justify-center font-bold text-2xl">
 						<BiSearch />

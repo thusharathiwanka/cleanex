@@ -8,28 +8,37 @@ import CreateBlog from "../pages/CreateBlog";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Packages from "../pages/Packages";
+import AdminDashboard from "../pages/AdminDashboard";
 
 const Routes = () => {
 	return (
 		<>
-			<Navbar />
 			<Switch>
 				<Route exact path="/">
+					<Navbar />
 					<Home />
 				</Route>
 				<Route exact path="/auth/register">
+					<Navbar />
 					<Register />
 				</Route>
 				<Route exact path="/auth/login">
+					<Navbar />
 					<Login />
 				</Route>
-				<Route exact path="/auth/packages">
+				<Route exact path="/auth/user/packages">
+					<Navbar />
 					<Packages />
 				</Route>
+				<Route exact path="/auth/admin/dashboard">
+					<AdminDashboard />
+				</Route>
 				<Route exact path="/worker">
+					<Navbar />
 					<Worker />
 				</Route>
 				<Route exact path="/createblogs">
+					<Navbar />
 					<CreateBlog />
 				</Route>
 			</Switch>
