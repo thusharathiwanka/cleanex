@@ -5,11 +5,8 @@ import Navbar from "../components/nav/Navbar";
 import Home from "../pages/Home";
 import Worker from "../pages/Worker";
 import CreateBlog from "../pages/CreateBlog";
-<<<<<<< HEAD
 import Blog from "../pages/Blog";
 import SingleBlog from "../pages/SingleBlog";
-
-=======
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Packages from "../pages/Packages";
@@ -18,7 +15,6 @@ import AdminPackages from "../pages/AdminPackages";
 import AdminNewPackage from "../pages/AdminNewPackage";
 import AdminCustomer from "../pages/AdminCustomer";
 import AdminFeedback from "../pages/AdminFeedback";
->>>>>>> 60a3bf4771d27e5b6ac90e0dcc99b931371c5fc8
 
 const Routes = () => {
 	return (
