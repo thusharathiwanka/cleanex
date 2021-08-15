@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import TShirtImage from "../../src/assets/images/hanging-t-shirt.png";
@@ -6,6 +6,17 @@ import RightBottomBubble from "../assets/images/right-bottom-bubble-reason.png";
 
 const Register = () => {
 	document.title = "CLEANEX - Sign Up";
+	const [customer, setCustomer] = useState({
+		name: "",
+		email: "",
+		password: "",
+		mobile: "",
+	});
+
+	const registerCustomer = (e) => {
+		e.preventDefault();
+		console.log(customer);
+	};
 
 	return (
 		<div className="text-gray-800 max-w-screen-2.5xl ml-auto max-h-88 pl-4 flex justify-between items-center overflow-hidden relative">
@@ -16,7 +27,7 @@ const Register = () => {
 				>
 					Create an Account
 				</h1>
-				<form>
+				<form onSubmit={registerCustomer}>
 					<div
 						className="flex flex-col justify-start pb-5"
 						data-aos="fade-up-left"
@@ -29,6 +40,11 @@ const Register = () => {
 							name="name"
 							id="name"
 							className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+							required
+							value={customer.name}
+							onChange={(e) =>
+								setCustomer({ ...customer, name: e.target.value })
+							}
 						/>
 					</div>
 					<div
@@ -44,6 +60,11 @@ const Register = () => {
 							name="email"
 							id="email"
 							className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2"
+							required
+							value={customer.email}
+							onChange={(e) =>
+								setCustomer({ ...customer, email: e.target.value })
+							}
 						/>
 					</div>
 					<div
@@ -59,6 +80,11 @@ const Register = () => {
 							name="password"
 							id="password"
 							className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+							required
+							value={customer.password}
+							onChange={(e) =>
+								setCustomer({ ...customer, password: e.target.value })
+							}
 						/>
 					</div>
 					<div
@@ -74,6 +100,11 @@ const Register = () => {
 							name="mobile"
 							id="mobile"
 							className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+							required
+							value={customer.mobile}
+							onChange={(e) =>
+								setCustomer({ ...customer, mobile: e.target.value })
+							}
 						/>
 					</div>
 					<p data-aos-delay="200" data-aos="fade-up-left">
