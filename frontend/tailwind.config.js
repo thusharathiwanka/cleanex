@@ -20,6 +20,7 @@ module.exports = {
 			},
 			width: {
 				85: "23rem",
+				"w-full-90": "90%",
 			},
 			scale: {
 				135: "1.35",
