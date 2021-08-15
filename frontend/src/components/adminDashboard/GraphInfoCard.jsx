@@ -1,7 +1,8 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
-const GraphInfoCard = () => {
+const GraphInfoCard = ({ delay }) => {
+	console.log(delay);
 	const series = [
 		{
 			name: "series1",
@@ -48,7 +49,11 @@ const GraphInfoCard = () => {
 	};
 
 	return (
-		<div className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between flex-wrap">
+		<div
+			className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between flex-wrap"
+			data-aos="fade-up"
+			data-aos-delay={delay}
+		>
 			<ReactApexChart
 				options={options}
 				series={series}
