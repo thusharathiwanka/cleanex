@@ -1,4 +1,5 @@
 import React from "react";
+import GraphInfoCard from "../components/admin/GraphInfoCard";
 
 import InfoCard from "../components/admin/InfoCard";
 import Sidebar from "../components/sidebar/Sidebar";
@@ -10,10 +11,16 @@ const Dashboard = () => {
 			<div className="ml-80 mt-20 ">
 				<h1 className="text-5xl font-extrabold pb-10 text-center">Summary</h1>
 				<Sidebar />
-				<div className="px-16 flex justify-between">
-					{adminCardInfo.map((adminCard) => (
-						<InfoCard cardInfo={adminCard} />
-					))}
+				<div className="w-full">
+					<div className="px-16 flex justify-between">
+						{adminCardInfo.map((adminCard) => (
+							<InfoCard cardInfo={adminCard} />
+						))}
+					</div>
+					<div className="px-16 flex justify-between w-full" id="chart">
+						<GraphInfoCard />
+						<GraphInfoCard />
+					</div>
 				</div>
 			</div>
 		</div>
