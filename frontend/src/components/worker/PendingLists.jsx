@@ -27,7 +27,7 @@ const PendingLists = () => {
                     </div>
                     <div class="text-center  ">
                         <form action="">
-                        <input class="focus:outline-none  shadow-md py-2 px-4 rounded" placeholder="Hours" type="number" required id="quantity" name="quantity" min="1" max="24"/>
+                        <input class=" focus:outline-none  shadow-md py-2 px-4 rounded" placeholder="Hours" type="number" required id="quantity" name="quantity" min="1" max="24"/>
                         <button type="submit" class=" shadow-md bg-light-blue text-white py-2 px-6 rounded font-bold ml-5">
                             Accept
                         </button>

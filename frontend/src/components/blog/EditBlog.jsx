@@ -1,9 +1,9 @@
 import React from 'react'
 
-const CreateBlog = () => {
+const EditBlog = () => {
     return (
         <div className="pt-10">
-            <span className="font-bold  text-3xl flex justify-center">Create A Blog</span>
+            <span className="font-bold  text-3xl flex justify-center">Edit A Blog</span>
             <div className=" px-44">
             <form className=" pt-10">
                 <div className="mb-10">
@@ -32,7 +32,7 @@ const CreateBlog = () => {
                 </div>
                 <div className=" flex justify-end mb-10">
                 <button className=" rounded-full  font-medium bg-light-blue shadow-md text-white py-2 px-5 text-xl" >Cancel</button>
-                <button className=" ml-5 rounded-full font-medium bg-light-blue shadow-md text-white py-2 px-5 text-xl" type="submit">Publish</button>
+                <button className=" ml-5 rounded-full font-medium bg-light-blue shadow-md text-white py-2 px-5 text-xl" type="submit">Edit</button>
                 </div>
             </form> 
             </div>
@@ -40,4 +40,4 @@ const CreateBlog = () => {
     )
 }
 
-export default CreateBlog
+export default EditBlog
