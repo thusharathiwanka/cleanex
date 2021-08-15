@@ -15,7 +15,10 @@ const Sidebar = () => {
 			<ul class="flex flex-col pt-5 pl">
 				{sidebarLinks.map((sidebarLink) => (
 					<li className="hover:text-gray-900 hover:bg-lighter-blue text-gray-800 focus:bg-lighter-blue focus:text-gray-900">
-						<Link class="flex flex-row items-center h-16 py-2 font-semibold p-5 hover:translate-x-2 transform transition-transform ease-in duration-200">
+						<Link
+							to={sidebarLink.path}
+							class="flex flex-row items-center h-16 py-2 font-semibold p-5 hover:translate-x-2 transform transition-transform ease-in duration-200"
+						>
 							<span class="inline-flex items-center justify-center h-12 w-12 text-2xl pl-5">
 								{sidebarLink.icon}
 							</span>

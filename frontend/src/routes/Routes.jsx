@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import Packages from "../pages/Packages";
 import AdminDashboard from "../pages/AdminDashboard";
 import AdminPackages from "../pages/AdminPackages";
+import AdminNewPackage from "../pages/AdminNewPackage";
 
 const Routes = () => {
 	return (
@@ -36,6 +37,9 @@ const Routes = () => {
 				</Route>
 				<Route exact path="/auth/admin/packages">
 					<AdminPackages />
+				</Route>
+				<Route exact path="/auth/admin/packages/new">
+					<AdminNewPackage />
 				</Route>
 				<Route exact path="/worker">
 					<Navbar />

@@ -16,7 +16,7 @@ const Register = () => {
 				>
 					Create an Account
 				</h1>
-				<form className="">
+				<form>
 					<div
 						className="flex flex-col justify-start pb-5"
 						data-aos="fade-up-left"
@@ -51,7 +51,7 @@ const Register = () => {
 						data-aos-delay="100"
 						data-aos="fade-up-left"
 					>
-						<label htmlFor="name" className="pb-1">
+						<label htmlFor="password" className="pb-1">
 							Password
 						</label>
 						<input

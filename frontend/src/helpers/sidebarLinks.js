@@ -3,11 +3,15 @@ import { FaUsers } from "react-icons/fa";
 import { BsBookHalf } from "react-icons/bs";
 
 const sidebarLinksAdmin = [
-	{ name: "Dashboard", path: "/admin/dashbaord", icon: <MdDashboard /> },
-	{ name: "Pricing & Packages", path: "/admin/pricing", icon: <MdStyle /> },
-	{ name: "Customers", path: "admin/customers", icon: <FaUsers /> },
-	{ name: "Feedbacks", path: "admin/feedbacks", icon: <MdFeedback /> },
-	{ name: "Blogs", path: "admin/blogs", icon: <BsBookHalf /> },
+	{ name: "Dashboard", path: "/auth/admin/dashboard", icon: <MdDashboard /> },
+	{
+		name: "Pricing & Packages",
+		path: "/auth/admin/packages",
+		icon: <MdStyle />,
+	},
+	{ name: "Customers", path: "/auth/admin/customers", icon: <FaUsers /> },
+	{ name: "Feedbacks", path: "/auth/admin/feedbacks", icon: <MdFeedback /> },
+	{ name: "Blogs", path: "/auth/admin/blogs", icon: <BsBookHalf /> },
 ];
 
 export { sidebarLinksAdmin };
