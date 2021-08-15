@@ -12,6 +12,7 @@ import AdminDashboard from "../pages/AdminDashboard";
 import AdminPackages from "../pages/AdminPackages";
 import AdminNewPackage from "../pages/AdminNewPackage";
 import AdminCustomer from "../pages/AdminCustomer";
+import AdminFeedback from "../pages/AdminFeedback";
 
 const Routes = () => {
 	return (
@@ -39,11 +40,14 @@ const Routes = () => {
 				<Route exact path="/auth/admin/packages">
 					<AdminPackages />
 				</Route>
+				<Route exact path="/auth/admin/packages/new">
+					<AdminNewPackage />
+				</Route>
 				<Route exact path="/auth/admin/customers">
 					<AdminCustomer />
 				</Route>
-				<Route exact path="/auth/admin/packages/new">
-					<AdminNewPackage />
+				<Route exact path="/auth/admin/feedbacks">
+					<AdminFeedback />
 				</Route>
 				<Route exact path="/worker">
 					<Navbar />
