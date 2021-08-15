@@ -1,14 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import LogoBlue from "../../assets/images/logo-blue.png";
-import { navLinks } from "../../helpers/navbar";
+import { navLinks } from "../../helpers/navbarLinks";
 
 const Navbar = () => {
 	return (
-		<header className="bg-lighter-blue">
+		<header
+			className={
+				useLocation().pathname === "/"
+					? "bg-lighter-blue text-gray-800"
+					: "text-gray-800"
+			}
+		>
 			<div className="flex mx-auto max-w-screen-2xl justify-between items-center px-4 min-h-12">
-				<img src={LogoBlue} alt="blue-logo" />
+				<Link to="/">
+					<img src={LogoBlue} alt="blue-logo" />
+				</Link>
 				<nav>
 					{navLinks.map((navLink, index) => (
 						<Link
@@ -21,7 +29,7 @@ const Navbar = () => {
 					))}
 					<Link
 						className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
-						to="/login"
+						to="/auth/login"
 					>
 						Sign in
 					</Link>

@@ -18,14 +18,14 @@ const processSteps = [
 		title: "We Clean",
 		description:
 			"We use premium materials, technologies and guarantee treatment with care.",
-		delay: 200,
+		delay: 100,
 	},
 	{
 		src: deliveryImage,
 		title: "We Deliver",
 		description:
 			"Free delivery for every order upon prior request within 24 hours after cleaning.",
-		delay: 400,
+		delay: 200,
 	},
 ];
 
@@ -42,14 +42,14 @@ const workDetails = [
 		title: "Curtains Cleaning",
 		description:
 			"The curtains come in different materials such as pure cotton lining, linen & cotton blend drapes in superior color, fabric, and texture.",
-		delay: 200,
+		delay: 100,
 	},
 	{
 		src: LeatherJacketsImage,
 		title: "Leather & Suede",
 		description:
 			"The curtains come in different materials such as pure cotton lining, linen & cotton blend drapes in superior color, fabric, and texture.",
-		delay: 400,
+		delay: 200,
 	},
 ];
 
