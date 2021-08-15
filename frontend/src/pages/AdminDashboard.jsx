@@ -9,17 +9,22 @@ const Dashboard = () => {
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20 ">
-				<h1 className="text-5xl font-extrabold pb-10 text-center">Summary</h1>
+				<h1
+					className="text-5xl font-extrabold pb-10 text-center"
+					data-aos="fade-up"
+				>
+					Summary
+				</h1>
 				<Sidebar />
 				<div className="w-full">
 					<div className="px-16 flex justify-between">
-						{adminCardInfo.map((adminCard) => (
-							<InfoCard cardInfo={adminCard} />
+						{adminCardInfo.map((adminCard, index) => (
+							<InfoCard cardInfo={adminCard} key={index} />
 						))}
 					</div>
 					<div className="px-16 flex justify-between w-full" id="chart">
-						<GraphInfoCard />
-						<GraphInfoCard />
+						<GraphInfoCard delay={0} />
+						<GraphInfoCard delay={300} />
 					</div>
 				</div>
 			</div>

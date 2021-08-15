@@ -6,7 +6,10 @@ const AdminNewPackage = () => {
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20 ">
-				<h1 className="text-5xl font-extrabold pb-10 text-center">
+				<h1
+					className="text-5xl font-extrabold pb-10 text-center"
+					data-aos="fade-up"
+				>
 					Create new Package
 				</h1>
 				<Sidebar />

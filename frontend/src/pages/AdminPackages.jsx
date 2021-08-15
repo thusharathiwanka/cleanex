@@ -11,7 +11,11 @@ const AdminPackages = () => {
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20">
-				<div className="flex justify-end mx-10">
+				<div
+					className="flex justify-end mx-10"
+					data-aos="fade-left"
+					data-aos-delay="100"
+				>
 					<Link
 						className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full flex justify-center items-center"
 						to="/auth/admin/packages/new"
@@ -20,11 +24,14 @@ const AdminPackages = () => {
 						New Package
 					</Link>
 				</div>
-				<h1 className="text-5xl font-extrabold pb-10 text-center">
+				<h1
+					className="text-5xl font-extrabold pb-10 text-center"
+					data-aos="fade-up"
+				>
 					Pricing & Packages
 				</h1>
 				<Sidebar />
-				<div className="w-full px-10">
+				<div className="w-full px-10" data-aos="fade-up" data-aos-delay="100">
 					<div class="flex flex-col mt-5">
 						<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 							<div class="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">
@@ -96,11 +103,11 @@ const AdminPackages = () => {
 												<td class="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
 													<Link
 														to="/auth/admin/packages/update"
-														class="text-green-400 mr-5 my-2"
+														class="text-green-400 mr-5 my-2 cursor-pointer"
 													>
 														<BiEditAlt />
 													</Link>
-													<button class="text-red-400 mr-5 my-2">
+													<button class="text-red-400 mr-5 my-2 cursor-pointer">
 														<RiDeleteBin5Line />
 													</button>
 												</td>

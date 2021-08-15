@@ -9,11 +9,14 @@ const AdminCustomer = () => {
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20">
-				<h1 className="text-5xl font-extrabold pb-10 text-center">
+				<h1
+					className="text-5xl font-extrabold pb-10 text-center"
+					data-aos="fade-up"
+				>
 					Registered Customers
 				</h1>
 				<Sidebar />
-				<div className="w-full px-10">
+				<div className="w-full px-10" data-aos="fade-up" data-aos-delay="100">
 					<div class="flex flex-col mt-5">
 						<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 							<div class="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">
