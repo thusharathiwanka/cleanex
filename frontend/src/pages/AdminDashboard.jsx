@@ -1,7 +1,7 @@
 import React from "react";
-import GraphInfoCard from "../components/admin/GraphInfoCard";
 
-import InfoCard from "../components/admin/InfoCard";
+import GraphInfoCard from "../components/adminDashboard/GraphInfoCard";
+import InfoCard from "../components/adminDashboard/InfoCard";
 import Sidebar from "../components/sidebar/Sidebar";
 import { adminCardInfo } from "../helpers/adminCardsInfo";
 
