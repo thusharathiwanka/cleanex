@@ -1,5 +1,7 @@
 import React from "react";
 import { FiPlus } from "react-icons/fi";
+import { BiEditAlt } from "react-icons/bi";
+import { RiDeleteBin5Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 import Sidebar from "../components/sidebar/Sidebar";
@@ -32,36 +34,33 @@ const AdminPackages = () => {
 											<tr>
 												<th
 													scope="col"
-													class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+													class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
 												>
 													Package
 												</th>
 												<th
 													scope="col"
-													class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+													class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
 												>
-													Price
+													Price (LKR)
 												</th>
 												<th
 													scope="col"
-													class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+													class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
 												>
 													Created At
 												</th>
 												<th
 													scope="col"
-													class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+													class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
 												>
 													Status
 												</th>
 												<th
 													scope="col"
-													class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+													class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
 												>
-													Role
-												</th>
-												<th scope="col" class="relative px-6 py-3">
-													<span class="sr-only">Edit</span>
+													Actions
 												</th>
 											</tr>
 										</thead>
@@ -78,19 +77,13 @@ const AdminPackages = () => {
 														</div>
 														<div class="ml-4">
 															<div class="text-sm font-medium text-gray-900">
-																Jane Cooper
-															</div>
-															<div class="text-sm text-gray-500">
-																jane.cooper@example.com
+																Package 01
 															</div>
 														</div>
 													</div>
 												</td>
 												<td class="px-6 py-4 whitespace-nowrap">
-													<div class="text-sm text-gray-900">
-														Regional Paradigm Technician
-													</div>
-													<div class="text-sm text-gray-500">Optimization</div>
+													<div class="text-sm text-gray-900">900.00</div>
 												</td>
 												<td class="px-6 py-4 whitespace-nowrap">
 													<div class="text-sm text-gray-900">20-Aug-2021</div>
@@ -100,16 +93,16 @@ const AdminPackages = () => {
 														Active
 													</span>
 												</td>
-												<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-													Admin
-												</td>
-												<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+												<td class="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
 													<Link
-														to="#"
-														class="text-indigo-600 hover:text-indigo-900"
+														to="/auth/admin/packages/update"
+														class="text-green-400 mr-10 my-2"
 													>
-														Edit
+														<BiEditAlt />
 													</Link>
+													<button class="text-red-400 mr-10 my-2">
+														<RiDeleteBin5Line />
+													</button>
 												</td>
 											</tr>
 										</tbody>
