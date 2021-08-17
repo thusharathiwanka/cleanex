@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import LogoBlue from "../../assets/images/logo-blue.png";
 import { navLinks } from "../../helpers/navbarLinks";
@@ -8,7 +8,7 @@ const Navbar = () => {
 	return (
 		<header
 			className={
-				useLocation().pathname === "/"
+				window.location.pathname === "/"
 					? "bg-lighter-blue text-gray-800"
 					: "text-gray-800"
 			}
