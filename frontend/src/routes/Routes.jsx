@@ -15,6 +15,7 @@ import AdminPackages from "../pages/AdminPackages";
 import AdminNewPackage from "../pages/AdminNewPackage";
 import AdminCustomer from "../pages/AdminCustomer";
 import AdminFeedback from "../pages/AdminFeedback";
+import Payment from "../pages/Payment";
 
 const Routes = () => {
 	return (
@@ -64,6 +65,9 @@ const Routes = () => {
 				</Route>
 				<Route exact path="/singleblog">
 					<SingleBlog />
+				</Route>
+				<Route exact path="/payment">
+					<Payment/>
 				</Route>
 			</Switch>
 		</>
