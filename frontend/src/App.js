@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 function App() {
 	axios.defaults.baseURL = "http://localhost:5000/";
+	axios.defaults.withCredentials = true;
 
 	useEffect(() => {
 		AOS.init({ duration: 800, easing: "ease-in-out-quad" });

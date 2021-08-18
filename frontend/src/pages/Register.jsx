@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -13,9 +14,13 @@ const Register = () => {
 		mobile: "",
 	});
 
-	const registerCustomer = (e) => {
+	const registerCustomer = async (e) => {
 		e.preventDefault();
-		console.log(customer);
+		customer.createdAt = customer.updatedAt = new Date();
+
+		try {
+			const res = axios.post("customers/register", customer);
+		} catch (err) {}
 	};
 
 	return (
@@ -101,6 +106,7 @@ const Register = () => {
 							id="mobile"
 							className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
 							required
+							maxLength="10"
 							value={customer.mobile}
 							onChange={(e) =>
 								setCustomer({ ...customer, mobile: e.target.value })
