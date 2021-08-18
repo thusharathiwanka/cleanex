@@ -59,3 +59,5 @@ const loginModerator = async (req, res) => {
 
 	return res.status(406).send();
 };
+
+module.exports = { loginModerator };
