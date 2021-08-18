@@ -11,14 +11,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-	res.send("<h3>CLEANEX API 2021</h3>");
-});
-
 mongoose
 	.connect(process.env.CONNECTION_URL, {
-		useNewUrlParser: true,
 		useUnifiedTopology: true,
+		useNewUrlParser: true,
+		useCreateIndex: true,
+		useFindAndModify: true,
 	})
 	.then(() => {
 		app.listen(PORT, () => {
@@ -26,5 +24,11 @@ mongoose
 		});
 	})
 	.catch((err) => {
-		console.log(err.message);
+		console.error(err.message);
 	});
+
+app.use("/customers", require("./api/routes/customer.routes"));
+
+app.get("/", (req, res) => {
+	res.send("<h3>CLEANEX API 2021</h3>");
+});
