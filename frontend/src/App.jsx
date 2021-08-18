@@ -7,6 +7,7 @@ import Routes from "./routes/Routes";
 import "./App.css";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import AuthContextProvider from "./contexts/AuthContext";
 
 function App() {
 	axios.defaults.baseURL = "http://localhost:5000/";
@@ -17,9 +18,11 @@ function App() {
 	});
 
 	return (
-		<BrowserRouter>
-			<Routes />
-		</BrowserRouter>
+		<AuthContextProvider>
+			<BrowserRouter>
+				<Routes />
+			</BrowserRouter>
+		</AuthContextProvider>
 	);
 }
 
