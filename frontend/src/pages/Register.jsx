@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Error from "../components/toasts/Error";
 import TShirtImage from "../../src/assets/images/hanging-t-shirt.png";
@@ -14,20 +14,25 @@ const Register = () => {
 		password: "",
 		mobile: "",
 	});
-	const [error, setError] = useState(true);
+	const [error, setError] = useState("");
+	const history = useHistory();
 
 	const registerCustomer = async (e) => {
 		e.preventDefault();
 		customer.createdAt = customer.updatedAt = new Date();
 
 		try {
-			const res = axios.post("customers/register", customer);
-		} catch (err) {}
+			await axios.post("customers/register", customer);
+			setCustomer({});
+			history.push("/auth/user/packages");
+		} catch (err) {
+			setError(err.response.data.message);
+		}
 	};
 
 	return (
 		<div>
-			{error && <Error message={"error occured"} />}
+			{error && <Error error={error} />}
 			<div className="text-gray-800 max-w-screen-2.5xl ml-auto max-h-88 pl-4 flex justify-between items-center overflow-hidden relative">
 				<div className="font-semibold text-lg">
 					<h1
