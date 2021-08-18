@@ -30,6 +30,8 @@ mongoose
 	});
 
 app.use("/customers", require("./api/routes/customer.routes"));
+app.use("/moderators", require("./api/routes/moderator.routes"));
+app.use("/users", require("./api/routes/common.routes"));
 
 app.get("/", (req, res) => {
 	res.send("<h3>CLEANEX API 2021</h3>");
