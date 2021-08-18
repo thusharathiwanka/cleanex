@@ -4,6 +4,8 @@ import { BiSearch } from "react-icons/bi";
 import PackageCard from "../components/packages/PackageCard";
 
 const Packages = () => {
+	document.title = "CLEANEX - All Packages";
+
 	return (
 		<div className="text-gray-800 max-w-screen-2xl mx-auto px-4">
 			<div className=" flex flex-col items-center pt-14">

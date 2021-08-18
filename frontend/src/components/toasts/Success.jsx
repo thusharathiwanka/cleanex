@@ -8,9 +8,7 @@ const Success = ({ success }) => {
 				role="alert"
 			>
 				<strong className="font-bold">Success ! </strong>
-				<span className="block sm:inline pl-4">
-					Something seriously good happened.
-				</span>
+				<span className="block sm:inline pl-4">{success}</span>
 			</div>
 		</div>
 	);

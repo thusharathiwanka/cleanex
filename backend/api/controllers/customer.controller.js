@@ -12,10 +12,17 @@ const saveCustomer = async (req, res) => {
 	// * request body validation
 	if (req.body) {
 		const { name, email, password, mobile, createdAt, updatedAt } = req.body;
+		const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
 
 		// * user inputs validation
 		if (!name || !email || !password || !mobile) {
 			return res.status(400).json({ message: "Please fill all the fields" });
+		}
+
+		if (!email.match(pattern)) {
+			return res
+				.status(400)
+				.json({ message: "Please enter a valid email address" });
 		}
 
 		if (password.length < 6) {
