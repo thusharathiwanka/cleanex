@@ -15,6 +15,7 @@ const Register = () => {
 		mobile: "",
 	});
 	const [error, setError] = useState("");
+	const [buttonStatus, setButtonStatus] = useState(false);
 	const history = useHistory();
 
 	const registerCustomer = async (e) => {
@@ -133,7 +134,7 @@ const Register = () => {
 							data-aos-delay="250"
 							data-aos="fade-up-left"
 						>
-							Sign Up
+							{!buttonStatus ? "Sign Up" : "Signing Up"}
 						</button>
 					</form>
 				</div>
