@@ -6,6 +6,7 @@ module.exports = {
 			colors: {
 				"light-blue": "#11B4F5",
 				"lighter-blue": "#E8F8FE",
+				"light-gary" : "#CCCCCC"
 			},
 			minHeight: {
 				12: "12vh",
