@@ -9,7 +9,7 @@ dotenv.config();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 mongoose
 	.connect(process.env.CONNECTION_URL, {

@@ -62,7 +62,7 @@ const saveCustomer = async (req, res) => {
 		}
 	}
 
-	return res.status(400).json({ message: "Request body cannot be empty" });
+	return res.status(406).send();
 };
 
 /**
@@ -80,4 +80,52 @@ const getCustomers = async (req, res) => {
 	}
 };
 
-module.exports = { saveCustomer, getCustomers };
+const loginCustomer = async (req, res) => {
+	// * request body validation
+	if (req.body) {
+		const { email, password } = req.body;
+
+		// * user inputs validation
+		if (!email || !password) {
+			return res.status(400).json({ message: "Please fill all the fields" });
+		}
+
+		try {
+			// * checking for email existence
+			const existingUser = await Customer.findOne({ email: email });
+			if (!existingUser) {
+				return res.status(401).json({
+					message: "Wrong email or password",
+				});
+			}
+
+			// * checking for password existence
+			const isPasswordCorrect = await bcrypt.compare(
+				password,
+				existingUser.password
+			);
+
+			if (!isPasswordCorrect) {
+				return res.status(401).json({
+					message: "Wrong email or password",
+				});
+			}
+
+			// * logging the user
+			const token = jwt.sign(
+				{ user: existingUser._id, type: "customer" },
+				process.env.JWT_SECRET
+			);
+
+			//* sending token as a cookie
+			return res.cookie("token", token, { httpOnly: true }).send();
+		} catch (err) {
+			console.error(err.message);
+			return res.status(500).send();
+		}
+	}
+
+	return res.status(406).send();
+};
+
+module.exports = { saveCustomer, getCustomers, loginCustomer };
