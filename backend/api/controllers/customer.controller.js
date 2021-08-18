@@ -48,14 +48,14 @@ const saveCustomer = async (req, res) => {
 			});
 			const savedCustomer = await newCustomer.save();
 
-			// * log the user
+			// * logging the user
 			const token = jwt.sign(
 				{ user: saveCustomer._id, type: "customer" },
 				process.env.JWT_SECRET
 			);
 
 			//* sending token as a cookie
-			res.cookie("token", token, { httpOnly: true }).send();
+			return res.cookie("token", token, { httpOnly: true }).send();
 		} catch (err) {
 			console.error(err.message);
 			return res.status(500).send();
@@ -65,12 +65,18 @@ const saveCustomer = async (req, res) => {
 	return res.status(400).json({ message: "Request body cannot be empty" });
 };
 
-const getCustomers = (req, res) => {
+/**
+ * use to get all the customers
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const getCustomers = async (req, res) => {
 	try {
-		const customers = Customer.find();
+		const customers = await Customer.find();
 		return res.status(200).json({ customers: customers });
 	} catch (err) {
-		return res.status(200).json({ message: err.message });
+		return res.status(500).send();
 	}
 };
 
