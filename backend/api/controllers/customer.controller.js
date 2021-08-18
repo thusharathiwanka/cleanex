@@ -55,14 +55,14 @@ const saveCustomer = async (req, res) => {
 			);
 
 			//* sending token as a cookie
-			return res.cookie("token", token, { httpOnly: true }).send();
+			return res.status(201).cookie("token", token, { httpOnly: true }).send();
 		} catch (err) {
 			console.error(err.message);
 			return res.status(500).send();
 		}
 	}
 
-	return res.status(406).send();
+	return res.status(400).send();
 };
 
 /**
