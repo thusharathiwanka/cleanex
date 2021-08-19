@@ -153,13 +153,12 @@ const loginCustomer = async (req, res) => {
  * @returns {Object} res
  */
 const deleteCustomer = async (req, res) => {
-	if (req.params.id && req.body) {
+	if (req.params.id) {
 		try {
-			const deletedCustomer = await Customer.findByIdAndDelete(req.params.id, {
-				new: true,
-			});
+			await Customer.findByIdAndDelete(req.params.id);
 			return res.status(200).send();
 		} catch (err) {
+			console.log(err.message);
 			return res.status(500).send();
 		}
 	}

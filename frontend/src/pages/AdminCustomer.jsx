@@ -12,8 +12,23 @@ const AdminCustomer = () => {
 	const [showModal, setShowModal] = useState(false);
 
 	const getCustomers = async () => {
-		const res = await axios.get("/customers");
-		setCustomers(res.data.customers);
+		try {
+			const res = await axios.get("/customers");
+			setCustomers(res.data.customers);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
+	const deleteCustomer = async (id) => {
+		try {
+			await axios.delete(`customers/${id}`);
+			console.log("called");
+			getCustomers();
+			setShowModal(false);
+		} catch (err) {
+			console.error(err.message);
+		}
 	};
 
 	useEffect(() => {
@@ -117,6 +132,8 @@ const AdminCustomer = () => {
 														<ConfirmModal
 															setShowModal={setShowModal}
 															showModal={showModal}
+															execute={deleteCustomer}
+															id={customer._id}
 														/>
 													</td>
 												</tr>
