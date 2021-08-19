@@ -3,7 +3,7 @@ import React from 'react'
 const ProcessingList = () => {
     return (
         <div className=" pt-16 pl-60 pr-60 pb-20">
-            <div className="bg-white rounded shadow-2xl p-10" >
+            <div className="bg-white rounded-xl shadow-2xl p-10" >
                 <div className="grid grid-cols-3 divide-x divide-light-blue">
                     <div className="ml-16">
                         <span className="font-semibold">Name</span>

@@ -5,7 +5,7 @@ const PendingLists = () => {
 
     return (
         <div class=" pt-16 pl-60 pr-60">
-            <div class="bg-white rounded shadow-2xl p-10" >
+            <div class="bg-white rounded-xl shadow-2xl p-10" >
                 <div class="grid grid-cols-3 divide-x divide-light-blue">
                     <div class="ml-16">
                         <span class="font-semibold">Name</span>
