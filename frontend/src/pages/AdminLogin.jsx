@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 import Error from "../components/toasts/Error";
 import RightBubble from "../assets/images/right-bottom-bubble-reason.png";
 import LeftBubble from "../assets/images/left-bubble-process.png";
+import { AuthContext } from "../contexts/AuthContext";
 
 const AdminLogin = () => {
 	document.title = "CLEANEX - Moderator Login";
 	const history = useHistory();
+	const { setLoggedIn, setLoggedInRole } = useContext(AuthContext);
 	const [error, setError] = useState("");
 	const [buttonStatus, setButtonStatus] = useState(false);
 	const [moderator, setModerator] = useState({ username: "", password: "" });
@@ -19,9 +21,11 @@ const AdminLogin = () => {
 
 		try {
 			const res = await axios.post("moderators/login", moderator);
-			console.log(res);
 			setModerator({});
-			history.push(`/auth/user/${res.data.type}/dashboard`);
+			setLoggedIn(true);
+			setLoggedInRole(res.data.type);
+			setButtonStatus(false);
+			history.push(`/auth/${res.data.type}/dashboard`);
 		} catch (err) {
 			setError(err.response.data.message);
 			setButtonStatus(false);

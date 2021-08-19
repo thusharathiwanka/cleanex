@@ -20,6 +20,7 @@ const Login = () => {
 		try {
 			await axios.post("customers/login", customer);
 			setCustomer({});
+			setButtonStatus(false);
 			history.push("/auth/user/packages");
 		} catch (err) {
 			setError(err.response.data.message);

@@ -31,6 +31,12 @@ const saveCustomer = async (req, res) => {
 				.json({ message: "Password should be at least 6 characters long" });
 		}
 
+		if (mobile.length < 10) {
+			return res
+				.status(400)
+				.json({ message: "Please enter a valid phone number" });
+		}
+
 		try {
 			// * checking for exiting user with the same email
 			const existingUser = await Customer.findOne({ email: email });
@@ -62,7 +68,10 @@ const saveCustomer = async (req, res) => {
 			);
 
 			//* sending token as a cookie
-			return res.status(201).cookie("token", token, { httpOnly: true }).send();
+			return res
+				.status(201)
+				.cookie("token", token, { httpOnly: true })
+				.json({ role: "customer" });
 		} catch (err) {
 			console.error(err.message);
 			return res.status(500).send();
@@ -125,7 +134,9 @@ const loginCustomer = async (req, res) => {
 			);
 
 			//* sending token as a cookie
-			return res.cookie("token", token, { httpOnly: true }).send();
+			return res
+				.cookie("token", token, { httpOnly: true })
+				.json({ role: "customer" });
 		} catch (err) {
 			console.error(err.message);
 			return res.status(500).send();

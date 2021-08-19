@@ -31,6 +31,7 @@ const Register = () => {
 			history.push("/auth/user/packages");
 		} catch (err) {
 			setError(err.response.data.message);
+			setButtonStatus(false);
 		}
 	};
 
