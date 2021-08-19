@@ -19,70 +19,46 @@ import AdminCustomer from "../pages/AdminCustomer";
 import AdminFeedback from "../pages/AdminFeedback";
 import Payment from "../pages/Payment";
 import Manager from "../pages/Manager";
-import AdminLogin from "../pages/AdminLogin";
+import AdminLogin from "../pages/ModeratorLogin";
 
 const Routes = () => {
-	const { loggedIn } = useContext(AuthContext);
+	const { loggedIn, loggedInRole } = useContext(AuthContext);
 
 	return (
 		<Switch>
 			<Route exact path="/">
-				{!loggedIn ? (
-					<>
-						<Navbar />
-						<Home />
-					</>
-				) : (
-					<Redirect to="/auth/user/packages" />
-				)}
+				<Navbar />
+				<Home />
 			</Route>
 			<Route exact path="/auth/register">
-				{!loggedIn ? (
-					<>
-						<Navbar />
-						<Register />
-					</>
-				) : (
-					<Redirect to="/auth/user/packages" />
-				)}
+				<Navbar />
+				<Register />
 			</Route>
 			<Route exact path="/auth/login">
-				{!loggedIn ? (
-					<>
-						<Navbar />
-						<Login />
-					</>
-				) : (
-					<Redirect to="/auth/user/packages" />
-				)}
+				<Navbar />
+				<Login />
 			</Route>
 			<Route exact path="/auth/user/packages">
-				{!loggedIn ? (
-					<Redirect to="/" />
-				) : (
-					<>
-						<Navbar />
-						<Packages />
-					</>
-				)}
+				<Navbar />
+				<Packages />
 			</Route>
 			<Route exact path="/auth/moderator/login">
 				<AdminLogin />
 			</Route>
 			<Route exact path="/auth/admin/dashboard">
-				{!loggedIn ? <Redirect to="/" /> : <AdminDashboard />}
+				<AdminDashboard />
 			</Route>
 			<Route exact path="/auth/admin/packages">
-				{!loggedIn ? <Redirect to="/" /> : <AdminPackages />}
+				<AdminPackages />
 			</Route>
 			<Route exact path="/auth/admin/packages/new">
-				{!loggedIn ? <Redirect to="/" /> : <AdminNewPackage />}
+				<AdminNewPackage />
 			</Route>
 			<Route exact path="/auth/admin/customers">
-				{!loggedIn ? <Redirect to="/" /> : <AdminCustomer />}
+				<AdminCustomer />
 			</Route>
 			<Route exact path="/auth/admin/feedbacks">
-				{!loggedIn ? <Redirect to="/" /> : <AdminFeedback />}
+				<AdminFeedback />
 			</Route>
 			<Route exact path="/worker">
 				<Navbar />
@@ -100,13 +76,6 @@ const Routes = () => {
 			</Route>
 			<Route exact path="/payment">
 				<Payment />
-			</Route>
-			<Route exact path="*">
-				{!loggedIn ? (
-					<Redirect to="/" />
-				) : (
-					<Redirect to="/auth/user/packages" />
-				)}
 			</Route>
 			<Route exact path="/manager">
 				<Manager />
