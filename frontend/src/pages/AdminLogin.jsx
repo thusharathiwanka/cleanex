@@ -18,9 +18,9 @@ const AdminLogin = () => {
 		setButtonStatus(true);
 
 		try {
-			await axios.post("customers/login", moderator);
+			const res = await axios.post("moderators/login", moderator);
 			setModerator({});
-			history.push("/auth/user/packages");
+			history.push(`/auth/user/${res.data.type}/dashboard`);
 		} catch (err) {
 			setError(err.response.data.message);
 			setButtonStatus(false);
@@ -29,12 +29,13 @@ const AdminLogin = () => {
 
 	return (
 		<div>
+			<div className="min-h-12"></div>
 			{error && <Error error={error} />}
-			<div className="text-gray-800 max-w-screen-2xl mx-auto min-h-screen pl-4 flex justify-between items-center overflow-hidden">
+			<div className="text-gray-800 max-w-screen-2xl mx-auto min-h-88 pl-4 flex justify-between items-center overflow-hidden">
 				<div className="font-semibold text-lg w-2/5 max-w-full mx-auto">
 					<h1
 						data-aos="fade-up"
-						className="text-5xl font-extrabold pb-16 text-center"
+						className="text-5xl font-extrabold pb-16 text-center -mt-20"
 					>
 						Moderator Login
 					</h1>

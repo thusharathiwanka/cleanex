@@ -6,12 +6,13 @@ module.exports = {
 			colors: {
 				"light-blue": "#11B4F5",
 				"lighter-blue": "#E8F8FE",
-				"light-gary" : "#CCCCCC"
+				"light-gary": "#CCCCCC",
 			},
 			minHeight: {
 				12: "12vh",
 				70: "70vh",
 				90: "90vh",
+				88: "88vh",
 			},
 			maxHeight: {
 				88: "88vh",
