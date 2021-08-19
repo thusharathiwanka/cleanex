@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+
 /**
  * use to log out the users
  * @param {Object} req
@@ -21,14 +23,16 @@ const checkLoggedIn = (req, res) => {
 		try {
 			const token = req.cookies.token;
 
-			if (!token) return res.json(false);
+			if (!token) return res.json({ state: false, role: "" });
 
-			jwt.verify(token, process.env.JWT_SECRET);
+			const verify = jwt.verify(token, process.env.JWT_SECRET);
 
-			return res.json(true);
+			if (!verify) return res.json({ state: false, role: "" });
+
+			return res.json({ state: true, role: verify.type });
 		} catch (err) {
 			console.error(err.message);
-			return res.json(false);
+			return res.json({ state: false, role: "" });
 		}
 	}
 };

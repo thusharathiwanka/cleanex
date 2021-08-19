@@ -51,6 +51,7 @@ const Login = () => {
 								name="email"
 								id="email"
 								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2"
+								required
 								value={customer.email}
 								onChange={(e) =>
 									setCustomer({ ...customer, email: e.target.value })
@@ -70,6 +71,7 @@ const Login = () => {
 								name="password"
 								id="password"
 								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+								required
 								value={customer.password}
 								onChange={(e) =>
 									setCustomer({ ...customer, password: e.target.value })
