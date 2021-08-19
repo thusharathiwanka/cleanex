@@ -75,7 +75,7 @@ const Routes = () => {
 				<Route exact path="/auth/admin/feedbacks">
 					<AdminFeedback />
 				</Route>
-				<Route exact path="/worker">
+				<Route exact path="auth/worker/dashbord">
 					<Navbar />
 					<Worker />
 				</Route>
@@ -99,7 +99,7 @@ const Routes = () => {
 						<Redirect to="/auth/user/packages" />
 					)}
 				</Route>
-				<Route exact path="/manager">
+				<Route exact path="auth/manager/dashboard">
 					<Manager/>
 				</Route>
 				
