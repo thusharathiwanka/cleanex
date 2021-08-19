@@ -19,6 +19,7 @@ import AdminCustomer from "../pages/AdminCustomer";
 import AdminFeedback from "../pages/AdminFeedback";
 import Payment from "../pages/Payment";
 import Manager from "../pages/Manager";
+import AdminLogin from "../pages/AdminLogin";
 
 const Routes = () => {
 	const { loggedIn } = useContext(AuthContext);
@@ -64,6 +65,9 @@ const Routes = () => {
 						<Packages />
 					</>
 				)}
+			</Route>
+			<Route exact path="/auth/moderator/login">
+				<AdminLogin />
 			</Route>
 			<Route exact path="/auth/admin/dashboard">
 				{!loggedIn ? <Redirect to="/" /> : <AdminDashboard />}
