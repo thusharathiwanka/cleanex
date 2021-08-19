@@ -5,9 +5,11 @@ import { FaUserCircle } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 
 import Sidebar from "../components/sidebar/Sidebar";
+import ConfirmModal from "../components/modals/ConfirmModal";
 
 const AdminCustomer = () => {
 	const [customers, setCustomers] = useState([]);
+	const [showModal, setShowModal] = useState(false);
 
 	const getCustomers = async () => {
 		const res = await axios.get("/customers");
@@ -106,9 +108,16 @@ const AdminCustomer = () => {
 														<button class="text-green-400 mr-5 my-2">
 															<AiOutlineEye />
 														</button>
-														<button class="text-red-400 mr-5 my-2">
+														<button
+															class="text-red-400 mr-5 my-2"
+															onClick={() => setShowModal(true)}
+														>
 															<RiDeleteBin5Line />
 														</button>
+														<ConfirmModal
+															setShowModal={setShowModal}
+															showModal={showModal}
+														/>
 													</td>
 												</tr>
 											))}
