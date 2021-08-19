@@ -19,6 +19,7 @@ const AdminLogin = () => {
 
 		try {
 			const res = await axios.post("moderators/login", moderator);
+			console.log(res);
 			setModerator({});
 			history.push(`/auth/user/${res.data.type}/dashboard`);
 		} catch (err) {

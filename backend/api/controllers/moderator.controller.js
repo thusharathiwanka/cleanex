@@ -1,4 +1,6 @@
 const Moderator = require("../models/moderator.model");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 /**
  * use to get all the customers
  * @param {Object} req
@@ -11,19 +13,14 @@ const loginModerator = async (req, res) => {
 		const { username, password } = req.body;
 
 		let userRole;
-		switch (username) {
-			case username.includes("@admin"):
-				userRole = "admin";
-				break;
-			case username.includes("@manager"):
-				userRole = "manager";
-				break;
-			case username.includes("@deliverer"):
-				userRole = "deliverer";
-				break;
-			case username.includes("@worker"):
-				userRole = "worker";
-				break;
+		if (username.includes("@admin")) {
+			userRole = "admin";
+		} else if (username.includes("@manager")) {
+			userRole = "manager";
+		} else if (username.includes("@deliverer")) {
+			userRole = "deliverer";
+		} else if (username.includes("@worker")) {
+			userRole = "worker";
 		}
 
 		// * user inputs validation
