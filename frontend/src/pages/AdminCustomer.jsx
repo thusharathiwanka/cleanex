@@ -23,7 +23,6 @@ const AdminCustomer = () => {
 	const deleteCustomer = async (id) => {
 		try {
 			await axios.delete(`customers/${id}`);
-			console.log("called");
 			getCustomers();
 			setShowModal(false);
 		} catch (err) {
@@ -129,13 +128,15 @@ const AdminCustomer = () => {
 														>
 															<RiDeleteBin5Line />
 														</button>
+													</td>
+													<div className="absolute left-0 top-0">
 														<ConfirmModal
 															setShowModal={setShowModal}
 															showModal={showModal}
 															execute={deleteCustomer}
 															id={customer._id}
 														/>
-													</td>
+													</div>
 												</tr>
 											))}
 										</tbody>
