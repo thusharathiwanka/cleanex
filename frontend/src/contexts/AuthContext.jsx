@@ -4,26 +4,26 @@ import React, { createContext, useState, useEffect } from "react";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-	const [loggedIn, setLoggedIn] = useState({
-		loginState: "",
-		loginRole: "",
-	});
-
-	const getLoggedIn = async (req, res) => {
-		try {
-			const res = await axios.get("/users/logged");
-			setLoggedIn({ loginState: res.data.state, loginRole: res.data.role });
-		} catch (err) {
-			console.error(err.message);
-		}
-	};
+	const [loggedIn, setLoggedIn] = useState(false);
+	const [LoggedInRole, setLoggedInRole] = useState("");
 
 	useEffect(() => {
+		const getLoggedIn = async () => {
+			try {
+				const res = await axios.get("/users/logged");
+				setLoggedIn(res.data.state);
+				setLoggedInRole(res.data.role);
+			} catch (err) {
+				console.error(err.message);
+			}
+		};
 		getLoggedIn();
 	}, []);
 
 	return (
-		<AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+		<AuthContext.Provider
+			value={{ loggedIn, LoggedInRole, setLoggedIn, setLoggedInRole }}
+		>
 			{children}
 		</AuthContext.Provider>
 	);

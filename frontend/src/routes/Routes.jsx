@@ -19,92 +19,99 @@ import AdminCustomer from "../pages/AdminCustomer";
 import AdminFeedback from "../pages/AdminFeedback";
 import Payment from "../pages/Payment";
 import Manager from "../pages/Manager";
+import AdminLogin from "../pages/AdminLogin";
 
 const Routes = () => {
 	const { loggedIn } = useContext(AuthContext);
-	console.log(loggedIn.loginState);
+
 	return (
-		<>
-			<Switch>
-				<Route exact path="/">
-					{loggedIn.loginState === false ? (
-						<>
-							<Navbar />
-							<Home />
-						</>
-					) : (
-						<Redirect to="/auth/user/packages" />
-					)}
-				</Route>
-				<Route exact path="/auth/register">
-					{loggedIn.loginState === false ? (
-						<>
-							<Navbar />
-							<Register />
-						</>
-					) : (
-						<Redirect to="/auth/user/packages" />
-					)}
-				</Route>
-				<Route exact path="/auth/login">
-					{loggedIn.loginState === false ? (
-						<>
-							<Navbar />
-							<Login />
-						</>
-					) : (
-						<Redirect to="/auth/user/packages" />
-					)}
-				</Route>
-				<Route exact path="/auth/user/packages">
-					<Navbar />
-					<Packages />
-				</Route>
-				<Route exact path="/auth/admin/dashboard">
-					<AdminDashboard />
-				</Route>
-				<Route exact path="/auth/admin/packages">
-					<AdminPackages />
-				</Route>
-				<Route exact path="/auth/admin/packages/new">
-					<AdminNewPackage />
-				</Route>
-				<Route exact path="/auth/admin/customers">
-					<AdminCustomer />
-				</Route>
-				<Route exact path="/auth/admin/feedbacks">
-					<AdminFeedback />
-				</Route>
-				<Route exact path="auth/worker/dashbord">
-					<Navbar />
-					<Worker />
-				</Route>
-				<Route exact path="/createblogs">
-					<Navbar />
-					<CreateBlog />
-				</Route>
-				<Route exact path="/blogs">
-					<Blog />
-				</Route>
-				<Route exact path="/singleblog">
-					<SingleBlog />
-				</Route>
-				<Route exact path="/payment">
-					<Payment />
-				</Route>
-				<Route exact path="*">
-					{loggedIn.loginState === false ? (
-						<Redirect to="/" />
-					) : (
-						<Redirect to="/auth/user/packages" />
-					)}
-				</Route>
-				<Route exact path="auth/manager/dashboard">
-					<Manager/>
-				</Route>
-				
-			</Switch>
-		</>
+		<Switch>
+			<Route exact path="/">
+				{!loggedIn ? (
+					<>
+						<Navbar />
+						<Home />
+					</>
+				) : (
+					<Redirect to="/auth/user/packages" />
+				)}
+			</Route>
+			<Route exact path="/auth/register">
+				{!loggedIn ? (
+					<>
+						<Navbar />
+						<Register />
+					</>
+				) : (
+					<Redirect to="/auth/user/packages" />
+				)}
+			</Route>
+			<Route exact path="/auth/login">
+				{!loggedIn ? (
+					<>
+						<Navbar />
+						<Login />
+					</>
+				) : (
+					<Redirect to="/auth/user/packages" />
+				)}
+			</Route>
+			<Route exact path="/auth/user/packages">
+				{!loggedIn ? (
+					<Redirect to="/" />
+				) : (
+					<>
+						<Navbar />
+						<Packages />
+					</>
+				)}
+			</Route>
+			<Route exact path="/auth/moderator/login">
+				<AdminLogin />
+			</Route>
+			<Route exact path="/auth/admin/dashboard">
+				{!loggedIn ? <Redirect to="/" /> : <AdminDashboard />}
+			</Route>
+			<Route exact path="/auth/admin/packages">
+				{!loggedIn ? <Redirect to="/" /> : <AdminPackages />}
+			</Route>
+			<Route exact path="/auth/admin/packages/new">
+				{!loggedIn ? <Redirect to="/" /> : <AdminNewPackage />}
+			</Route>
+			<Route exact path="/auth/admin/customers">
+				{!loggedIn ? <Redirect to="/" /> : <AdminCustomer />}
+			</Route>
+			<Route exact path="/auth/admin/feedbacks">
+				{!loggedIn ? <Redirect to="/" /> : <AdminFeedback />}
+			</Route>
+			<Route exact path="/auth/worker/dashboard">
+				<Navbar />
+				<Worker />
+			</Route>
+			<Route exact path="/createblogs">
+				<Navbar />
+				<CreateBlog />
+			</Route>
+			<Route exact path="/blogs">
+				<Blog />
+			</Route>
+			<Route exact path="/singleblog">
+				<SingleBlog />
+			</Route>
+			<Route exact path="/payment">
+				<Payment />
+			</Route>
+			<Route exact path="*">
+				{!loggedIn ? (
+					<Redirect to="/" />
+				) : (
+					<Redirect to="/auth/user/packages" />
+				)}
+			</Route>
+			<Route exact path="/auth/manager/dashboard">
+				<Manager />
+			</Route>
+		</Switch>
 	);
 };
 

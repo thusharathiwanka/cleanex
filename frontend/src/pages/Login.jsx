@@ -20,6 +20,7 @@ const Login = () => {
 		try {
 			await axios.post("customers/login", customer);
 			setCustomer({});
+			setButtonStatus(false);
 			history.push("/auth/user/packages");
 		} catch (err) {
 			setError(err.response.data.message);
@@ -50,7 +51,8 @@ const Login = () => {
 								type="email"
 								name="email"
 								id="email"
-								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2"
+								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2 transition duration-500 ease-in-out"
+								required
 								value={customer.email}
 								onChange={(e) =>
 									setCustomer({ ...customer, email: e.target.value })
@@ -69,7 +71,8 @@ const Login = () => {
 								type="password"
 								name="password"
 								id="password"
-								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue transition duration-500 ease-in-out"
+								required
 								value={customer.password}
 								onChange={(e) =>
 									setCustomer({ ...customer, password: e.target.value })
