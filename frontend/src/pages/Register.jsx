@@ -57,7 +57,7 @@ const Register = () => {
 								type="text"
 								name="name"
 								id="name"
-								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue transition duration-500 ease-in-out"
 								required
 								value={customer.name}
 								onChange={(e) =>
@@ -77,7 +77,7 @@ const Register = () => {
 								type="email"
 								name="email"
 								id="email"
-								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2"
+								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2 transition duration-500 ease-in-out"
 								required
 								value={customer.email}
 								onChange={(e) =>
@@ -97,7 +97,7 @@ const Register = () => {
 								type="password"
 								name="password"
 								id="password"
-								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue transition duration-500 ease-in-out"
 								required
 								value={customer.password}
 								onChange={(e) =>
@@ -117,7 +117,7 @@ const Register = () => {
 								type="text"
 								name="mobile"
 								id="mobile"
-								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue transition duration-500 ease-in-out"
 								required
 								maxLength="10"
 								value={customer.mobile}

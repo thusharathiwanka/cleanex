@@ -7,19 +7,19 @@ import RightBubble from "../assets/images/right-bottom-bubble-reason.png";
 import LeftBubble from "../assets/images/left-bubble-process.png";
 
 const AdminLogin = () => {
-	document.title = "CLEANEX - Sign In";
+	document.title = "CLEANEX - Moderator Login";
 	const history = useHistory();
 	const [error, setError] = useState("");
 	const [buttonStatus, setButtonStatus] = useState(false);
-	const [customer, setCustomer] = useState({ email: "", password: "" });
+	const [moderator, setModerator] = useState({ username: "", password: "" });
 
 	const loginModerator = async (e) => {
 		e.preventDefault();
 		setButtonStatus(true);
 
 		try {
-			await axios.post("customers/login", customer);
-			setCustomer({});
+			await axios.post("customers/login", moderator);
+			setModerator({});
 			history.push("/auth/user/packages");
 		} catch (err) {
 			setError(err.response.data.message);
@@ -43,18 +43,18 @@ const AdminLogin = () => {
 							className="flex flex-col justify-start pb-5"
 							data-aos="fade-up-left"
 						>
-							<label htmlFor="email" className="pb-1">
+							<label htmlFor="username" className="pb-1">
 								Username
 							</label>
 							<input
-								type="email"
-								name="email"
-								id="email"
-								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2"
+								type="text"
+								name="username"
+								id="username"
+								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2 transition duration-500 ease-in-out"
 								required
-								value={customer.email}
+								value={moderator.email}
 								onChange={(e) =>
-									setCustomer({ ...customer, email: e.target.value })
+									setModerator({ ...moderator, username: e.target.value })
 								}
 							/>
 						</div>
@@ -70,11 +70,11 @@ const AdminLogin = () => {
 								type="password"
 								name="password"
 								id="password"
-								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue transition duration-500 ease-in-out"
 								required
-								value={customer.password}
+								value={moderator.password}
 								onChange={(e) =>
-									setCustomer({ ...customer, password: e.target.value })
+									setModerator({ ...moderator, password: e.target.value })
 								}
 							/>
 						</div>
