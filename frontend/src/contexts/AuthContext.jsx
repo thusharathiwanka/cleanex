@@ -4,12 +4,15 @@ import React, { createContext, useState, useEffect } from "react";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-	const [loggedIn, setLoggedIn] = useState(null);
+	const [loggedIn, setLoggedIn] = useState({
+		loginState: "",
+		loginRole: "",
+	});
 
 	const getLoggedIn = async (req, res) => {
 		try {
 			const res = await axios.get("/users/logged");
-			setLoggedIn(res.data);
+			setLoggedIn({ loginState: res.data.state, loginRole: res.data.role });
 		} catch (err) {
 			console.error(err.message);
 		}

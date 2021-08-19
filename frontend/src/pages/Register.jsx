@@ -20,11 +20,14 @@ const Register = () => {
 
 	const registerCustomer = async (e) => {
 		e.preventDefault();
+		setButtonStatus(true);
+
 		customer.createdAt = customer.updatedAt = new Date();
 
 		try {
 			await axios.post("customers/register", customer);
 			setCustomer({});
+			setButtonStatus(false);
 			history.push("/auth/user/packages");
 		} catch (err) {
 			setError(err.response.data.message);

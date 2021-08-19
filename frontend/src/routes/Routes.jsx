@@ -1,7 +1,9 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import Navbar from "../components/nav/Navbar";
+import React, { useContext } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 
+import { AuthContext } from "../contexts/AuthContext";
+
+import Navbar from "../components/nav/Navbar";
 import Home from "../pages/Home";
 import Worker from "../pages/Worker";
 import CreateBlog from "../pages/CreateBlog";
@@ -18,20 +20,40 @@ import AdminFeedback from "../pages/AdminFeedback";
 import Payment from "../pages/Payment";
 
 const Routes = () => {
+	const { loggedIn } = useContext(AuthContext);
+	console.log(loggedIn.loginState);
 	return (
 		<>
 			<Switch>
 				<Route exact path="/">
-					<Navbar />
-					<Home />
+					{loggedIn.loginState === false ? (
+						<>
+							<Navbar />
+							<Home />
+						</>
+					) : (
+						<Redirect to="/auth/user/packages" />
+					)}
 				</Route>
 				<Route exact path="/auth/register">
-					<Navbar />
-					<Register />
+					{loggedIn.loginState === false ? (
+						<>
+							<Navbar />
+							<Register />
+						</>
+					) : (
+						<Redirect to="/auth/user/packages" />
+					)}
 				</Route>
 				<Route exact path="/auth/login">
-					<Navbar />
-					<Login />
+					{loggedIn.loginState === false ? (
+						<>
+							<Navbar />
+							<Login />
+						</>
+					) : (
+						<Redirect to="/auth/user/packages" />
+					)}
 				</Route>
 				<Route exact path="/auth/user/packages">
 					<Navbar />
@@ -67,7 +89,14 @@ const Routes = () => {
 					<SingleBlog />
 				</Route>
 				<Route exact path="/payment">
-					<Payment/>
+					<Payment />
+				</Route>
+				<Route exact path="*">
+					{loggedIn.loginState === false ? (
+						<Redirect to="/" />
+					) : (
+						<Redirect to="/auth/user/packages" />
+					)}
 				</Route>
 			</Switch>
 		</>
