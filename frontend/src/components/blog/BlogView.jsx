@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {IoAddCircle} from 'react-icons/io5'
 import {BsCalendar} from 'react-icons/bs'
 import {RiDeleteBin6Line} from 'react-icons/ri'
@@ -7,13 +7,16 @@ import BlogImg from '../../assets/images/blog.png'
 import Blog1 from '../../assets/images/blog1.png'
 import Blog2 from '../../assets/images/blog2.png'
 import Blog3 from '../../assets/images/blog3.png'
+import {AuthContext} from '../../contexts/AuthContext'
 
 const BlogView = () => {
+const {LoggedInRole} = useContext(AuthContext)
+
     return (
         <div className="relative pb-20">
             <img src={BlogImg} alt='blog' className=" w-full" />
+            {(LoggedInRole==="admin")&&<IoAddCircle className=" cursor-pointer text-light-blue inline transform hover:scale-110 motion-reduce:transform-none w-28 h-28 fixed right-10 bottom-10"/> }
             
-            <IoAddCircle className=" cursor-pointer text-light-blue inline transform hover:scale-110 motion-reduce:transform-none w-28 h-28 fixed right-10 bottom-10"/>
                 <h1 className=" text-6xl font-bold text-white absolute top-36 left-20">Our Blogs</h1>
 
                 <div className="grid grid-cols-3 gap-x-32 px-40 pt-10">
@@ -30,10 +33,11 @@ const BlogView = () => {
                             <hr/>
                             <div className="pt-2" >
                             <span className="text-light-blue cursor-pointer">Read More</span>
+                            {(LoggedInRole==="admin")&&
                             <div className=" ml-44 inline-block">
                                 <FiEdit3 className="cursor-pointer text-yellow-600 inline transform hover:scale-110 motion-reduce:transform-none w-6 h-6" />
                                 <RiDeleteBin6Line className="cursor-pointer ml-2 text-red-600 transform hover:scale-110 motion-reduce:transform-none w-6 h-6 inline"/>
-                            </div>
+                            </div>}
                             </div>
                         </div>
                     </div>
@@ -50,10 +54,11 @@ const BlogView = () => {
                             <hr/>
                             <div className="pt-2" >
                             <span className="text-light-blue cursor-pointer">Read More</span>
+                            {(LoggedInRole==="admin")&&
                             <div className=" ml-44 inline-block">
                                 <FiEdit3 className="cursor-pointer text-yellow-600 inline transform hover:scale-110 motion-reduce:transform-none w-6 h-6" />
                                 <RiDeleteBin6Line className="cursor-pointer ml-2 text-red-600 transform hover:scale-110 motion-reduce:transform-none w-6 h-6 inline"/>
-                            </div>
+                            </div>}
                             </div>
                         </div>
                     </div>
@@ -71,10 +76,11 @@ const BlogView = () => {
                             <hr/>
                             <div className="pt-2" >
                             <span className="text-light-blue cursor-pointer">Read More</span>
-                            <div className=" ml-44 inline-block">
+                            {(LoggedInRole==="admin")&&
+                            <div className=" ml-44 inline-block">                                
                                 <FiEdit3 className="cursor-pointer text-yellow-600 inline transform hover:scale-110 motion-reduce:transform-none w-6 h-6" />
                                 <RiDeleteBin6Line className="cursor-pointer ml-2 text-red-600 transform hover:scale-110 motion-reduce:transform-none w-6 h-6 inline"/>
-                            </div>
+                            </div>}
                             </div>
                         </div>
                     </div>

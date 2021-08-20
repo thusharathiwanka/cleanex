@@ -2,6 +2,8 @@ import React from 'react'
 import Profile from '../worker/Profile'
 import ManagerImg from '../../assets/images/manager.jpg'
 import { BiSearch } from "react-icons/bi";
+import Graph from './Graph';
+
 
 const PaymentList = () => {
     return (
@@ -9,11 +11,11 @@ const PaymentList = () => {
             <div className=" inline-block">
             <Profile Img={ManagerImg} name="Chamindu Jayasith" role="Manager" />
             </div>
-            <div className=" rounded-lg absolute right-28 top-5 inline-block shadow-xl p-10">
+            <div className=" rounded-lg absolute right-24 top-5 inline-block shadow-xl p-10">
                 <span className="text-light-blue ">Total Income</span><br/>
                 <span className="text-5xl font-semibold">LKR 100000.00</span>
             </div>
-            <div className="ml-28 justify-center">
+            <div className="ml-20 justify-center">
                 
             <form className=" w-85 mt-5 ml-40  text-center relative mb-10">
 					<input
@@ -48,6 +50,10 @@ const PaymentList = () => {
                         <span className=" absolute right-8 top-7 text-2xl font-semibold">LKR 2000</span>
                 </div>
             </div>
+            <div className="shadow-2xl p-3 rounded-xl  w-3/7 bg-white absolute right-24 bottom-28">
+            <Graph/>
+            </div>
+            <button className="bg-light-blue rounded-lg absolute right-24 bottom-5 text-white font-semibold text-2xl py-3 px-5">Generate Report</button>
         </div>
     )
 }

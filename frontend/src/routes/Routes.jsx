@@ -73,7 +73,7 @@ const Routes = () => {
 				<Navbar />
 				<CreateBlog />
 			</Route>
-			<Route exact path="/blogs">
+			<Route exact path="/auth/user/blogs">
 				<Blog />
 			</Route>
 			<Route exact path="/singleblog">
