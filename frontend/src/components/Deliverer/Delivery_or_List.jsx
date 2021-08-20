@@ -97,6 +97,14 @@ const Deliverer_list = () => {
 												Accept
 											</a>
 										</td>
+										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+											<a
+												href="www.google.com"
+												className="text-red-500 hover:text-red-200"
+											>
+												Error
+											</a>
+										</td>
 									</tr>
 									<tr>
 										<td className="px-6 py-4 whitespace-nowrap">
@@ -162,7 +170,7 @@ const Deliverer_list = () => {
 										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 											<a
 												href="www.google.com"
-												className="text-green-500 hover:text-red-200"
+												className="text-red-500 hover:text-red-200"
 											>
 												Error
 											</a>
