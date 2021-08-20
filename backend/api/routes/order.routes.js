@@ -1,11 +1,16 @@
 const router = require("express").Router();
 
-const {getPendingOrders, getProcessingOrders, getCompletedOrders, getCompletedOrders, getCompletedOrders, getCompletedOrders } = require('../controllers/order.crontroller');
+const {
+  getPendingOrders,
+  getProcessingOrders,
+  getCompletedOrders,
+} = require("../controllers/order.crontroller");
 
-router.get("/getPendOrders",getPendingOrders)
-router.get("/getProcOrders",getProcessingOrders)
-router.get("/getcompOrders",getCompletedOrders)
-router.post("/addHourse", getCompletedOrders)
-router.patch("/updateToProcess", updateToProcess)
-router.patch("/updateToCompleate", updateToCompleate)
+router.get("/getPendOrders", getPendingOrders);
+router.get("/getProcOrders", getProcessingOrders);
+router.get("/getcompOrders", getCompletedOrders);
+router.post("/addHourse", getCompletedOrders);
+router.patch("/updateToProcess", updateToProcess);
+router.patch("/updateToCompleate", updateToCompleate);
 
+module.exports = router;
