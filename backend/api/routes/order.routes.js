@@ -11,8 +11,8 @@ const {
 	updateToCompleate,
 } = require("../controllers/order.crontroller");
 
-router.post("addOrder", addOrder);
-router.post("orders", getAllOrders);
+router.post("/addOrder", addOrder);
+router.post("/orders", getAllOrders);
 router.post("updateOrder", updateDeliveryStatus);
 
 // router.get("/getPendOrders", getPendingOrders);
