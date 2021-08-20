@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import Error from "../components/toasts/Error";
 import TShirtImage from "../../src/assets/images/hanging-t-shirt.png";
 import RightBottomBubble from "../assets/images/right-bottom-bubble-reason.png";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Register = () => {
 	document.title = "CLEANEX - Sign Up";
