@@ -81,7 +81,7 @@ const Routes = () => {
       <Route exact path="/auth/manager/dashboard">
         <Manager />
       </Route>
-      <Route exact path="/userprofile">
+      <Route exact path="/auth/user/profile">
         <UserProfile />
       </Route>
     </Switch>

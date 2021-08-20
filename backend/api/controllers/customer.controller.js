@@ -9,76 +9,76 @@ const jwt = require("jsonwebtoken");
  * @returns {Object} res
  */
 const saveCustomer = async (req, res) => {
-	// * request body validation
-	if (req.body) {
-		const { name, email, password, mobile, createdAt, updatedAt } = req.body;
-		const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  // * request body validation
+  if (req.body) {
+    const { name, email, password, mobile, createdAt, updatedAt } = req.body;
+    const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
 
-		// * user inputs validation
-		if (!name || !email || !password || !mobile) {
-			return res.status(400).json({ message: "Please fill all the fields" });
-		}
+    // * user inputs validation
+    if (!name || !email || !password || !mobile) {
+      return res.status(400).json({ message: "Please fill all the fields" });
+    }
 
-		if (!email.match(pattern)) {
-			return res
-				.status(400)
-				.json({ message: "Please enter a valid email address" });
-		}
+    if (!email.match(pattern)) {
+      return res
+        .status(400)
+        .json({ message: "Please enter a valid email address" });
+    }
 
-		if (password.length < 6) {
-			return res
-				.status(400)
-				.json({ message: "Password should be at least 6 characters long" });
-		}
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ message: "Password should be at least 6 characters long" });
+    }
 
-		if (mobile.length < 10) {
-			return res
-				.status(400)
-				.json({ message: "Please enter a valid phone number" });
-		}
+    if (mobile.length < 10) {
+      return res
+        .status(400)
+        .json({ message: "Please enter a valid phone number" });
+    }
 
-		try {
-			// * checking for exiting user with the same email
-			const existingUser = await Customer.findOne({ email: email });
-			if (existingUser) {
-				return res.status(400).json({
-					message: "An account with this email is already registered",
-				});
-			}
+    try {
+      // * checking for exiting user with the same email
+      const existingUser = await Customer.findOne({ email: email });
+      if (existingUser) {
+        return res.status(400).json({
+          message: "An account with this email is already registered",
+        });
+      }
 
-			// * hashing the password
-			const salt = await bcrypt.genSalt();
-			const hashedPassword = await bcrypt.hash(password, salt);
+      // * hashing the password
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(password, salt);
 
-			// * save user account
-			const newCustomer = new Customer({
-				name,
-				email,
-				password: hashedPassword,
-				mobile,
-				createdAt,
-				updatedAt,
-			});
-			const savedCustomer = await newCustomer.save();
+      // * save user account
+      const newCustomer = new Customer({
+        name,
+        email,
+        password: hashedPassword,
+        mobile,
+        createdAt,
+        updatedAt,
+      });
+      const savedCustomer = await newCustomer.save();
 
-			// * logging the user
-			const token = jwt.sign(
-				{ user: saveCustomer._id, type: "customer" },
-				process.env.JWT_SECRET
-			);
+      // * logging the user
+      const token = jwt.sign(
+        { user: saveCustomer._id, type: "customer" },
+        process.env.JWT_SECRET
+      );
 
-			//* sending token as a cookie
-			return res
-				.status(201)
-				.cookie("token", token, { httpOnly: true })
-				.json({ role: "customer" });
-		} catch (err) {
-			console.error(err.message);
-			return res.status(500).send();
-		}
-	}
+      //* sending token as a cookie
+      return res
+        .status(201)
+        .cookie("token", token, { httpOnly: true })
+        .json({ role: "customer" });
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).send();
+    }
+  }
 
-	return res.status(400).send();
+  return res.status(400).send();
 };
 
 /**
@@ -88,62 +88,62 @@ const saveCustomer = async (req, res) => {
  * @returns {Object} res
  */
 const getCustomers = async (req, res) => {
-	try {
-		const customers = await Customer.find();
-		return res.status(200).json({ customers: customers });
-	} catch (err) {
-		return res.status(500).send();
-	}
+  try {
+    const customers = await Customer.find();
+    return res.status(200).json({ customers: customers });
+  } catch (err) {
+    return res.status(500).send();
+  }
 };
 
 const loginCustomer = async (req, res) => {
-	// * request body validation
-	if (req.body) {
-		const { email, password } = req.body;
+  // * request body validation
+  if (req.body) {
+    const { email, password } = req.body;
 
-		// * user inputs validation
-		if (!email || !password) {
-			return res.status(400).json({ message: "Please fill all the fields" });
-		}
+    // * user inputs validation
+    if (!email || !password) {
+      return res.status(400).json({ message: "Please fill all the fields" });
+    }
 
-		try {
-			// * checking for email existence
-			const existingUser = await Customer.findOne({ email: email });
-			if (!existingUser) {
-				return res.status(401).json({
-					message: "Wrong email or password",
-				});
-			}
+    try {
+      // * checking for email existence
+      const existingUser = await Customer.findOne({ email: email });
+      if (!existingUser) {
+        return res.status(401).json({
+          message: "Wrong email or password",
+        });
+      }
 
-			// * checking for password existence
-			const isPasswordCorrect = await bcrypt.compare(
-				password,
-				existingUser.password
-			);
+      // * checking for password existence
+      const isPasswordCorrect = await bcrypt.compare(
+        password,
+        existingUser.password
+      );
 
-			if (!isPasswordCorrect) {
-				return res.status(401).json({
-					message: "Wrong email or password",
-				});
-			}
+      if (!isPasswordCorrect) {
+        return res.status(401).json({
+          message: "Wrong email or password",
+        });
+      }
 
-			// * logging the user
-			const token = jwt.sign(
-				{ user: existingUser._id, type: "customer" },
-				process.env.JWT_SECRET
-			);
+      // * logging the user
+      const token = jwt.sign(
+        { user: existingUser._id, type: "customer" },
+        process.env.JWT_SECRET
+      );
 
-			//* sending token as a cookie
-			return res
-				.cookie("token", token, { httpOnly: true })
-				.json({ role: "customer" });
-		} catch (err) {
-			console.error(err.message);
-			return res.status(500).send();
-		}
-	}
+      //* sending token as a cookie
+      return res
+        .cookie("token", token, { httpOnly: true })
+        .json({ role: "customer" });
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).send();
+    }
+  }
 
-	return res.status(406).send();
+  return res.status(406).send();
 };
 
 /**
@@ -153,15 +153,64 @@ const loginCustomer = async (req, res) => {
  * @returns {Object} res
  */
 const deleteCustomer = async (req, res) => {
-	if (req.params.id) {
-		try {
-			await Customer.findByIdAndDelete(req.params.id);
-			return res.status(200).send();
-		} catch (err) {
-			console.log(err.message);
-			return res.status(500).send();
-		}
-	}
+  if (req.params.id) {
+    try {
+      await Customer.findByIdAndDelete(req.params.id);
+      return res.status(200).send();
+    } catch (err) {
+      console.log(err.message);
+      return res.status(500).send();
+    }
+  }
 };
 
-module.exports = { saveCustomer, getCustomers, loginCustomer, deleteCustomer };
+/**
+ * use to get the specific customers details
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const getUserprofileDetails = async (request, response) => {
+  console.log(request.body);
+  try {
+    const UserProfileDetails = await Customer.findById(request.body.userId);
+    response.status(200).json({ customer: UserProfileDetails });
+  } catch (error) {
+    response.status(404).json({ message: error.message });
+  }
+};
+
+const updateUserProfile = async (req, res) => {
+  try {
+    const updateUser = await blog.findByIdAndUpdate(req.params.id, {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      mobile: req.body.mobile,
+    });
+    res.status(200);
+  } catch (err) {
+    res.status(400);
+    console.log(err.message);
+  }
+};
+
+const deleteUserProfile = async (req, res) => {
+  try {
+    const deleteUserProfile = await blog.findByIdAndDelete(req.params.id);
+    res.status(200);
+  } catch (err) {
+    res.status(400);
+    console.log(err.message);
+  }
+};
+
+module.exports = {
+  saveCustomer,
+  getCustomers,
+  loginCustomer,
+  deleteCustomer,
+  getUserprofileDetails,
+  updateUserProfile,
+  //   deleteUserProfile,
+};
