@@ -1,44 +1,53 @@
 import React from "react";
 import image from "../../assets/images/images-removebg-preview.png";
 import iconPlus from "../../assets/images/Group.png";
+
 const Item = () => {
 	return (
-		<div>
-			<div className="min-h-screen bg-gray-100 flex items-center">
-				<div className="container mx-auto bg-white max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300">
-					<button
-						style={{ marginLeft: "270px", marginRight: "5px" }}
-						className="text-white text-md mt-6 font-semibold py-2 px-2 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110 "
-					>
-						<img className="rounded-x" src={iconPlus} alt="" />
-					</button>
+		<div
+			className="transition duration-500"
+			style={{
+				maxWidth: "200px",
+				maxHeight: "400px",
+				borderRadius: "15px",
+				marginTop: "20px",
+				marginLeft: "20px",
+				boxShadow: "0px 10px 20px 1px rgba(0, 0, 0, 0.25)",
+			}}
+		>
+			<div className="bg-gray-50">
+				<button
+					className="hover:shadow-2xl transition duration-500"
+					style={{
+						float: "right",
+						marginRight: "10px",
+						marginTop: "10px",
+						maxHeight: "40px",
+						maxWidth: "40px",
+					}}
+				>
+					<img src={iconPlus} alt="" />
+				</button>
 
-					<img
-						style={{
-							marginLeft: "97px",
-							marginRight: "97px",
-						}}
-						className="rounded-x "
-						src={image}
-						alt=""
-					/>
-					<div
-						style={{
-							paddingLeft: "80px",
-							paddingRight: "80px",
-							margin: "0px",
-							textAlign: "center",
-						}}
-						className="py-2 rounded-2xl bg-light-blue"
-					>
-						<div>
-							<h1 className="mt-3 text-white text-xl font-semibold">
-								Aloe Cactus
-							</h1>
-							<p className="mt-2 text-white">$11.99</p>
-						</div>
-					</div>
-				</div>
+				<img
+					style={{ maxWidth: "140px", maxHeight: "200px", float: "right" }}
+					src={image}
+					alt=""
+				/>
+			</div>
+
+			<div
+				style={{
+					borderRadius: "15px",
+					color: "yellow",
+					textAlign: "center",
+					marginBottom: "15px",
+					backgroundColor: "yellow",
+					height: "15px",
+				}}
+			>
+				<h1 className=" text-black  font-semibold ">Aloe Cactus</h1>
+				<p className=" text-black">$11.99</p>
 			</div>
 		</div>
 	);

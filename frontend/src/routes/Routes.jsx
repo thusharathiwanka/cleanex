@@ -5,6 +5,9 @@ import Navbar from "../components/nav/Navbar";
 import Home from "../pages/Home";
 import Worker from "../pages/Worker";
 import CreateBlog from "../pages/CreateBlog";
+import Deliverer from "../pages/Deliverer";
+import DelivererHome from "../pages/Deliverer_home";
+import LaundryBag from "../pages/Laundry_bag";
 
 const Routes = () => {
 	return (
@@ -19,6 +22,15 @@ const Routes = () => {
 				</Route>
 				<Route exact path="/createblogs">
 					<CreateBlog />
+				</Route>
+				<Route exact path="/Deliverer">
+					<Deliverer />
+				</Route>
+				<Route exact path="/Deliverer_home">
+					<DelivererHome />
+				</Route>
+				<Route exact path="/Laundry_bag">
+					<LaundryBag />
 				</Route>
 			</Switch>
 		</>
