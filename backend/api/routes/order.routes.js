@@ -4,6 +4,9 @@ const {
   getPendingOrders,
   getProcessingOrders,
   getCompletedOrders,
+  updateToProcess,
+  updateToCompleate,
+  getCompletedOrders,
 } = require("../controllers/order.crontroller");
 
 router.get("/getPendOrders", getPendingOrders);
