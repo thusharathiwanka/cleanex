@@ -1,13 +1,21 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 import LogoBlue from "../../assets/images/logo-blue.png";
 import { navLinks, customerLoggedNavLinks } from "../../helpers/navbarLinks";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Navbar = () => {
-	const { loggedIn } = useContext(AuthContext);
+	const history = useHistory();
+	const { loggedIn, getLoggedIn } = useContext(AuthContext);
 	const navigation = loggedIn ? customerLoggedNavLinks : navLinks;
+
+	const logout = async () => {
+		await axios.get("/users/logout");
+		await getLoggedIn();
+		history.push("/");
+	};
 
 	return (
 		<header
@@ -32,12 +40,12 @@ const Navbar = () => {
 						</Link>
 					))}
 					{loggedIn ? (
-						<Link
+						<button
 							className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
-							to="/auth/login"
+							onClick={logout}
 						>
 							Sign Out
-						</Link>
+						</button>
 					) : (
 						<Link
 							className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
