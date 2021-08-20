@@ -6,7 +6,6 @@ const ProcessCard = ({ processStep }) => {
 			className="flex flex-col justify-center items-center w-96 text-center m-10"
 			data-aos-delay={processStep.delay}
 			data-aos="fade-up"
-			data-aos-offset="400"
 		>
 			<div className="shadow-lg rounded-full p-10 w-60 h-60 flex justify-center items-center bg-white">
 				<img src={processStep.src} alt="process-step-img" className="w-24" />

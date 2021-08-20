@@ -28,7 +28,12 @@ const Reasons = () => {
 				</div>
 				<div className="flex items-center mt-20 justify-around">
 					<div className="w-1/2">
-						<img src={ReasonsImage} alt="reasons-img" data-aos="fade-right" />
+						<img
+							src={ReasonsImage}
+							alt="reasons-img"
+							data-aos="fade-right"
+							data-aos-offset="50"
+						/>
 					</div>
 					<div
 						className="mx-5 text-2xl font-semibold pb-4 text-center"

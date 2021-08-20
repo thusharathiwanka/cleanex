@@ -6,20 +6,29 @@ module.exports = {
 			colors: {
 				"light-blue": "#11B4F5",
 				"lighter-blue": "#E8F8FE",
+				"light-gary": "#CCCCCC",
 			},
 			minHeight: {
 				12: "12vh",
 				70: "70vh",
 				90: "90vh",
+				88: "88vh",
+			},
+			maxHeight: {
+				88: "88vh",
 			},
 			zIndex: {
 				"-2": "-2",
 			},
 			width: {
 				85: "23rem",
+				"w-full-90": "90%",
 			},
 			scale: {
 				135: "1.35",
+			},
+			maxWidth: {
+				"screen-2.5xl": "1728px",
 			},
 		},
 		fontFamily: {

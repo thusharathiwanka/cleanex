@@ -6,7 +6,6 @@ const FeedbackCard = ({ feedback }) => {
 			className="flex flex-col justify-center items-center w-80 text-center m-10 shadow-lg rounded-xl p-5 bg-white"
 			data-aos-delay={feedback.delay}
 			data-aos="fade-up"
-			data-aos-offset="400"
 		>
 			<div className="p-10 w-60 h-60 flex justify-center items-center absolute -top-28">
 				<img src={feedback.src} alt="process-step-img" className="w-28" />

@@ -5,7 +5,7 @@ const PendingLists = () => {
 
     return (
         <div class=" pt-16 pl-60 pr-60">
-            <div class="bg-white rounded shadow-2xl p-10" >
+            <div class="bg-white rounded-xl shadow-2xl p-10" >
                 <div class="grid grid-cols-3 divide-x divide-light-blue">
                     <div class="ml-16">
                         <span class="font-semibold">Name</span>
@@ -27,7 +27,7 @@ const PendingLists = () => {
                     </div>
                     <div class="text-center  ">
                         <form action="">
-                        <input class="focus:outline-none  shadow-md py-2 px-4 rounded" placeholder="Hours" type="number" required id="quantity" name="quantity" min="1" max="24"/>
+                        <input class=" focus:outline-none  shadow-md py-2 px-4 rounded" placeholder="Hours" type="number" required id="quantity" name="quantity" min="1" max="24"/>
                         <button type="submit" class=" shadow-md bg-light-blue text-white py-2 px-6 rounded font-bold ml-5">
                             Accept
                         </button>
