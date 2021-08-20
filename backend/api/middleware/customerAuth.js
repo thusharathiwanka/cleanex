@@ -18,6 +18,7 @@ const verifyCustomerAuth = (req, res, next) => {
 			if (!verified.type === "customer")
 				return res.status(401).json({ message: "Unauthorized" });
 
+			req.userId = verified.user;
 			next();
 		} catch (err) {
 			console.error(err.message);
