@@ -63,7 +63,7 @@ const saveCustomer = async (req, res) => {
 
       // * logging the user
       const token = jwt.sign(
-        { user: saveCustomer._id, type: "customer" },
+        { user: savedCustomer._id, type: "customer" },
         process.env.JWT_SECRET
       );
 
@@ -171,7 +171,6 @@ const deleteCustomer = async (req, res) => {
  * @returns {Object} res
  */
 const getUserprofileDetails = async (request, response) => {
-  console.log(request.body);
   try {
     const UserProfileDetails = await Customer.findById(request.body.userId);
     response.status(200).json({ customer: UserProfileDetails });
@@ -195,15 +194,15 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
-const deleteUserProfile = async (req, res) => {
-  try {
-    const deleteUserProfile = await blog.findByIdAndDelete(req.params.id);
-    res.status(200);
-  } catch (err) {
-    res.status(400);
-    console.log(err.message);
-  }
-};
+// const deleteUserProfile = async (req, res) => {
+//   try {
+//     const deleteUserProfile = await blog.findByIdAndDelete(req.params.id);
+//     res.status(200);
+//   } catch (err) {
+//     res.status(400);
+//     console.log(err.message);
+//   }
+// };
 
 module.exports = {
   saveCustomer,

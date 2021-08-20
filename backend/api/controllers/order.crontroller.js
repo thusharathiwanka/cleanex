@@ -24,3 +24,10 @@ const updateToCompleate = async (req, res) => {
     console.log(err.message);
   }
 };
+module.exports = {
+  //   getPendingOrders,
+  //   getProcessingOrders,
+  //   getCompletedOrders,
+  updateToProcess,
+  updateToCompleate,
+};
