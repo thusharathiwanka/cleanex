@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import LogoBlue from "../../assets/images/logo-blue.png";
-import { navLinks } from "../../helpers/navbarLinks";
+import { navLinks, customerLoggedNavLinks } from "../../helpers/navbarLinks";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Navbar = () => {
+	const { loggedIn } = useContext(AuthContext);
+	const navigation = loggedIn ? customerLoggedNavLinks : navLinks;
+
 	return (
 		<header
 			className={
@@ -18,7 +22,7 @@ const Navbar = () => {
 					<img src={LogoBlue} alt="blue-logo" />
 				</Link>
 				<nav>
-					{navLinks.map((navLink, index) => (
+					{navigation.map((navLink, index) => (
 						<Link
 							className="mx-5 font-semibold text-lg"
 							to={navLink.path}
@@ -27,12 +31,21 @@ const Navbar = () => {
 							{navLink.name}
 						</Link>
 					))}
-					<Link
-						className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
-						to="/auth/login"
-					>
-						Sign in
-					</Link>
+					{loggedIn ? (
+						<Link
+							className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
+							to="/auth/login"
+						>
+							Sign Out
+						</Link>
+					) : (
+						<Link
+							className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
+							to="/auth/login"
+						>
+							Sign In
+						</Link>
+					)}
 				</nav>
 			</div>
 		</header>
