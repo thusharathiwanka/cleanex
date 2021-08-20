@@ -12,6 +12,7 @@ const BlogView = () => {
     return (
         <div className="relative pb-20">
             <img src={BlogImg} alt='blog' className=" w-full" />
+            
             <IoAddCircle className=" cursor-pointer text-light-blue inline transform hover:scale-110 motion-reduce:transform-none w-28 h-28 fixed right-10 bottom-10"/>
                 <h1 className=" text-6xl font-bold text-white absolute top-36 left-20">Our Blogs</h1>
 
