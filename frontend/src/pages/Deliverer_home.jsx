@@ -1,4 +1,4 @@
-import OrderList from "../components/deliverer/OrderList";
+import OrderList from "../components/Deliverer/OrderList";
 
 const Deliverer_home = () => {
 	return (
