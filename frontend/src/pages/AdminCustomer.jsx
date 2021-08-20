@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 
 import Sidebar from "../components/sidebar/Sidebar";
+import ConfirmModal from "../components/modals/ConfirmModal";
 
 const AdminCustomer = () => {
+	const [customers, setCustomers] = useState([]);
+	const [showModal, setShowModal] = useState(false);
+
+	const getCustomers = async () => {
+		try {
+			const res = await axios.get("/customers");
+			setCustomers(res.data.customers);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
+	const deleteCustomer = async (id) => {
+		try {
+			await axios.delete(`customers/${id}`);
+			getCustomers();
+			setShowModal(false);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
+	useEffect(() => {
+		getCustomers();
+	}, []);
+
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20">
@@ -57,41 +85,60 @@ const AdminCustomer = () => {
 											</tr>
 										</thead>
 										<tbody class="bg-white divide-y divide-gray-200">
-											<tr>
-												<td class="px-6 py-4 whitespace-nowrap">
-													<div class="flex items-center">
-														<div class="flex-shrink-0 h-10 w-10">
-															<div className="text-2xl font-medium flex items-center text-gray-800 my-2">
-																<FaUserCircle />
+											{customers.map((customer) => (
+												<tr>
+													<td class="px-6 py-4 whitespace-nowrap">
+														<div class="flex items-center">
+															<div class="flex-shrink-0 h-10 w-10">
+																<div className="text-2xl font-medium flex items-center text-gray-800 my-2">
+																	<FaUserCircle />
+																</div>
+															</div>
+															<div class="ml-2">
+																<div class="text-sm font-medium text-gray-900">
+																	{customer.name}
+																</div>
 															</div>
 														</div>
-														<div class="ml-2">
-															<div class="text-sm font-medium text-gray-900">
-																Customer 01
-															</div>
+													</td>
+													<td class="px-6 py-4 whitespace-nowrap">
+														<div class="text-sm text-gray-900">
+															{customer.email}
 														</div>
+													</td>
+													<td class="px-6 py-4 whitespace-nowrap">
+														<div class="text-sm text-gray-900">
+															{new Date(
+																customer.createdAt
+															).toLocaleDateString()}
+														</div>
+													</td>
+													<td class="px-6 py-4 whitespace-nowrap">
+														<div class="text-sm text-gray-900">
+															{customer.mobile}
+														</div>
+													</td>
+													<td class="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
+														<button class="text-green-400 mr-5 my-2">
+															<AiOutlineEye />
+														</button>
+														<button
+															class="text-red-400 mr-5 my-2"
+															onClick={() => setShowModal(true)}
+														>
+															<RiDeleteBin5Line />
+														</button>
+													</td>
+													<div className="absolute left-0 top-0">
+														<ConfirmModal
+															setShowModal={setShowModal}
+															showModal={showModal}
+															execute={deleteCustomer}
+															id={customer._id}
+														/>
 													</div>
-												</td>
-												<td class="px-6 py-4 whitespace-nowrap">
-													<div class="text-sm text-gray-900">
-														customer1@gmail.com
-													</div>
-												</td>
-												<td class="px-6 py-4 whitespace-nowrap">
-													<div class="text-sm text-gray-900">20-Aug-2021</div>
-												</td>
-												<td class="px-6 py-4 whitespace-nowrap">
-													<div class="text-sm text-gray-900">077 777777</div>
-												</td>
-												<td class="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
-													<button class="text-green-400 mr-5 my-2">
-														<AiOutlineEye />
-													</button>
-													<button class="text-red-400 mr-5 my-2">
-														<RiDeleteBin5Line />
-													</button>
-												</td>
-											</tr>
+												</tr>
+											))}
 										</tbody>
 									</table>
 								</div>

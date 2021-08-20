@@ -146,4 +146,22 @@ const loginCustomer = async (req, res) => {
 	return res.status(406).send();
 };
 
-module.exports = { saveCustomer, getCustomers, loginCustomer };
+/**
+ * use to delete the specific customers
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const deleteCustomer = async (req, res) => {
+	if (req.params.id) {
+		try {
+			await Customer.findByIdAndDelete(req.params.id);
+			return res.status(200).send();
+		} catch (err) {
+			console.log(err.message);
+			return res.status(500).send();
+		}
+	}
+};
+
+module.exports = { saveCustomer, getCustomers, loginCustomer, deleteCustomer };
