@@ -40,12 +40,12 @@ const Navbar = () => {
 						</Link>
 					))}
 					{loggedIn ? (
-						<button
+						<Link
 							className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
 							onClick={logout}
 						>
 							Sign Out
-						</button>
+						</Link>
 					) : (
 						<Link
 							className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
