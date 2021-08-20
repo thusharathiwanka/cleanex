@@ -1,5 +1,32 @@
 const order = require("../models/order.model");
 
+// const order = require('../models/order.model')
+
+const updateToProcess = async (req, res) => {
+	try {
+		await order.findByIdAndUpdate(req.params.id, {
+			WashingStatus: "processing",
+			Hours: req.body.hours,
+		});
+		res.status(200).json({ message: "order successfully approved" });
+	} catch (err) {
+		res.status(200);
+		console.log(err.message);
+	}
+};
+
+const updateToCompleate = async (req, res) => {
+	try {
+		await order.findByIdAndUpdate(req.params.id, {
+			WashingStatus: "Completed",
+		});
+		res.status(200).json({ message: "order successfully approved" });
+	} catch (err) {
+		res.status(200);
+		console.log(err.message);
+	}
+};
+
 const addOrder = async (req, res) => {
 	try {
 		const newOrder = new order(req.body);
@@ -23,5 +50,13 @@ const getAllOrders = async () => {
 const updateDeliveryStatus = async (req, res) => {
 	const order = await order.findByIdAndUpdate(req.body.id, {});
 };
-
-module.exports = { addOrder, getAllOrders, updateDeliveryStatus };
+module.exports = {
+	addOrder,
+	getAllOrders,
+	updateDeliveryStatus,
+	//   getPendingOrders,
+	//   getProcessingOrders,
+	//   getCompletedOrders,
+	updateToProcess,
+	updateToCompleate,
+};

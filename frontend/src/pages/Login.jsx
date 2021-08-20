@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 import Error from "../components/toasts/Error";
 import TShirtImage from "../../src/assets/images/hanging-t-shirt.png";
 import RightBottomBubble from "../assets/images/right-bottom-bubble-reason.png";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Login = () => {
 	document.title = "CLEANEX - Sign In";
 	const history = useHistory();
+	const { getLoggedIn } = useContext(AuthContext);
 	const [error, setError] = useState("");
 	const [buttonStatus, setButtonStatus] = useState(false);
 	const [customer, setCustomer] = useState({ email: "", password: "" });
@@ -21,6 +23,7 @@ const Login = () => {
 			await axios.post("customers/login", customer);
 			setCustomer({});
 			setButtonStatus(false);
+			await getLoggedIn();
 			history.push("/auth/user/packages");
 		} catch (err) {
 			setError(err.response.data.message);
