@@ -10,7 +10,7 @@ import { AuthContext } from "../contexts/AuthContext";
 const AdminLogin = () => {
 	document.title = "CLEANEX - Moderator Login";
 	const history = useHistory();
-	const { setLoggedIn, setLoggedInRole } = useContext(AuthContext);
+	const { getLoggedIn } = useContext(AuthContext);
 	const [error, setError] = useState("");
 	const [buttonStatus, setButtonStatus] = useState(false);
 	const [moderator, setModerator] = useState({ username: "", password: "" });
@@ -22,9 +22,8 @@ const AdminLogin = () => {
 		try {
 			const res = await axios.post("moderators/login", moderator);
 			setModerator({});
-			setLoggedIn(true);
-			setLoggedInRole(res.data.type);
 			setButtonStatus(false);
+			await getLoggedIn();
 			history.push(`/auth/${res.data.type}/dashboard`);
 		} catch (err) {
 			setError(err.response.data.message);
