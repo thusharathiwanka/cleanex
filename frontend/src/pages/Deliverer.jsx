@@ -1,4 +1,4 @@
-import Deliverer_list from "../components/deliverer/Delivery_or_List";
+import Deliverer_list from "../components/Deliverer/Delivery_or_List";
 const Deliverer = () => {
 	return (
 		<div>
