@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const CreateBlog = () => {
     return (
@@ -31,7 +32,9 @@ const CreateBlog = () => {
                 <textarea required class="focus:border-light-blue shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
                 </div>
                 <div className=" flex justify-end mb-10">
+                <Link to="/auth/user/blogs">
                 <button className=" rounded-full  font-medium bg-light-blue shadow-md text-white py-2 px-5 text-xl" >Cancel</button>
+                </Link>
                 <button className=" ml-5 rounded-full font-medium bg-light-blue shadow-md text-white py-2 px-5 text-xl" type="submit">Publish</button>
                 </div>
             </form> 

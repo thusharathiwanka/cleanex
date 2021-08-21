@@ -76,7 +76,7 @@ const addOrder = async (req, res) => {
 	}
 };
 
-const getAllOrders = async () => {
+const getAllOrders = async (req, res) => {
 	try {
 		const orders = await order.find();
 		res.status(200).json(orders);
