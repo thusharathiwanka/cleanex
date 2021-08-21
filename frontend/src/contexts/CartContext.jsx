@@ -24,10 +24,10 @@ const CartContextProvider = (props) => {
 	};
 
 	const removePacakge = (id) => {
-		setPackages(packages.filter(packages.id !== id));
+		setPackages(packages.filter((packages) => packages.id !== id));
 	};
 	return (
-		<CartContext.Provider value={{ packages }}>
+		<CartContext.Provider value={{ packages, removePacakge, addPackage }}>
 			{props.children}
 		</CartContext.Provider>
 	);
