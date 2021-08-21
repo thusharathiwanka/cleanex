@@ -12,6 +12,11 @@ const loginModerator = async (req, res) => {
 	if (req.body) {
 		const { username, password } = req.body;
 
+		// * user inputs validation
+		if (!username || !password) {
+			return res.status(400).json({ message: "Please fill all the fields" });
+		}
+
 		let userRole;
 		if (username.includes("@admin")) {
 			userRole = "admin";

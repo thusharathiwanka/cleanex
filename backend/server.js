@@ -31,11 +31,11 @@ mongoose
 
 app.use("/customers", require("./api/routes/customer.routes"));
 app.use("/moderators", require("./api/routes/moderator.routes"));
+app.use("/packages", require("./api/routes/package.routes"));
 app.use("/users", require("./api/routes/common.routes"));
 app.use("/blog", require("./api/routes/blog.routes"));
 app.use("/payment", require("./api/routes/payment.routes"));
 app.use("/order", require("./api/routes/order.routes"));
-
 
 app.get("/", (req, res) => {
 	res.send("<h3>CLEANEX API 2021</h3>");
