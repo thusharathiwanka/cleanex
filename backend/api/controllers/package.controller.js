@@ -43,4 +43,22 @@ const savePackage = async (req, res) => {
 	return res.status(400).send();
 };
 
-module.exports = { savePackage };
+/**
+ * use to delete the specific package
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const deletePackage = async (req, res) => {
+	if (req.params.id) {
+		try {
+			await Package.findByIdAndDelete(req.params.id);
+			return res.status(200).send();
+		} catch (err) {
+			console.log(err.message);
+			return res.status(500).send();
+		}
+	}
+};
+
+module.exports = { savePackage, deletePackage };
