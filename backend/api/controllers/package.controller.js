@@ -32,7 +32,7 @@ const savePackage = async (req, res) => {
 			});
 			await newPackage.save();
 
-			//* sending as saved
+			// * sending as saved
 			return res.status(201).send(true);
 		} catch (err) {
 			console.error(err.message);
