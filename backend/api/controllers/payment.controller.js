@@ -3,7 +3,7 @@ const payment = require('../models/payment.model')
 const getAllPayment = async(req, res)=>{
         try{
             const payments = await payment.find()
-             res.status(200).json({payments : payments})
+             res.status(200).json({payments: payments})
         }catch(err){
             res.status(400)
             console.log(err.message)

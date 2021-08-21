@@ -9,26 +9,34 @@ import axios from 'axios';
 
 const PaymentList = () => {
 
-    var [PaymentDetails, setPaymentDetails] = useState("")
+    const [PaymentDetails, setPaymentDetails] = useState([])
     var [Total, setTotal] = useState("")
     
+    const getPaymentsetails=async()=>{
+        
+    }
 useEffect(async() => {
-        // try{
-        // const res = await axios.get("/payment/get")
-        // setPaymentDetails(res.data.payments)
-        //     console.log(PaymentDetails);
-        // }catch(err){
-        //     console.log(err);
-        // }
+        try{
+        const res = await axios.get("/payment/get")
+        setPaymentDetails(res.data.payments)
+            console.log(PaymentDetails);
+            console.log(res.data.payments);
+        }catch(err){
+            console.log(err);
+        }
         // var total=0
         // PaymentDetails.map((id)=>{
-        //     total+=parseInt(id.amount);
+        //     setTotal(total+=parseInt(id.amount));
         // })
         //     console.log(total);
-        //     setTotal(total)
         //     console.log(Total);
         
     }, [])
+
+    const pay =()=>{
+        
+    }
+
 
     return (
         <div className=" relative">
@@ -45,7 +53,7 @@ useEffect(async() => {
             <button className="bg-light-blue rounded-lg absolute right-24 top-3/4 text-white font-semibold text-2xl py-3 px-5">Generate Report</button>
             <div className="ml-20 justify-center">
             
-            <div className=" w-85 mt-5 ml-40  text-center relative mb-10">
+            <form className=" w-85 mt-5 ml-40  text-center relative mb-10">
 					<input
 						type="text"
 						name="search"
@@ -56,7 +64,7 @@ useEffect(async() => {
 					<button className="text-white bg-light-blue absolute right-0 top-0 h-full rounded-xl w-14 flex items-center justify-center font-bold text-2xl">
 						<BiSearch className="w-6 h-6" />
 					</button>
-				</div>
+				</form>
 
                 {PaymentDetails.map((id)=>{
                     return(<div className=" bg-white mb-5 rounded-lg p-5 px-8 relative shadow-xl w-2/5">
@@ -64,10 +72,8 @@ useEffect(async() => {
                         <span className="text-light-blue font-medium">{id.date}</span>
                         <span className=" absolute right-8 top-7 text-2xl font-semibold">LKR {id.amount}</span>
                 </div> );
-                   
                 })}
             </div>
-           
         </div>
     )
 }
