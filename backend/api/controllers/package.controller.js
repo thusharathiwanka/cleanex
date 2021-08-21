@@ -1,3 +1,4 @@
+const { findByIdAndUpdate } = require("../models/package.model");
 const Package = require("../models/package.model");
 
 /**
@@ -22,7 +23,7 @@ const savePackage = async (req, res) => {
 		}
 
 		try {
-			// * save user account
+			// * save package
 			const newPackage = new Package({
 				name,
 				description,
@@ -44,6 +45,52 @@ const savePackage = async (req, res) => {
 };
 
 /**
+ * use to save the packages
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const updatePackage = async (req, res) => {
+	// * request params validation
+	if (req.params.id) {
+		// * request body validation
+		if (req.body) {
+			const { name, description, price, status, createdAt, updatedAt } =
+				req.body;
+
+			// * user inputs validation
+			if (!name || !description || !price || !status) {
+				return res.status(400).json({ message: "Please fill all the fields" });
+			}
+
+			// * user inputs types validation
+			if (typeof price !== "number") {
+				return res.status(400).json({ message: "Please enter valid price" });
+			}
+
+			try {
+				// * update user package
+				await Package.findByIdAndUpdate(req.params.id, {
+					name,
+					description,
+					price,
+					createdAt,
+					updatedAt,
+				});
+
+				// * sending as updated
+				return res.status(201).send(true);
+			} catch (err) {
+				console.error(err.message);
+				return res.status(500).send();
+			}
+		}
+
+		return res.status(400).send();
+	}
+};
+
+/**
  * use to delete the specific package
  * @param {Object} req
  * @param {Object} res
@@ -61,4 +108,4 @@ const deletePackage = async (req, res) => {
 	}
 };
 
-module.exports = { savePackage, deletePackage };
+module.exports = { savePackage, deletePackage, updatePackage };
