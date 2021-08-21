@@ -8,7 +8,7 @@ const {
 	updateBlogs,
 } = require("../controllers/blog.controller");
 
-router.get("/get", getAllBlogs);
+router.get("/getall", getAllBlogs);
 router.get("/get", getBlog);
 router.post("/post", addBlogs);
 router.delete("/delete", deleteBlogs);
