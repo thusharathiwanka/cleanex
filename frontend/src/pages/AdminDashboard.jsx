@@ -8,7 +8,7 @@ import { adminCardInfo } from "../helpers/adminCardsInfo";
 const Dashboard = () => {
 	return (
 		<div className=" text-gray-800">
-			<div className="ml-80 mt-20 ">
+			<div className="ml-80 mt-20">
 				<h1
 					className="text-5xl font-extrabold pb-10 text-center"
 					data-aos="fade-up"
