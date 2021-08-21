@@ -6,6 +6,8 @@ import Error from "../components/toasts/Error";
 import Success from "../components/toasts/Success";
 import { allowedTypes } from "../helpers/allowedUploads";
 
+// TODO validation error messages needs to be displayed
+// TODO redirect to all packages page after successful package creation
 const AdminNewPackage = () => {
 	const [file, setFile] = useState(null);
 	const [error, setError] = useState("");
@@ -15,7 +17,7 @@ const AdminNewPackage = () => {
 		name: "",
 		description: "",
 		price: "",
-		status: "",
+		status: "active",
 		src: "",
 	});
 
@@ -30,7 +32,8 @@ const AdminNewPackage = () => {
 			formData.append("src", file);
 			newPackage.src = fileName;
 			try {
-				await axios.post("/packages/image/upload", formData);
+				const res = await axios.post("/packages/image/upload", formData);
+				newPackage.src = res.data.path;
 			} catch (err) {
 				console.error(err.message);
 				return setError(err.message);
@@ -38,12 +41,15 @@ const AdminNewPackage = () => {
 		}
 
 		try {
-			await axios.post("/packages", newPackage);
+			newPackage.createdAt = newPackage.updatedAt = new Date();
+			console.log(newPackage);
+			const res = await axios.post("/packages", newPackage);
+			console.log(res);
 			setButtonStatus(false);
 			setSuccess("New package created successfully.");
 		} catch (err) {
-			console.error(err.message);
-			setError(err.message);
+			console.error(err.response.message);
+			setError(err.response.message);
 			setButtonStatus(false);
 		}
 	};
@@ -188,7 +194,7 @@ const AdminNewPackage = () => {
 									data-aos-delay="250"
 									data-aos="fade-up-left"
 								>
-									Save
+									{buttonStatus ? "Save" : "Saving"}
 								</button>
 							</div>
 						</form>
