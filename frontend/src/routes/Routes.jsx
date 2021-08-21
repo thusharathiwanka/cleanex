@@ -7,7 +7,7 @@ import Navbar from "../components/nav/Navbar";
 import Home from "../pages/Home";
 import Worker from "../pages/Worker";
 import CreateBlog from "../pages/CreateBlog";
-
+import EditBlog from "../pages/EditBlog";
 import Blog from "../pages/Blog";
 import SingleBlog from "../pages/SingleBlog";
 import Register from "../pages/Register";
@@ -73,7 +73,7 @@ const Routes = () => {
 				<Navbar />
 				<CreateBlog />
 			</Route>
-			<Route exact path="/blogs">
+			<Route exact path="/auth/user/blogs">
 				<Blog />
 			</Route>
 			<Route exact path="/singleblog">
@@ -97,6 +97,10 @@ const Routes = () => {
 			<Route exact path="/Laundry_bag">
 				<LaundryBag />
 			</Route>
+			<Route exact path="/editblogs">
+				<EditBlog/>
+			</Route>
+			
 		</Switch>
 	);
 };
