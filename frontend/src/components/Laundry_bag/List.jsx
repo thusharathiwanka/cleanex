@@ -6,10 +6,12 @@ import binIcon from "../../assets/images/binIcon.png";
 import { CartContext } from "../../contexts/CartContext";
 
 const List = () => {
-	const { packages, removePacakge } = useContext(CartContext);
+	const { packages, dispatch } = useContext(CartContext);
 	const [value, setValue] = useState(1);
 	const increase = (value) => {
-		value = value + 1;
+		if (value < 5) {
+			value = value + 1;
+		}
 		setValue(value);
 	};
 
@@ -33,10 +35,10 @@ const List = () => {
 					/>
 				</p>
 			</div>
-			<hr className="mb-10 max-w-5xl  ml-auto mr-auto border-blue-100 h-3 " />
-			<table className="w-9/12 ml-auto mr-auto mb-10">
+			<hr className="max-w-5xl  ml-auto mr-auto border-blue-100 h-3 " />
+			<table className="w-9/12 ml-auto mr-auto mb-10 mt-5">
 				<thead>
-					<tr className="text-gray-400 text-base">
+					<tr className="text-gray-400 text-base ">
 						<th className="w-60 h-10 ">Quantity</th>
 						<th className="w-60 h-10">Laundry Item</th>
 						<th className="w-60 h-10">Price per Item</th>
@@ -47,7 +49,7 @@ const List = () => {
 				<tbody>
 					{packages.map((packages) => {
 						return (
-							<tr key={packages.id} className="text-gray-600 bg-gray-100 ">
+							<tr key={packages.id} className="text-gray-600 bg-gray-100  ">
 								<td className="w-60 h-20 text-center">
 									<div className="inline-flex gap-10 ">
 										<button
@@ -77,18 +79,26 @@ const List = () => {
 								</td>
 
 								<td className="w-60 h-20 text-center">
-									<p>{packages.package.name}</p>
+									<p>{packages.pack.name}</p>
 								</td>
 								<td className="w-60  h-20 text-center">
-									<p>Rs {packages.package.price}</p>
+									<p>Rs {packages.pack.price}</p>
 								</td>
 								<td className="w-60  h-20 text-center">
-									<p>Rs {packages.package.price * value}</p>
+									<p>Rs {packages.pack.price * value}</p>
 								</td>
 
 								<td className="w-60   h-20 text-center">
-									<button onClick={() => removePacakge(packages.id)}>
-										<img className="w-7 h-7" src={binIcon} alt="" />
+									<button
+										onClick={() =>
+											dispatch({ type: "REMOVE_PACK", id: packages.id })
+										}
+									>
+										<img
+											className="w-7 h-7 on hover:color-red-200"
+											src={binIcon}
+											alt=""
+										/>
 									</button>
 								</td>
 							</tr>
