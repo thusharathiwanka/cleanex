@@ -15,6 +15,6 @@ router.post("/register", saveCustomer);
 router.post("/login", loginCustomer);
 router.delete("/:id", deleteCustomer);
 router.get("/userProfile", verifyCustomerAuth, getUserprofileDetails);
-router.patch("/updateUserProfile/:id", verifyCustomerAuth, updateUserProfile);
+router.put("/updateUserProfile/:id", verifyCustomerAuth, updateUserProfile);
 
 module.exports = router;

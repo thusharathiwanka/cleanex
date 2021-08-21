@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const AllOrderHistory = () => {
   return (
     <div class="flex flex-col">
@@ -30,7 +30,7 @@ const AllOrderHistory = () => {
           <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg m-8">
               <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-blue-500">
+                <thead class="bg-lighter-blue">
                   <tr>
                     <th
                       scope="col"
@@ -84,14 +84,17 @@ const AllOrderHistory = () => {
                       </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <button class="text-green-600 hover:text-green-400">
+                      <Link
+                        class="text-green-600 hover:text-green-400"
+                        to={`/auth/user/vieworder`}
+                      >
                         View
-                      </button>
+                      </Link>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <button class="text-red-500 hover:text-red-400">
+                      <Link class="text-red-500 hover:text-red-400">
                         Delete
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 </tbody>

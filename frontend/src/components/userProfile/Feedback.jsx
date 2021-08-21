@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Feedback = () => {
   return (
     <div>
@@ -11,7 +11,7 @@ const Feedback = () => {
             </h2>
             <div class="w-full md:w-full px-3 mb-2 mt-2">
               <textarea
-                class="bg-gray-100 rounded border-2 border-blue-500 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                class="bg-gray-100 rounded border-2 border-light-blue leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
                 name="body"
                 placeholder="Type Your Feedback"
                 required
@@ -20,12 +20,15 @@ const Feedback = () => {
             <div class="w-full md:w-full flex items-start px-3">
               <div class="flex items-start w-1/2 text-gray-700 px-2 mr-auto"></div>
               <div class="-mr-1 space-x-4">
-                <button class="transition duration-500 ease-in-out py-3 px-5 bg-black hover:bg-blue-500 text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110">
+                <Link class="transition duration-500 ease-in-out py-3 px-5 bg-black hover:bg-light-blue text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110">
                   Cancle
-                </button>
-                <button class="transition duration-500 ease-in-out py-3 px-5 bg-blue-500 hover:bg-black hover:text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110">
+                </Link>
+                <Link
+                  class="transition duration-500 ease-in-out py-3 px-5 bg-light-blue hover:bg-black text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110"
+                  to={`/auth/user/profile`}
+                >
                   Send
-                </button>
+                </Link>
               </div>
             </div>
           </div>
