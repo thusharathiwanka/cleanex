@@ -3,7 +3,7 @@ import axios from "axios";
 
 const PaymentForm = (props) => {
 
-    const [PaymentDetails, setPaymentDetails] = useState("")
+    const [PaymentDetails, setPaymentDetails] = useState({})
 
 
     const payment= async(e)=>{
@@ -13,7 +13,7 @@ const PaymentForm = (props) => {
         PaymentDetails.amount = "1000"
         console.log(PaymentDetails);
         try{
-            const res = await axios.get("/payment/post", PaymentDetails)
+            const res = await axios.post("/payment/post", PaymentDetails)
             if(res.status===200){
                 props.setSucc(true)
             }
