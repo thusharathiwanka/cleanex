@@ -1,4 +1,3 @@
-const { findByIdAndUpdate } = require("../models/package.model");
 const Package = require("../models/package.model");
 
 /**
@@ -49,6 +48,16 @@ const savePackage = async (req, res) => {
 	}
 
 	return res.status(400).send();
+};
+
+/**
+ * use to save the package images
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const savePackageImage = (req, res) => {
+	res.status(201).json({ status: "uploaded" });
 };
 
 /**
@@ -147,6 +156,7 @@ const deletePackage = async (req, res) => {
 
 module.exports = {
 	savePackage,
+	savePackageImage,
 	deletePackage,
 	updatePackage,
 	getPackages,
