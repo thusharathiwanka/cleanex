@@ -93,6 +93,21 @@ const Routes = () => {
 			<Route exact path="/auth/user/profile">
 				<UserProfile />
 			</Route>
+			<Route exact path="/auth/user/userprofileeditdelete">
+				<UserProfileEditDelete />
+			</Route>
+			<Route exact path="/auth/user/allorderhistory">
+				<AllOrderHistory />
+			</Route>
+			<Route exact path="/auth/user/vieworder">
+				<ViewOrder />
+			</Route>
+			<Route exact path="/auth/user/feedback">
+				<Feedback />
+			</Route>
+			<Route exact path="/auth/user/userprofiledelete">
+				<UserProfileDelete />
+			</Route>
 			<Route exact path="/Deliverer">
 				<Deliverer />
 			</Route>
