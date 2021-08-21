@@ -5,7 +5,10 @@ import packageImage from "../../assets/images/default-package-image.png";
 
 const PackageCard = () => {
 	return (
-		<div className="mx-8 rounded-xl shadow-xl overflow-hidden my-8">
+		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8">
+			<span class="absolute top-3 left-3 inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-bold leading-none text-gray-600 bg-white blur rounded-full opacity-50">
+				100 LKR
+			</span>
 			<div>
 				<img src={packageImage} alt="package-img" className="w-72 h-1/4" />
 			</div>
