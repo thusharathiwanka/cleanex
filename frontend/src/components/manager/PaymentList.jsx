@@ -10,11 +10,15 @@ import axios from 'axios';
 const PaymentList = () => {
 
     const [PaymentDetails, setPaymentDetails] = useState([])
-    var [Total, setTotal] = useState("")
+    const [Total, setTotal] = useState(0)
     
-    const getPaymentsetails=async()=>{
-        
-    }
+const TotalCalc =()=>{
+  var total=0
+        PaymentDetails.map((id)=>{
+            setTotal(total+=parseInt(id.amount))
+        })
+}
+
 useEffect(async() => {
         try{
         const res = await axios.get("/payment/get")
@@ -24,18 +28,12 @@ useEffect(async() => {
         }catch(err){
             console.log(err);
         }
-        // var total=0
-        // PaymentDetails.map((id)=>{
-        //     setTotal(total+=parseInt(id.amount));
-        // })
-        //     console.log(total);
-        //     console.log(Total);
-        
-    }, [])
 
-    const pay =()=>{
-        
-    }
+        if(PaymentDetails!==[]){
+          TotalCalc()
+        }
+
+    }, [])
 
 
     return (
@@ -45,7 +43,7 @@ useEffect(async() => {
             </div>
             <div className=" rounded-lg absolute right-24 top-5 inline-block shadow-xl p-10">
                 <span className="text-light-blue ">Total Income</span><br/>
-                <span className="text-5xl font-semibold">LKR 100000.00</span>
+                <span className="text-5xl font-semibold">LKR {Total}.00</span>
             </div>
             <div className="shadow-2xl p-3 rounded-xl  w-3/7 bg-white absolute right-24 top-60">
             <Graph/>
