@@ -68,6 +68,22 @@ const getPackages = async (req, res) => {
 };
 
 /**
+ * use to get total of the packages
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const getPackagesTotal = async (req, res) => {
+	try {
+		const packages = await Package.find();
+		return res.status(200).json({ total: packages.length });
+	} catch (err) {
+		console.error(err.message);
+		return res.status(500).send();
+	}
+};
+
+/**
  * use to update the packages
  * @param {Object} req
  * @param {Object} res
@@ -129,4 +145,10 @@ const deletePackage = async (req, res) => {
 	}
 };
 
-module.exports = { savePackage, deletePackage, updatePackage, getPackages };
+module.exports = {
+	savePackage,
+	deletePackage,
+	updatePackage,
+	getPackages,
+	getPackagesTotal,
+};

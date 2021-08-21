@@ -97,6 +97,22 @@ const getCustomers = async (req, res) => {
 	}
 };
 
+/**
+ * use to get total of the customers
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const getCustomersTotal = async (req, res) => {
+	try {
+		const customers = await Customer.find();
+		return res.status(200).json({ total: customers.length });
+	} catch (err) {
+		console.error(err.message);
+		return res.status(500).send();
+	}
+};
+
 const loginCustomer = async (req, res) => {
 	// * request body validation
 	if (req.body) {
@@ -210,6 +226,7 @@ module.exports = {
 	getCustomers,
 	loginCustomer,
 	deleteCustomer,
+	getCustomersTotal,
 	getUserprofileDetails,
 	updateUserProfile,
 	//   deleteUserProfile,
