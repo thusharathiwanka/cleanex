@@ -34,7 +34,6 @@ import UserProfileDelete from "../pages/UserProfileDelete";
 const Routes = () => {
   const { loggedIn, loggedInRole } = useContext(AuthContext);
 
-<<<<<<< HEAD
   return (
     <Switch>
       <Route exact path="/">
@@ -79,7 +78,7 @@ const Routes = () => {
         <Navbar />
         <CreateBlog />
       </Route>
-      <Route exact path="/blogs">
+      <Route exact path="/auth/user/blogs">
         <Blog />
       </Route>
       <Route exact path="/singleblog">
@@ -115,86 +114,14 @@ const Routes = () => {
       <Route exact path="/Deliverer_home">
         <DelivererHome />
       </Route>
-      <Route exact path="/Laundry_bag">
+      <Route exact path="/auth/user/cart">
         <LaundryBag />
+      </Route>
+      <Route exact path="/editblogs">
+        <EditBlog />
       </Route>
     </Switch>
   );
-=======
-	return (
-		<Switch>
-			<Route exact path="/">
-				<Navbar />
-				<Home />
-			</Route>
-			<Route exact path="/auth/register">
-				<Navbar />
-				<Register />
-			</Route>
-			<Route exact path="/auth/login">
-				<Navbar />
-				<Login />
-			</Route>
-			<Route exact path="/auth/user/packages">
-				<Navbar />
-				<Packages />
-			</Route>
-			<Route exact path="/auth/moderator/login">
-				<AdminLogin />
-			</Route>
-			<Route exact path="/auth/admin/dashboard">
-				<AdminDashboard />
-			</Route>
-			<Route exact path="/auth/admin/packages">
-				<AdminPackages />
-			</Route>
-			<Route exact path="/auth/admin/packages/new">
-				<AdminNewPackage />
-			</Route>
-			<Route exact path="/auth/admin/customers">
-				<AdminCustomer />
-			</Route>
-			<Route exact path="/auth/admin/feedbacks">
-				<AdminFeedback />
-			</Route>
-			<Route exact path="/auth/worker/dashboard">
-				<Navbar />
-				<Worker />
-			</Route>
-			<Route exact path="/createblogs">
-				<Navbar />
-				<CreateBlog />
-			</Route>
-			<Route exact path="/auth/user/blogs">
-				<Blog />
-			</Route>
-			<Route exact path="/singleblog">
-				<SingleBlog />
-			</Route>
-			<Route exact path="/payment">
-				<Payment />
-			</Route>
-			<Route exact path="/auth/manager/dashboard">
-				<Manager />
-			</Route>
-			<Route exact path="/auth/user/profile">
-				<UserProfile />
-			</Route>
-			<Route exact path="/Deliverer">
-				<Deliverer />
-			</Route>
-			<Route exact path="/Deliverer_home">
-				<DelivererHome />
-			</Route>
-			<Route exact path="/auth/user/cart">
-				<LaundryBag />
-			</Route>
-			<Route exact path="/editblogs">
-				<EditBlog />
-			</Route>
-		</Switch>
-	);
->>>>>>> d18650a4bd31fdc7b43dd67aa85e525edb1ac47a
 };
 
 export default Routes;
