@@ -7,7 +7,7 @@ const OrderList = () => {
 
 	const accept = (id) => {
 		orders.filter((order) => order.id !== id);
-		setId(id);
+		setId(id); //id/
 	};
 
 	const getOrders = async () => {
