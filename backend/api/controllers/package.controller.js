@@ -13,7 +13,14 @@ const savePackage = async (req, res) => {
 		const { name, description, price, status, createdAt, updatedAt } = req.body;
 
 		// * user inputs validation
-		if (!name || !description || !price || !status) {
+		if (
+			!name ||
+			!description ||
+			!price ||
+			!status ||
+			!createdAt ||
+			!updatedAt
+		) {
 			return res.status(400).json({ message: "Please fill all the fields" });
 		}
 
@@ -55,11 +62,10 @@ const updatePackage = async (req, res) => {
 	if (req.params.id) {
 		// * request body validation
 		if (req.body) {
-			const { name, description, price, status, createdAt, updatedAt } =
-				req.body;
+			const { name, description, price, status, updatedAt } = req.body;
 
 			// * user inputs validation
-			if (!name || !description || !price || !status) {
+			if (!name || !description || !price || !status || !updatedAt) {
 				return res.status(400).json({ message: "Please fill all the fields" });
 			}
 
@@ -74,7 +80,6 @@ const updatePackage = async (req, res) => {
 					name,
 					description,
 					price,
-					createdAt,
 					updatedAt,
 				});
 

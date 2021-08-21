@@ -15,7 +15,7 @@ const saveCustomer = async (req, res) => {
 		const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
 
 		// * user inputs validation
-		if (!name || !email || !password || !mobile) {
+		if (!name || !email || !password || !mobile || !createdAt || !updatedAt) {
 			return res.status(400).json({ message: "Please fill all the fields" });
 		}
 
