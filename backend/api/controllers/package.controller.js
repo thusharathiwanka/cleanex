@@ -9,7 +9,8 @@ const Package = require("../models/package.model");
 const savePackage = async (req, res) => {
 	// * request body validation
 	if (req.body) {
-		const { name, description, price, status, createdAt, updatedAt } = req.body;
+		const { name, description, price, status, src, createdAt, updatedAt } =
+			req.body;
 
 		// * user inputs validation
 		if (
@@ -17,15 +18,11 @@ const savePackage = async (req, res) => {
 			!description ||
 			!price ||
 			!status ||
+			!src ||
 			!createdAt ||
 			!updatedAt
 		) {
 			return res.status(400).json({ message: "Please fill all the fields" });
-		}
-
-		// * user inputs types validation
-		if (typeof price !== "number") {
-			return res.status(400).json({ message: "Please enter valid price" });
 		}
 
 		try {
@@ -34,6 +31,8 @@ const savePackage = async (req, res) => {
 				name,
 				description,
 				price,
+				status,
+				src,
 				createdAt,
 				updatedAt,
 			});
@@ -42,6 +41,7 @@ const savePackage = async (req, res) => {
 			// * sending as saved
 			return res.status(201).send(true);
 		} catch (err) {
+			console.log(err);
 			console.error(err.message);
 			return res.status(500).send();
 		}
@@ -57,7 +57,7 @@ const savePackage = async (req, res) => {
  * @returns {Object} res
  */
 const savePackageImage = (req, res) => {
-	res.status(201).json({ status: "uploaded" });
+	res.status(201).json({ path: req.file.path });
 };
 
 /**

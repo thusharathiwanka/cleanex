@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import image from "../../assets/images/bucket.png";
 import icon1 from "../../assets/images/minus.png";
 import icon2 from "../../assets/images/Group.png";
+import binIcon from "../../assets/images/binIcon.png";
+import { CartContext } from "../../contexts/CartContext";
 
 const List = () => {
+	const { packages, removePacakge } = useContext(CartContext);
+	const [value, setValue] = useState(1);
+	const increase = (value) => {
+		value = value + 1;
+		setValue(value);
+	};
+
+	const decrease = (value) => {
+		if (value > 1) {
+			value = value - 1;
+		}
+
+		setValue(value);
+	};
+
 	return (
 		<div>
 			<div className="text-lg ml-20 max-w-sm pt-3 pb-2 border border-blue-200 mt-10 mb-20 max-h-24 inline-block">
@@ -24,27 +41,59 @@ const List = () => {
 						<th className="w-60 h-10">Laundry Item</th>
 						<th className="w-60 h-10">Price per Item</th>
 						<th className="w-60 h-10">Total Price</th>
+						<th className="w-60 h-10"></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr className="text-gray-600 bg-gray-100 h">
-						<td className="w-60 h-20 text-center">
-							<div className="inline-flex gap-10 ">
-								<img className="w-7 h-7" src={icon2} alt="" />
-								<img className="w-7 h-7" src={icon1} alt="" />
-							</div>
-						</td>
+					{packages.map((packages) => {
+						return (
+							<tr key={packages.id} className="text-gray-600 bg-gray-100 ">
+								<td className="w-60 h-20 text-center">
+									<div className="inline-flex gap-10 ">
+										<button
+											onClick={() => {
+												increase(value);
+											}}
+										>
+											<img className="w-7 h-7" src={icon2} alt="" />
+										</button>
+										<input
+											class="ms-1 border text-center w-8 appearance-none"
+											type="text"
+											value={value}
+											bg-gray-100
+											onChange={(e) => {
+												setValue(e.target.value);
+											}}
+										/>
+										<button
+											onClick={() => {
+												decrease(value);
+											}}
+										>
+											<img className="w-7 h-7" src={icon1} alt="" />
+										</button>
+									</div>
+								</td>
 
-						<td className="w-60 h-20 text-center">
-							<p>Trouser</p>
-						</td>
-						<td className="w-60  h-20 text-center">
-							<p>Rs 150.00</p>
-						</td>
-						<td className="w-60  h-20 text-center">
-							<p>Rs 300.00</p>
-						</td>
-					</tr>
+								<td className="w-60 h-20 text-center">
+									<p>{packages.package.name}</p>
+								</td>
+								<td className="w-60  h-20 text-center">
+									<p>Rs {packages.package.price}</p>
+								</td>
+								<td className="w-60  h-20 text-center">
+									<p>Rs {packages.package.price * value}</p>
+								</td>
+
+								<td className="w-60   h-20 text-center">
+									<button onClick={() => removePacakge(packages.id)}>
+										<img className="w-7 h-7" src={binIcon} alt="" />
+									</button>
+								</td>
+							</tr>
+						);
+					})}
 				</tbody>
 			</table>
 			<hr className="mb-10 max-w-5xl  ml-auto mr-auto border-blue-100  " />

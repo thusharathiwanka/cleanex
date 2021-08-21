@@ -12,8 +12,8 @@ const {
 } = require("../controllers/order.crontroller");
 
 router.post("/addOrder", addOrder);
-router.post("/orders", getAllOrders);
-router.post("updateOrder", updateDeliveryStatus);
+router.get("/orders", getAllOrders);
+router.put("/updateOrder", updateDeliveryStatus);
 
 router.get("/getPendingOrders", getPendingOrders);
 router.get("/getProcessingOrders", getProcessingOrders);
