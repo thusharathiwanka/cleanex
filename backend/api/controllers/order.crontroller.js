@@ -15,10 +15,11 @@ const updateToProcess = async (req, res) => {
 	}
 };
 
+
 const updateToCompleate = async (req, res) => {
 	try {
 		await order.findByIdAndUpdate(req.params.id, {
-			WashingStatus: "Completed",
+			WashingStatus: "completed",
 		});
 		res.status(200).json({ message: "order successfully approved" });
 	} catch (err) {
@@ -26,6 +27,43 @@ const updateToCompleate = async (req, res) => {
 		console.log(err.message);
 	}
 };
+
+const getPendingOrders = async (req, res) => {
+	try {
+			const pendingOrdes = await order.find({
+				WashingStatus:"pending"
+			})
+		res.status(200).json(pendingOrdes);
+	} catch (err) {
+		res.status(200);
+		console.log(err.message);
+	}
+};
+
+const getProcessingOrders = async (req, res) => {
+	try {
+			const pendingOrdes = await order.find({
+				WashingStatus:"processing"
+			})
+		res.status(200).json(pendingOrdes);
+	} catch (err) {
+		res.status(200);
+		console.log(err.message);
+	}
+};
+
+const getCompletedOrders = async (req, res) => {
+	try {
+			const pendingOrdes = await order.find({
+				WashingStatus:"completed"
+			})
+		res.status(200).json(pendingOrdes);
+	} catch (err) {
+		res.status(200);
+		console.log(err.message);
+	}
+};
+
 
 const addOrder = async (req, res) => {
 	try {
@@ -50,13 +88,14 @@ const getAllOrders = async () => {
 const updateDeliveryStatus = async (req, res) => {
 	const order = await order.findByIdAndUpdate(req.body.id, {});
 };
+
 module.exports = {
 	addOrder,
 	getAllOrders,
 	updateDeliveryStatus,
-	//   getPendingOrders,
-	//   getProcessingOrders,
-	//   getCompletedOrders,
+	getPendingOrders,
+	getProcessingOrders,
+	getCompletedOrders,
 	updateToProcess,
 	updateToCompleate,
 };

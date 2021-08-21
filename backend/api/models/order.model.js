@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema({
     WashingStatus:{type: String },
     PickupStatus:{type: String},
     Total:{type: String},
-    DelevaryStatus:{type: String },
+    DelivaryStatus:{type: String },
     Hours:{type: String},
     StartDate:{type: String},
     StartTime:{type: String},
