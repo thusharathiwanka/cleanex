@@ -2,10 +2,10 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
 	destination: (req, file, callback) => {
-		callback(null, "api/uploads");
+		callback(null, process.env.UPLOAD_DIR);
 	},
 	filename: (req, file, callback) => {
-		callback(null, req.body.uploadedAt + req.body.file);
+		callback(null, req.body.name);
 	},
 });
 

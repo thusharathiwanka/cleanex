@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import Error from "../components/toasts/Error";
@@ -9,21 +10,46 @@ const AdminNewPackage = () => {
 	const [file, setFile] = useState(null);
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
+	const [buttonStatus, setButtonStatus] = useState(false);
 	const [newPackage, setNewPackage] = useState({
 		name: "",
 		description: "",
 		price: "",
 		status: "",
+		src: "",
 	});
 
-	const savePackage = (e) => {
+	const savePackage = async (e) => {
 		e.preventDefault();
-		console.log(newPackage);
+		setButtonStatus(true);
+
+		if (file) {
+			const formData = new FormData();
+			const fileName = `${Date.now()}-${file.name}`;
+			formData.append("name", fileName);
+			formData.append("src", file);
+			newPackage.src = fileName;
+			try {
+				await axios.post("/packages/image/upload", formData);
+			} catch (err) {
+				console.error(err.message);
+				return setError(err.message);
+			}
+		}
+
+		try {
+			await axios.post("/packages", newPackage);
+			setButtonStatus(false);
+			setSuccess("New package created successfully.");
+		} catch (err) {
+			console.error(err.message);
+			setError(err.message);
+			setButtonStatus(false);
+		}
 	};
 
 	const fileChangeHandler = (e) => {
 		const selectedFile = e.target.files[0];
-		console.log(selectedFile);
 
 		if (selectedFile && allowedTypes.includes(selectedFile.type)) {
 			setFile(selectedFile);
@@ -51,9 +77,10 @@ const AdminNewPackage = () => {
 						<form
 							className="w-2/4 pt-10 text-gray-800 font-semibold relative"
 							onSubmit={savePackage}
+							encType="multipart/form-data"
 						>
-							{error && <Error />}
-							{success && <Success />}
+							{error && <Error error={error} />}
+							{success && <Success success={success} />}
 							<div
 								className="flex flex-col justify-start pb-5 w-full"
 								data-aos="fade-up-left"
@@ -61,7 +88,7 @@ const AdminNewPackage = () => {
 								<input
 									type="file"
 									accept=".png, .jpg, .jpeg"
-									name="package-image"
+									name="src"
 									id="package-image"
 									className="rounded-full px-4 py-3 focus:border-light-blue inline-block"
 									required
