@@ -92,6 +92,7 @@ const getCustomers = async (req, res) => {
 		const customers = await Customer.find();
 		return res.status(200).json({ customers: customers });
 	} catch (err) {
+		console.error(err.message);
 		return res.status(500).send();
 	}
 };
@@ -158,7 +159,7 @@ const deleteCustomer = async (req, res) => {
 			await Customer.findByIdAndDelete(req.params.id);
 			return res.status(200).send();
 		} catch (err) {
-			console.log(err.message);
+			console.error(err.message);
 			return res.status(500).send();
 		}
 	}
