@@ -1,4 +1,5 @@
 const Package = require("../models/package.model");
+const path = require("path");
 
 /**
  * use to save the packages
@@ -57,7 +58,7 @@ const savePackage = async (req, res) => {
  * @returns {Object} res
  */
 const savePackageImage = (req, res) => {
-	res.status(201).json({ status: "uploaded" });
+	res.status(201).json({ path: req.file.path });
 };
 
 /**

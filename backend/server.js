@@ -12,6 +12,7 @@ app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(`${__dirname}/public`));
 
 mongoose
 	.connect(process.env.CONNECTION_URL, {

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const upload = require("../config/multer.config");
+const upload = require("../middleware/multer.config");
 const {
 	savePackage,
 	deletePackage,
