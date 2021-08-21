@@ -1,16 +1,21 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Error from '../toasts/Error'
 import Success from '../toasts/Success'
 
 const EditBlog = () => {
 
+const [CurrentDetails, setCurrentDetails] = useState("")
 const [Blog, setBlog] = useState("")
 const [Err, setErr] = useState("")
 const [Succ, setSucc] = useState("")
 
+useEffect(async() => {
 
+    const res = await axios.get("")
+    
+}, [])
 
 const updateBlog =async(e)=>{
     e.preventDefault()

@@ -11,6 +11,8 @@ const orderSchema = new mongoose.Schema({
 	StartTime: { type: String },
 	CompletedDate: { type: String },
 	CompletedTime: { type: String },
+    DelivaryId:{type:mongoose.Schema.Types.ObjectId, ref:'moderators'},
+    CustomerId: [{type:mongoose.Schema.Types.ObjectId, ref:'customers'}]
 });
 
 const Order = mongoose.model("Orders", orderSchema);

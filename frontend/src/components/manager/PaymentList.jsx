@@ -12,27 +12,17 @@ const PaymentList = () => {
     const [PaymentDetails, setPaymentDetails] = useState([])
     const [Total, setTotal] = useState(0)
     
-const TotalCalc =()=>{
-  var total=0
-        PaymentDetails.map((id)=>{
-            setTotal(total+=parseInt(id.amount))
-        })
-}
 
 useEffect(async() => {
         try{
         const res = await axios.get("/payment/get")
         setPaymentDetails(res.data.payments)
-            console.log(PaymentDetails);
-            console.log(res.data.payments);
+        const total = await axios.get("/payment/gettotal")
+        setTotal(total.data.Total)
         }catch(err){
             console.log(err);
         }
-
-        if(PaymentDetails!==[]){
-          TotalCalc()
-        }
-
+        
     }, [])
 
 
