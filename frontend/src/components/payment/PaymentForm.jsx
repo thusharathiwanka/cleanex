@@ -1,8 +1,28 @@
-import React from 'react'
-import Order1 from '../../assets/images/order1.png'
-import Order2 from '../../assets/images/order2.png'
+import React, { useEffect,useState } from 'react'
+import axios from "axios";
 
-const PaymentForm = () => {
+const PaymentForm = (props) => {
+
+    const [PaymentDetails, setPaymentDetails] = useState("")
+
+
+    const payment= async(e)=>{
+        e.preventDefault()
+        const date = new Date();
+        PaymentDetails.date=date.toLocaleDateString();
+        PaymentDetails.amount = "1000"
+        console.log(PaymentDetails);
+        try{
+            const res = await axios.get("/payment/post", PaymentDetails)
+            if(res.status===200){
+                props.setSucc(true)
+            }
+        }catch(err){
+            props.setErr(true)
+        }
+
+
+    }
     return (
         <div className="">
             {/* <h1 className="text-4xl font-bold flex justify-center mb-10 mt-10">Payment</h1>
@@ -48,13 +68,13 @@ const PaymentForm = () => {
                 
             </div> */}
             <div className="px-24  py-10">
-                <form>
+                <form onSubmit={payment}>
                 <h1 className="flex mb-10 justify-center text-3xl font-medium ">Card Details</h1>
             <label className=" text-lg text-gray-500 font-bold pr-4" for="inline-full-name">
                 Name On card
             </label>
             <br/>
-            <input required className=" mt-3 text-lg  w-full block bg-light-gary appearance-none  border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-light-blue" width="672" type="text" placeholder="Jane Doe"/> 
+            <input required onChange={(e)=>setPaymentDetails({...PaymentDetails,name:e.target.value})} className=" mt-3 text-lg  w-full block bg-light-gary appearance-none  border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-light-blue" width="672" type="text" placeholder="Jane Doe"/> 
             <br/>
             <label className="text-lg text-gray-500 font-bold   pr-4" for="inline-password">
                 Card Number
@@ -65,7 +85,7 @@ const PaymentForm = () => {
             <label  className="text-lg text-gray-500 font-bold   pr-4" for="inline-password">
                 Expiry Date
             </label>
-            <label  className="text-lg ml-2 pl-36 text-gray-500 font-bold   pr-4" for="inline-password">
+            <label  className="text-lg  pl-36 text-gray-500 font-bold   pr-4" for="inline-password">
                 CVC
             </label>
             <br/>
@@ -75,7 +95,7 @@ const PaymentForm = () => {
                         /
                     </label>
                     <input required className="bg-light-gary  text-lg appearance-none border-2 border-gray-200 rounded w-20 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-light-blue"  type="text" placeholder=" YY"/>
-                    <input required className="bg-light-gary  text-lg ml-16 w-72  appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-light-blue"  type="text" placeholder="***"/>
+                    <input required className="bg-light-gary  text-lg ml-14 w-60  appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-light-blue"  type="text" placeholder="***"/>
                 </div>
             <button className="ml-56 shadow mt-10  bg-light-blue text-white font-semibold py-1 px-8 text-xl  rounded-full "  type="submit">
                 PAY
