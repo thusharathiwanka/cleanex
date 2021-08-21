@@ -94,13 +94,12 @@ const Routes = () => {
 			<Route exact path="/Deliverer_home">
 				<DelivererHome />
 			</Route>
-			<Route exact path="/Laundry_bag">
+			<Route exact path="/auth/user/cart">
 				<LaundryBag />
 			</Route>
 			<Route exact path="/editblogs">
-				<EditBlog/>
+				<EditBlog />
 			</Route>
-			
 		</Switch>
 	);
 };
