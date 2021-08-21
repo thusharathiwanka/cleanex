@@ -18,9 +18,45 @@ const updateToProcess = async (req, res) => {
 const updateToCompleate = async (req, res) => {
 	try {
 		await order.findByIdAndUpdate(req.params.id, {
-			WashingStatus: "Completed",
+			WashingStatus: "completed",
 		});
 		res.status(200).json({ message: "order successfully approved" });
+	} catch (err) {
+		res.status(200);
+		console.log(err.message);
+	}
+};
+
+const getPendingOrders = async (req, res) => {
+	try {
+		const pendingOrdes = await order.find({
+			WashingStatus: "pending",
+		});
+		res.status(200).json(pendingOrdes);
+	} catch (err) {
+		res.status(200);
+		console.log(err.message);
+	}
+};
+
+const getProcessingOrders = async (req, res) => {
+	try {
+		const pendingOrdes = await order.find({
+			WashingStatus: "processing",
+		});
+		res.status(200).json(pendingOrdes);
+	} catch (err) {
+		res.status(200);
+		console.log(err.message);
+	}
+};
+
+const getCompletedOrders = async (req, res) => {
+	try {
+		const pendingOrdes = await order.find({
+			WashingStatus: "completed",
+		});
+		res.status(200).json(pendingOrdes);
 	} catch (err) {
 		res.status(200);
 		console.log(err.message);
@@ -38,7 +74,7 @@ const addOrder = async (req, res) => {
 	}
 };
 
-const getAllOrders = async () => {
+const getAllOrders = async (req, res) => {
 	try {
 		const orders = await order.find();
 		res.status(200).json(orders);
@@ -47,16 +83,26 @@ const getAllOrders = async () => {
 	}
 };
 
+const getByIdOrder = async (req, res) => {
+	try {
+		const order = await order.findById(req.params.id);
+		res.status(200).json(order);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+};
 const updateDeliveryStatus = async (req, res) => {
 	const order = await order.findByIdAndUpdate(req.body.id, {});
 };
+
 module.exports = {
 	addOrder,
 	getAllOrders,
+	getByIdOrder,
 	updateDeliveryStatus,
-	//   getPendingOrders,
-	//   getProcessingOrders,
-	//   getCompletedOrders,
+	getPendingOrders,
+	getProcessingOrders,
+	getCompletedOrders,
 	updateToProcess,
 	updateToCompleate,
 };

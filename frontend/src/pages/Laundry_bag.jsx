@@ -3,10 +3,12 @@ import React from "react";
 import Test_Item from "../components/Laundry_bag/Test_Item";
 import OrderSummary from "../components/Laundry_bag/OrderSummary";
 import List from "../components/Laundry_bag/List";
+import Navbar from "../components/nav/Navbar";
 
 const Laundry_bag = () => {
 	return (
 		<div>
+			<Navbar />
 			<div>
 				<List />
 			</div>

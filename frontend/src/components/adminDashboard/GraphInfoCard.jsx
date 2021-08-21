@@ -2,7 +2,7 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 
 const GraphInfoCard = ({ delay }) => {
-	console.log(delay);
+
 	const series = [
 		{
 			name: "series1",

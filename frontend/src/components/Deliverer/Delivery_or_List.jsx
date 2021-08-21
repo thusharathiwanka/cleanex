@@ -1,26 +1,7 @@
 import { useState, useEffect } from "react";
-const Deliverer_list = () => {
-	const [Orders, setOrders] = useState(null);
-	const [Id, setId] = useState(null);
-	const accept = (id) => {
-		setId(id);
-	};
-	useEffect(() => {
-		fetch(`http://localhost:5000/orders`, {
-			method: "GET",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-				"Access-Control-Allow-Headers": "*",
-			},
-		})
-			.then((res) => {
-				return res.json();
-			})
-			.then((data) => {
-				setOrders(data);
-			});
-	}, []);
+const Deliverer_list = (id) => {
+	const [order, setOrder] = useState("");
+
 	return (
 		<div
 			style={{
@@ -64,6 +45,9 @@ const Deliverer_list = () => {
 										<th scope="col" className="relative px-6 py-3">
 											<span className="sr-only">Accept</span>
 										</th>
+										<th scope="col" className="relative px-6 py-3">
+											<span className="sr-only">Accept</span>
+										</th>
 									</tr>
 								</thead>
 								<tbody className="bg-white divide-y divide-gray-200">
@@ -94,7 +78,7 @@ const Deliverer_list = () => {
 												href="www.google.com"
 												className="text-green-500 hover:text-green-200"
 											>
-												Accept
+												Delivered
 											</a>
 										</td>
 										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -133,7 +117,15 @@ const Deliverer_list = () => {
 												href="www.google.com"
 												className="text-green-500 hover:text-green-200"
 											>
-												Accept
+												Delivered
+											</a>
+										</td>
+										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+											<a
+												href="www.google.com"
+												className="text-red-500 hover:text-red-200"
+											>
+												Error
 											</a>
 										</td>
 									</tr>
