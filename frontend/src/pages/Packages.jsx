@@ -12,7 +12,7 @@ const Packages = () => {
 				<h1 className="text-5xl font-extrabold pb-10 text-center">
 					Select what's Best for You
 				</h1>
-				<form className="w-2/4 text-center relative mb-20">
+				<form className="w-2/4 text-center relative mb-12">
 					<input
 						type="text"
 						name="search"
