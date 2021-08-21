@@ -1,27 +1,7 @@
 import { useState, useEffect } from "react";
-const Deliverer_list = () => {
-	const [Orders, setOrders] = useState(null);
-	const [Id, setId] = useState(null);
+const Deliverer_list = (id) => {
+	const [order, setOrder] = useState("");
 
-	const accept = (id) => {
-		setId(id);
-	};
-	useEffect(() => {
-		fetch(`http://localhost:5000/orders`, {
-			method: "GET",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-				"Access-Control-Allow-Headers": "*",
-			},
-		})
-			.then((res) => {
-				return res.json();
-			})
-			.then((data) => {
-				setOrders(data);
-			});
-	}, []);
 	return (
 		<div
 			style={{

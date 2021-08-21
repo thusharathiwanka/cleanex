@@ -15,7 +15,6 @@ const updateToProcess = async (req, res) => {
 	}
 };
 
-
 const updateToCompleate = async (req, res) => {
 	try {
 		await order.findByIdAndUpdate(req.params.id, {
@@ -30,9 +29,9 @@ const updateToCompleate = async (req, res) => {
 
 const getPendingOrders = async (req, res) => {
 	try {
-			const pendingOrdes = await order.find({
-				WashingStatus:"pending"
-			})
+		const pendingOrdes = await order.find({
+			WashingStatus: "pending",
+		});
 		res.status(200).json(pendingOrdes);
 	} catch (err) {
 		res.status(200);
@@ -42,9 +41,9 @@ const getPendingOrders = async (req, res) => {
 
 const getProcessingOrders = async (req, res) => {
 	try {
-			const pendingOrdes = await order.find({
-				WashingStatus:"processing"
-			})
+		const pendingOrdes = await order.find({
+			WashingStatus: "processing",
+		});
 		res.status(200).json(pendingOrdes);
 	} catch (err) {
 		res.status(200);
@@ -54,16 +53,15 @@ const getProcessingOrders = async (req, res) => {
 
 const getCompletedOrders = async (req, res) => {
 	try {
-			const pendingOrdes = await order.find({
-				WashingStatus:"completed"
-			})
+		const pendingOrdes = await order.find({
+			WashingStatus: "completed",
+		});
 		res.status(200).json(pendingOrdes);
 	} catch (err) {
 		res.status(200);
 		console.log(err.message);
 	}
 };
-
 
 const addOrder = async (req, res) => {
 	try {
@@ -85,6 +83,14 @@ const getAllOrders = async (req, res) => {
 	}
 };
 
+const getByIdOrder = async (req, res) => {
+	try {
+		const order = await order.findById(req.params.id);
+		res.status(200).json(order);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+};
 const updateDeliveryStatus = async (req, res) => {
 	const order = await order.findByIdAndUpdate(req.body.id, {});
 };
@@ -92,6 +98,7 @@ const updateDeliveryStatus = async (req, res) => {
 module.exports = {
 	addOrder,
 	getAllOrders,
+	getByIdOrder,
 	updateDeliveryStatus,
 	getPendingOrders,
 	getProcessingOrders,

@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+
 const OrderList = () => {
-	const [Orders, setOrders] = useState(null);
+	const [orders, setOrders] = useState([]);
 	const [Id, setId] = useState(null);
+
 	const accept = (id) => {
+		orders.filter((order) => order.id !== id);
 		setId(id);
 	};
+
+	const getOrders = async () => {
+		try {
+			const res = await axios.get("/order/orders");
+			setOrders(res.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 	useEffect(() => {
-		fetch(`http://localhost:5000/orders`, {
-			method: "GET",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-				"Access-Control-Allow-Headers": "*",
-			},
-		})
-			.then((res) => {
-				return res.json();
-			})
-			.then((data) => {
-				setOrders(data);
-			});
+		getOrders();
 	}, []);
 	return (
 		<div
@@ -66,100 +66,45 @@ const OrderList = () => {
 										</th>
 									</tr>
 								</thead>
+
 								<tbody className="bg-white divide-y divide-gray-200">
-									<tr>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div className="flex items-center">
-												<div className="text-sm text-gray-900">
-													14/7,Smagi Uyana, Nagoda,Bombuwala.
-												</div>
-											</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div className="text-sm text-gray-900">
-												Mr Weerasinghe
-											</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div className="text-sm text-gray-900">2021/09/20</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-500">
-												Pending
-											</span>
-										</td>
+									{orders.map((order) => {
+										return (
+											<tr>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<div className="flex items-center">
+														<div className="text-sm text-gray-900">
+															{order.Address}
+														</div>
+													</div>
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<div className="text-sm text-gray-900">
+														Mr Weerasinghe
+													</div>
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<div className="text-sm text-gray-900">
+														{order.StartDate}
+													</div>
+												</td>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-500">
+														{order.PickupStatus}
+													</span>
+												</td>
 
-										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-											<a
-												href="www.google.com"
-												className="text-green-500 hover:text-green-200"
-											>
-												Accept
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div className="flex items-center">
-												<div className="text-sm text-gray-900">
-													14/7,Smagi Uyana, Nagoda,Bombuwala.
-												</div>
-											</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div className="text-sm text-gray-900">
-												Mr Weerasinghe
-											</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div className="text-sm text-gray-900">2021/09/20</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-500">
-												Pending
-											</span>
-										</td>
-
-										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-											<a
-												href="www.google.com"
-												className="text-green-500 hover:text-green-200"
-											>
-												Accept
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div className="flex items-center">
-												<div className="text-sm text-gray-900">
-													14/7,Smagi Uyana, Nagoda,Bombuwala.
-												</div>
-											</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div className="text-sm text-gray-900">
-												Mr Weerasinghe
-											</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<div className="text-sm text-gray-900">2021/09/20</div>
-										</td>
-										<td className="px-6 py-4 whitespace-nowrap">
-											<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-500">
-												Pending
-											</span>
-										</td>
-
-										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-											<a
-												href="www.google.com"
-												className="text-green-500 hover:text-green-200"
-											>
-												Accept
-											</a>
-										</td>
-									</tr>
+												<td className="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
+													<button
+														onClick={() => accept(order.id)}
+														className="text-green-500 hover:text-green-200"
+													>
+														Accept
+													</button>
+												</td>
+											</tr>
+										);
+									})}
 								</tbody>
 							</table>
 						</div>
