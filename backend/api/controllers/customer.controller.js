@@ -187,7 +187,7 @@ const deleteCustomer = async (req, res) => {
  * @param {Object} res
  * @returns {Object} res
  */
-const getUserprofileDetails = async (request, response) => {
+const getUserprofileDetails = async (req, response) => {
   try {
     const UserProfileDetails = await Customer.findById(req.params.userId);
     response.status(200).json({ customer: UserProfileDetails });
