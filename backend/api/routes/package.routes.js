@@ -7,11 +7,13 @@ const {
 	getPackages,
 	getPackagesTotal,
 	savePackageImage,
+	getPackagesBasedOnStatus,
 } = require("../controllers/package.controller");
 const { verifyAdminAuth } = require("../middleware/adminAuth");
 
 router.get("/", getPackages);
 router.get("/total", getPackagesTotal);
+router.get("/:status", getPackagesBasedOnStatus);
 router.post("/", verifyAdminAuth, savePackage);
 router.post("/image/upload", upload.single("src"), savePackageImage);
 router.delete("/:id", verifyAdminAuth, deletePackage);

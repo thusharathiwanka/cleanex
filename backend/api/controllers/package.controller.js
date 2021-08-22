@@ -77,6 +77,24 @@ const getPackages = async (req, res) => {
 };
 
 /**
+ * use to get all the packages based on status
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const getPackagesBasedOnStatus = async (req, res) => {
+	if (req.params.status) {
+		try {
+			const packages = await Package.find({ status: req.params.status });
+			return res.status(200).json({ packages: packages });
+		} catch (err) {
+			console.error(err.message);
+			return res.status(500).send();
+		}
+	}
+};
+
+/**
  * use to get total of the packages
  * @param {Object} req
  * @param {Object} res
@@ -161,4 +179,5 @@ module.exports = {
 	updatePackage,
 	getPackages,
 	getPackagesTotal,
+	getPackagesBasedOnStatus,
 };

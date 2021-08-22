@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 
 import PackageCard from "../components/packages/PackageCard";
 
 const Packages = () => {
 	document.title = "CLEANEX - All Packages";
+
+	const getPackages = async () => {};
+
+	useEffect(() => getPackages(), []);
 
 	return (
 		<div className="text-gray-800 max-w-screen-2xl mx-auto px-4">

@@ -124,7 +124,9 @@ const AdminPackages = () => {
 															</div>
 														</td>
 														<td className="px-6 py-4 whitespace-nowrap">
-															<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+															<span
+																className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusStyle}`}
+															>
 																{packageItem.status.toUpperCase()}
 															</span>
 														</td>
