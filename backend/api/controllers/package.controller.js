@@ -58,7 +58,7 @@ const savePackage = async (req, res) => {
  * @returns {Object} res
  */
 const savePackageImage = (req, res) => {
-	res.status(201).json({ filename: req.file.filename });
+	return res.status(201).json({ filename: req.file.filename });
 };
 
 /**
@@ -114,6 +114,24 @@ const getPackagesBasedOnSearchQuery = async (req, res) => {
 };
 
 /**
+ * use to get package based on id
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const getPackage = async (req, res) => {
+	if (req.params.id) {
+		try {
+			const package = await Package.findById(req.params.id);
+			return res.status(200).json({ package: package });
+		} catch (err) {
+			console.error(err.message);
+			return res.status(500).send();
+		}
+	}
+};
+
+/**
  * use to get total of the packages
  * @param {Object} req
  * @param {Object} res
@@ -130,47 +148,57 @@ const getPackagesTotal = async (req, res) => {
 };
 
 /**
- * use to update the packages
+ * use to update the specific package
  * @param {Object} req
  * @param {Object} res
  * @returns {Object} res
  */
 const updatePackage = async (req, res) => {
-	// * request params validation
-	if (req.params.id) {
-		// * request body validation
-		if (req.body) {
-			const { name, description, price, status, updatedAt } = req.body;
+	// * request body and params validation
+	if (req.params.id && req.body) {
+		const { name, description, price, status, src, updatedAt } = req.body;
 
-			// * user inputs validation
-			if (!name || !description || !price || !status || !updatedAt) {
-				return res.status(400).json({ message: "Please fill all the fields" });
-			}
-
-			// * user inputs types validation
-			if (typeof price !== "number") {
-				return res.status(400).json({ message: "Please enter valid price" });
-			}
-
-			try {
-				// * update user package
-				await Package.findByIdAndUpdate(req.params.id, {
-					name,
-					description,
-					price,
-					updatedAt,
-				});
-
-				// * sending as updated
-				return res.status(201).send(true);
-			} catch (err) {
-				console.error(err.message);
-				return res.status(500).send();
-			}
+		// * user inputs validation
+		if (!name || !description || !price || !status || !src || !updatedAt) {
+			return res.status(400).json({ message: "Please fill all the fields" });
 		}
 
-		return res.status(400).send();
+		try {
+			// * selecting package to be updated
+			const toBeUpdatedPackage = await Package.findById(req.params.id);
+
+			if (src !== toBeUpdatedPackage.src) {
+				fs.unlink(
+					`${process.env.UPLOAD_DIR}/${toBeUpdatedPackage.src}`,
+					(err) => {
+						if (err) {
+							console.error(err.message);
+							return res.status(500).send();
+						}
+					}
+				);
+			}
+
+			// * update package
+			await Package.findByIdAndUpdate(req.params.id, {
+				name,
+				description,
+				price,
+				status,
+				src,
+				updatedAt,
+			});
+
+			// * sending as updated
+			return res.status(201).send(true);
+		} catch (err) {
+			console.log(err);
+			console.error(err.message);
+			return res.status(500).send();
+		}
 	}
+
+	return res.status(400).send();
 };
 
 /**
@@ -213,6 +241,7 @@ module.exports = {
 	deletePackage,
 	updatePackage,
 	getPackages,
+	getPackage,
 	getPackagesTotal,
 	getPackagesBasedOnStatus,
 	getPackagesBasedOnSearchQuery,
