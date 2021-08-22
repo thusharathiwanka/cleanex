@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import { FiPlus } from "react-icons/fi";
 import { BiEditAlt } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -8,6 +9,17 @@ import Sidebar from "../components/sidebar/Sidebar";
 import packageImage from "../assets/images/default-package-image.png";
 
 const AdminPackages = () => {
+	const getPackages = async () => {
+		try {
+			const res = await axios.get("packages");
+			console.log(res.data);
+		} catch (err) {
+			console.error(err.response);
+		}
+	};
+
+	useEffect(() => {});
+
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20">
@@ -32,82 +44,84 @@ const AdminPackages = () => {
 				</h1>
 				<Sidebar />
 				<div className="w-full px-10" data-aos="fade-up" data-aos-delay="100">
-					<div class="flex flex-col mt-5">
-						<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-							<div class="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">
-								<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-									<table class="min-w-full divide-y divide-gray-200">
-										<thead class="bg-lighter-blue">
+					<div className="flex flex-col mt-5">
+						<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+							<div className="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">
+								<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+									<table className="min-w-full divide-y divide-gray-200">
+										<thead className="bg-lighter-blue">
 											<tr>
 												<th
 													scope="col"
-													class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+													className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
 												>
 													Package
 												</th>
 												<th
 													scope="col"
-													class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+													className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
 												>
 													Price (LKR)
 												</th>
 												<th
 													scope="col"
-													class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+													className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
 												>
 													Created At
 												</th>
 												<th
 													scope="col"
-													class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+													className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
 												>
 													Status
 												</th>
 												<th
 													scope="col"
-													class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+													className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
 												>
 													Actions
 												</th>
 											</tr>
 										</thead>
-										<tbody class="bg-white divide-y divide-gray-200">
+										<tbody className="bg-white divide-y divide-gray-200">
 											<tr>
-												<td class="px-6 py-4 whitespace-nowrap">
-													<div class="flex items-center">
-														<div class="flex-shrink-0 h-10 w-10">
+												<td className="px-6 py-4 whitespace-nowrap">
+													<div className="flex items-center">
+														<div className="flex-shrink-0 h-10 w-10">
 															<img
-																class="h-10 w-10 rounded-full"
+																className="h-10 w-10 rounded-full"
 																src={packageImage}
 																alt="package-img"
 															/>
 														</div>
-														<div class="ml-4">
-															<div class="text-sm font-medium text-gray-900">
+														<div className="ml-4">
+															<div className="text-sm font-medium text-gray-900">
 																Package 01
 															</div>
 														</div>
 													</div>
 												</td>
-												<td class="px-6 py-4 whitespace-nowrap">
-													<div class="text-sm text-gray-900">900.00</div>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<div className="text-sm text-gray-900">900.00</div>
 												</td>
-												<td class="px-6 py-4 whitespace-nowrap">
-													<div class="text-sm text-gray-900">20-Aug-2021</div>
+												<td className="px-6 py-4 whitespace-nowrap">
+													<div className="text-sm text-gray-900">
+														20-Aug-2021
+													</div>
 												</td>
-												<td class="px-6 py-4 whitespace-nowrap">
-													<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+												<td className="px-6 py-4 whitespace-nowrap">
+													<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
 														Active
 													</span>
 												</td>
-												<td class="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
+												<td className="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
 													<Link
 														to="/auth/admin/packages/update"
-														class="text-green-400 mr-5 my-2 cursor-pointer"
+														className="text-green-400 mr-5 my-2 cursor-pointer"
 													>
 														<BiEditAlt />
 													</Link>
-													<button class="text-red-400 mr-5 my-2 cursor-pointer">
+													<button className="text-red-400 mr-5 my-2 cursor-pointer">
 														<RiDeleteBin5Line />
 													</button>
 												</td>

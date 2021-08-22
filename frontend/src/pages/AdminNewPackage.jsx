@@ -6,8 +6,6 @@ import Error from "../components/toasts/Error";
 import Success from "../components/toasts/Success";
 import { allowedTypes } from "../helpers/allowedUploads";
 
-// TODO validation error messages needs to be displayed
-// TODO redirect to all packages page after successful package creation
 const AdminNewPackage = () => {
 	document.title = "CLEANEX - New Package";
 	const [file, setFile] = useState(null);
@@ -47,7 +45,14 @@ const AdminNewPackage = () => {
 			const res = await axios.post("/packages", newPackage);
 			console.log(res);
 			setButtonStatus(false);
-			setNewPackage({});
+			setNewPackage({
+				name: "",
+				description: "",
+				price: "",
+				status: "active",
+				src: "",
+			});
+			setFile("");
 			setSuccess("New package created successfully.");
 		} catch (err) {
 			console.error(err.response.message);
