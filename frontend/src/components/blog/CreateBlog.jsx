@@ -1,42 +1,73 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { allowedTypes } from '../../helpers/allowedUploads'
 import Error from '../toasts/Error'
 import Success from '../toasts/Success'
+
 
 const CreateBlog = () => {
 
 const [Blog, setBlog] = useState("")
 const [Err, setErr] = useState("")
+const [ErrMsg, setErrMsg] = useState("")
 const [Succ, setSucc] = useState("")
+const [File, setFile] = useState(null)
 
 const AddBlog =async(e)=>{
     e.preventDefault()
     const date = new Date();
     Blog.date = date.toLocaleDateString();
-    try{
-        const res = await axios.post("/blog/post")
-        if(res.status===200){
-            setSucc(true)
-        }
+    if(File){
+        const formData = new FormData();
+        const fileName = `${Date.now()}-${File.name}`;
+        formData.append("name",fileName);
+        formData.append("image",File);
+        formData.append("topic",Blog.topic);
+        formData.append("description",Blog.description);
+        formData.append("content",Blog.content);
+        console.log(Blog);
+        try{
+        const res = await axios.post("/blog/post",formData)
+
+        // if(res.status===200){
+        //     setSucc(true)
+        // }
     }catch(err){
-        setErr(true)
+        // setErr(true)
         console.log(err);
     }
+    }
+    
+    
 
+}
+
+const fileHandler = (e)=>{
+    const selectedFile = e.target.files[0];
+    if(selectedFile&&allowedTypes.includes(selectedFile.type)){
+        setFile(selectedFile)
+        setErr(false)
+    }else{
+        setFile(null);
+			setErrMsg(
+				"Select valid type. (only jpeg, jpg, png file types are allowed)"
+			);
+            setErr(true)
+    }
 }
     return (
         <div className="pt-10">
-            {(Err&&<Error error={"Oops! Somthing went wrong"}/>)}
+            {(Err&&<Error error={ErrMsg}/>)}
             {(Succ&&<Success success={"Successfully Added"}/>)}
             <span className="font-bold  text-3xl flex justify-center">Create A Blog</span>
             <div className=" px-44">
-            <form className=" pt-10" onSubmit={AddBlog}  >
+            <form className=" pt-10" onSubmit={AddBlog} encType="multipart/form-data" >
                 <div className="mb-10">
                 <label for="image" className="block text-gray-700 text-xl mb-2">
                     Upload Cover Photo
                 </label>
-                <input type="file" name="image" id="image" className=" font-semibold text-light-blue py-2 px-4" />
+                <input type="file" accept=".png, .jpg, .jpeg" required onChange={fileHandler} name="image" id="image" className=" font-semibold text-light-blue py-2 px-4" />
                 </div>
                 <div className="mb-10">
                 <label className="block text-gray-700 text-xl mb-2" for="username">
