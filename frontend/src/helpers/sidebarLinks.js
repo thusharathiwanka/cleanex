@@ -13,7 +13,7 @@ const sidebarLinksAdmin = [
 	{ name: "Customers", path: "/auth/admin/customers", icon: <FaUsers /> },
 	{ name: "Feedbacks", path: "/auth/admin/feedbacks", icon: <MdFeedback /> },
 	{ name: "Blogs", path: "/auth/admin/blogs", icon: <BsBookHalf /> },
-	{ name: "Sign Out", path: "/auth/admin/blogs", icon: <RiLogoutBoxFill /> },
+	{ name: "Sign Out", path: "", icon: <RiLogoutBoxFill /> },
 ];
 
 export { sidebarLinksAdmin };
