@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 const ProcessingList = () => {
 
     const [ProcessingOrders, setProcessingOrders] = useState([])
+    const [ID, setID] = useState("")
 
     useEffect(() => {
         
@@ -13,7 +14,19 @@ const ProcessingList = () => {
         }
         fetchData()
         
-    }, [])
+    }, [ID])
+
+    const updateStatus =async(id)=>{
+        try{
+            const res = await axios.patch(`/order/updateToCompleate/${id}`)
+            if(res.status===200){
+                setID(id)
+            }
+        }catch(err){
+
+        }
+    }
+
     return (
         <div className=" pt-16 pl-60 pr-60 pb-20">
             <div className="bg-white rounded-xl shadow-2xl p-10" >
@@ -47,7 +60,7 @@ const ProcessingList = () => {
                         <span className="font-semibold">Time Remaing</span>
                         <span className="ml-10">5 Hours</span>
                         
-                        <button type="submit" className="mt-5 shadow-md ml-28 bg-light-blue text-white py-2 px-6 rounded font-bold ml-5">
+                        <button type="submit" onClick={updateStatus} className="mt-5 shadow-md ml-28 bg-light-blue text-white py-2 px-6 rounded font-bold ml-5">
                             Complete
                         </button>
                         </div>
