@@ -1,3 +1,4 @@
+const fs = require("fs");
 const Package = require("../models/package.model");
 
 /**
@@ -57,7 +58,7 @@ const savePackage = async (req, res) => {
  * @returns {Object} res
  */
 const savePackageImage = (req, res) => {
-	res.status(201).json({ path: req.file.path });
+	res.status(201).json({ filename: req.file.filename });
 };
 
 /**
@@ -73,6 +74,42 @@ const getPackages = async (req, res) => {
 	} catch (err) {
 		console.error(err.message);
 		return res.status(500).send();
+	}
+};
+
+/**
+ * use to get all the packages based on status
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const getPackagesBasedOnStatus = async (req, res) => {
+	if (req.params.status) {
+		try {
+			const packages = await Package.find({ status: req.params.status });
+			return res.status(200).json({ packages: packages });
+		} catch (err) {
+			console.error(err.message);
+			return res.status(500).send();
+		}
+	}
+};
+
+/**
+ * use to get all the packages based on search query
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const getPackagesBasedOnSearchQuery = async (req, res) => {
+	if (req.params.query) {
+		try {
+			const packages = await Package.find({ name: req.params.query });
+			return res.status(200).json({ packages: packages });
+		} catch (err) {
+			console.error(err.message);
+			return res.status(500).send();
+		}
 	}
 };
 
@@ -145,7 +182,23 @@ const updatePackage = async (req, res) => {
 const deletePackage = async (req, res) => {
 	if (req.params.id) {
 		try {
+			const toBeDeletedPackage = await Package.findById(req.params.id);
+			if (!toBeDeletedPackage) {
+				return res.status(400).send();
+			}
+
+			fs.unlink(
+				`${process.env.UPLOAD_DIR}/${toBeDeletedPackage.src}`,
+				(err) => {
+					if (err) {
+						console.error(err.message);
+						return res.status(500).send();
+					}
+				}
+			);
+
 			await Package.findByIdAndDelete(req.params.id);
+
 			return res.status(200).send();
 		} catch (err) {
 			console.log(err.message);
@@ -161,4 +214,6 @@ module.exports = {
 	updatePackage,
 	getPackages,
 	getPackagesTotal,
+	getPackagesBasedOnStatus,
+	getPackagesBasedOnSearchQuery,
 };
