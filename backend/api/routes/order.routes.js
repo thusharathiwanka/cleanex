@@ -20,7 +20,7 @@ router.get("/:id", getByIdOrder);
 router.get("/getPendingOrders", getPendingOrders);
 router.get("/getProcessingOrders", getProcessingOrders);
 router.get("/getCompletedOrders", getCompletedOrders);
-router.patch("/updateToProcess", updateToProcess);
-router.patch("/updateToCompleate", updateToCompleate);
+router.patch("/updateToProcess/:id", updateToProcess);
+router.patch("/updateToCompleate/:id", updateToCompleate);
 
 module.exports = router;
