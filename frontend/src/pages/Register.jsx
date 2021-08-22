@@ -63,6 +63,7 @@ const Register = () => {
 								id="name"
 								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue transition duration-500 ease-in-out"
 								required
+								autoComplete="off"
 								value={customer.name}
 								onChange={(e) =>
 									setCustomer({ ...customer, name: e.target.value })
@@ -81,6 +82,7 @@ const Register = () => {
 								type="email"
 								name="email"
 								id="email"
+								autoComplete="off"
 								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2 transition duration-500 ease-in-out"
 								required
 								value={customer.email}
@@ -101,6 +103,7 @@ const Register = () => {
 								type="password"
 								name="password"
 								id="password"
+								autoComplete="off"
 								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue transition duration-500 ease-in-out"
 								required
 								value={customer.password}
@@ -121,6 +124,7 @@ const Register = () => {
 								type="text"
 								name="mobile"
 								id="mobile"
+								autoComplete="off"
 								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue transition duration-500 ease-in-out"
 								required
 								maxLength="10"
