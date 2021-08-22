@@ -50,7 +50,6 @@ const PackageCard = ({ packageItem }) => {
 					>
 						<IoBagAdd />
 					</button>
-					<p>{value}</p>
 				</div>
 			</div>
 		</div>
