@@ -5,8 +5,8 @@ const OrderSummary = () => {
 	const { packages } = useContext(CartContext);
 	const [showModal, setShowModal] = useState(false);
 
-	return packages.length ? (
-		<div className="max-w-xl   ml-40     ">
+	return (
+		/*packages.length ?*/ <div className="max-w-xl   ml-40     ">
 			<div className=" bg-light-blue pb-3 pt-3 text-center text-white text-xl mb-10">
 				<p>Order summary</p>
 			</div>
@@ -14,9 +14,9 @@ const OrderSummary = () => {
 				return (
 					<div key={packages.id} className="pt-20 pb-20 bg-gray-300 text-gray">
 						<p className="ml-11">Items:</p>
-						<p className="ml-20">{packages.pack.name}</p>
+						<p className="ml-20">{packages.name}</p>
 						<p className="ml-11">Estimated Sub Total :</p>
-						<p className="ml-20">Rs {packages.pack.price}.00</p>
+						<p className="ml-20">Rs {packages.price}.00</p>
 					</div>
 				);
 			})}
@@ -51,7 +51,7 @@ const OrderSummary = () => {
 									<div className="relative p-6 flex-auto ml-auto mr-auto w-85">
 										<form>
 											<div class="my-5 text-sm">
-												<label for="username" class="block text-gray">
+												<label for="username" class="block ">
 													Location
 												</label>
 												<input
@@ -98,9 +98,9 @@ const OrderSummary = () => {
 				) : null}
 			</div>
 		</div>
-	) : (
+	); /*: (
 		<div className="w-9/12 ml-auto mr-auto mb-10">Your lundry bag is Empty</div>
-	);
+	);*/
 };
 
 export default OrderSummary;
