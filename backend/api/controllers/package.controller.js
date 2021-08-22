@@ -1,3 +1,4 @@
+const fs = require("fs");
 const Package = require("../models/package.model");
 
 /**
@@ -163,7 +164,23 @@ const updatePackage = async (req, res) => {
 const deletePackage = async (req, res) => {
 	if (req.params.id) {
 		try {
+			const toBeDeletedPackage = await Package.findById(req.params.id);
+			if (!toBeDeletedPackage) {
+				return res.status(400).send();
+			}
+
+			fs.unlink(
+				`${process.env.UPLOAD_DIR}/${toBeDeletedPackage.src}`,
+				(err) => {
+					if (err) {
+						console.error(err.message);
+						return res.status(500).send();
+					}
+				}
+			);
+
 			await Package.findByIdAndDelete(req.params.id);
+
 			return res.status(200).send();
 		} catch (err) {
 			console.log(err.message);

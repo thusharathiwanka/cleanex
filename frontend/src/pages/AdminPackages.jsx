@@ -6,10 +6,13 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 import Sidebar from "../components/sidebar/Sidebar";
+import ConfirmModal from "../components/modals/ConfirmModal";
 import { imageURL } from "../config/paths";
 
 const AdminPackages = () => {
 	const [packages, setPackages] = useState([]);
+	const [packageId, setPackageId] = useState("");
+	const [showModal, setShowModal] = useState(false);
 	let statusStyle;
 
 	const getPackages = async () => {
@@ -22,12 +25,30 @@ const AdminPackages = () => {
 		}
 	};
 
+	const deletePackage = async (id) => {
+		try {
+			await axios.delete(`packages/${id}`);
+			getPackages();
+			setShowModal(false);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
 	useEffect(() => {
 		getPackages();
 	}, []);
 
 	return (
 		<div className=" text-gray-800">
+			{showModal && (
+				<ConfirmModal
+					setShowModal={setShowModal}
+					showModal={showModal}
+					execute={deletePackage}
+					id={packageId}
+				/>
+			)}
 			<div className="ml-80 mt-20">
 				<div
 					className="flex justify-end mx-10"
@@ -137,7 +158,13 @@ const AdminPackages = () => {
 															>
 																<BiEditAlt />
 															</Link>
-															<button className="text-red-400 mr-5 my-2 cursor-pointer">
+															<button
+																className="text-red-400 mr-5 my-2 cursor-pointer"
+																onClick={() => {
+																	setPackageId(packageItem._id);
+																	setShowModal(true);
+																}}
+															>
 																<RiDeleteBin5Line />
 															</button>
 														</td>
