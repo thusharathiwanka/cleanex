@@ -57,7 +57,7 @@ const savePackage = async (req, res) => {
  * @returns {Object} res
  */
 const savePackageImage = (req, res) => {
-	res.status(201).json({ path: req.file.path });
+	res.status(201).json({ path: req.file });
 };
 
 /**
