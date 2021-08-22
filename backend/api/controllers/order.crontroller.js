@@ -53,10 +53,10 @@ const getProcessingOrders = async (req, res) => {
 
 const getCompletedOrders = async (req, res) => {
 	try {
-		const pendingOrdes = await order.find({
+		const completedOrdes = await order.find({
 			WashingStatus: "completed",
 		});
-		res.status(200).json(pendingOrdes);
+		res.status(200).json({completedOrdes:completedOrdes});
 	} catch (err) {
 		res.status(200);
 		console.log(err.message);

@@ -3,6 +3,17 @@ import React, { useEffect, useState } from 'react'
 
 const CompletedList = () => {
 
+    const [CompletedOrders, setCompletedOrders] = useState([])
+
+    useEffect(() => {
+        
+        async function fetchData() {
+            const res = await axios.get("/order/getCompletedOrders")
+            setCompletedOrders(res.data.completedOrdes)
+        }
+        fetchData()
+        
+    }, [])
     
     return (
         <div class=" pt-16 pl-60 pr-60 pb-20">
