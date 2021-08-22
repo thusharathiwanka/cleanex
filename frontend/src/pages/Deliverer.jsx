@@ -1,10 +1,14 @@
 import { useState } from "react";
 import PickUPList from "../components/Deliverer/PickUpList";
 import DeliveryList from "../components/Deliverer/DeliveryList";
+import Navbar from "../components/nav/Navbar";
+
 const Deliverer = () => {
 	const [isPickUp, setPickUp] = useState(true);
+
 	return (
 		<div>
+			<Navbar />
 			<div
 				className="flex items-center"
 				style={{ marginTop: "150px", marginLeft: "150px" }}
