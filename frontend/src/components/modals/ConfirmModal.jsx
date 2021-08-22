@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 const ConfirmModal = ({ execute, setShowModal, showModal, id }) => {
 	return (
 		<>

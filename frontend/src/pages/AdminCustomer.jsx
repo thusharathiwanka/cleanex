@@ -9,6 +9,7 @@ import ConfirmModal from "../components/modals/ConfirmModal";
 
 const AdminCustomer = () => {
 	const [customers, setCustomers] = useState([]);
+	const [customerId, setCustomerId] = useState("");
 	const [showModal, setShowModal] = useState(false);
 
 	const getCustomers = async () => {
@@ -49,7 +50,7 @@ const AdminCustomer = () => {
 						<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 							<div className="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">
 								<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-									<table className="min-w-full divide-y divide-gray-200">
+									<table className="min-w-full divide-y divide-gray-200 overflow-x-scroll">
 										<thead className="bg-lighter-blue">
 											<tr>
 												<th
@@ -124,19 +125,24 @@ const AdminCustomer = () => {
 														</button>
 														<button
 															className="text-red-400 mr-5 my-2"
-															onClick={() => setShowModal(true)}
+															onClick={() => {
+																setCustomerId(customer._id);
+																setShowModal(true);
+															}}
 														>
 															<RiDeleteBin5Line />
 														</button>
 													</td>
-													<div className="absolute left-0 top-0">
-														<ConfirmModal
-															setShowModal={setShowModal}
-															showModal={showModal}
-															execute={deleteCustomer}
-															id={customer._id}
-														/>
-													</div>
+													{showModal && (
+														<div className="absolute left-0 top-0">
+															<ConfirmModal
+																setShowModal={setShowModal}
+																showModal={showModal}
+																execute={deleteCustomer}
+																id={customerId}
+															/>
+														</div>
+													)}
 												</tr>
 											))}
 										</tbody>

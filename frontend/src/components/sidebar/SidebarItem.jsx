@@ -16,8 +16,6 @@ const SidebarItem = ({ sidebarLink, activeLink }) => {
 		history.push("/");
 	};
 
-	console.log(sidebarLink.path);
-
 	return (
 		<li
 			className={`hover:text-gray-900 text-gray-800 focus:text-gray-900 ${active}`}

@@ -11,6 +11,7 @@ import { imageURL } from "../config/paths";
 
 const AdminPackages = () => {
 	const [packages, setPackages] = useState([]);
+	const [packageId, setPackageId] = useState("");
 	const [showModal, setShowModal] = useState(false);
 	let statusStyle;
 
@@ -36,7 +37,7 @@ const AdminPackages = () => {
 
 	useEffect(() => {
 		getPackages();
-	}, [getPackages]);
+	}, []);
 
 	return (
 		<div className=" text-gray-800">
@@ -151,19 +152,24 @@ const AdminPackages = () => {
 															</Link>
 															<button
 																className="text-red-400 mr-5 my-2 cursor-pointer"
-																onClick={() => setShowModal(true)}
+																onClick={() => {
+																	setPackageId(packageItem._id);
+																	setShowModal(true);
+																}}
 															>
 																<RiDeleteBin5Line />
 															</button>
 														</td>
-														<div className="absolute left-0 top-0">
-															<ConfirmModal
-																setShowModal={setShowModal}
-																showModal={showModal}
-																execute={deletePackage}
-																id={packageItem._id}
-															/>
-														</div>
+														{showModal && (
+															<div className="absolute left-0 top-0">
+																<ConfirmModal
+																	setShowModal={setShowModal}
+																	showModal={showModal}
+																	execute={deletePackage}
+																	id={packageId}
+																/>
+															</div>
+														)}
 													</tr>
 												);
 											})}
