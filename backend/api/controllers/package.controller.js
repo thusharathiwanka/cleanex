@@ -164,8 +164,23 @@ const updatePackage = async (req, res) => {
 		}
 
 		try {
+			// * selecting package to be updated
+			const toBeUpdatedPackage = await Package.findById(req.params.id);
+
+			if (src !== toBeUpdatedPackage.src) {
+				fs.unlink(
+					`${process.env.UPLOAD_DIR}/${toBeUpdatedPackage.src}`,
+					(err) => {
+						if (err) {
+							console.error(err.message);
+							return res.status(500).send();
+						}
+					}
+				);
+			}
+
 			// * update package
-			await Package.findByIdAndUpdate({
+			await Package.findByIdAndUpdate(req.params.id, {
 				name,
 				description,
 				price,
@@ -174,7 +189,7 @@ const updatePackage = async (req, res) => {
 				updatedAt,
 			});
 
-			// * sending as saved
+			// * sending as updated
 			return res.status(201).send(true);
 		} catch (err) {
 			console.log(err);
