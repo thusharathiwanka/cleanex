@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { IoBagAdd } from "react-icons/io5";
 
 import { imageURL } from "../../config/paths";
+import { CartContext } from "../../contexts/CartContext";
 
 const PackageCard = ({ packageItem }) => {
+	const { dispatch } = useContext(CartContext);
+	const { value, setValue } = useState(1);
+	const handleSelect = (e) => {
+		console.log(e);
+		setValue(e.target.value);
+	};
 	return (
 		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8 w-72">
 			<span className="absolute top-3 left-3 inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-bold leading-none text-gray-600 bg-white blur rounded-full opacity-70">
@@ -23,6 +30,7 @@ const PackageCard = ({ packageItem }) => {
 					<select
 						name="quantity"
 						className="border rounded-full px-4 py-1 focus:outline-none"
+						onSelect={handleSelect}
 					>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -30,9 +38,19 @@ const PackageCard = ({ packageItem }) => {
 						<option value="4">4</option>
 						<option value="5">5</option>
 					</select>
-					<button className="text-3xl text-light-blue">
+
+					<button
+						onClick={() =>
+							dispatch({
+								type: "ADD_PACK",
+								pack: { pack: packageItem, quantity: value },
+							})
+						}
+						className="text-3xl text-light-blue"
+					>
 						<IoBagAdd />
 					</button>
+					<p>{value}</p>
 				</div>
 			</div>
 		</div>

@@ -32,7 +32,7 @@ import Feedback from "../pages/Feedback";
 import UserProfileDelete from "../pages/UserProfileDelete";
 
 const Routes = () => {
-	const { loggedIn, loggedInRole } = useContext(AuthContext);
+  const { loggedIn, loggedInRole } = useContext(AuthContext);
 
 	return (
 		<Switch>
@@ -122,6 +122,7 @@ const Routes = () => {
 			</Route>
 		</Switch>
 	);
+
 };
 
 export default Routes;
