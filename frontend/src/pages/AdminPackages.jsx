@@ -10,6 +10,7 @@ import ConfirmModal from "../components/modals/ConfirmModal";
 import { imageURL } from "../config/paths";
 
 const AdminPackages = () => {
+	document.title = "CLEANEX - Pricing & Packages";
 	const [packages, setPackages] = useState([]);
 	const [packageId, setPackageId] = useState("");
 	const [showModal, setShowModal] = useState(false);

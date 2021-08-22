@@ -6,6 +6,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 import { adminCardInfo } from "../helpers/adminCardsInfo";
 
 const Dashboard = () => {
+	document.title = "CLEANEX - Dashboard";
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20">
