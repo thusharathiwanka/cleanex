@@ -41,6 +41,14 @@ const AdminPackages = () => {
 
 	return (
 		<div className=" text-gray-800">
+			{showModal && (
+				<ConfirmModal
+					setShowModal={setShowModal}
+					showModal={showModal}
+					execute={deletePackage}
+					id={packageId}
+				/>
+			)}
 			<div className="ml-80 mt-20">
 				<div
 					className="flex justify-end mx-10"
@@ -160,16 +168,6 @@ const AdminPackages = () => {
 																<RiDeleteBin5Line />
 															</button>
 														</td>
-														{showModal && (
-															<div className="absolute left-0 top-0">
-																<ConfirmModal
-																	setShowModal={setShowModal}
-																	showModal={showModal}
-																	execute={deletePackage}
-																	id={packageId}
-																/>
-															</div>
-														)}
 													</tr>
 												);
 											})}

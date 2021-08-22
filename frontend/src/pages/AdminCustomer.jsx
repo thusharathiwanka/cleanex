@@ -36,7 +36,15 @@ const AdminCustomer = () => {
 	}, []);
 
 	return (
-		<div className=" text-gray-800">
+		<div className=" text-gray-800 relative min-h-screen">
+			{showModal && (
+				<ConfirmModal
+					setShowModal={setShowModal}
+					showModal={showModal}
+					execute={deleteCustomer}
+					id={customerId}
+				/>
+			)}
 			<div className="ml-80 mt-20">
 				<h1
 					className="text-5xl font-extrabold pb-10 text-center"
@@ -87,7 +95,7 @@ const AdminCustomer = () => {
 										</thead>
 										<tbody className="bg-white divide-y divide-gray-200">
 											{customers.map((customer) => (
-												<tr>
+												<tr key={customer._id}>
 													<td className="px-6 py-4 whitespace-nowrap">
 														<div className="flex items-center">
 															<div className="flex-shrink-0 h-10 w-10">
@@ -133,16 +141,6 @@ const AdminCustomer = () => {
 															<RiDeleteBin5Line />
 														</button>
 													</td>
-													{showModal && (
-														<div className="absolute left-0 top-0">
-															<ConfirmModal
-																setShowModal={setShowModal}
-																showModal={showModal}
-																execute={deleteCustomer}
-																id={customerId}
-															/>
-														</div>
-													)}
 												</tr>
 											))}
 										</tbody>
