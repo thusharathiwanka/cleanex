@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
 
 const ViewModal = ({ setShowViewModal, id }) => {
+	const [customer, setCustomer] = useState({});
 	const getCustomerInfo = async () => {
 		const res = await axios.get(`customers/${id}`);
-		console.log(res);
+		setCustomer(res.data.customer);
 	};
 
 	useEffect(() => {
@@ -31,19 +32,19 @@ const ViewModal = ({ setShowViewModal, id }) => {
 				</span>
 				<div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
 					<div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-						<div className="sm:flex sm:items-start">
+						<div className="sm:flex sm:items-start mt-5">
 							<div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-16 sm:w-16">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									class="h-8 w-8 text-green-600"
+									className="h-8 w-8 text-green-600"
 									fill="none"
 									viewBox="0 0 24 24"
 									stroke="currentColor"
 								>
 									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
 										d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
 									/>
 								</svg>
@@ -53,17 +54,17 @@ const ViewModal = ({ setShowViewModal, id }) => {
 									className="text-4xl leading-6 font-bold text-gray-700"
 									id="modal-title"
 								>
-									Thushara Thiwanka
+									{customer.name}
 								</h3>
 								<p className="text-gray-400 text-base text-bold mt-2 pb-5">
-									thushara@gmail.com
+									{customer.email}
 								</p>
 								<div className="flex justify-between">
 									<p className="text-gray-500 text-sm text-bold mt-2 font-bold">
 										ID
 									</p>
 									<p className="text-gray-500 text-sm text-bold mt-2 pl-4">
-										077777777777
+										{customer._id}
 									</p>
 								</div>
 								<div className="flex justify-between">
@@ -71,7 +72,7 @@ const ViewModal = ({ setShowViewModal, id }) => {
 										MOBILE
 									</p>
 									<p className="text-gray-500 text-sm text-bold mt-2 pl-4">
-										077777777777
+										{customer.mobile}
 									</p>
 								</div>
 								<div className="flex justify-between">
@@ -79,7 +80,7 @@ const ViewModal = ({ setShowViewModal, id }) => {
 										REGISTERED AT
 									</p>
 									<p className="text-gray-500 text-sm text-bold mt-2 pl-4">
-										077777777777
+										{new Date(customer.createdAt).toDateString()}
 									</p>
 								</div>
 								<div className="flex justify-between">
@@ -87,7 +88,7 @@ const ViewModal = ({ setShowViewModal, id }) => {
 										UPDATED AT
 									</p>
 									<p className="text-gray-500 text-sm text-bold mt-2 pl-4">
-										077777777777
+										{new Date(customer.updatedAt).toDateString()}
 									</p>
 								</div>
 								<div className="mt-2"></div>

@@ -6,7 +6,7 @@ import { AiOutlineEye } from "react-icons/ai";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import ConfirmModal from "../components/modals/ConfirmModal";
-import ViewModal from "../components/modals/ViewModal";
+import CustomerViewModal from "../components/modals/CustomerViewModal";
 
 const AdminCustomer = () => {
 	const [customers, setCustomers] = useState([]);
@@ -48,7 +48,7 @@ const AdminCustomer = () => {
 				/>
 			)}
 			{showViewModal && (
-				<ViewModal
+				<CustomerViewModal
 					setShowViewModal={setShowViewModal}
 					showViewModal={showViewModal}
 					id={customerId}
