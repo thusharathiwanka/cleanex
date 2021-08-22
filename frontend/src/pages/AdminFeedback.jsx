@@ -6,6 +6,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import Sidebar from "../components/sidebar/Sidebar";
 
 const AdminFeedback = () => {
+	document.title = "CLEANEX - Feedbacks";
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20">
