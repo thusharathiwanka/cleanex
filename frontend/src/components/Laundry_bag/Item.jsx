@@ -2,41 +2,38 @@ import image from "../../assets/images/images-removebg-preview.png";
 import iconPlus from "../../assets/images/Group.png";
 import { CartContext } from "../../contexts/CartContext";
 import React, { useContext } from "react";
+import { imageURL } from "../../config/paths";
 
-const Test_Item = () => {
-	const { packages, dispatch } = useContext(CartContext);
+const Test_Item = ({ packageItem }) => {
+	const { dispatch } = useContext(CartContext);
 
 	return (
 		<div>
-			{packages.map((packages) => {
-				return (
-					<div className="overflow-hidden relative shadow-xl ml-24 rounded-2x flex justify-center flex-col items-center text-center w-40">
-						<div>
-							<button
-								onclick={() =>
-									dispatch({
-										type: "ADD_PACK",
-										pack: {
-											pack: packages.pack,
-											quantity: packages.quantity,
-										},
-									})
-								}
-								className="absolute w-6 h6 top-5 right-5"
-							>
-								<img src={iconPlus} alt="" />
-							</button>
+			<div className="overflow-hidden relative shadow-xl ml-24 rounded-2x flex justify-center flex-col items-center text-center w-40">
+				<div>
+					<button
+						onClick={() =>
+							dispatch({
+								type: "ADD_PACK",
+								pack: { pack: packageItem, quantity: "1" },
+							})
+						}
+						className="absolute w-6 h6 top-5 right-5"
+					>
+						<img src={iconPlus} alt="" />
+					</button>
 
-							<img className="w-28 h-40" src={image} alt="" />
-						</div>
+					<img
+						className="w-40 rounded-t-lg h-40"
+						src={imageURL + packageItem.src}
+					/>
+				</div>
 
-						<div className="bg-light-blue w-full text-sm rounded-b-xl text-white rounded-t-xl">
-							<p className="pt-1">{packages.pack.name}</p>
-							<p className="pb-1">RS.{packages.pack.price}.00</p>
-						</div>
-					</div>
-				);
-			})}
+				<div className="bg-light-blue w-full text-sm rounded-b-xl text-white">
+					<p className="pt-1">{packageItem.name}</p>
+					<p className="pb-1">{"LKR " + packageItem.price + ".00"}</p>
+				</div>
+			</div>
 		</div>
 	);
 };
