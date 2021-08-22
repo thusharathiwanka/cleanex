@@ -6,11 +6,13 @@ import { AiOutlineEye } from "react-icons/ai";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import ConfirmModal from "../components/modals/ConfirmModal";
+import ViewModal from "../components/modals/ViewModal";
 
 const AdminCustomer = () => {
 	const [customers, setCustomers] = useState([]);
 	const [customerId, setCustomerId] = useState("");
 	const [showModal, setShowModal] = useState(false);
+	const [showViewModal, setShowViewModal] = useState(false);
 
 	const getCustomers = async () => {
 		try {
@@ -42,6 +44,13 @@ const AdminCustomer = () => {
 					setShowModal={setShowModal}
 					showModal={showModal}
 					execute={deleteCustomer}
+					id={customerId}
+				/>
+			)}
+			{showViewModal && (
+				<ViewModal
+					setShowViewModal={setShowViewModal}
+					showViewModal={showViewModal}
 					id={customerId}
 				/>
 			)}
@@ -128,7 +137,13 @@ const AdminCustomer = () => {
 														</div>
 													</td>
 													<td className="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
-														<button className="text-green-400 mr-5 my-2">
+														<button
+															className="text-green-400 mr-5 my-2"
+															onClick={() => {
+																setCustomerId(customer._id);
+																setShowViewModal(true);
+															}}
+														>
 															<AiOutlineEye />
 														</button>
 														<button

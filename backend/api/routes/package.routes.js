@@ -15,6 +15,7 @@ const { verifyCustomerAuth } = require("../middleware/customerAuth");
 router.get("/", getPackages);
 router.get("/total", verifyAdminAuth, getPackagesTotal);
 router.get("/:status", verifyCustomerAuth, getPackagesBasedOnStatus);
+router.get("/search/:query", getPackagesBasedOnStatus);
 router.post("/", verifyAdminAuth, savePackage);
 router.post("/image/upload", upload.single("src"), savePackageImage);
 router.patch("/:id", verifyAdminAuth, updatePackage);

@@ -96,6 +96,24 @@ const getPackagesBasedOnStatus = async (req, res) => {
 };
 
 /**
+ * use to get all the packages based on search query
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const getPackagesBasedOnSearchQuery = async (req, res) => {
+	if (req.params.query) {
+		try {
+			const packages = await Package.find({ name: req.params.query });
+			return res.status(200).json({ packages: packages });
+		} catch (err) {
+			console.error(err.message);
+			return res.status(500).send();
+		}
+	}
+};
+
+/**
  * use to get total of the packages
  * @param {Object} req
  * @param {Object} res
@@ -197,4 +215,5 @@ module.exports = {
 	getPackages,
 	getPackagesTotal,
 	getPackagesBasedOnStatus,
+	getPackagesBasedOnSearchQuery,
 };
