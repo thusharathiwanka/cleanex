@@ -5,11 +5,11 @@ import { imageURL } from "../../config/paths";
 
 const PackageCard = ({ packageItem }) => {
 	return (
-		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8 w-1/5 min-w-1/5">
+		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8 w-72">
 			<span className="absolute top-3 left-3 inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-bold leading-none text-gray-600 bg-white blur rounded-full opacity-70">
 				{"LKR " + packageItem.price + ".00"}
 			</span>
-			<div>
+			<div className="w-72">
 				<img
 					src={imageURL + packageItem.src}
 					alt="package-img"
