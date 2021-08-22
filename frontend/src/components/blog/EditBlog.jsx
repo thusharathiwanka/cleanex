@@ -39,12 +39,6 @@ const updateBlog =async(e)=>{
             <form onSubmit={updateBlog} className=" pt-10">
                 <div className="mb-10">
                 <label className="block text-gray-700 text-xl mb-2" for="username">
-                    Upload Cover Photo
-                </label>
-                <button className=" rounded-full font-semibold bg-light-blue shadow-md text-white py-2 px-4" >Choose file</button>
-                </div>
-                <div className="mb-10">
-                <label className="block text-gray-700 text-xl mb-2" for="username">
                     Title
                 </label>
                 <input onChange={(e)=>setBlog({...Blog,topic: e.target.value})} required  class="shadow focus:border-light-blue appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
