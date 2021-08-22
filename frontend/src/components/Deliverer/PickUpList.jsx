@@ -76,7 +76,7 @@ const PickUpList = (id) => {
 												href="www.google.com"
 												className="text-green-500 hover:text-green-200"
 											>
-												Delivered
+												Picked Up
 											</a>
 										</td>
 										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -115,7 +115,7 @@ const PickUpList = (id) => {
 												href="www.google.com"
 												className="text-green-500 hover:text-green-200"
 											>
-												Delivered
+												Picked Up
 											</a>
 										</td>
 										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -154,7 +154,7 @@ const PickUpList = (id) => {
 												href="www.google.com"
 												className="text-green-500 hover:text-green-200"
 											>
-												Delivered
+												Picked Up
 											</a>
 										</td>
 										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
