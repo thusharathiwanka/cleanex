@@ -1,29 +1,43 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import LocationInput from "./locationIput";
 
-const OrderSummary = () => {
+const OrderSummary = (props) => {
 	const { packages } = useContext(CartContext);
 	const [showModal, setShowModal] = useState(false);
+	const [state, setState] = useState("");
+	let price = 0;
+	//const [price, setPrice] = useState(0);
 
 	return (
 		/*packages.length ?*/ <div className="max-w-xl   ml-40     ">
 			<div className=" bg-light-blue pb-3 pt-3 text-center text-white text-xl mb-10">
 				<p>Order summary</p>
 			</div>
-			{packages.map((packages) => {
-				return (
-					<div key={packages.id} className="pt-20 pb-20 bg-gray-300 text-gray">
-						<p className="ml-11">Items:</p>
-						<p className="ml-20">{packages.name}</p>
-						<p className="ml-11">Estimated Sub Total :</p>
-						<p className="ml-20">Rs {packages.price}.00</p>
-					</div>
-				);
-			})}
+
+			<div className="pt-20 pb-20 bg-gray-300 text-gray">
+				<p className="ml-11 text-gray-600 text-lg">Items:</p>
+				{packages.map((packages) => {
+					return (
+						<p key={packages.id} className="ml-2 float-right">
+							{packages.pack.name}
+						</p>
+					);
+				})}
+				<p className="ml-11 text-gray-600 text-lg">Estimated Sub Total : Rs</p>
+				{packages.map((packages) => {
+					return (
+						<p key={packages.id} className="ml-2 float-right">
+							{(price = price + packages.pack.price)}
+						</p>
+					);
+				})}
+			</div>
+
 			<div className="mb-40 mt-10 max-w-4xl">
 				<button
 					onClick={() => setShowModal(true)}
-					className="p-3  rounded-2xl bg-light-blue text-center text-white max-w-sm float-right    "
+					className="p-3  rounded-xl bg-light-blue text-center text-white max-w-sm float-right    "
 				>
 					Place Order
 				</button>
@@ -50,18 +64,15 @@ const OrderSummary = () => {
 									{/*body*/}
 									<div className="relative p-6 flex-auto ml-auto mr-auto w-85">
 										<form>
-											<div class="my-5 text-sm">
-												<label for="username" class="block ">
+											<div className="my-5 text-sm">
+												<label for="username" className="block ">
 													Location
 												</label>
-												<input
-													autofocus
-													type="text"
-													className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
-												/>
+												<LocationInput setstate={setState} />
 											</div>
-											<div class="my-5 text-sm">
-												<label for="username" class="block text-gray">
+											<h1>{state}</h1>
+											<div className="my-5 text-sm">
+												<label for="username" className="block text-gray">
 													Date:
 												</label>
 												<input
