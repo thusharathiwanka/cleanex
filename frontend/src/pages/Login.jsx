@@ -54,6 +54,7 @@ const Login = () => {
 								type="email"
 								name="email"
 								id="email"
+								autoComplete="off"
 								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2 transition duration-500 ease-in-out"
 								required
 								value={customer.email}
@@ -74,6 +75,7 @@ const Login = () => {
 								type="password"
 								name="password"
 								id="password"
+								autoComplete="off"
 								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue transition duration-500 ease-in-out"
 								required
 								value={customer.password}

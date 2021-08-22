@@ -33,7 +33,6 @@ const AdminNewPackage = () => {
 			formData.append("src", file);
 			try {
 				const res = await axios.post("/packages/image/upload", formData);
-				console.log(res.data.filename);
 				newPackage.src = res.data.filename;
 			} catch (err) {
 				console.error(err.message);
@@ -107,7 +106,6 @@ const AdminNewPackage = () => {
 									id="package-image"
 									className="rounded-full px-4 py-3 focus:border-light-blue inline-block"
 									required
-									autoComplete="off"
 									onChange={fileChangeHandler}
 								/>
 							</div>
