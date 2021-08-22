@@ -1,5 +1,8 @@
-import Deliverer_list from "../components/Deliverer/Delivery_or_List";
+import { useState } from "react";
+import PickUPList from "../components/Deliverer/PickUpList";
+import DeliveryList from "../components/Deliverer/DeliveryList";
 const Deliverer = () => {
+	const [isPickUp, setPickUp] = useState(true);
 	return (
 		<div>
 			<div
@@ -23,19 +26,21 @@ const Deliverer = () => {
 				style={{ marginTop: "150px", marginLeft: "150px" }}
 			>
 				<button
+					onClick={() => setPickUp(true)}
 					style={{ marginRight: "20px", width: "120px" }}
 					className="bg-light-blue hover:bg-blue-300 text-white font-bold py-2 px-4 rounded-full"
 				>
 					Pick Up
 				</button>
 				<button
+					onClick={() => setPickUp(false)}
 					style={{ width: "120px" }}
 					className="bg-light-blue hover:bg-blue-300 text-white font-bold py-2 px-4 rounded-full"
 				>
 					Deliver
 				</button>
 			</div>
-			<Deliverer_list />
+			{isPickUp ? <PickUPList /> : <DeliveryList />}
 		</div>
 	);
 };

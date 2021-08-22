@@ -1,56 +1,44 @@
-import React from "react";
 import image from "../../assets/images/images-removebg-preview.png";
 import iconPlus from "../../assets/images/Group.png";
+import { CartContext } from "../../contexts/CartContext";
+import React, { useContext } from "react";
 
-const Item = () => {
+const Test_Item = () => {
+	const { packages, dispatch } = useContext(CartContext);
+
 	return (
-		<div
-			className="transition duration-500"
-			style={{
-				maxWidth: "200px",
-				maxHeight: "400px",
-				borderRadius: "15px",
-				marginTop: "20px",
-				marginLeft: "20px",
-				boxShadow: "0px 10px 20px 1px rgba(0, 0, 0, 0.25)",
-			}}
-		>
-			<div className="bg-gray-50">
-				<button
-					className="hover:shadow-2xl transition duration-500"
-					style={{
-						float: "right",
-						marginRight: "10px",
-						marginTop: "10px",
-						maxHeight: "40px",
-						maxWidth: "40px",
-					}}
-				>
-					<img src={iconPlus} alt="" />
-				</button>
+		<div>
+			{packages.map((packages) => {
+				return (
+					<div className="overflow-hidden relative shadow-xl ml-24 rounded-2x flex justify-center flex-col items-center text-center w-40">
+						<div>
+							<button
+								onclick={() =>
+									dispatch({
+										type: "ADD_PACK",
+										pack: {
+											pack: packages.pack,
+											quantity: packages.quantity,
+										},
+									})
+								}
+								className="absolute w-6 h6 top-5 right-5"
+							>
+								<img src={iconPlus} alt="" />
+							</button>
 
-				<img
-					style={{ maxWidth: "140px", maxHeight: "200px", float: "right" }}
-					src={image}
-					alt=""
-				/>
-			</div>
+							<img className="w-28 h-40" src={image} alt="" />
+						</div>
 
-			<div
-				style={{
-					borderRadius: "15px",
-					color: "yellow",
-					textAlign: "center",
-					marginBottom: "15px",
-					backgroundColor: "yellow",
-					height: "15px",
-				}}
-			>
-				<h1 className=" text-black  font-semibold ">Aloe Cactus</h1>
-				<p className=" text-black">$11.99</p>
-			</div>
+						<div className="bg-light-blue w-full text-sm rounded-b-xl text-white rounded-t-xl">
+							<p className="pt-1">{packages.pack.name}</p>
+							<p className="pb-1">RS.{packages.pack.price}.00</p>
+						</div>
+					</div>
+				);
+			})}
 		</div>
 	);
 };
 
-export default Item;
+export default Test_Item;
