@@ -1,20 +1,24 @@
 import React from "react";
 import { IoBagAdd } from "react-icons/io5";
 
-import packageImage from "../../assets/images/default-package-image.png";
+import { imageURL } from "../../config/paths";
 
-const PackageCard = () => {
+const PackageCard = ({ packageItem }) => {
 	return (
-		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8">
-			<span class="absolute top-3 left-3 inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-bold leading-none text-gray-600 bg-white blur rounded-full opacity-50">
-				100 LKR
+		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8 w-1/5 min-w-1/5">
+			<span className="absolute top-3 left-3 inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-bold leading-none text-gray-600 bg-white blur rounded-full opacity-70">
+				{"LKR " + packageItem.price + ".00"}
 			</span>
 			<div>
-				<img src={packageImage} alt="package-img" className="w-72 h-1/4" />
+				<img
+					src={imageURL + packageItem.src}
+					alt="package-img"
+					className="w-full h-72 object-cover"
+				/>
 			</div>
 			<div className="p-5">
-				<h3 className="font-semibold text-lg">Shirt on Hanger</h3>
-				<p>Washed, Pressed and Hung</p>
+				<h3 className="font-semibold text-lg">{packageItem.name}</h3>
+				<p>{packageItem.description}</p>
 				<div className="flex justify-between pt-4 items-center">
 					<select
 						name="quantity"

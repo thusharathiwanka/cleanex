@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { BiSearch } from "react-icons/bi";
 
 import PackageCard from "../components/packages/PackageCard";
 
 const Packages = () => {
 	document.title = "CLEANEX - All Packages";
+	const [activePackages, setActivePackages] = useState([]);
 
-	const getPackages = async () => {};
+	const getPackages = async () => {
+		try {
+			const res = await axios.get("packages/active");
+			setActivePackages(res.data.packages);
+		} catch (err) {}
+	};
 
 	useEffect(() => getPackages(), []);
 
@@ -30,10 +37,9 @@ const Packages = () => {
 				</form>
 			</div>
 			<div className="flex w-full justify-center flex-wrap">
-				<PackageCard />
-				<PackageCard />
-				<PackageCard />
-				<PackageCard />
+				{activePackages.map((packageItem) => (
+					<PackageCard packageItem={packageItem} key={packageItem._id} />
+				))}
 			</div>
 		</div>
 	);
