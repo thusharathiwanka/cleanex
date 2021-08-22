@@ -3,12 +3,25 @@ import Error from '../toasts/Error'
 import PaymentForm from './PaymentForm'
 import PaymentSummery from './PaymentSummery'
 import Success from '../toasts/Success'
+import axios from 'axios'
 
 const Payment = () => {
-        // useEffect(acync() => {
-    //     const  = 
 
-    // }, [])
+    const [OrderDetails, setOrderDetails] = useState("");
+
+useEffect(() => {
+    
+    async function fetchData() {
+         try{
+        const res =  await axios.get(`/order/{id}`);
+            setOrderDetails(res.data.order);
+        }catch(err){
+
+        }
+    }
+    fetchData()
+       
+}, []);
 
     const [Err, setErr] = useState("")
     const [Succ, setSucc] = useState("")

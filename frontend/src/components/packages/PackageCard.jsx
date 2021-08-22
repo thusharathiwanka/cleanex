@@ -1,24 +1,36 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { IoBagAdd } from "react-icons/io5";
 
-import packageImage from "../../assets/images/default-package-image.png";
+import { imageURL } from "../../config/paths";
+import { CartContext } from "../../contexts/CartContext";
 
-const PackageCard = () => {
+const PackageCard = ({ packageItem }) => {
+	const { dispatch } = useContext(CartContext);
+	const { value, setValue } = useState(1);
+	const handleSelect = (e) => {
+		console.log(e);
+		setValue(e.target.value);
+	};
 	return (
-		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8">
-			<span class="absolute top-3 left-3 inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-bold leading-none text-gray-600 bg-white blur rounded-full opacity-50">
-				100 LKR
+		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8 w-72">
+			<span className="absolute top-3 left-3 inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-bold leading-none text-gray-600 bg-white blur rounded-full opacity-70">
+				{"LKR " + packageItem.price + ".00"}
 			</span>
-			<div>
-				<img src={packageImage} alt="package-img" className="w-72 h-1/4" />
+			<div className="w-72">
+				<img
+					src={imageURL + packageItem.src}
+					alt="package-img"
+					className="w-full h-72 object-cover"
+				/>
 			</div>
 			<div className="p-5">
-				<h3 className="font-semibold text-lg">Shirt on Hanger</h3>
-				<p>Washed, Pressed and Hung</p>
+				<h3 className="font-semibold text-lg">{packageItem.name}</h3>
+				<p>{packageItem.description}</p>
 				<div className="flex justify-between pt-4 items-center">
 					<select
 						name="quantity"
 						className="border rounded-full px-4 py-1 focus:outline-none"
+						onSelect={handleSelect}
 					>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -26,9 +38,19 @@ const PackageCard = () => {
 						<option value="4">4</option>
 						<option value="5">5</option>
 					</select>
-					<button className="text-3xl text-light-blue">
+
+					<button
+						onClick={() =>
+							dispatch({
+								type: "ADD_PACK",
+								pack: { pack: packageItem, quantity: value },
+							})
+						}
+						className="text-3xl text-light-blue"
+					>
 						<IoBagAdd />
 					</button>
+					<p>{value}</p>
 				</div>
 			</div>
 		</div>

@@ -31,12 +31,12 @@ const AddBlog =async(e)=>{
             {(Succ&&<Success success={"Successfully Added"}/>)}
             <span className="font-bold  text-3xl flex justify-center">Create A Blog</span>
             <div className=" px-44">
-            <form className=" pt-10" onSubmit={AddBlog} >
+            <form className=" pt-10" onSubmit={AddBlog}  >
                 <div className="mb-10">
-                <label className="block text-gray-700 text-xl mb-2" for="username">
+                <label for="image" className="block text-gray-700 text-xl mb-2">
                     Upload Cover Photo
                 </label>
-                <button className=" rounded-full font-semibold bg-light-blue shadow-md text-white py-2 px-4" >Choose file</button>
+                <input type="file" name="image" id="image" className=" font-semibold text-light-blue py-2 px-4" />
                 </div>
                 <div className="mb-10">
                 <label className="block text-gray-700 text-xl mb-2" for="username">

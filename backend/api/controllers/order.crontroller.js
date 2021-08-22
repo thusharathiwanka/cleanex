@@ -32,7 +32,7 @@ const getPendingOrders = async (req, res) => {
 		const pendingOrdes = await order.find({
 			WashingStatus: "pending",
 		});
-		res.status(200).json(pendingOrdes);
+		res.status(200).json({pendingOrdes:pendingOrdes});
 	} catch (err) {
 		res.status(200);
 		console.log(err.message);

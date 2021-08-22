@@ -15,3 +15,18 @@
 body {
 	overflow-x: hidden;
 }
+
+.spinner {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 8px solid rgba(195, 195, 195, 0.3);
+	border-top-color: #11b4f5;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
