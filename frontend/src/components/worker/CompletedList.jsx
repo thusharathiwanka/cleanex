@@ -1,6 +1,9 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const CompletedList = () => {
+
+    
     return (
         <div class=" pt-16 pl-60 pr-60 pb-20">
             <div class="bg-white rounded-xl shadow-2xl p-10" >
