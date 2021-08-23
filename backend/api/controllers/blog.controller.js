@@ -2,8 +2,16 @@ const blog = require("../models/payment.model");
 
 const addBlogs = async (req, res) => {
 	try {
-		const newBlog = new blog(req.body);
-		await newBlog.save();
+		const newBlog = new blog(
+			{
+			topic: req.body.topic,
+			description: req.body.description,
+			content: req.body.content,
+			photo: req.body.name
+			}
+		);
+		console.log(req.body.name);
+		// await newBlog.save();
 		res.status(200);
 	} catch (err) {
 		res.status(400);
