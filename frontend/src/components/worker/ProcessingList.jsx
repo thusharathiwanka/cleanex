@@ -1,10 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import Error from '../toasts/Error'
+import Success from '../toasts/Success'
 
-const ProcessingList = () => {
+const ProcessingList = (props) => {
 
     const [ProcessingOrders, setProcessingOrders] = useState([])
     const [ID, setID] = useState("")
+
 
     useEffect(() => {
         
@@ -17,13 +20,16 @@ const ProcessingList = () => {
     }, [ID])
 
     const updateStatus =async(id)=>{
+        
         try{
             const res = await axios.patch(`/order/updateToCompleate/${id}`)
             if(res.status===200){
                 setID(id)
+                props.setSuccMsg("Successfully Completed")
+                props.setSucc(true)
             }
         }catch(err){
-
+            props.setErr(true)
         }
     }
 

@@ -19,16 +19,16 @@ const AddBlog =async(e)=>{
     const date = new Date();
     Blog.date = date.toLocaleDateString();
     if(File){
-        const formData = new FormData();
+        var formData = new FormData();
         const fileName = `${Date.now()}-${File.name}`;
         formData.append("name",fileName);
         formData.append("image",File);
         formData.append("topic",Blog.topic);
         formData.append("description",Blog.description);
         formData.append("content",Blog.content);
-        console.log(Blog);
+        console.log(formData.getAll('topic'));
         try{
-        const res = await axios.post("/blog/post",formData)
+        const res = await axios.post("/blog/post", formData)
 
         // if(res.status===200){
         //     setSucc(true)
