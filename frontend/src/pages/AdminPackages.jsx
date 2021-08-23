@@ -161,7 +161,6 @@ const AdminPackages = () => {
 																</span>
 															</td>
 															<td className="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
-																{console.log(packageItem._id)}
 																<Link
 																	to={`/auth/admin/packages/update/${packageItem._id}`}
 																	className="text-green-400 mr-5 my-2 cursor-pointer"
