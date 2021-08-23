@@ -1,7 +1,19 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const PendingLists = () => {
 
+    const [PendingOrders, setPendingOrders] = useState([])
+
+    useEffect(() => {
+        
+        async function fetchData() {
+            const res = await axios.get("/order/getPendingOrders")
+            setPendingOrders(res.data.pendingOrdes)
+        }
+        fetchData()
+        
+    }, [])
 
     return (
         <div class=" pt-16 pl-60 pr-60">

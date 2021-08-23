@@ -4,6 +4,7 @@ const {
 	getCustomers,
 	loginCustomer,
 	deleteCustomer,
+	getUserDetails,
 	getCustomersTotal,
 	getUserprofileDetails,
 	updateUserProfile,
@@ -12,6 +13,7 @@ const { verifyAdminAuth } = require("../middleware/adminAuth");
 const { verifyCustomerAuth } = require("../middleware/customerAuth");
 
 router.get("/", verifyAdminAuth, getCustomers);
+router.get("/:id", verifyAdminAuth, getUserDetails);
 router.get("/total", verifyAdminAuth, getCustomersTotal);
 router.post("/register", saveCustomer);
 router.post("/login", loginCustomer);

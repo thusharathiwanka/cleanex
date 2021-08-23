@@ -7,10 +7,8 @@ export const cartReduser = (state, action) => {
 				...state,
 				{
 					id: uuid(),
-					pack: [
-						{ pack: action.pack.pack },
-						{ quantity: action.pack.quantity },
-					],
+					pack: action.pack.pack,
+					quantity: action.pack.quantity,
 				},
 			];
 		case "REMOVE_PACK":

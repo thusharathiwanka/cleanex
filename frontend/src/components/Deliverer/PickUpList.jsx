@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-const Deliverer_list = (id) => {
-	const [order, setOrder] = useState("");
-
+const PickUpList = (id) => {
 	return (
 		<div
 			style={{
@@ -39,7 +37,7 @@ const Deliverer_list = (id) => {
 											scope="col"
 											className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
 										>
-											Status
+											Pick up Status
 										</th>
 
 										<th scope="col" className="relative px-6 py-3">
@@ -78,7 +76,7 @@ const Deliverer_list = (id) => {
 												href="www.google.com"
 												className="text-green-500 hover:text-green-200"
 											>
-												Delivered
+												Picked Up
 											</a>
 										</td>
 										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -117,7 +115,7 @@ const Deliverer_list = (id) => {
 												href="www.google.com"
 												className="text-green-500 hover:text-green-200"
 											>
-												Delivered
+												Picked Up
 											</a>
 										</td>
 										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -156,7 +154,7 @@ const Deliverer_list = (id) => {
 												href="www.google.com"
 												className="text-green-500 hover:text-green-200"
 											>
-												Delivered
+												Picked Up
 											</a>
 										</td>
 										<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -178,4 +176,4 @@ const Deliverer_list = (id) => {
 	);
 };
 
-export default Deliverer_list;
+export default PickUpList;
