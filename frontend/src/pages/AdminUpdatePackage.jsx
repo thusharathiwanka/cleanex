@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
@@ -24,6 +24,11 @@ const AdminUpdatePackage = () => {
 	});
 
 	const { id } = useParams();
+
+	const getPackageDetails = async () => {
+		const res = await axios.get(`packages/package/${id}`);
+		setUpdatedPackage(res.data.package);
+	};
 
 	const saveUpdatedPackage = async (e) => {
 		e.preventDefault();
@@ -77,6 +82,10 @@ const AdminUpdatePackage = () => {
 			);
 		}
 	};
+
+	useEffect(() => {
+		getPackageDetails();
+	}, []);
 
 	return (
 		<div className=" text-gray-800">
