@@ -3,7 +3,7 @@ import CompletedList from './CompletedList'
 import PendingLists from './PendingLists'
 import ProcessingList from './ProcessingList'
 
-const WashMenu = () => {
+const WashMenu = (props) => {
 
     const [List, setList] = useState("pending")
 
@@ -16,7 +16,7 @@ const WashMenu = () => {
             </div> 
             <br/> 
             <div>
-            {(List==="pending")? <PendingLists/> :(List==="processing")? <ProcessingList/>:<CompletedList/>}
+            {(List==="pending")? <PendingLists setErr={props.setErr} setSucc={props.setSucc} setSuccMsg={props.setSuccMsg}/> :(List==="processing")? <ProcessingList setErr={props.setErr} setSucc={props.setSucc} setSuccMsg={props.setSuccMsg} />:<CompletedList/>}
             </div>
         </div>
     )
