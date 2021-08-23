@@ -152,7 +152,7 @@ const AdminUpdatePackage = () => {
 									Package Description
 								</label>
 								<input
-									type="email"
+									type="text"
 									name="package-description"
 									id="package-description"
 									className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2"
