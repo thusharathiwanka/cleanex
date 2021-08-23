@@ -95,6 +95,7 @@ const getPackagesBasedOnStatus = async (req, res) => {
 	}
 };
 
+// TODO - should be looked more into this
 /**
  * use to get all the packages based on search query
  * @param {Object} req
