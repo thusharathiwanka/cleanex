@@ -5,8 +5,11 @@ import icon2 from "../../assets/images/Group.png";
 import binIcon from "../../assets/images/binIcon.png";
 import { CartContext } from "../../contexts/CartContext";
 
+import { imageURL } from "../../config/paths";
+
 const List = () => {
 	const { packages, dispatch } = useContext(CartContext);
+
 	const [value, setValue] = useState(1);
 	const increase = (value) => {
 		if (value < 5) {
@@ -39,6 +42,7 @@ const List = () => {
 			<table className="w-9/12 ml-auto mr-auto mb-10 mt-5">
 				<thead>
 					<tr className="text-gray-400 text-base ">
+						<th className="w-60 h-10"></th>
 						<th className="w-60 h-10 ">Quantity</th>
 						<th className="w-60 h-10">Laundry Item</th>
 						<th className="w-60 h-10">Price per Item</th>
@@ -49,9 +53,19 @@ const List = () => {
 				<tbody>
 					{packages.map((packages) => {
 						return (
-							<tr key={packages.id} className="text-gray-600 bg-gray-100  ">
+							<tr
+								key={packages.id}
+								className="text-gray-600 bg-gray-100 space-y-3  "
+							>
+								<td className="w-60 h-20  bg-white">
+									<img
+										src={imageURL + packages.pack.src}
+										alt="package-img"
+										className="w-20 h-20 rounded-lg mr-2 object-cover"
+									/>
+								</td>
 								<td className="w-60 h-20 text-center">
-									<div className="inline-flex gap-10 ">
+									<div className="inline-flex gap-6 ">
 										<button
 											onClick={() => {
 												increase(value);
@@ -60,7 +74,7 @@ const List = () => {
 											<img className="w-7 h-7" src={icon2} alt="" />
 										</button>
 										<input
-											class="ms-1 border text-center w-8 appearance-none"
+											class="ms-1  border-2  rounded-lg text-center w-8 appearance-none"
 											type="text"
 											value={value}
 											bg-gray-100
@@ -88,7 +102,7 @@ const List = () => {
 									<p>Rs {packages.pack.price * value}</p>
 								</td>
 
-								<td className="w-60   h-20 text-center">
+								<td className="w-60   h-20 text-center bg-white">
 									<button
 										onClick={() =>
 											dispatch({ type: "REMOVE_PACK", id: packages.id })

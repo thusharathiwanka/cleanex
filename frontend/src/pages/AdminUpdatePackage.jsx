@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import Error from "../components/toasts/Error";
@@ -8,13 +9,13 @@ import { allowedTypes } from "../helpers/allowedUploads";
 
 // TODO selected image preview should be added
 // TODO toast message position should be changed
-const AdminNewPackage = () => {
-	document.title = "CLEANEX - New Package";
+const AdminUpdatePackage = () => {
+	document.title = "CLEANEX - Update Package";
 	const [file, setFile] = useState(null);
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
 	const [buttonStatus, setButtonStatus] = useState(false);
-	const [newPackage, setNewPackage] = useState({
+	const [updatedPackage, setUpdatedPackage] = useState({
 		name: "",
 		description: "",
 		price: "",
@@ -22,7 +23,14 @@ const AdminNewPackage = () => {
 		src: "",
 	});
 
-	const savePackage = async (e) => {
+	const { id } = useParams();
+
+	const getPackageDetails = async () => {
+		const res = await axios.get(`packages/package/${id}`);
+		setUpdatedPackage(res.data.package);
+	};
+
+	const saveUpdatedPackage = async (e) => {
 		e.preventDefault();
 		setButtonStatus(true);
 
@@ -33,7 +41,7 @@ const AdminNewPackage = () => {
 			formData.append("src", file);
 			try {
 				const res = await axios.post("/packages/image/upload", formData);
-				newPackage.src = res.data.filename;
+				updatedPackage.src = res.data.filename;
 			} catch (err) {
 				console.error(err.message);
 				return setError(err.message);
@@ -41,11 +49,11 @@ const AdminNewPackage = () => {
 		}
 
 		try {
-			newPackage.createdAt = newPackage.updatedAt = new Date();
-			const res = await axios.post("/packages", newPackage);
+			updatedPackage.updatedAt = new Date();
+			const res = await axios.patch(`/packages/${id}`, updatedPackage);
 			console.log(res);
 			setButtonStatus(false);
-			setNewPackage({
+			setUpdatedPackage({
 				name: "",
 				description: "",
 				price: "",
@@ -53,7 +61,7 @@ const AdminNewPackage = () => {
 				src: "",
 			});
 			setFile("");
-			setSuccess("New package created successfully.");
+			setSuccess("Package updated successfully.");
 		} catch (err) {
 			console.error(err.response.message);
 			setError(err.response.message);
@@ -75,6 +83,10 @@ const AdminNewPackage = () => {
 		}
 	};
 
+	useEffect(() => {
+		getPackageDetails();
+	}, []);
+
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20 ">
@@ -82,14 +94,14 @@ const AdminNewPackage = () => {
 					className="text-5xl font-extrabold pb-10 text-center"
 					data-aos="fade-up"
 				>
-					Create new Package
+					Update Package
 				</h1>
 				<Sidebar />
 				<div className="w-full pt-10 flex justify-center items-center">
 					<div className="px-16 flex justify-center w-full">
 						<form
 							className="w-2/4 pt-10 text-gray-800 font-semibold relative"
-							onSubmit={savePackage}
+							onSubmit={saveUpdatedPackage}
 							encType="multipart/form-data"
 						>
 							{error && <Error error={error} />}
@@ -122,9 +134,12 @@ const AdminNewPackage = () => {
 									className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
 									required
 									autoComplete="off"
-									value={newPackage.name}
+									value={updatedPackage.name}
 									onChange={(e) =>
-										setNewPackage({ ...newPackage, name: e.target.value })
+										setUpdatedPackage({
+											...updatedPackage,
+											name: e.target.value,
+										})
 									}
 								/>
 							</div>
@@ -143,10 +158,10 @@ const AdminNewPackage = () => {
 									className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2"
 									required
 									autoComplete="off"
-									value={newPackage.description}
+									value={updatedPackage.description}
 									onChange={(e) =>
-										setNewPackage({
-											...newPackage,
+										setUpdatedPackage({
+											...updatedPackage,
 											description: e.target.value,
 										})
 									}
@@ -167,9 +182,12 @@ const AdminNewPackage = () => {
 									className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
 									required
 									autoComplete="off"
-									value={newPackage.price}
+									value={updatedPackage.price}
 									onChange={(e) =>
-										setNewPackage({ ...newPackage, price: e.target.value })
+										setUpdatedPackage({
+											...updatedPackage,
+											price: e.target.value,
+										})
 									}
 								/>
 							</div>
@@ -185,9 +203,12 @@ const AdminNewPackage = () => {
 									name="status"
 									className="border rounded-full px-4 py-4 focus:outline-none"
 									required
-									value={newPackage.status}
+									value={updatedPackage.status}
 									onChange={(e) =>
-										setNewPackage({ ...newPackage, status: e.target.value })
+										setUpdatedPackage({
+											...updatedPackage,
+											status: e.target.value,
+										})
 									}
 								>
 									<option value="active">Active</option>
@@ -211,4 +232,4 @@ const AdminNewPackage = () => {
 	);
 };
 
-export default AdminNewPackage;
+export default AdminUpdatePackage;

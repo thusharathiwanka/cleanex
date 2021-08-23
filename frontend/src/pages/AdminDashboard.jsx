@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 import GraphInfoCard from "../components/adminDashboard/GraphInfoCard";
 import InfoCard from "../components/adminDashboard/InfoCard";
@@ -9,6 +10,10 @@ import { adminCardInfo } from "../helpers/adminCardsInfo";
 const Dashboard = () => {
 	document.title = "CLEANEX - Dashboard";
 	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		const packagesRes = axios.get();
+	});
 
 	return (
 		<div className=" text-gray-800">

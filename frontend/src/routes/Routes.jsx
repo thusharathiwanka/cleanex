@@ -30,9 +30,10 @@ import AllOrderHistory from "../pages/AllOrderHistory";
 import ViewOrder from "../pages/ViewOrder";
 import Feedback from "../pages/Feedback";
 import UserProfileDelete from "../pages/UserProfileDelete";
+import AdminUpdatePackage from "../pages/AdminUpdatePackage";
 
 const Routes = () => {
-  const { loggedIn, loggedInRole } = useContext(AuthContext);
+	const { loggedIn, loggedInRole } = useContext(AuthContext);
 
 	return (
 		<Switch>
@@ -63,6 +64,9 @@ const Routes = () => {
 			</Route>
 			<Route exact path="/auth/admin/packages/new">
 				<AdminNewPackage />
+			</Route>
+			<Route exact path="/auth/admin/packages/update/:id">
+				<AdminUpdatePackage />
 			</Route>
 			<Route exact path="/auth/admin/customers">
 				<AdminCustomer />
@@ -122,7 +126,6 @@ const Routes = () => {
 			</Route>
 		</Switch>
 	);
-
 };
 
 export default Routes;

@@ -162,7 +162,7 @@ const AdminPackages = () => {
 															</td>
 															<td className="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
 																<Link
-																	to="/auth/admin/packages/update"
+																	to={`/auth/admin/packages/update/${packageItem._id}`}
 																	className="text-green-400 mr-5 my-2 cursor-pointer"
 																>
 																	<BiEditAlt />
