@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-const PendingLists = () => {
+const PendingLists = (props) => {
 
     const [PendingOrders, setPendingOrders] = useState([])
+    const [ID, setID] = useState("")
 
     useEffect(() => {
         
@@ -13,7 +14,22 @@ const PendingLists = () => {
         }
         fetchData()
         
-    }, [])
+    }, [ID])
+
+    const updateStatus = async(id)=>{
+
+        try{
+            const res = await axios.patch(`order/updateToProcess/${id}`)
+            if(res.status===200){
+                setID(id)
+                props.setSuccMsg("Successfully Start")
+                props.setSucc(true)
+            }
+        }catch(err){
+            props.setErr(true)
+            console.log(err)
+        }
+    }
 
     return (
         <div class=" pt-16 pl-60 pr-60">
@@ -38,9 +54,9 @@ const PendingLists = () => {
                         <span class="absolute  right-28">2</span>
                     </div>
                     <div class="text-center  ">
-                        <form action="">
+                        <form  onSubmit={(e)=>e.preventDefault()}>
                         <input class=" focus:outline-none  shadow-md py-2 px-4 rounded" placeholder="Hours" type="number" required id="quantity" name="quantity" min="1" max="24"/>
-                        <button type="submit" class=" shadow-md bg-light-blue text-white py-2 px-6 rounded font-bold ml-5">
+                        <button onClick={()=>updateStatus()} type="submit" class=" shadow-md bg-light-blue text-white py-2 px-6 rounded font-bold ml-5">
                             Accept
                         </button>
                         </form>
