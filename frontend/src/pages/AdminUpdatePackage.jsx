@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { BiImageAdd } from "react-icons/bi";
@@ -13,9 +13,9 @@ import Spinner from "../components/loading/Spinner";
 import { allowedTypes } from "../helpers/allowedUploads";
 import { imageURL } from "../config/paths";
 
-// TODO - set error not working
 const AdminUpdatePackage = () => {
 	document.title = "CLEANEX - Update Package";
+	const history = useHistory();
 	const [file, setFile] = useState(null);
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
@@ -61,7 +61,6 @@ const AdminUpdatePackage = () => {
 		try {
 			updatedPackage.updatedAt = new Date();
 			const res = await axios.patch(`/packages/${id}`, updatedPackage);
-			console.log(res);
 			setButtonStatus(false);
 			setUpdatedPackage({
 				name: "",
@@ -72,9 +71,11 @@ const AdminUpdatePackage = () => {
 			});
 			setFile("");
 			setSuccess("Package updated successfully.");
+			getPackageDetails();
+			setTimeout(() => history.push("/auth/admin/packages"), 2000);
 		} catch (err) {
-			console.error(err.response.message);
-			setError(err.response.message);
+			setError(err.response);
+			console.log(err.response);
 			setButtonStatus(false);
 		}
 	};
@@ -112,10 +113,8 @@ const AdminUpdatePackage = () => {
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-12">
 				<div className="w-full text-center flex justify-center">
-					{error && <Error error={error} translateX="-translate-x-1/4" />}
-					{success && (
-						<Success success={success} translateX="-translate-x-1/4" />
-					)}
+					{error && <Error error={error} top="-top-2" />}
+					{success && <Success success={success} top="-top-2" />}
 				</div>
 				<div
 					className="flex justify-start mx-10"
@@ -207,6 +206,7 @@ const AdminUpdatePackage = () => {
 										id="package-name"
 										className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
 										autoComplete="off"
+										required
 										value={updatedPackage.name}
 										onChange={(e) =>
 											setUpdatedPackage({
@@ -230,6 +230,7 @@ const AdminUpdatePackage = () => {
 										id="package-description"
 										className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2"
 										autoComplete="off"
+										required
 										value={updatedPackage.description}
 										onChange={(e) =>
 											setUpdatedPackage({
@@ -253,6 +254,7 @@ const AdminUpdatePackage = () => {
 										id="price"
 										className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
 										autoComplete="off"
+										required
 										value={updatedPackage.price}
 										onChange={(e) =>
 											setUpdatedPackage({
@@ -273,6 +275,7 @@ const AdminUpdatePackage = () => {
 									<select
 										name="status"
 										className="border rounded-full px-4 py-4 focus:outline-none"
+										required
 										value={updatedPackage.status}
 										onChange={(e) =>
 											setUpdatedPackage({
