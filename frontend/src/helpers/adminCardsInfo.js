@@ -3,11 +3,11 @@ import { FaUsers } from "react-icons/fa";
 
 const adminCardInfo = [
 	{ name: "Total Packages", icon: <MdStyle /> },
+	{ name: "Total Customers", icon: <FaUsers /> },
 	{
 		name: "Total Feedbacks",
 		icon: <MdFeedback />,
 	},
-	{ name: "Total Customers", icon: <FaUsers /> },
 ];
 
 export { adminCardInfo };

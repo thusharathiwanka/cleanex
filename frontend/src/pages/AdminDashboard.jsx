@@ -9,20 +9,21 @@ import { adminCardInfo } from "../helpers/adminCardsInfo";
 
 const Dashboard = () => {
 	document.title = "CLEANEX - Dashboard";
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 	const [totals, setTotals] = useState([]);
 	const endpoints = ["/packages/total", "/customers/total", "/feedbacks/total"];
 
 	const getTotalInfo = () => {
-		endpoints.map((endpoint) => {
+		endpoints.map(async (endpoint) => {
 			try {
-				const res = axios.get(endpoint);
-				totals.push(res.data.total);
-				console.log(res.data.total);
+				const res = await axios.get(endpoint);
+				setTotals((prev) => [...prev, res.data.total]);
 			} catch (err) {
 				console.error(err);
 			}
 		});
+		console.log(totals);
+		setIsLoading(false);
 	};
 
 	useEffect(() => {
@@ -44,8 +45,12 @@ const Dashboard = () => {
 				) : (
 					<div className="w-full">
 						<div className="px-16 flex justify-between">
-							{adminCardInfo.map((adminCard, index) => (
-								<InfoCard cardInfo={adminCard} key={index} />
+							{totals.map((total, index) => (
+								<InfoCard
+									adminCardInfo={adminCardInfo[index]}
+									total={total}
+									key={index}
+								/>
 							))}
 						</div>
 						<div className="px-16 flex justify-between w-full" id="chart">
