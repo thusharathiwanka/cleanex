@@ -5,7 +5,7 @@ const BlogSchema = new mongoose.Schema({
     description:{type: String, require: true, trim:true},
     content:{type: String, require: true, trim:true},
     date:{type: String, require: true, trim:true},
-    photo:{type: String, require: true},
+    name:{type: String, require: true}
 })
 
 const Blog = mongoose.model("blogs", BlogSchema);

@@ -26,15 +26,17 @@ const AddBlog =async(e)=>{
         formData.append("topic",Blog.topic);
         formData.append("description",Blog.description);
         formData.append("content",Blog.content);
+        formData.append("date",Blog.date);
         console.log(formData.getAll('topic'));
         try{
         const res = await axios.post("/blog/post", formData)
 
-        // if(res.status===200){
-        //     setSucc(true)
-        // }
+        if(res.status===200){
+            setSucc(true)
+        }
     }catch(err){
-        // setErr(true)
+        setErrMsg("Oops! Somthing went wrong")
+        setErr(true)
         console.log(err);
     }
     }

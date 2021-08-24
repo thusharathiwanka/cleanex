@@ -6,12 +6,14 @@ const {
 	addBlogs,
 	deleteBlogs,
 	updateBlogs,
+	updateImage
 } = require("../controllers/blog.controller");
 
 router.get("/getall", getAllBlogs);
-router.get("/get", getBlog);
-router.post("/post", addBlogs);
-router.delete("/delete", deleteBlogs);
-router.patch("/ubdate", updateBlogs);
+router.get("/get/:id", getBlog);
+router.post("/post",upload.single("image"), addBlogs);
+router.patch("/updateimage",upload.single("image"), updateImage);
+router.delete("/delete/:id", deleteBlogs);
+router.patch("/update/:id", updateBlogs);
 
 module.exports = router;
