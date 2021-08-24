@@ -14,8 +14,8 @@ const OrderSummary = (props) => {
 	let price = 0;
 	//const [price, setPrice] = useState(0);
 
-	return (
-		/*packages.length ?*/ <div className="max-w-xl   ml-40     ">
+	return packages.length ? (
+		<div className="max-w-xl   ml-40     ">
 			<div className=" bg-light-blue pb-3 pt-3 text-center text-white text-xl mb-10">
 				<p>Order summary</p>
 			</div>
@@ -30,10 +30,12 @@ const OrderSummary = (props) => {
 					);
 				})}
 				<p className="ml-11 text-gray-600 text-lg">Estimated Sub Total : Rs</p>
+
 				{packages.map((packages) => {
+					price = price + packages.pack.price * packages.pack.quantity;
 					return (
 						<p key={packages.id} className="ml-2 float-right">
-							{(price = price + packages.pack.price)}
+							{price}
 						</p>
 					);
 				})}
@@ -113,9 +115,11 @@ const OrderSummary = (props) => {
 				) : null}
 			</div>
 		</div>
-	); /*: (
-		<div className="w-9/12 ml-auto mr-auto mb-10">Your lundry bag is Empty</div>
-	);*/
+	) : (
+		<div className="w-9/12 ml-auto text-center text-blue-400 font-bold mr-auto mb-40">
+			Your lundry bag is Empty !!
+		</div>
+	);
 };
 
 export default OrderSummary;
