@@ -54,7 +54,7 @@ const ViewModal = ({ setShowViewModal, id }) => {
 							</div>
 							<div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 								<h3
-									className="text-4xl leading-6 font-bold text-gray-700"
+									className="text-4xl font-bold text-gray-700"
 									id="modal-title"
 								>
 									{customer.name}
