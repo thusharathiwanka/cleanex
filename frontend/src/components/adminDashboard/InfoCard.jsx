@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 
 const InfoCard = ({ cardInfo }) => {
+	console.log(cardInfo.endpoint);
+	const getCardInfo = async () => {
+		const res = await axios.get(cardInfo.endpoint);
+		console.log(res);
+	};
+
+	useEffect(() => {
+		getCardInfo();
+	}, []);
+
 	return (
 		<div
 			className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between"

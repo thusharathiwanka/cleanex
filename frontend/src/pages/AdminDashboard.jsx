@@ -10,10 +10,24 @@ import { adminCardInfo } from "../helpers/adminCardsInfo";
 const Dashboard = () => {
 	document.title = "CLEANEX - Dashboard";
 	const [isLoading, setIsLoading] = useState(false);
+	const [totals, setTotals] = useState([]);
+	const endpoints = ["/packages/total", "/customers/total", "/feedbacks/total"];
+
+	const getTotalInfo = () => {
+		endpoints.map((endpoint) => {
+			try {
+				const res = axios.get(endpoint);
+				totals.push(res.data.total);
+				console.log(res.data.total);
+			} catch (err) {
+				console.error(err);
+			}
+		});
+	};
 
 	useEffect(() => {
-		const packagesRes = axios.get();
-	});
+		getTotalInfo();
+	}, []);
 
 	return (
 		<div className=" text-gray-800">
