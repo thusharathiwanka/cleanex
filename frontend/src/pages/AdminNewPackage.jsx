@@ -47,8 +47,7 @@ const AdminNewPackage = () => {
 
 		try {
 			newPackage.createdAt = newPackage.updatedAt = new Date();
-			const res = await axios.post("/packages", newPackage);
-			console.log(res);
+			await axios.post("/packages", newPackage);
 			setButtonStatus(false);
 			setNewPackage({
 				name: "",
@@ -60,7 +59,6 @@ const AdminNewPackage = () => {
 			setFile("");
 			setSuccess("New package created successfully.");
 		} catch (err) {
-			console.error(err.response.message);
 			setError(err.response.message);
 			setButtonStatus(false);
 		}
@@ -94,8 +92,8 @@ const AdminNewPackage = () => {
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-12 ">
-				{error && <Error error={error} translateX="-translate-x-1/4" />}
-				{success && <Success success={success} translateX="-translate-x-1/4" />}
+				{error && <Error error={error} top="-top-2" />}
+				{success && <Success success={success} top="-top-2" />}
 				<div
 					className="flex justify-start mx-10"
 					data-aos="fade-left"

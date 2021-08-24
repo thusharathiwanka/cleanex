@@ -112,10 +112,8 @@ const AdminUpdatePackage = () => {
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-12">
 				<div className="w-full text-center flex justify-center">
-					{error && <Error error={error} translateX="-translate-x-1/4" />}
-					{success && (
-						<Success success={success} translateX="-translate-x-1/4" />
-					)}
+					{error && <Error error={error} top="-top-2" />}
+					{success && <Success success={success} top="-top-2" />}
 				</div>
 				<div
 					className="flex justify-start mx-10"
@@ -207,6 +205,7 @@ const AdminUpdatePackage = () => {
 										id="package-name"
 										className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
 										autoComplete="off"
+										required
 										value={updatedPackage.name}
 										onChange={(e) =>
 											setUpdatedPackage({
@@ -230,6 +229,7 @@ const AdminUpdatePackage = () => {
 										id="package-description"
 										className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2"
 										autoComplete="off"
+										required
 										value={updatedPackage.description}
 										onChange={(e) =>
 											setUpdatedPackage({
@@ -253,6 +253,7 @@ const AdminUpdatePackage = () => {
 										id="price"
 										className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
 										autoComplete="off"
+										required
 										value={updatedPackage.price}
 										onChange={(e) =>
 											setUpdatedPackage({
@@ -273,6 +274,7 @@ const AdminUpdatePackage = () => {
 									<select
 										name="status"
 										className="border rounded-full px-4 py-4 focus:outline-none"
+										required
 										value={updatedPackage.status}
 										onChange={(e) =>
 											setUpdatedPackage({
