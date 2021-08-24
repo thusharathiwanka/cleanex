@@ -1,7 +1,5 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import Error from '../toasts/Error'
-import Success from '../toasts/Success'
 
 const ProcessingList = (props) => {
 
