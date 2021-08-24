@@ -3,6 +3,7 @@ import axios from "axios";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
+import { IoMailOutline } from "react-icons/io5";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import Spinner from "../components/loading/Spinner";
@@ -153,6 +154,11 @@ const AdminCustomer = () => {
 															>
 																<AiOutlineEye />
 															</button>
+															<a href={`mailto:${customer.email}`}>
+																<button class="text-yellow-400 mr-5 my-2">
+																	<IoMailOutline />
+																</button>
+															</a>
 															<button
 																className="text-red-400 mr-5 my-2"
 																onClick={() => {
