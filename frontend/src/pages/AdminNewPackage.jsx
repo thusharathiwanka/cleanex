@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { BiImageAdd } from "react-icons/bi";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -13,6 +13,7 @@ import { allowedTypes } from "../helpers/allowedUploads";
 // TODO toast message position should be changed
 const AdminNewPackage = () => {
 	document.title = "CLEANEX - New Package";
+	const history = useHistory();
 	const [file, setFile] = useState(null);
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
@@ -58,6 +59,7 @@ const AdminNewPackage = () => {
 			});
 			setFile("");
 			setSuccess("New package created successfully.");
+			setTimeout(() => history.push("/auth/admin/packages"), 2000);
 		} catch (err) {
 			setError(err.response.message);
 			setButtonStatus(false);

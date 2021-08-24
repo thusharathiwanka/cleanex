@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { BiImageAdd } from "react-icons/bi";
@@ -13,9 +13,9 @@ import Spinner from "../components/loading/Spinner";
 import { allowedTypes } from "../helpers/allowedUploads";
 import { imageURL } from "../config/paths";
 
-// TODO - set error not working
 const AdminUpdatePackage = () => {
 	document.title = "CLEANEX - Update Package";
+	const history = useHistory();
 	const [file, setFile] = useState(null);
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
@@ -61,7 +61,6 @@ const AdminUpdatePackage = () => {
 		try {
 			updatedPackage.updatedAt = new Date();
 			const res = await axios.patch(`/packages/${id}`, updatedPackage);
-			console.log(res);
 			setButtonStatus(false);
 			setUpdatedPackage({
 				name: "",
@@ -72,9 +71,11 @@ const AdminUpdatePackage = () => {
 			});
 			setFile("");
 			setSuccess("Package updated successfully.");
+			getPackageDetails();
+			setTimeout(() => history.push("/auth/admin/packages"), 2000);
 		} catch (err) {
-			console.error(err.response.message);
-			setError(err.response.message);
+			setError(err.response);
+			console.log(err.response);
 			setButtonStatus(false);
 		}
 	};
