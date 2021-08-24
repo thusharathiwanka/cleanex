@@ -2,19 +2,31 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Spinner from "../loading/Spinner";
+import { imageURL } from "../../config/paths";
 
 const ViewModal = ({ setShowViewModal, id }) => {
-	const [customer, setCustomer] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
-
-	const getCustomerInfo = async () => {
-		const res = await axios.get(`customers/${id}`);
-		setCustomer(res.data.customer);
-		setIsLoading(false);
+	const [singlePackage, setSinglePackage] = useState({
+		name: "",
+		description: "",
+		price: "",
+		createdAt: "",
+		updatedAt: "",
+		src: "",
+		status: "",
+	});
+	const getPackageInfo = async () => {
+		try {
+			const res = await axios.get(`packages/package/${id}`);
+			setSinglePackage(res.data.package);
+			setIsLoading(false);
+		} catch (err) {
+			console.error(err.message);
+		}
 	};
 
 	useEffect(() => {
-		getCustomerInfo(id);
+		getPackageInfo(id);
 	}, []);
 
 	return (
@@ -44,54 +56,54 @@ const ViewModal = ({ setShowViewModal, id }) => {
 							<Spinner />
 						) : (
 							<div className="sm:flex sm:items-start mt-5">
-								<div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-16 sm:w-16">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										className="h-8 w-8 text-green-600"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth="2"
-											d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-										/>
-									</svg>
+								<div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-24 sm:w-24 overflow-hidden">
+									<img
+										src={imageURL + singlePackage.src}
+										alt="package-img"
+										className=" object-cover h-24 w-24"
+									/>
 								</div>
 								<div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full pr-4">
 									<h3
 										className="text-4xl font-bold text-gray-700"
 										id="modal-title"
 									>
-										{customer.name}
+										{singlePackage.name}
 									</h3>
 									<p className="text-gray-400 text-base text-bold mt-2 pb-5">
-										{customer.email}
+										{singlePackage.description}
 									</p>
 									<div className="flex justify-between w-full">
 										<p className="text-gray-500 text-sm text-bold mt-2 font-bold">
 											ID
 										</p>
 										<p className="text-gray-500 text-sm text-bold mt-2 pl-4">
-											{customer._id}
+											{singlePackage._id}
 										</p>
 									</div>
 									<div className="flex justify-between w-full">
 										<p className="text-gray-500 text-sm text-bold mt-2 font-bold">
-											MOBILE
+											PRICE
 										</p>
 										<p className="text-gray-500 text-sm text-bold mt-2 pl-4">
-											{customer.mobile}
+											{"LKR " + singlePackage.price + ".00"}
 										</p>
 									</div>
 									<div className="flex justify-between w-full">
 										<p className="text-gray-500 text-sm text-bold mt-2 font-bold">
-											REGISTERED AT
+											STATUS
 										</p>
 										<p className="text-gray-500 text-sm text-bold mt-2 pl-4">
-											{new Date(customer.createdAt).toDateString()}
+											{singlePackage.status.charAt(0).toUpperCase() +
+												singlePackage.status.slice(1)}
+										</p>
+									</div>
+									<div className="flex justify-between w-full">
+										<p className="text-gray-500 text-sm text-bold mt-2 font-bold">
+											CREATED AT
+										</p>
+										<p className="text-gray-500 text-sm text-bold mt-2 pl-4">
+											{new Date(singlePackage.createdAt).toDateString()}
 										</p>
 									</div>
 									<div className="flex justify-between w-full">
@@ -99,10 +111,9 @@ const ViewModal = ({ setShowViewModal, id }) => {
 											UPDATED AT
 										</p>
 										<p className="text-gray-500 text-sm text-bold mt-2 pl-4">
-											{new Date(customer.updatedAt).toDateString()}
+											{new Date(singlePackage.updatedAt).toDateString()}
 										</p>
 									</div>
-									<div className="mt-2"></div>
 								</div>
 							</div>
 						)}

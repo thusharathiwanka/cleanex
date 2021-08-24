@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import { BiImageAdd } from "react-icons/bi";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import Error from "../components/toasts/Error";
 import Success from "../components/toasts/Success";
 import { allowedTypes } from "../helpers/allowedUploads";
 
-// TODO selected image preview should be added
 // TODO toast message position should be changed
 const AdminNewPackage = () => {
 	document.title = "CLEANEX - New Package";
+	const history = useHistory();
 	const [file, setFile] = useState(null);
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
@@ -21,6 +25,8 @@ const AdminNewPackage = () => {
 		status: "active",
 		src: "",
 	});
+	const [preview, setPreview] = useState("");
+	const fileInputRef = useRef();
 
 	const savePackage = async (e) => {
 		e.preventDefault();
@@ -42,8 +48,7 @@ const AdminNewPackage = () => {
 
 		try {
 			newPackage.createdAt = newPackage.updatedAt = new Date();
-			const res = await axios.post("/packages", newPackage);
-			console.log(res);
+			await axios.post("/packages", newPackage);
 			setButtonStatus(false);
 			setNewPackage({
 				name: "",
@@ -54,8 +59,8 @@ const AdminNewPackage = () => {
 			});
 			setFile("");
 			setSuccess("New package created successfully.");
+			setTimeout(() => history.push("/auth/admin/packages"), 2000);
 		} catch (err) {
-			console.error(err.response.message);
 			setError(err.response.message);
 			setButtonStatus(false);
 		}
@@ -75,9 +80,35 @@ const AdminNewPackage = () => {
 		}
 	};
 
+	useEffect(() => {
+		if (file) {
+			const reader = new FileReader();
+			reader.onloadend = () => {
+				setPreview(reader.result);
+			};
+			return reader.readAsDataURL(file);
+		}
+		setPreview(null);
+	}, [file]);
+
 	return (
 		<div className=" text-gray-800">
-			<div className="ml-80 mt-20 ">
+			<div className="ml-80 mt-12 ">
+				{error && <Error error={error} top="-top-2" />}
+				{success && <Success success={success} top="-top-2" />}
+				<div
+					className="flex justify-start mx-10"
+					data-aos="fade-left"
+					data-aos-delay="100"
+				>
+					<Link
+						className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full flex justify-center items-center"
+						to="/auth/admin/packages"
+					>
+						<IoArrowBackOutline className="text-2xl mr-2" />
+						Back
+					</Link>
+				</div>
 				<h1
 					className="text-5xl font-extrabold pb-10 text-center"
 					data-aos="fade-up"
@@ -85,27 +116,59 @@ const AdminNewPackage = () => {
 					Create new Package
 				</h1>
 				<Sidebar />
-				<div className="w-full pt-10 flex justify-center items-center">
+				<div className="w-full pt-5 flex justify-center items-center">
 					<div className="px-16 flex justify-center w-full">
 						<form
-							className="w-2/4 pt-10 text-gray-800 font-semibold relative"
+							className="w-2/4 text-gray-800 font-semibold relative"
 							onSubmit={savePackage}
 							encType="multipart/form-data"
 						>
-							{error && <Error error={error} />}
-							{success && <Success success={success} />}
 							<div
 								className="flex flex-col justify-start pb-5 w-full"
 								data-aos="fade-up-left"
 							>
+								<div className="w-full flex justify-center">
+									{preview ? (
+										<div className="relative">
+											<img
+												src={preview}
+												alt="preview-img"
+												className="w-48 h-48 rounded-full text-center shadow-lg"
+											/>
+											<div
+												className="text-3xl text-red-400 absolute top-0 right-8 cursor-pointer bg-white rounded-full"
+												onClick={() => {
+													setFile(null);
+													setPreview(null);
+												}}
+											>
+												<AiFillCloseCircle />
+											</div>
+										</div>
+									) : (
+										<button
+											className="flex flex-col justify-center items-center w-48 h-48 rounded-full text-center shadow-lg p-5 bg-white font-semibold"
+											onClick={(e) => {
+												e.preventDefault();
+												fileInputRef.current.click();
+											}}
+										>
+											<div className="text-2xl pb-2">
+												<BiImageAdd />
+											</div>
+											Select Image
+										</button>
+									)}
+								</div>
 								<input
 									type="file"
 									accept=".png, .jpg, .jpeg"
 									name="src"
 									id="package-image"
-									className="rounded-full px-4 py-3 focus:border-light-blue inline-block"
+									className="hidden"
 									required
 									onChange={fileChangeHandler}
+									ref={fileInputRef}
 								/>
 							</div>
 							<div
@@ -197,8 +260,9 @@ const AdminNewPackage = () => {
 							<div className="flex justify-center">
 								<button
 									className="bg-light-blue text-white py-4 px-14 rounded-full mt-8 font-semibold text-center"
+									data-aos="zoom-in"
 									data-aos-delay="250"
-									data-aos="fade-up-left"
+									data-aos-offset="50"
 								>
 									{buttonStatus ? "Saving" : "Save"}
 								</button>

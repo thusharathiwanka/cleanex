@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Error = ({ error }) => {
+const Error = ({
+	error,
+	left = "left-1/2",
+	top = "top-10",
+	translateX = "-translate-x-1/2",
+}) => {
+	const [hidden, setHidden] = useState("");
+
+	setTimeout(() => {
+		setHidden("hidden");
+	}, 3000);
+
 	return (
-		<div className="absolute z-10 top-25 left-1/2 transform -translate-x-1/2">
-			<div
-				className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-				role="alert"
-			>
-				<strong className="font-bold">Error !</strong>
-				<span className="block sm:inline pl-4">{error}</span>
+		<div className={`w-full flex justify-center relative ${hidden}`}>
+			<div className={`absolute z-10 ${top} ${left} transform ${translateX}`}>
+				<div
+					className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+					role="alert"
+				>
+					<strong className="font-bold">Error !</strong>
+					<span className="block sm:inline pl-2">{error}</span>
+				</div>
 			</div>
 		</div>
 	);

@@ -100,14 +100,14 @@ const AdminLogin = () => {
 				<img
 					src={RightBubble}
 					alt="right-bottom-bubble"
-					className="absolute -z-2 top-20 w-60 right-40"
+					className="absolute top-20 w-60 right-40 -z-2"
 					data-aos="fade-bottom"
 				/>
 				<img
 					src={LeftBubble}
 					alt="left-bubble-img"
-					className="absolute left-0 bottom-10 -z-2"
-					data-aos="fade-right"
+					className="absolute left-0 bottom-0 -z-2"
+					data-aos="fade-bottom"
 				/>
 			</div>
 		</div>
