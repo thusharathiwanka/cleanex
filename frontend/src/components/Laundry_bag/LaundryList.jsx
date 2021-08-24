@@ -78,7 +78,7 @@ const List = () => {
 											<IoBagAddOutline className="w-7 h-7 text-light-blue hover:text-blue-200" />
 										</button>
 										<input
-											class="ms-1  border-2  rounded-lg text-center w-8 appearance-none"
+											className="ms-1  border-2  rounded-lg text-center w-8 appearance-none"
 											type="text"
 											value={packages.quantity}
 											bg-gray-100
