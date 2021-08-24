@@ -11,13 +11,15 @@ const Dashboard = () => {
 	document.title = "CLEANEX - Dashboard";
 	const [isLoading, setIsLoading] = useState(true);
 	const [totals, setTotals] = useState([]);
-	const endpoints = ["/packages/total", "/customers/total", "/feedbacks/total"];
 
 	const getTotalInfo = () => {
-		endpoints.map(async (endpoint) => {
+		adminCardInfo.map(async (card) => {
 			try {
-				const res = await axios.get(endpoint);
-				setTotals((prev) => [...prev, res.data.total]);
+				const res = await axios.get(card.endpoint);
+				setTotals((prev) => [
+					...prev,
+					{ total: res.data.total, name: card.name, icon: card.icon },
+				]);
 			} catch (err) {
 				console.error(err);
 			}
@@ -46,11 +48,7 @@ const Dashboard = () => {
 					<div className="w-full">
 						<div className="px-16 flex justify-between">
 							{totals.map((total, index) => (
-								<InfoCard
-									adminCardInfo={adminCardInfo[index]}
-									total={total}
-									key={index}
-								/>
+								<InfoCard info={total} key={index} />
 							))}
 						</div>
 						<div className="px-16 flex justify-between w-full" id="chart">
