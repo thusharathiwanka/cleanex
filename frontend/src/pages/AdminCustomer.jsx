@@ -155,7 +155,7 @@ const AdminCustomer = () => {
 																<AiOutlineEye />
 															</button>
 															<a href={`mailto:${customer.email}`}>
-																<button class="text-yellow-400 mr-5 my-2">
+																<button className="text-yellow-400 mr-5 my-2">
 																	<IoMailOutline />
 																</button>
 															</a>

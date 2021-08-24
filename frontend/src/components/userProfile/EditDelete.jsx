@@ -22,9 +22,9 @@ const EditDelete = () => {
       data-aos="fade-down"
     >
       <h1 className="text-5xl font-extrabold pb-10 text-center">Edit profie</h1>
-      {/* <div class="relative w-24 h-24">
+      {/* <div className="relative w-24 h-24">
         <img
-          class="rounded-full border border-gray-100 shadow-sm"
+          className="rounded-full border border-gray-100 shadow-sm"
           src={EditButto}
           alt="user image"
         />
@@ -79,13 +79,13 @@ const EditDelete = () => {
       </div>
       <div className="space-x-4">
         <Link
-          class="transition duration-500 ease-in-out  py-2 px-4 bg-red-500 hover:bg-black text-white sm:rounded-3xl transform hover:-translate-y-1 hover:scale-110 "
+          className="transition duration-500 ease-in-out  py-2 px-4 bg-red-500 hover:bg-black text-white sm:rounded-3xl transform hover:-translate-y-1 hover:scale-110 "
           to={`/auth/user/userprofiledelete`}
         >
           delete
         </Link>
         <Link
-          class="transition duration-500 ease-in-out  py-2 px-4 bg-light-blue hover:bg-black text-white sm:rounded-3xl transform hover:-translate-y-1 hover:scale-110 "
+          className="transition duration-500 ease-in-out  py-2 px-4 bg-light-blue hover:bg-black text-white sm:rounded-3xl transform hover:-translate-y-1 hover:scale-110 "
           to={`/auth/user/profile`}
         >
           Edit

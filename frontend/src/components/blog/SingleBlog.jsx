@@ -22,7 +22,7 @@ const SingleBlog = () => {
     }, [])
 
     return (
-        <div>
+        <div className="mb-24">
             <img src={imageURL+Blog.name} alt="blog_1_cover_photo " className=" h-96 w-full object-cover" />
             <span className="pt-5 flex justify-center font-bold text-3xl">{Blog.topic}</span>
             <div className="grid grid-cols-2 pr-96 mr-56 gap-0">
