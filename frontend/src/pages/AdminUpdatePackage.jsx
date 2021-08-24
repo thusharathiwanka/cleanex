@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { BiImageAdd } from "react-icons/bi";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import Error from "../components/toasts/Error";
 import Success from "../components/toasts/Success";
 import { allowedTypes } from "../helpers/allowedUploads";
+import { imageURL } from "../config/paths";
 
-// TODO selected image preview should be added
 // TODO toast message position should be changed
 const AdminUpdatePackage = () => {
 	document.title = "CLEANEX - Update Package";
@@ -22,12 +24,17 @@ const AdminUpdatePackage = () => {
 		status: "active",
 		src: "",
 	});
+	const [preview, setPreview] = useState();
+	console.log(imageURL + updatedPackage.src);
+	const fileInputRef = useRef();
 
 	const { id } = useParams();
 
 	const getPackageDetails = async () => {
 		const res = await axios.get(`packages/package/${id}`);
 		setUpdatedPackage(res.data.package);
+		setPreview(imageURL + res.data.package.src);
+		console.log(preview);
 	};
 
 	const saveUpdatedPackage = async (e) => {
@@ -89,7 +96,7 @@ const AdminUpdatePackage = () => {
 
 	return (
 		<div className=" text-gray-800">
-			<div className="ml-80 mt-20 ">
+			<div className="ml-80 mt-20">
 				<h1
 					className="text-5xl font-extrabold pb-10 text-center"
 					data-aos="fade-up"
@@ -97,10 +104,10 @@ const AdminUpdatePackage = () => {
 					Update Package
 				</h1>
 				<Sidebar />
-				<div className="w-full pt-10 flex justify-center items-center">
+				<div className="w-full pt-5 flex justify-center items-center">
 					<div className="px-16 flex justify-center w-full">
 						<form
-							className="w-2/4 pt-10 text-gray-800 font-semibold relative"
+							className="w-2/4 text-gray-800 font-semibold relative"
 							onSubmit={saveUpdatedPackage}
 							encType="multipart/form-data"
 						>
@@ -110,14 +117,48 @@ const AdminUpdatePackage = () => {
 								className="flex flex-col justify-start pb-5 w-full"
 								data-aos="fade-up-left"
 							>
+								<div className="w-full flex justify-center">
+									{preview ? (
+										<div className="relative">
+											<img
+												src={preview}
+												alt="preview-img"
+												className="w-48 h-48 rounded-full text-center shadow-lg"
+											/>
+											<div
+												className="text-3xl text-red-400 absolute top-0 right-8 cursor-pointer bg-white rounded-full"
+												onClick={() => {
+													setFile(null);
+													setPreview(null);
+												}}
+											>
+												<AiFillCloseCircle />
+											</div>
+										</div>
+									) : (
+										<button
+											className="flex flex-col justify-center items-center w-48 h-48 rounded-full text-center shadow-lg p-5 bg-white font-semibold"
+											onClick={(e) => {
+												e.preventDefault();
+												fileInputRef.current.click();
+											}}
+										>
+											<div className="text-2xl pb-2">
+												<BiImageAdd />
+											</div>
+											Select Image
+										</button>
+									)}
+								</div>
 								<input
 									type="file"
 									accept=".png, .jpg, .jpeg"
 									name="src"
 									id="package-image"
-									className="rounded-full px-4 py-3 focus:border-light-blue inline-block"
+									className="hidden"
 									required
 									onChange={fileChangeHandler}
+									ref={fileInputRef}
 								/>
 							</div>
 							<div
@@ -219,7 +260,8 @@ const AdminUpdatePackage = () => {
 								<button
 									className="bg-light-blue text-white py-4 px-14 rounded-full mt-8 font-semibold text-center"
 									data-aos-delay="250"
-									data-aos="fade-up-left"
+									data-aos="zoom-in"
+									data-aos-offset="50"
 								>
 									{buttonStatus ? "Saving" : "Save"}
 								</button>
