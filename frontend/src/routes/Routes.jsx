@@ -85,7 +85,7 @@ const Routes = () => {
 			<Route exact path="/auth/user/blogs">
 				<Blog />
 			</Route>
-			<Route exact path="/singleblog">
+			<Route exact path="/singleblog/:id">
 				<SingleBlog />
 			</Route>
 			<Route exact path="/payment">
@@ -121,7 +121,7 @@ const Routes = () => {
 			<Route exact path="/auth/user/cart">
 				<LaundryBag />
 			</Route>
-			<Route exact path="/editblogs">
+			<Route exact path="/editblogs/:id">
 				<EditBlog />
 			</Route>
 		</Switch>
