@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdFeedback } from "react-icons/md";
 import { AiOutlineEye } from "react-icons/ai";
+import { IoMailOutline } from "react-icons/io5";
 
 import Sidebar from "../components/sidebar/Sidebar";
 
@@ -88,6 +90,11 @@ const AdminFeedback = () => {
 													<button class="text-green-400 mr-5 my-2">
 														<AiOutlineEye />
 													</button>
+													<a href="mailto:someone@yoursite.com?subject=Feedback01">
+														<button class="text-yellow-400 mr-5 my-2">
+															<IoMailOutline />
+														</button>
+													</a>
 													<button class="text-red-400 mr-5 my-2">
 														<RiDeleteBin5Line />
 													</button>
