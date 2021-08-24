@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { BiImageAdd } from "react-icons/bi";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import Error from "../components/toasts/Error";
@@ -11,7 +13,7 @@ import Spinner from "../components/loading/Spinner";
 import { allowedTypes } from "../helpers/allowedUploads";
 import { imageURL } from "../config/paths";
 
-// TODO toast message position should be changed
+// TODO - set error not working
 const AdminUpdatePackage = () => {
 	document.title = "CLEANEX - Update Package";
 	const [file, setFile] = useState(null);
@@ -52,7 +54,7 @@ const AdminUpdatePackage = () => {
 				updatedPackage.src = res.data.filename;
 			} catch (err) {
 				console.error(err.message);
-				return setError(err.message);
+				return setError(err.response.data);
 			}
 		}
 
@@ -108,7 +110,26 @@ const AdminUpdatePackage = () => {
 
 	return (
 		<div className=" text-gray-800">
-			<div className="ml-80 mt-20">
+			<div className="ml-80 mt-12">
+				<div className="w-full text-center flex justify-center">
+					{error && <Error error={error} translateX="-translate-x-1/4" />}
+					{success && (
+						<Success success={success} translateX="-translate-x-1/4" />
+					)}
+				</div>
+				<div
+					className="flex justify-start mx-10"
+					data-aos="fade-left"
+					data-aos-delay="100"
+				>
+					<Link
+						className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full flex justify-center items-center"
+						to="/auth/admin/packages"
+					>
+						<IoArrowBackOutline className="text-2xl mr-2" />
+						Back
+					</Link>
+				</div>
 				<h1
 					className="text-5xl font-extrabold pb-10 text-center"
 					data-aos="fade-up"
@@ -126,8 +147,6 @@ const AdminUpdatePackage = () => {
 								onSubmit={saveUpdatedPackage}
 								encType="multipart/form-data"
 							>
-								{error && <Error error={error} />}
-								{success && <Success success={success} />}
 								<div
 									className="flex flex-col justify-start pb-5 w-full"
 									data-aos="fade-up-left"
@@ -171,7 +190,6 @@ const AdminUpdatePackage = () => {
 										name="src"
 										id="package-image"
 										className="hidden"
-										required
 										onChange={fileChangeHandler}
 										ref={fileInputRef}
 									/>
@@ -188,7 +206,6 @@ const AdminUpdatePackage = () => {
 										name="package-name"
 										id="package-name"
 										className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
-										required
 										autoComplete="off"
 										value={updatedPackage.name}
 										onChange={(e) =>
@@ -212,7 +229,6 @@ const AdminUpdatePackage = () => {
 										name="package-description"
 										id="package-description"
 										className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2"
-										required
 										autoComplete="off"
 										value={updatedPackage.description}
 										onChange={(e) =>
@@ -236,7 +252,6 @@ const AdminUpdatePackage = () => {
 										name="price"
 										id="price"
 										className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
-										required
 										autoComplete="off"
 										value={updatedPackage.price}
 										onChange={(e) =>
@@ -258,7 +273,6 @@ const AdminUpdatePackage = () => {
 									<select
 										name="status"
 										className="border rounded-full px-4 py-4 focus:outline-none"
-										required
 										value={updatedPackage.status}
 										onChange={(e) =>
 											setUpdatedPackage({

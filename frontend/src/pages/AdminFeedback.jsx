@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdFeedback } from "react-icons/md";
 import { AiOutlineEye } from "react-icons/ai";
