@@ -204,13 +204,15 @@ const getUserDetails = async (req, res) => {
  * @param {Object} res
  * @returns {Object} res
  */
-const getUserprofileDetails = async (req, response) => {
+const getUserprofileDetails = async (req, res) => {
+  // if (req.params.UserId) {
   try {
-    const UserProfileDetails = await Customer.findById(req.params.userId);
-    response.status(200).json({ customer: UserProfileDetails });
+    const customer = await Customer.findById(req.body.UserId);
+    res.status(200).json({ customer: customer });
   } catch (error) {
-    response.status(404).json({ message: error.message });
+    res.status(404).json({ message: error.message });
   }
+  // }
 };
 /** use to update edit user proile*/
 

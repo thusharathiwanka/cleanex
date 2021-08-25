@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 const UserInformation = () => {
-  const [userDetail, setUserDetail] = useState({});
+  const [customer, setUserDetail] = useState({});
 
   const getUserprofileDetails = async () => {
     try {
@@ -26,7 +26,7 @@ const UserInformation = () => {
         </h1>
 
         <table>
-          <td>{userDetail.name}</td>
+          <td>{customer.name}</td>
         </table>
 
         <div>
@@ -36,7 +36,7 @@ const UserInformation = () => {
               <input
                 className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border-2 border-light-blue border-opacity-100 bg-gray-100 text-gray-600 "
                 type="text"
-                value={userDetail.name}
+                value={customer.name}
               />
             </label>
           </div>
@@ -47,7 +47,7 @@ const UserInformation = () => {
               <input
                 className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border-2 border-light-blue border-opacity-100 bg-gray-100 text-gray-600"
                 type="text"
-                value={userDetail.email}
+                value={customer.email}
               />
             </label>
           </div>
@@ -58,7 +58,7 @@ const UserInformation = () => {
               <input
                 className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border-2 border-light-blue border-opacity-100 bg-gray-100 text-gray-600 "
                 type="password"
-                value={userDetail.password}
+                value={customer.password}
               />
             </label>
           </div>
@@ -70,7 +70,7 @@ const UserInformation = () => {
                 className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border-2 border-light-blue border-opacity-100 bg-gray-100 text-gray-600"
                 id="mobile"
                 type="text"
-                value={userDetail.mobile}
+                value={customer.mobile}
               />
             </label>
           </div>
