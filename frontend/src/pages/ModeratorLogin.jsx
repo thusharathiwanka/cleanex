@@ -107,7 +107,6 @@ const AdminLogin = () => {
 					src={LeftBubble}
 					alt="left-bubble-img"
 					className="absolute left-0 bottom-0 -z-2"
-					data-aos="fade-bottom"
 				/>
 			</div>
 		</div>

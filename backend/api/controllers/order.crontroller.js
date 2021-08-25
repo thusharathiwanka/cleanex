@@ -92,7 +92,7 @@ const getByIdOrder = async (req, res) => {
 };
 
 const updateDeliveryStatus = async (req, res) => {
-	const order = await order.findByIdAndUpdate(req.body.id, {});
+	const newOrder = await order.findByIdAndUpdate(req.body.id, {});
 };
 
 const updateDeliverID = async (req, res) => {

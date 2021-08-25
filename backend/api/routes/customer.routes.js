@@ -1,24 +1,26 @@
 const router = require("express").Router();
 const {
-	saveCustomer,
-	getCustomers,
-	loginCustomer,
-	deleteCustomer,
-	getUserDetails,
-	getCustomersTotal,
-	getUserprofileDetails,
-	updateUserProfile,
+  saveCustomer,
+  getCustomers,
+  loginCustomer,
+  deleteCustomer,
+  getUserDetails,
+  getCustomersTotal,
+  getUserprofileDetails,
+  updateUserProfile,
+  deleteUserProfile,
 } = require("../controllers/customer.controller");
 const { verifyAdminAuth } = require("../middleware/adminAuth");
 const { verifyCustomerAuth } = require("../middleware/customerAuth");
 
 router.get("/", verifyAdminAuth, getCustomers);
 router.get("/total", verifyAdminAuth, getCustomersTotal);
-router.get("/:id", verifyAdminAuth, getUserDetails);
 router.post("/register", saveCustomer);
 router.post("/login", loginCustomer);
-router.delete("/:id", deleteCustomer);
 router.get("/userProfile", verifyCustomerAuth, getUserprofileDetails);
-router.put("/updateUserProfile/:id", verifyCustomerAuth, updateUserProfile);
+router.delete("/deleteProfile", verifyCustomerAuth, deleteUserProfile);
+router.put("/updateUserProfile", verifyCustomerAuth, updateUserProfile);
+router.get("/:id", verifyAdminAuth, getUserDetails);
+router.delete("/:id", deleteCustomer);
 
 module.exports = router;
