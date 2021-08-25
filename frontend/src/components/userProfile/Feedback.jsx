@@ -1,7 +1,7 @@
 // import axios from "axios";
 // import React, { useState } from "react";
-// import Error from "../components/toasts/Error";
-// import Success from "../components/toasts/Success";
+// import Error from "../toasts/Error";
+// import Success from "../toasts/Success";
 // import { Link } from "react-router-dom";
 // const Feedback = () => {
 //   const [error, setError] = useState("");
@@ -17,7 +17,7 @@
 //     e.preventDefault();
 //     setButton(true);
 //     try {
-//       const res = await axios.post("/feedback", newFeedback);
+//       const res = await axios.post("/", newFeedback);
 //       newFeedback = res.data.feedback;
 //       setButton(false);
 //       setFeedback({
@@ -37,6 +37,8 @@
 //   return (
 //     <div>
 //       <div className="flex mx-auto items-center justify-center shadow-lg mt-56  mb-4 max-w-lg">
+//         {error && <Error error={error} top="-top-2" />}
+//         {success && <Success success={success} top="-top-2" />}
 //         <form className="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
 //           <div className="flex flex-wrap -mx-3 mb-6">
 //             <h2 className="text-5xl font-extrabold pb-10 pt-10 text-center ml-8">
