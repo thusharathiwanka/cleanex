@@ -1,23 +1,3 @@
-<<<<<<< Updated upstream
-import axios from "axios";
-import React, { useState } from "react";
-import Error from "../components/toasts/Error";
-import Success from "../components/toasts/Success";
-import { Link } from "react-router-dom";
-const Feedback = () => {
-  // const [error, setError] = useState("");
-  // const [success, setSuccess] = useState("");
-  // const [button, setButton] = useState(false);
-  const [newFeedback, setFeedback] = useState({
-    topic,
-    description,
-    email,
-    category,
-  });
-  const saveFeedback = async (e) => {
-    e.preventDefault();
-    setButton(true);
-=======
 // import axios from "axios";
 // import React, { useState } from "react";
 // import Error from "../components/toasts/Error";
@@ -36,8 +16,6 @@ const Feedback = () => {
 //   const saveFeedback = async (e) => {
 //     e.preventDefault();
 //     setButton(true);
->>>>>>> Stashed changes
-
 //     try {
 //       const res = await axios.post("/feedback", newFeedback);
 //       newFeedback = res.data.feedback;

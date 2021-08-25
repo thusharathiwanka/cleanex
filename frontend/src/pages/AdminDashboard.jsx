@@ -24,7 +24,6 @@ const Dashboard = () => {
 				console.error(err);
 			}
 		});
-		console.log(totals);
 		setIsLoading(false);
 	};
 
