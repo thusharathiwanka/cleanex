@@ -31,6 +31,21 @@ const saveFeedback = async (req, res) => {
 
   return res.status(400).send();
 };
-module.exports = {
-  saveFeedback,
+
+/**
+ * use to get total of the feedbacks
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Object} res
+ */
+const getFeedbacksTotal = async (req, res) => {
+  try {
+    const feedbacks = await Feedback.find();
+    return res.status(200).json({ total: feedbacks.length });
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).send();
+  }
 };
+
+module.exports = { getFeedbacksTotal, saveFeedback };

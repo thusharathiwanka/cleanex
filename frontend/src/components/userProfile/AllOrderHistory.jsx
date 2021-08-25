@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 const AllOrderHistory = () => {
   return (
-    <div class="flex flex-col">
-      <div class="flex items-center justify-center ">
-        <div class="flex border-2 rounded mt-20 -ml-8">
+    <div className="flex flex-col">
+      <div className="flex items-center justify-center ">
+        <div className="flex border-2 rounded mt-20 -ml-8">
           <input
             type="Date"
-            class="px-4 py-2 w-80"
+            className="px-4 py-2 w-80"
             placeholder="Search"
           ></input>
-          <button class="flex items-center justify-center px-4 border-l">
+          <button className="flex items-center justify-center px-4 border-l">
             <svg
-              class="w-6 h-6 text-gray-600"
+              className="w-6 h-6 text-gray-600"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -23,76 +23,76 @@ const AllOrderHistory = () => {
         </div>
       </div>
       <div className="flex mx-auto items-center justify-center shadow-lg mt-56  mb-4">
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <h2 class="text-5xl font-extrabold pb-10 pt-10 text-center ml-8 ">
+        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <h2 className="text-5xl font-extrabold pb-10 pt-10 text-center ml-8 ">
             All Orders
           </h2>
-          <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg m-8">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-lighter-blue">
+          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg m-8">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-lighter-blue">
                   <tr>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
                     >
                       Date
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
                     >
                       OrderID
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
                     >
                       Total Price
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
                     >
                       Status
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider"
                     >
                       Role
                     </th>
-                    <th scope="col" class="relative px-6 py-3">
-                      <span class="sr-only">Edit</span>
+                    <th scope="col" className="relative px-6 py-3">
+                      <span className="sr-only">Edit</span>
                     </th>
                   </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-900">2021-03-08</div>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">2021-03-08</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-900">009ID</div>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">009ID</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-900">8900</div>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">8900</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                         Active
                       </span>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <Link
-                        class="text-green-600 hover:text-green-400"
+                        className="text-green-600 hover:text-green-400"
                         to={`/auth/user/vieworder`}
                       >
                         View
                       </Link>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <Link class="text-red-500 hover:text-red-400">
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <Link className="text-red-500 hover:text-red-400">
                         Delete
                       </Link>
                     </td>

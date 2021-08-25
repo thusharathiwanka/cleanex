@@ -3,10 +3,12 @@ import axios from "axios";
 import { FiPlus } from "react-icons/fi";
 import { BiEditAlt } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { AiOutlineEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import ConfirmModal from "../components/modals/ConfirmModal";
+import PackageViewModal from "../components/modals/PackageViewModal";
 import Spinner from "../components/loading/Spinner";
 import { imageURL } from "../config/paths";
 
@@ -16,6 +18,7 @@ const AdminPackages = () => {
 	const [packageId, setPackageId] = useState("");
 	const [showModal, setShowModal] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
+	const [showViewModal, setShowViewModal] = useState(false);
 
 	let statusStyle;
 
@@ -50,6 +53,13 @@ const AdminPackages = () => {
 					setShowModal={setShowModal}
 					showModal={showModal}
 					execute={deletePackage}
+					id={packageId}
+				/>
+			)}
+			{showViewModal && (
+				<PackageViewModal
+					setShowViewModal={setShowViewModal}
+					showViewModal={showViewModal}
 					id={packageId}
 				/>
 			)}
@@ -129,7 +139,7 @@ const AdminPackages = () => {
 																<div className="flex items-center">
 																	<div className="flex-shrink-0 h-10 w-10">
 																		<img
-																			className="h-10 w-10 rounded-full"
+																			className="h-10 w-10 rounded-full object-cover"
 																			src={imageURL + packageItem.src}
 																			alt="package-img"
 																		/>
@@ -161,9 +171,18 @@ const AdminPackages = () => {
 																</span>
 															</td>
 															<td className="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
+																<button
+																	className="text-green-400 mr-5 my-2"
+																	onClick={() => {
+																		setPackageId(packageItem._id);
+																		setShowViewModal(true);
+																	}}
+																>
+																	<AiOutlineEye />
+																</button>
 																<Link
-																	to="/auth/admin/packages/update"
-																	className="text-green-400 mr-5 my-2 cursor-pointer"
+																	to={`/auth/admin/packages/update/${packageItem._id}`}
+																	className="text-yellow-400 mr-5 my-2 cursor-pointer"
 																>
 																	<BiEditAlt />
 																</Link>

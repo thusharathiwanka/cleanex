@@ -55,6 +55,7 @@ const AdminLogin = () => {
 								type="text"
 								name="username"
 								id="username"
+								autoComplete="off"
 								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue focus:border-2 transition duration-500 ease-in-out"
 								required
 								value={moderator.email}
@@ -75,6 +76,7 @@ const AdminLogin = () => {
 								type="password"
 								name="password"
 								id="password"
+								autoComplete="off"
 								className="outline-none rounded-full border px-4 py-3 focus:border-light-blue transition duration-500 ease-in-out"
 								required
 								value={moderator.password}
@@ -98,14 +100,14 @@ const AdminLogin = () => {
 				<img
 					src={RightBubble}
 					alt="right-bottom-bubble"
-					className="absolute -z-2 top-20 w-60 right-40"
+					className="absolute top-20 w-60 right-40 -z-2"
 					data-aos="fade-bottom"
 				/>
 				<img
 					src={LeftBubble}
 					alt="left-bubble-img"
-					className="absolute left-0 bottom-10 -z-2"
-					data-aos="fade-right"
+					className="absolute left-0 bottom-0 -z-2"
+					data-aos="fade-bottom"
 				/>
 			</div>
 		</div>

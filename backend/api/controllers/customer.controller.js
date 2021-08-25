@@ -204,6 +204,7 @@ const getUserDetails = async (req, res) => {
  * @param {Object} res
  * @returns {Object} res
  */
+
 const getUserprofileDetails = async (req, res) => {
   console.log(req.body);
   try {

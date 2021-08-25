@@ -1,5 +1,4 @@
-import image from "../../assets/images/images-removebg-preview.png";
-import iconPlus from "../../assets/images/Group.png";
+import { IoBagAddOutline } from "react-icons/io5";
 import { CartContext } from "../../contexts/CartContext";
 import React, { useContext } from "react";
 import { imageURL } from "../../config/paths";
@@ -18,14 +17,16 @@ const Test_Item = ({ packageItem }) => {
 								pack: { pack: packageItem, quantity: "1" },
 							})
 						}
-						className="absolute w-6 h6 top-5 right-5"
+						className="absolute w-7 h6 top-5 b 	font-weight: 500;
+						font-extrabold right-5 text-light-blue hover:text-blue-300"
 					>
-						<img src={iconPlus} alt="" />
+						<IoBagAddOutline className=" w-7 h-7 " />
 					</button>
 
 					<img
 						className="w-40 rounded-t-lg h-40"
 						src={imageURL + packageItem.src}
+						alt="image"
 					/>
 				</div>
 

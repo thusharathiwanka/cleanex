@@ -1,10 +1,18 @@
-const blog = require("../models/payment.model");
+const blog = require("../models/blog.model");
+const fs = require("fs");
 
 const addBlogs = async (req, res) => {
 	try {
-		const newBlog = new blog(req.body);
+		const newBlog = new blog({
+			topic: req.body.topic,
+			description: req.body.description,
+			content: req.body.content,
+			name: req.body.name,
+			date: req.body.date,
+		});
+		console.log(req.body.topic);
 		await newBlog.save();
-		res.status(200);
+		res.status(200).json(newBlog._id);
 	} catch (err) {
 		res.status(400);
 		console.log(err.message);
@@ -14,7 +22,7 @@ const addBlogs = async (req, res) => {
 const getAllBlogs = async (req, res) => {
 	try {
 		const blogs = await blog.find();
-		res.status(200).json(blogs);
+		res.status(200).json({blogs:blogs});
 	} catch (err) {
 		res.status(400);
 		console.log(err.message);
@@ -23,22 +31,40 @@ const getAllBlogs = async (req, res) => {
 const getBlog = async (req, res) => {
 	try {
 		const singleBlog = await blog.findById(req.params.id);
-		res.status(200).json(singleBlog);
+		res.status(200).json({singleBlog:singleBlog});
 	} catch (err) {
 		res.status(400);
 		console.log(err.message);
+
 	}
 };
 
+const updateImage = async (req, res) =>{
+		console.log(req.body);
+		fs.unlink(
+				`${process.env.UPLOAD_DIR}/${req.body.previousname}`,
+				(err) => {
+					if (err) {
+						console.error(err.message);
+						return res.status(500).send();
+					}
+				}
+			);
+			res.status(200).json("image updated")
+
+}
 const updateBlogs = async (req, res) => {
+	console.log("req.body");
 	try {
 		const singleBlog = await blog.findByIdAndUpdate(req.params.id, {
 			topic: req.body.topic,
 			description: req.body.description,
 			content: req.body.content,
-			photo: req.body.photo,
+			name: req.body.name,
+			date: req.body.date
 		});
-		res.status(200);
+		console.log(req.body);
+		res.status(200).json("update successful");
 	} catch (err) {
 		res.status(400);
 		console.log(err.message);
@@ -48,11 +74,13 @@ const updateBlogs = async (req, res) => {
 const deleteBlogs = async (req, res) => {
 	try {
 		const singleBlog = await blog.findByIdAndDelete(req.params.id);
-		res.status(200);
+		res.status(200).json("deleet successful");
 	} catch (err) {
 		res.status(400);
 		console.log(err.message);
 	}
 };
 
-module.exports = { getAllBlogs, getBlog, addBlogs, deleteBlogs, updateBlogs };
+
+
+module.exports = { getAllBlogs, getBlog, addBlogs, deleteBlogs, updateBlogs, updateImage };

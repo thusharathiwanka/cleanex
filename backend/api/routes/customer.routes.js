@@ -14,6 +14,7 @@ const { verifyCustomerAuth } = require("../middleware/customerAuth");
 
 router.get("/", verifyAdminAuth, getCustomers);
 router.get("/total", verifyAdminAuth, getCustomersTotal);
+router.get("/:id", verifyAdminAuth, getUserDetails);
 router.post("/register", saveCustomer);
 router.post("/login", loginCustomer);
 router.get("/userProfile", verifyCustomerAuth, getUserprofileDetails);

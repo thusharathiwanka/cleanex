@@ -30,9 +30,10 @@ import AllOrderHistory from "../pages/AllOrderHistory";
 import ViewOrder from "../pages/ViewOrder";
 import Feedback from "../pages/Feedback";
 import UserProfileDelete from "../pages/UserProfileDelete";
+import AdminUpdatePackage from "../pages/AdminUpdatePackage";
 
 const Routes = () => {
-  const { loggedIn, loggedInRole } = useContext(AuthContext);
+	const { loggedIn, loggedInRole } = useContext(AuthContext);
 
 	return (
 		<Switch>
@@ -64,6 +65,9 @@ const Routes = () => {
 			<Route exact path="/auth/admin/packages/new">
 				<AdminNewPackage />
 			</Route>
+			<Route exact path="/auth/admin/packages/update/:id">
+				<AdminUpdatePackage />
+			</Route>
 			<Route exact path="/auth/admin/customers">
 				<AdminCustomer />
 			</Route>
@@ -81,7 +85,7 @@ const Routes = () => {
 			<Route exact path="/auth/user/blogs">
 				<Blog />
 			</Route>
-			<Route exact path="/singleblog">
+			<Route exact path="/singleblog/:id">
 				<SingleBlog />
 			</Route>
 			<Route exact path="/payment">
@@ -108,21 +112,20 @@ const Routes = () => {
 			<Route exact path="/auth/user/userprofiledelete">
 				<UserProfileDelete />
 			</Route>
-			<Route exact path="/Deliverer">
+			<Route exact path="auth/deliverer/Deliverer">
 				<Deliverer />
 			</Route>
-			<Route exact path="/Deliverer_home">
+			<Route exact path="/auth/deliverer/dashboard">
 				<DelivererHome />
 			</Route>
 			<Route exact path="/auth/user/cart">
 				<LaundryBag />
 			</Route>
-			<Route exact path="/editblogs">
+			<Route exact path="/editblogs/:id">
 				<EditBlog />
 			</Route>
 		</Switch>
 	);
-
 };
 
 export default Routes;
