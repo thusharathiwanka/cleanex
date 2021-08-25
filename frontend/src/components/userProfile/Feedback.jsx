@@ -4,9 +4,9 @@ import Error from "../components/toasts/Error";
 import Success from "../components/toasts/Success";
 import { Link } from "react-router-dom";
 const Feedback = () => {
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [button, setButton] = useState(false);
+  // const [error, setError] = useState("");
+  // const [success, setSuccess] = useState("");
+  // const [button, setButton] = useState(false);
   const [newFeedback, setFeedback] = useState({
     topic,
     description,

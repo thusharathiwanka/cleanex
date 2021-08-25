@@ -5,7 +5,7 @@ const saveFeedback = async (req, res) => {
     const { topic, description, createdAt, givenBy, category } = req.body;
 
     // * user inputs validation
-    if (!topic || !description || !email || !givenBy || !category) {
+    if (!topic || !description || !givenBy || !createdAt || !category) {
       return res.status(400).json({ message: "Please fill all the fields" });
     }
 
@@ -15,13 +15,15 @@ const saveFeedback = async (req, res) => {
         topic,
         description,
         createdAt,
-        givenAt,
+        givenBy,
         category,
       });
+
+      console.log(newFeedback);
       await newFeedback.save();
 
       // * sending as saved
-      return res.status(201).json({ feedback: feedback });
+      return res.status(201).json({ feedback: newFeedback });
     } catch (err) {
       console.log(err);
       console.error(err.message);
