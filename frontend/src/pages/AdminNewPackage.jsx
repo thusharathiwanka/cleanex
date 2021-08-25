@@ -40,8 +40,7 @@ const AdminNewPackage = () => {
 				const res = await axios.post("/packages/image/upload", formData);
 				newPackage.src = res.data.filename;
 			} catch (err) {
-				console.error(err.message);
-				return setError(err.message);
+				return setError(err.response.data.message);
 			}
 		}
 
@@ -60,7 +59,8 @@ const AdminNewPackage = () => {
 			setSuccess("New package created successfully.");
 			setTimeout(() => history.push("/auth/admin/packages"), 2000);
 		} catch (err) {
-			setError(err.response.message);
+			console.log(err.response);
+			setError(err.response.data.message);
 			setButtonStatus(false);
 		}
 	};
@@ -165,7 +165,6 @@ const AdminNewPackage = () => {
 									name="src"
 									id="package-image"
 									className="hidden"
-									required
 									onChange={fileChangeHandler}
 									ref={fileInputRef}
 								/>

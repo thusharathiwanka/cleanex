@@ -13,6 +13,11 @@ const savePackage = async (req, res) => {
 		const { name, description, price, status, src, createdAt, updatedAt } =
 			req.body;
 
+		if (!src) {
+			console.log(src);
+			return res.status(400).json({ message: "Please select an image" });
+		}
+
 		// * user inputs validation
 		if (
 			!name ||
@@ -95,25 +100,6 @@ const getPackagesBasedOnStatus = async (req, res) => {
 	}
 };
 
-// TODO - should be looked more into this
-/**
- * use to get all the packages based on search query
- * @param {Object} req
- * @param {Object} res
- * @returns {Object} res
- */
-const getPackagesBasedOnSearchQuery = async (req, res) => {
-	if (req.params.query) {
-		try {
-			const packages = await Package.find({ name: req.params.query });
-			return res.status(200).json({ packages: packages });
-		} catch (err) {
-			console.error(err.message);
-			return res.status(500).send();
-		}
-	}
-};
-
 /**
  * use to get package based on id
  * @param {Object} req
@@ -158,6 +144,11 @@ const updatePackage = async (req, res) => {
 	// * request body and params validation
 	if (req.params.id && req.body) {
 		const { name, description, price, status, src, updatedAt } = req.body;
+
+		if (!src) {
+			console.log(src);
+			return res.status(400).json({ message: "Please select an image" });
+		}
 
 		// * user inputs validation
 		if (!name || !description || !price || !status || !src || !updatedAt) {
@@ -245,5 +236,4 @@ module.exports = {
 	getPackage,
 	getPackagesTotal,
 	getPackagesBasedOnStatus,
-	getPackagesBasedOnSearchQuery,
 };
