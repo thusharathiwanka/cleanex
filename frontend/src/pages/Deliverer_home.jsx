@@ -1,6 +1,23 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 import OrderList from "../components/Deliverer/OrderList";
 import Navbar from "../components/nav/Navbar";
+
 const Deliverer_home = () => {
+	const [userDetail, setUserDetail] = useState({});
+	const delivererDetails = async () => {
+		try {
+			const res = await axios.get("order/deliverDetails");
+			setUserDetail(res.data.moderators);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
+	useEffect(() => {
+		delivererDetails();
+	}, []);
 	return (
 		<div>
 			<Navbar />
