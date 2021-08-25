@@ -16,7 +16,7 @@ const WashMenu = (props) => {
             </div> 
             <br/> 
             <div>
-            {(List==="pending")? <PendingLists setErr={props.setErr} setSucc={props.setSucc} setSuccMsg={props.setSuccMsg}/> :(List==="processing")? <ProcessingList setErr={props.setErr} setSucc={props.setSucc} setSuccMsg={props.setSuccMsg} />:<CompletedList/>}
+            {(List==="pending")? <PendingLists setErr={props.setErr} setSucc={props.setSucc} /> :(List==="processing")? <ProcessingList setErr={props.setErr} setSucc={props.setSucc}  />:<CompletedList/>}
             </div>
         </div>
     )

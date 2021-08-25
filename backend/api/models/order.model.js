@@ -13,9 +13,9 @@ const orderSchema = new mongoose.Schema({
 	CompletedDate: { type: String },
 	CompletedTime: { type: String },
 
+	CustomerName: { type: String },
 	Address: { type: String },
 	DelivaryId: { type: mongoose.Schema.Types.ObjectId, ref: "moderators" },
-	CustomerId: [{ type: mongoose.Schema.Types.ObjectId, ref: "customers" }],
 });
 
 const Order = mongoose.model("Orders", orderSchema);
