@@ -6,7 +6,7 @@ import { CartContext } from "../../contexts/CartContext";
 
 const PackageCard = ({ packageItem }) => {
 	const { dispatch } = useContext(CartContext);
-	const [quantity, setQuantity] = useState("");
+	const [quantity, setQuantity] = useState("1");
 
 	return (
 		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8 w-72">
@@ -38,12 +38,12 @@ const PackageCard = ({ packageItem }) => {
 					</select>
 
 					<button
-						onClick={() =>
+						onClick={() => {
 							dispatch({
 								type: "ADD_PACK",
 								pack: { pack: packageItem, quantity: quantity },
-							})
-						}
+							});
+						}}
 						className="text-3xl text-light-blue"
 					>
 						<IoBagAdd />

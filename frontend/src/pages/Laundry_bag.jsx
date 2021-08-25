@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import LocationInput from "../components/Laundry_bag/locationIput";
 //import Item from "../components/Laundry_bag/Item";
 import Item from "../components/Laundry_bag/Item";
 import OrderSummary from "../components/Laundry_bag/OrderSummary";

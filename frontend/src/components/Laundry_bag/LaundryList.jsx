@@ -10,7 +10,7 @@ import { AiOutlineRollback } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const List = () => {
-	const { packages, dispatch } = useContext(CartContext);
+	const { items, dispatch } = useContext(CartContext);
 	const [value, setValue] = useState(1);
 	const [pack, setPack] = useState([]);
 
@@ -54,7 +54,7 @@ const List = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{packages.map((packages) => {
+					{items.map((packages) => {
 						return (
 							<tr
 								style={{ borderSpacing: "1em .5em" }}

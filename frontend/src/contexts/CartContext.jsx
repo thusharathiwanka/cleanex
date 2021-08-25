@@ -5,15 +5,15 @@ import { cartReduser } from "../reducers/cartReducer";
 export const CartContext = createContext();
 
 const CartContextProvider = (props) => {
-	const [packages, dispatch] = useReducer(cartReduser, [], () => {
-		const localData = localStorage.getItem("packages");
+	const [items, dispatch] = useReducer(cartReduser, [], () => {
+		const localData = localStorage.getItem("items");
 		return localData ? JSON.parse(localData) : [];
 	});
 	useEffect(() => {
-		localStorage.setItem("packages", JSON.stringify(packages));
-	}, [packages]);
+		localStorage.setItem("items", JSON.stringify(items));
+	}, [items]);
 	return (
-		<CartContext.Provider value={{ packages, dispatch }}>
+		<CartContext.Provider value={{ items, dispatch }}>
 			{props.children}
 		</CartContext.Provider>
 	);

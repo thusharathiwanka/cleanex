@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
 	items: [{ type: Object }],
-	WashingStatus: { type: String },
-	PickupStatus: { type: String },
+	WashingStatus: { type: String, required: true, default: "pending" },
+	PickupStatus: { type: String, required: true, default: "pending" },
 	Total: { type: String },
-	DelivaryStatus: { type: String },
+	DelivaryStatus: { type: String, required: true, default: "pending" },
 	Hours: { type: String },
 	StartDate: { type: String },
 
