@@ -12,7 +12,7 @@ export const cartReduser = (state, action) => {
 				},
 			];
 		case "REMOVE_PACK":
-			return state.filter((packages) => packages.id !== action.id);
+			return state.filter((items) => items.id !== action.id);
 		default:
 			return state;
 	}

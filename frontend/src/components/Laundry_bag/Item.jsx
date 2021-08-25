@@ -1,6 +1,4 @@
-import image from "../../assets/images/images-removebg-preview.png";
 import { IoBagAddOutline } from "react-icons/io5";
-import { IoBagAdd } from "react-icons/io5";
 import { CartContext } from "../../contexts/CartContext";
 import React, { useContext } from "react";
 import { imageURL } from "../../config/paths";
@@ -28,6 +26,7 @@ const Test_Item = ({ packageItem }) => {
 					<img
 						className="w-40 rounded-t-lg h-40"
 						src={imageURL + packageItem.src}
+						alt="image"
 					/>
 				</div>
 
