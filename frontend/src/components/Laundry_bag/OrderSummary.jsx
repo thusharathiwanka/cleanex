@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const OrderSummary = () => {
 	const { items } = useContext(CartContext);
 
-	const [customer, setUserDetail] = useState({});
+	const [CustomerName, setCustomerName] = useState({});
 	const [showModal, setShowModal] = useState(false);
 	const [Address, setAddress] = useState("");
 	const [error, setError] = useState("");
@@ -29,7 +29,7 @@ const OrderSummary = () => {
 	const getUserprofileDetails = async () => {
 		try {
 			const res = await axios.get("/customers/userProfile");
-			setUserDetail(res.data.customer);
+			setCustomerName(res.data.customer);
 		} catch (err) {
 			console.error(err.message);
 		}
@@ -44,7 +44,8 @@ const OrderSummary = () => {
 			e.preventDefault();
 			let Total = total.toString();
 			let StartDate = startDate.toDateString();
-			const orders = { items, Total, StartDate, Address };
+
+			const orders = { items, Total, StartDate, Address, CustomerName };
 			setError(false);
 
 			try {
