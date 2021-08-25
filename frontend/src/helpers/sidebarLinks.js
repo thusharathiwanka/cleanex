@@ -13,7 +13,7 @@ const sidebarLinksAdmin = [
 	},
 	{ name: "Customers", path: "/auth/admin/customers", icon: <FaUsers /> },
 	{ name: "Feedbacks", path: "/auth/admin/feedbacks", icon: <MdFeedback /> },
-	{ name: "Blogs", path: "/auth/admin/blogs", icon: <BsBookHalf /> },
+	{ name: "Blogs", path: "/auth/user/blogs", icon: <BsBookHalf /> },
 	{ name: "Reports", path: "/auth/admin/reports", icon: <IoDocumentText /> },
 	{ name: "Sign Out", path: "", icon: <RiLogoutBoxFill /> },
 ];

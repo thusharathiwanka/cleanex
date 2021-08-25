@@ -13,8 +13,8 @@ const { verifyAdminAuth } = require("../middleware/adminAuth");
 const { verifyCustomerAuth } = require("../middleware/customerAuth");
 
 router.get("/", verifyAdminAuth, getCustomers);
-router.get("/:id", verifyAdminAuth, getUserDetails);
 router.get("/total", verifyAdminAuth, getCustomersTotal);
+router.get("/:id", verifyAdminAuth, getUserDetails);
 router.post("/register", saveCustomer);
 router.post("/login", loginCustomer);
 router.delete("/:id", deleteCustomer);

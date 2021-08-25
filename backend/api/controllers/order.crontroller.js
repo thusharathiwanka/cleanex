@@ -1,7 +1,5 @@
 const order = require("../models/order.model");
 
-// const order = require('../models/order.model')
-
 const updateToProcess = async (req, res) => {
 	try {
 		await order.findByIdAndUpdate(req.params.id, {
@@ -41,10 +39,10 @@ const getPendingOrders = async (req, res) => {
 
 const getProcessingOrders = async (req, res) => {
 	try {
-		const pendingOrdes = await order.find({
+		const processingOrdes = await order.find({
 			WashingStatus: "processing",
 		});
-		res.status(200).json(pendingOrdes);
+		res.status(200).json({processingOrdes:processingOrdes});
 	} catch (err) {
 		res.status(200);
 		console.log(err.message);
@@ -53,10 +51,10 @@ const getProcessingOrders = async (req, res) => {
 
 const getCompletedOrders = async (req, res) => {
 	try {
-		const pendingOrdes = await order.find({
+		const completedOrdes = await order.find({
 			WashingStatus: "completed",
 		});
-		res.status(200).json(pendingOrdes);
+		res.status(200).json({completedOrdes:completedOrdes});
 	} catch (err) {
 		res.status(200);
 		console.log(err.message);

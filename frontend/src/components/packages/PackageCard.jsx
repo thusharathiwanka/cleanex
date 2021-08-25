@@ -6,11 +6,8 @@ import { CartContext } from "../../contexts/CartContext";
 
 const PackageCard = ({ packageItem }) => {
 	const { dispatch } = useContext(CartContext);
-	const { value, setValue } = useState(1);
-	const handleSelect = (e) => {
-		console.log(e);
-		setValue(e.target.value);
-	};
+	const [quantity, setQuantity] = useState("");
+
 	return (
 		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8 w-72">
 			<span className="absolute top-3 left-3 inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-bold leading-none text-gray-600 bg-white blur rounded-full opacity-70">
@@ -28,9 +25,10 @@ const PackageCard = ({ packageItem }) => {
 				<p>{packageItem.description}</p>
 				<div className="flex justify-between pt-4 items-center">
 					<select
-						name="quantity"
 						className="border rounded-full px-4 py-1 focus:outline-none"
-						onSelect={handleSelect}
+						onClick={(e) => {
+							setQuantity(e.target.value);
+						}}
 					>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -43,14 +41,13 @@ const PackageCard = ({ packageItem }) => {
 						onClick={() =>
 							dispatch({
 								type: "ADD_PACK",
-								pack: { pack: packageItem, quantity: value },
+								pack: { pack: packageItem, quantity: quantity },
 							})
 						}
 						className="text-3xl text-light-blue"
 					>
 						<IoBagAdd />
 					</button>
-					<p>{value}</p>
 				</div>
 			</div>
 		</div>

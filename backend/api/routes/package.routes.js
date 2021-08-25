@@ -5,6 +5,7 @@ const {
 	deletePackage,
 	updatePackage,
 	getPackages,
+	getPackage,
 	getPackagesTotal,
 	savePackageImage,
 	getPackagesBasedOnStatus,
@@ -14,6 +15,7 @@ const { verifyCustomerAuth } = require("../middleware/customerAuth");
 
 router.get("/", getPackages);
 router.get("/total", verifyAdminAuth, getPackagesTotal);
+router.get("/package/:id", verifyAdminAuth, getPackage);
 router.get("/:status", verifyCustomerAuth, getPackagesBasedOnStatus);
 router.get("/search/:query", getPackagesBasedOnStatus);
 router.post("/", verifyAdminAuth, savePackage);
