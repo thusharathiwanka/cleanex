@@ -7,11 +7,16 @@ import { IoMailOutline } from "react-icons/io5";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import Spinner from "../components/loading/Spinner";
+import ConfirmModal from "../components/modals/ConfirmModal";
+import CustomerViewModal from "../components/modals/CustomerViewModal";
 
 const AdminFeedback = () => {
 	document.title = "CLEANEX - Feedbacks";
 	const [feedbacks, setFeedbacks] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [showModal, setShowModal] = useState(false);
+	const [showViewModal, setShowViewModal] = useState(false);
+	const [feedbackId, setFeedbackId] = useState("");
 
 	const getFeedbacks = async () => {
 		try {
@@ -23,12 +28,37 @@ const AdminFeedback = () => {
 		}
 	};
 
+	const deleteFeedback = async (id) => {
+		try {
+			await axios.delete(`customers/${id}`);
+			getFeedbacks();
+			setShowModal(false);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
 	useEffect(() => {
 		getFeedbacks();
 	}, []);
 
 	return (
 		<div className=" text-gray-800">
+			{showModal && (
+				<ConfirmModal
+					setShowModal={setShowModal}
+					showModal={showModal}
+					execute={deleteFeedback}
+					id={feedbackId}
+				/>
+			)}
+			{showViewModal && (
+				<CustomerViewModal
+					setShowViewModal={setShowViewModal}
+					showViewModal={showViewModal}
+					id={feedbackId}
+				/>
+			)}
 			<div className="ml-80 mt-20">
 				<h1
 					className="text-5xl font-extrabold pb-10 text-center"
@@ -113,15 +143,29 @@ const AdminFeedback = () => {
 															</div>
 														</td>
 														<td className="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
-															<button className="text-green-400 mr-5 my-2">
+															<button
+																className="text-green-400 mr-5 my-2"
+																onClick={() => {
+																	setFeedbackId(feedback._id);
+																	setShowViewModal(true);
+																}}
+															>
 																<AiOutlineEye />
 															</button>
-															<a href="mailto:someone@yoursite.com?subject=Feedback01">
+															<a
+																href={`mailto:${feedback.givenBy.email}?subject=${feedback.topic}`}
+															>
 																<button className="text-yellow-400 mr-5 my-2">
 																	<IoMailOutline />
 																</button>
 															</a>
-															<button className="text-red-400 mr-5 my-2">
+															<button
+																className="text-red-400 mr-5 my-2"
+																onClick={() => {
+																	setFeedbackId(feedback._id);
+																	setShowModal(true);
+																}}
+															>
 																<RiDeleteBin5Line />
 															</button>
 														</td>
