@@ -1,50 +1,65 @@
+import axios from "axios";
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import LocationInput from "./locationIput";
 import DatePicker from "react-datepicker";
+import Error from "../toasts/Error";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const OrderSummary = (props) => {
-	const { packages } = useContext(CartContext);
+const OrderSummary = () => {
+	const { items } = useContext(CartContext);
 	const [showModal, setShowModal] = useState(false);
-	const [state, setState] = useState("");
-
+	const [Address, setAddress] = useState("");
+	const [error, setError] = useState("");
+	const [Iserror, setIsError] = useState(false);
 	const [startDate, setStartDate] = useState(new Date());
-	let price = 0;
-	//const [price, setPrice] = useState(0);
+	let total = 0;
+	let obj = new Set();
+	items.map((packages) => {
+		total += packages.pack.price * packages.quantity;
+		obj.add("\n" + packages.pack.name + " * " + packages.quantity + " , ");
+	});
 
-	return packages.length ? (
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		let Total = total.toString();
+		let StartDate = startDate.toDateString();
+
+		const orders = { items, Total, StartDate, Address };
+		console.log(orders);
+
+		try {
+			await axios.post("order/addOrder", orders).then(function (response) {
+				console.log(response);
+				setShowModal(false);
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	return items.length ? (
 		<div className="max-w-xl   ml-40     ">
 			<div className=" bg-light-blue pb-3 pt-3 text-center text-white text-xl mb-10">
 				<p>Order summary</p>
 			</div>
 
 			<div className="pt-20 pb-20 bg-gray-300 text-gray">
-				<p className="ml-11 text-gray-600 text-lg">Items:</p>
-				{packages.map((packages) => {
-					return (
-						<p key={packages.id} className="ml-2 float-right">
-							{packages.pack.name}
-						</p>
-					);
-				})}
-				<p className="ml-11 text-gray-600 text-lg">Estimated Sub Total : Rs</p>
+				<p className="ml-11 text-gray-600 text-lg">Items: </p>
 
-				{packages.map((packages) => {
-					price = price + packages.pack.price * packages.pack.quantity;
-					return (
-						<p key={packages.id} className="ml-2 float-right">
-							{price}
-						</p>
-					);
-				})}
+				<p className="mr-2 float-right">{[...obj]}</p>
+				<p className="ml-11 text-gray-600 text-lg">
+					Estimated Sub Total : Rs {total}.00
+				</p>
+
+				<p className="ml-2 float-right"></p>
 			</div>
 
 			<div className="mb-40 mt-10 max-w-4xl">
 				<button
 					onClick={() => setShowModal(true)}
-					className="p-3  rounded-xl bg-light-blue text-center text-white max-w-sm float-right    "
+					className="p-3  rounded-lg bg-light-blue text-center  text-white max-w-sm float-right shadow hover:shadow-xl "
 				>
 					Place Order
 				</button>
@@ -70,43 +85,54 @@ const OrderSummary = (props) => {
 									</div>
 									{/*body*/}
 									<div className="relative p-6 flex-auto ml-auto mr-auto w-85">
-										<form>
+										<form onSubmit={handleSubmit}>
 											<div className="my-5 text-sm">
-												<label for="username" className="block ">
-													Location
-												</label>
-												<LocationInput setstate={setState} />
+												<label className="block ">Location</label>
+												<LocationInput setAddress={setAddress} />
 											</div>
-											<h1>{state}</h1>
+
 											<div className="my-5 text-sm">
-												<label for="username" className="block text-gray">
-													Date:
-												</label>
+												<label className="block text-gray">Date:</label>
 												<DatePicker
+													required
 													selected={startDate}
-													onChange={(date) => setStartDate(date)}
+													onChange={(date) => {
+														if (date != null) {
+															setStartDate(date);
+															setIsError(false);
+														} else {
+															setIsError(true);
+															setError("Date cannot be null");
+														}
+													}}
 													className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
 												/>
+												{Iserror ? (
+													<Error error={error} top={5} left={1} />
+												) : (
+													<p></p>
+												)}
+											</div>
+											<div className="flex items-center justify-center p-6  rounded-b mt-10 mb-20">
+												<button
+													className="text-gray-500 bg-gray-300 font-bold uppercase px-6 py-3 text-sm outline-none  rounded shadow hover:shadow-lg   focus:outline-none mr-10 mb-1 ease-linear transition-all duration-150"
+													type="button"
+													onClick={() => {
+														setShowModal(false);
+													}}
+												>
+													Close
+												</button>
+												<button
+													className="bg-light-blue text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-20 mr-1 mb-1 ease-linear transition-all duration-150"
+													type="submit"
+												>
+													Confirm
+												</button>
 											</div>
 										</form>
 									</div>
 									{/*footer*/}
-									<div className="flex items-center justify-center p-6  rounded-b mb-20">
-										<button
-											className="text-gray-500 bg-gray-300 font-bold uppercase px-6 py-3 text-sm outline-none  rounded shadow hover:shadow-lg   focus:outline-none mr-10 mb-1 ease-linear transition-all duration-150"
-											type="button"
-											onClick={() => setShowModal(false)}
-										>
-											Close
-										</button>
-										<button
-											className="bg-light-blue text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-20 mr-1 mb-1 ease-linear transition-all duration-150"
-											type="button"
-											onClick={() => setShowModal(false)}
-										>
-											Confirm
-										</button>
-									</div>
 								</div>
 							</div>
 						</div>
