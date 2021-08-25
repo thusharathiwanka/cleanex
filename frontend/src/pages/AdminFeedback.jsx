@@ -8,7 +8,7 @@ import { IoMailOutline } from "react-icons/io5";
 import Sidebar from "../components/sidebar/Sidebar";
 import Spinner from "../components/loading/Spinner";
 import ConfirmModal from "../components/modals/ConfirmModal";
-import CustomerViewModal from "../components/modals/CustomerViewModal";
+import FeedbackViewModal from "../components/modals/FeedbackViewModal";
 
 const AdminFeedback = () => {
 	document.title = "CLEANEX - Feedbacks";
@@ -30,7 +30,7 @@ const AdminFeedback = () => {
 
 	const deleteFeedback = async (id) => {
 		try {
-			await axios.delete(`customers/${id}`);
+			await axios.delete(`feedbacks/${id}`);
 			getFeedbacks();
 			setShowModal(false);
 		} catch (err) {
@@ -53,7 +53,7 @@ const AdminFeedback = () => {
 				/>
 			)}
 			{showViewModal && (
-				<CustomerViewModal
+				<FeedbackViewModal
 					setShowViewModal={setShowViewModal}
 					showViewModal={showViewModal}
 					id={feedbackId}
@@ -111,7 +111,10 @@ const AdminFeedback = () => {
 												</tr>
 											</thead>
 											{feedbacks.map((feedback) => (
-												<tbody className="bg-white divide-y divide-gray-200">
+												<tbody
+													className="bg-white divide-y divide-gray-200"
+													key={feedback._id}
+												>
 													<tr>
 														<td className="px-6 py-4 whitespace-nowrap">
 															<div className="flex items-center">
