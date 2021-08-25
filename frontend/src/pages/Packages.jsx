@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { BiSearch } from "react-icons/bi";
 import { IoArrowBackOutline } from "react-icons/io5";
 
 import PackageCard from "../components/packages/PackageCard";
+import Spinner from "../components/loading/Spinner";
 
 const Packages = () => {
 	document.title = "CLEANEX - All Packages";
 	const [activePackages, setActivePackages] = useState([]);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [isSearchEmpty, setIsSearchEmpty] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const getPackages = async () => {
 		try {
 			const res = await axios.get("packages/active");
 			setActivePackages(res.data.packages);
-			setIsSearchEmpty(false);
 			setSearchQuery("");
+			setIsSearchEmpty(false);
+			setIsLoading(false);
 		} catch (err) {
 			console.error(err);
 		}
@@ -26,16 +28,21 @@ const Packages = () => {
 	const getPackagesBasedOnSearchQuery = async (e) => {
 		e.preventDefault();
 		if (searchQuery) {
+			setIsLoading(true);
 			const res = await axios.get("packages/active");
 			const filteredActivePackages = res.data.packages.filter((activePackage) =>
 				activePackage.name.toLowerCase().includes(searchQuery.toLowerCase())
 			);
 
-			if (!filteredActivePackages)
-				return setActivePackages(filteredActivePackages);
+			if (filteredActivePackages.length === 0) {
+				setActivePackages([]);
+				setIsSearchEmpty(true);
+				setIsLoading(false);
+				return;
+			}
 
-			setActivePackages([]);
-			setIsSearchEmpty(true);
+			setActivePackages(filteredActivePackages);
+			setIsLoading(false);
 		}
 	};
 
@@ -65,25 +72,29 @@ const Packages = () => {
 					</button>
 				</form>
 			</div>
-			<div className="flex w-full justify-center flex-wrap">
-				{isSearchEmpty && (
-					<div className="w-full flex justify-center flex-col items-center">
-						<h1 className="text-2xl font-bold pb-10 text-center text-gray-500">
-							No Packages Found
-						</h1>
-						<button
-							className="font-semibold text-lg bg-light-blue text-white py-2 rounded-full flex justify-center items-center w-40"
-							onClick={getPackages}
-						>
-							<IoArrowBackOutline className="text-2xl" />
-							Back
-						</button>
-					</div>
-				)}
-				{activePackages.map((packageItem) => (
-					<PackageCard packageItem={packageItem} key={packageItem._id} />
-				))}
-			</div>
+			{isLoading ? (
+				<Spinner />
+			) : (
+				<div className="flex w-full justify-center flex-wrap">
+					{isSearchEmpty && (
+						<div className="w-full flex justify-center flex-col items-center">
+							<h1 className="text-2xl font-bold pb-10 text-center text-gray-500">
+								No Packages Found
+							</h1>
+							<button
+								className="font-semibold text-lg bg-light-blue text-white py-2 rounded-full flex justify-center items-center w-40"
+								onClick={getPackages}
+							>
+								<IoArrowBackOutline className="text-2xl" />
+								Back
+							</button>
+						</div>
+					)}
+					{activePackages.map((packageItem) => (
+						<PackageCard packageItem={packageItem} key={packageItem._id} />
+					))}
+				</div>
+			)}
 		</div>
 	);
 };
