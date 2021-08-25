@@ -8,6 +8,7 @@ const UserInformation = () => {
     try {
       const res = await axios.get("/customers/userProfile");
       setUserDetail(res.data.customer);
+      console.log(res);
     } catch (err) {
       console.error(err.message);
     }
@@ -24,10 +25,6 @@ const UserInformation = () => {
         <h1 className="text-5xl font-extrabold pb-10 text-center">
           Customer user profie
         </h1>
-
-        <table>
-          <td>{userDetail.name}</td>
-        </table>
 
         <div>
           <div className=" mb-4 ">

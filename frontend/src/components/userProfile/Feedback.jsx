@@ -16,10 +16,6 @@
 //   const saveFeedback = async (e) => {
 //     e.preventDefault();
 //     setButton(true);
-<<<<<<< HEAD
-
-=======
->>>>>>> 775f17fa46840862d51f899953f0a6e4ca5deb02
 //     try {
 //       const res = await axios.post("/", newFeedback);
 //       newFeedback = res.data.feedback;
