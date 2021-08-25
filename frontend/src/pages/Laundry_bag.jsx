@@ -28,7 +28,8 @@ const Laundry_bag = () => {
 			<div>
 				<OrderSummary />
 			</div>
-			<div className="flex w-full justify-center flex-wrap mb-20">
+
+			<div className="flex max-w-full justify-center flex-wrap  mb-20 ml-24 mr-10 ">
 				{activePackages.map((packageItem) => (
 					<Item packageItem={packageItem} key={packageItem._id} />
 				))}
