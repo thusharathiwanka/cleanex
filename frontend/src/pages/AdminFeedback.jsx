@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdFeedback } from "react-icons/md";
 import { AiOutlineEye } from "react-icons/ai";
@@ -8,6 +8,8 @@ import Sidebar from "../components/sidebar/Sidebar";
 
 const AdminFeedback = () => {
 	document.title = "CLEANEX - Feedbacks";
+	const [feedbacks, setFeedbacks] = useState([]);
+
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20">
@@ -80,7 +82,9 @@ const AdminFeedback = () => {
 													</div>
 												</td>
 												<td className="px-6 py-4 whitespace-nowrap">
-													<div className="text-sm text-gray-900">20-Aug-2021</div>
+													<div className="text-sm text-gray-900">
+														20-Aug-2021
+													</div>
 												</td>
 												<td className="px-6 py-4 whitespace-nowrap">
 													<div className="text-sm text-gray-900">Bug</div>
