@@ -1,5 +1,4 @@
 const order = require("../models/order.model");
-const moderators = require("../models/moderator.model");
 
 const updateToProcess = async (req, res) => {
 	try {
@@ -84,15 +83,15 @@ const getAllOrders = async (req, res) => {
 
 const getByIdOrder = async (req, res) => {
 	try {
-		const newOrder = await order.findById(req.params.id);
-		res.status(200).json(newOrder);
+		const order = await order.findById(req.params.id);
+		res.status(200).json(order);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
 };
 
 const updateDeliveryStatus = async (req, res) => {
-	const newOrder = await order.findByIdAndUpdate(req.body.id, {});
+	const order = await order.findByIdAndUpdate(req.body.id, {});
 };
 
 const updateDeliverID = async (req, res) => {
@@ -106,25 +105,12 @@ const updateDeliverID = async (req, res) => {
 	}
 };
 
-const getDelivererProfileDetails = async (request, response) => {
-	try {
-		console.log(req.params.userId);
-		const DelivererProfileDetails = await moderators.findById(
-			req.params.userId
-		);
-		response.status(200).json({ moderators: DelivererProfileDetails });
-	} catch (error) {
-		response.status(404).json({ message: error.message });
-	}
-};
-
 module.exports = {
 	addOrder,
 	getAllOrders,
 	getByIdOrder,
 	updateDeliveryStatus,
 	updateDeliverID,
-	getDelivererProfileDetails,
 	getPendingOrders,
 	getProcessingOrders,
 	getCompletedOrders,
