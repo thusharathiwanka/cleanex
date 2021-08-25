@@ -84,8 +84,8 @@ const getAllOrders = async (req, res) => {
 
 const getByIdOrder = async (req, res) => {
 	try {
-		const order = await order.findById(req.params.id);
-		res.status(200).json(order);
+		const newOrder = await order.findById(req.params.id);
+		res.status(200).json(newOrder);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
