@@ -34,6 +34,7 @@ import AdminUpdatePackage from "../pages/AdminUpdatePackage";
 
 const Routes = () => {
 	const { loggedIn, loggedInRole } = useContext(AuthContext);
+	console.log(loggedIn, loggedInRole);
 
 	return (
 		<Switch>
