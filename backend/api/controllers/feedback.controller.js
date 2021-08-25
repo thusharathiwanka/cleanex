@@ -58,7 +58,7 @@ const getFeedbacksTotal = async (req, res) => {
  */
 const getFeedbacks = async (req, res) => {
 	try {
-		const feedbacks = await Feedback.find();
+		const feedbacks = await Feedback.find().populate("givenBy", "email");
 		return res.status(200).json({ feedbacks: feedbacks });
 	} catch (err) {
 		console.error(err.message);

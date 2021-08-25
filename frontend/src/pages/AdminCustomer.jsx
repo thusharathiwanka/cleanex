@@ -134,9 +134,7 @@ const AdminCustomer = () => {
 														</td>
 														<td className="px-6 py-4 whitespace-nowrap">
 															<div className="text-sm text-gray-900">
-																{new Date(
-																	customer.createdAt
-																).toLocaleDateString()}
+																{new Date(customer.createdAt).toDateString()}
 															</div>
 														</td>
 														<td className="px-6 py-4 whitespace-nowrap">

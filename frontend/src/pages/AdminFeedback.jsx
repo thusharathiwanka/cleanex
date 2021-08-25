@@ -86,23 +86,25 @@ const AdminFeedback = () => {
 															</div>
 															<div className="ml-2">
 																<div className="text-sm font-medium text-gray-900">
-																	Feedback 01
+																	{feedback.topic}
 																</div>
 															</div>
 														</div>
 													</td>
 													<td className="px-6 py-4 whitespace-nowrap">
 														<div className="text-sm text-gray-900">
-															customer1@gmail.com
+															{feedback.givenBy.email}
 														</div>
 													</td>
 													<td className="px-6 py-4 whitespace-nowrap">
 														<div className="text-sm text-gray-900">
-															20-Aug-2021
+															{new Date(feedback.createdAt).toDateString()}
 														</div>
 													</td>
 													<td className="px-6 py-4 whitespace-nowrap">
-														<div className="text-sm text-gray-900">Bug</div>
+														<div className="text-sm text-gray-900">
+															{feedback.category}
+														</div>
 													</td>
 													<td className="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
 														<button className="text-green-400 mr-5 my-2">
