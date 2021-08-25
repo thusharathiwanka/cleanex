@@ -1,16 +1,16 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import LocationInput from "./locationIput";
 import DatePicker from "react-datepicker";
 import Error from "../toasts/Error";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { AuthContext } from "../../contexts/AuthContext";
 
 const OrderSummary = () => {
 	const { items } = useContext(CartContext);
-	const { loggedIn } = useContext(AuthContext);
+
+	const [customer, setUserDetail] = useState({});
 	const [showModal, setShowModal] = useState(false);
 	const [Address, setAddress] = useState("");
 	const [error, setError] = useState("");
@@ -25,6 +25,19 @@ const OrderSummary = () => {
 
 		return total;
 	});
+
+	const getUserprofileDetails = async () => {
+		try {
+			const res = await axios.get("/customers/userProfile");
+			setUserDetail(res.data.customer);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
+	useEffect(() => {
+		getUserprofileDetails();
+	}, []);
 
 	const handleSubmit = async (e) => {
 		if (Address != " " && total != 0 && startDate != null) {

@@ -1,4 +1,5 @@
 const order = require("../models/order.model");
+const moderators = require("../models/moderator.model");
 
 const updateToProcess = async (req, res) => {
 	try {
@@ -105,12 +106,25 @@ const updateDeliverID = async (req, res) => {
 	}
 };
 
+const getDelivererProfileDetails = async (request, response) => {
+	try {
+		console.log(req.params.userId);
+		const DelivererProfileDetails = await moderators.findById(
+			req.params.userId
+		);
+		response.status(200).json({ moderators: DelivererProfileDetails });
+	} catch (error) {
+		response.status(404).json({ message: error.message });
+	}
+};
+
 module.exports = {
 	addOrder,
 	getAllOrders,
 	getByIdOrder,
 	updateDeliveryStatus,
 	updateDeliverID,
+	getDelivererProfileDetails,
 	getPendingOrders,
 	getProcessingOrders,
 	getCompletedOrders,
