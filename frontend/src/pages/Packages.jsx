@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BiSearch } from "react-icons/bi";
 import { IoArrowBackOutline } from "react-icons/io5";
+import { IoIosClose } from "react-icons/io";
 
 import PackageCard from "../components/packages/PackageCard";
 import Spinner from "../components/loading/Spinner";
@@ -65,11 +66,24 @@ const Packages = () => {
 						className="outline-none rounded-full border px-8 py-3 focus:border-light-blue w-full"
 						placeholder="Search here..."
 						value={searchQuery}
-						onChange={(e) => setSearchQuery(e.target.value)}
+						onChange={(e) => {
+							setSearchQuery(e.target.value);
+						}}
 					/>
 					<button className="text-white bg-light-blue absolute right-0 top-0 h-full rounded-full w-24 flex items-center justify-center font-bold text-2xl">
 						<BiSearch />
 					</button>
+					{searchQuery && (
+						<div
+							className="absolute right-24 top-0 h-full rounded-full p-2 flex items-center justify-center font-bold text-3xl cursor-pointer"
+							onClick={() => {
+								setSearchQuery("");
+								getPackages();
+							}}
+						>
+							<IoIosClose className="text-red-400" />
+						</div>
+					)}
 				</form>
 			</div>
 			{isLoading ? (
