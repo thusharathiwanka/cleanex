@@ -188,14 +188,14 @@ const deleteCustomer = async (req, res) => {
  * @returns {Object} res
  */
 const getUserDetails = async (req, res) => {
-	if (req.params.id) {
-		try {
-			const customer = await Customer.findById(req.params.id);
-			res.status(200).json({ customer: customer });
-		} catch (err) {
-			res.status(404).json({ message: err.message });
-		}
-	}
+  if (req.params.id) {
+    try {
+      const customer = await Customer.findById(req.params.id);
+      res.status(200).json({ customer: customer });
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
 };
 
 /**
@@ -204,14 +204,17 @@ const getUserDetails = async (req, res) => {
  * @param {Object} res
  * @returns {Object} res
  */
-const getUserprofileDetails = async (request, response) => {
+
+const getUserprofileDetails = async (req, res) => {
+  console.log(req.body);
   try {
-    const UserProfileDetails = await Customer.findById(req.params.userId);
-    response.status(200).json({ customer: UserProfileDetails });
+    const customer = await Customer.findById(req.body.userId);
+    res.status(200).json({ customer: customer });
   } catch (error) {
-    response.status(404).json({ message: error.message });
+    res.status(404).json({ message: error.message });
   }
 };
+
 /** use to update edit user proile*/
 
 const updateUserProfile = async (req, res) => {
@@ -275,14 +278,13 @@ const updateUserProfile = async (req, res) => {
 // };
 
 module.exports = {
-	saveCustomer,
-	getCustomers,
-	loginCustomer,
-	deleteCustomer,
-	getUserDetails,
-	getCustomersTotal,
-	getUserprofileDetails,
-	updateUserProfile,
-	//   deleteUserProfile,
-
+  saveCustomer,
+  getCustomers,
+  loginCustomer,
+  deleteCustomer,
+  getUserDetails,
+  getCustomersTotal,
+  getUserprofileDetails,
+  updateUserProfile,
+  //   deleteUserProfile,
 };

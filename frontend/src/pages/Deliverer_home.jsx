@@ -1,8 +1,9 @@
 import OrderList from "../components/Deliverer/OrderList";
-
+import Navbar from "../components/nav/Navbar";
 const Deliverer_home = () => {
 	return (
 		<div>
+			<Navbar />
 			<div
 				className="flex items-center"
 				style={{ marginTop: "150px", marginLeft: "150px" }}
@@ -19,8 +20,8 @@ const Deliverer_home = () => {
 					<div className="text-sm text-gray-500">jane.cooper@example.com</div>
 				</div>
 				<button
-					style={{ width: "220px", float: "right", marginLeft: "515px" }}
-					className="bg-light-blue hover:bg-blue-200 text-white font-bold py-2 px-4 rounded-full"
+					style={{ width: "220px", marginLeft: "515px" }}
+					className="bg-light-blue hover:bg-blue-200 text-white font-bold py-2 px-4 mr-1 rounded-full"
 				>
 					My Deliveries
 				</button>

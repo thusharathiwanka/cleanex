@@ -34,6 +34,7 @@ import AdminUpdatePackage from "../pages/AdminUpdatePackage";
 
 const Routes = () => {
 	const { loggedIn, loggedInRole } = useContext(AuthContext);
+	console.log(loggedIn, loggedInRole);
 
 	return (
 		<Switch>
@@ -112,10 +113,10 @@ const Routes = () => {
 			<Route exact path="/auth/user/userprofiledelete">
 				<UserProfileDelete />
 			</Route>
-			<Route exact path="/Deliverer">
+			<Route exact path="auth/deliverer/Deliverer">
 				<Deliverer />
 			</Route>
-			<Route exact path="/Deliverer_home">
+			<Route exact path="/auth/deliverer/dashboard">
 				<DelivererHome />
 			</Route>
 			<Route exact path="/auth/user/cart">

@@ -10,9 +10,8 @@ import { AiOutlineRollback } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const List = () => {
-	const { packages, dispatch } = useContext(CartContext);
+	const { items, dispatch } = useContext(CartContext);
 	const [value, setValue] = useState(1);
-	const [pack, setPack] = useState([]);
 
 	const increase = (value) => {
 		if (value < 5) {
@@ -41,7 +40,7 @@ const List = () => {
 					/>
 				</p>
 			</div>
-			<hr className="max-w-5xl  ml-auto mr-auto border-blue-100 h-3 " />
+			<hr className="w-9/12  ml-auto mr-auto border-blue-100 h-3 " />
 			<table className="w-9/12 ml-auto mr-auto mb-10 mt-5 ">
 				<thead>
 					<tr className="text-gray-400 text-base ">
@@ -54,18 +53,18 @@ const List = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{packages.map((packages) => {
+					{items.map((packages) => {
 						return (
 							<tr
 								style={{ borderSpacing: "1em .5em" }}
 								key={packages.id}
 								className="text-gray-600 bg-gray-100 space-y-3     rounded-lg"
 							>
-								<td className="w-60 h-20 text-right  bg-white border-t-8 border-b-2 border-white">
+								<td className="w-60 h-20  ml-20  bg-white border-t-8 border-b-2 border-white">
 									<img
 										src={imageURL + packages.pack.src}
 										alt="package-img"
-										className="w-20 h-20 rounded-lg mr-2 object-cover border-2 border-gray-200 "
+										className="w-20 h-20 rounded-lg object-cover border-2 border-gray-200 "
 									/>
 								</td>
 								<td className="w-60 h-20 text-center border-t-8 border-b-2 border-white ">
@@ -130,7 +129,7 @@ const List = () => {
 				</Link>
 			</div>
 
-			<hr className="mb-10 max-w-5xl  ml-auto mr-auto border-blue-100  " />
+			<hr className="mb-10 w-9/12  ml-auto mr-auto border-blue-100  " />
 		</div>
 	);
 };
