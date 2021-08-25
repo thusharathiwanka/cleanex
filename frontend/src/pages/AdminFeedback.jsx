@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdFeedback } from "react-icons/md";
 import { AiOutlineEye } from "react-icons/ai";
@@ -9,6 +10,19 @@ import Sidebar from "../components/sidebar/Sidebar";
 const AdminFeedback = () => {
 	document.title = "CLEANEX - Feedbacks";
 	const [feedbacks, setFeedbacks] = useState([]);
+
+	const getFeedbacks = async () => {
+		try {
+			const res = await axios.get("feedbacks");
+			setFeedbacks(res.data.feedbacks);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	useEffect(() => {
+		getFeedbacks();
+	}, []);
 
 	return (
 		<div className=" text-gray-800">
@@ -60,50 +74,52 @@ const AdminFeedback = () => {
 												</th>
 											</tr>
 										</thead>
-										<tbody className="bg-white divide-y divide-gray-200">
-											<tr>
-												<td className="px-6 py-4 whitespace-nowrap">
-													<div className="flex items-center">
-														<div className="flex-shrink-0 h-10 w-10">
-															<div className="text-2xl font-medium flex items-center text-gray-800 my-2">
-																<MdFeedback />
+										{feedbacks.map((feedback) => (
+											<tbody className="bg-white divide-y divide-gray-200">
+												<tr>
+													<td className="px-6 py-4 whitespace-nowrap">
+														<div className="flex items-center">
+															<div className="flex-shrink-0 h-10 w-10">
+																<div className="text-2xl font-medium flex items-center text-gray-800 my-2">
+																	<MdFeedback />
+																</div>
+															</div>
+															<div className="ml-2">
+																<div className="text-sm font-medium text-gray-900">
+																	Feedback 01
+																</div>
 															</div>
 														</div>
-														<div className="ml-2">
-															<div className="text-sm font-medium text-gray-900">
-																Feedback 01
-															</div>
+													</td>
+													<td className="px-6 py-4 whitespace-nowrap">
+														<div className="text-sm text-gray-900">
+															customer1@gmail.com
 														</div>
-													</div>
-												</td>
-												<td className="px-6 py-4 whitespace-nowrap">
-													<div className="text-sm text-gray-900">
-														customer1@gmail.com
-													</div>
-												</td>
-												<td className="px-6 py-4 whitespace-nowrap">
-													<div className="text-sm text-gray-900">
-														20-Aug-2021
-													</div>
-												</td>
-												<td className="px-6 py-4 whitespace-nowrap">
-													<div className="text-sm text-gray-900">Bug</div>
-												</td>
-												<td className="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
-													<button className="text-green-400 mr-5 my-2">
-														<AiOutlineEye />
-													</button>
-													<a href="mailto:someone@yoursite.com?subject=Feedback01">
-														<button className="text-yellow-400 mr-5 my-2">
-															<IoMailOutline />
+													</td>
+													<td className="px-6 py-4 whitespace-nowrap">
+														<div className="text-sm text-gray-900">
+															20-Aug-2021
+														</div>
+													</td>
+													<td className="px-6 py-4 whitespace-nowrap">
+														<div className="text-sm text-gray-900">Bug</div>
+													</td>
+													<td className="px-6 py-4 whitespace-nowrap text-right text-xl font-medium flex items-center">
+														<button className="text-green-400 mr-5 my-2">
+															<AiOutlineEye />
 														</button>
-													</a>
-													<button className="text-red-400 mr-5 my-2">
-														<RiDeleteBin5Line />
-													</button>
-												</td>
-											</tr>
-										</tbody>
+														<a href="mailto:someone@yoursite.com?subject=Feedback01">
+															<button className="text-yellow-400 mr-5 my-2">
+																<IoMailOutline />
+															</button>
+														</a>
+														<button className="text-red-400 mr-5 my-2">
+															<RiDeleteBin5Line />
+														</button>
+													</td>
+												</tr>
+											</tbody>
+										))}
 									</table>
 								</div>
 							</div>
