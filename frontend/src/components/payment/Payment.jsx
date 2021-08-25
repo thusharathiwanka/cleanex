@@ -5,6 +5,7 @@ import PaymentSummery from './PaymentSummery'
 import Success from '../toasts/Success'
 import axios from 'axios'
 
+
 const Payment = () => {
 
     const [OrderDetails, setOrderDetails] = useState("");
@@ -27,19 +28,21 @@ useEffect(() => {
     const [Succ, setSucc] = useState("")
 
     return (
-        <div>
+        <div className=" relative">
             {(Err && <Error error={"Payment Unsuccessful"}/>)}
             {(Succ && <Success success={"Payment Successful"}/>)}
             <h1 className="text-4xl font-bold flex justify-center mb-20 mt-5">Payment</h1>
-            <div className=" shadow-2xl h-auto  mx-40 overflow-hidden rounded-xl grid grid-cols-2">
+
+            <div className=" shadow-2xl h-auto relative mx-96 overflow-hidden rounded-xl ">
                 <div>
-                    <PaymentSummery/>
+                    <PaymentSummery />
                 </div>
-                <div>
+                <div className="absolute top-0 right-3">
                     <PaymentForm setErr={setErr}  setSucc={setSucc} />
                 </div>
                 
             </div>
+
         </div>
     )
 }

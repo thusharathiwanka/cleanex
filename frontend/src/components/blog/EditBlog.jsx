@@ -95,19 +95,19 @@ const fileHandler = (e)=>{
                 <label className="block text-gray-700 text-xl mb-2" for="username">
                     Title
                 </label>
-                <input value={Blog.topic} onChange={(e)=>setBlog({...Blog,topic: e.target.value})} required  class="shadow focus:border-light-blue appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
+                <input value={Blog.topic} onChange={(e)=>setBlog({...Blog,topic: e.target.value})} required  className="shadow focus:border-light-blue appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
                 </div>
                 <div className="mb-10">
                 <label className="block text-gray-700 text-xl mb-2" for="username">
                     Brief Introduction
                 </label>
-                <textarea value={Blog.description} onChange={(e)=>setBlog({...Blog,description: e.target.value})} required class="focus:border-light-blue shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
+                <textarea value={Blog.description} onChange={(e)=>setBlog({...Blog,description: e.target.value})} required className="focus:border-light-blue shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
                 </div>
                 <div className="mb-10">
                 <label className="block text-gray-700 text-xl mb-2" for="username">
                     Content
                 </label>
-                <textarea value={Blog.content} onChange={(e)=>setBlog({...Blog,content: e.target.value})} required class="focus:border-light-blue shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
+                <textarea value={Blog.content} onChange={(e)=>setBlog({...Blog,content: e.target.value})} required className="focus:border-light-blue shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"/>
                 </div>
                 <div className=" flex justify-end mb-10">
                 <Link to="/auth/user/blogs">
