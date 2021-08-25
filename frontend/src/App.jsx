@@ -8,7 +8,7 @@ import "./App.css";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import AuthContextProvider from "./contexts/AuthContext";
-import CartContextProvider, { CartContext } from "./contexts/CartContext";
+import CartContextProvider from "./contexts/CartContext";
 
 function App() {
 	axios.defaults.baseURL = "http://localhost:5000/";
