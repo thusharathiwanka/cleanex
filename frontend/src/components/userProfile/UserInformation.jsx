@@ -52,17 +52,6 @@ const UserInformation = () => {
             </label>
           </div>
 
-          <div className="mb-6">
-            <label className=" font-semibold text-24px" for="password">
-              Password
-              <input
-                className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border-2 border-light-blue border-opacity-100 bg-gray-100 text-gray-600 "
-                type="password"
-                value={userDetail.password}
-              />
-            </label>
-          </div>
-
           <div className="mb-8">
             <label className=" font-semibold text-24px" for="mobile">
               Mobile
