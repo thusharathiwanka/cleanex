@@ -3,7 +3,7 @@ import axios from "axios";
 
 import Spinner from "../loading/Spinner";
 
-const ViewModal = ({ setShowViewModal, id }) => {
+const CustomerViewModal = ({ setShowViewModal, id }) => {
 	const [customer, setCustomer] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -122,4 +122,4 @@ const ViewModal = ({ setShowViewModal, id }) => {
 	);
 };
 
-export default ViewModal;
+export default CustomerViewModal;

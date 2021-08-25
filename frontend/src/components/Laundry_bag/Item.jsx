@@ -8,7 +8,7 @@ const Test_Item = ({ packageItem }) => {
 
 	return (
 		<div>
-			<div className="overflow-hidden relative shadow-xl ml-24 rounded-2x flex justify-center flex-col items-center text-center w-40">
+			<div className="overflow-hidden relative shadow-xl mr-20 rounded-2x flex justify-center flex-col items-center text-center w-40">
 				<div>
 					<button
 						onClick={() =>

@@ -3,7 +3,7 @@ import PlacesAutocomplete from "react-places-autocomplete";
 export default class LocationInput extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { address: "" };
+		this.state = { address: "Kaluthara" };
 	}
 	handleChange = (address) => {
 		this.setState({ address });
@@ -26,10 +26,11 @@ export default class LocationInput extends Component {
 						<div>
 							<input
 								{...getInputProps({
-									placeholder: "Search Places ... (only characters)",
+									placeholder: "Search Places ... ",
 									className: "location-search-input",
 								})}
 								autoFocus
+								required
 								type="text"
 								className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
 							/>
