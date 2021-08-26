@@ -2,10 +2,10 @@ const Feedback = require("../models/feedback.model");
 
 const saveFeedback = async (req, res) => {
   if (req.body) {
-    const { topic, description, createdAt, givenBy, category } = req.body;
+    const { topic, description, createdAt, category, userId } = req.body;
 
     // * user inputs validation
-    if (!topic || !description || !givenBy || !createdAt || !category) {
+    if (!topic || !description || !createdAt || !category) {
       return res.status(400).json({ message: "Please fill all the fields" });
     }
 
@@ -15,13 +15,13 @@ const saveFeedback = async (req, res) => {
         topic,
         description,
         createdAt,
-        givenBy,
+        givenBy: userId,
         category,
       });
 
-
-			await newFeedback.save();
-
+      console.log(newFeedback);
+      await newFeedback.save();
+      console.log(req.body.userId);
 
       // * sending as saved
       return res.status(201).send("Feedback successfully sent");

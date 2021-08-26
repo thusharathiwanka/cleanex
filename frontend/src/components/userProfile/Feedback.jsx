@@ -11,6 +11,7 @@ const Feedback = () => {
     topic: "",
     description: "",
     createdAt: "",
+    givenBy: "",
     category: "",
   });
   const saveFeedback = async (e) => {
@@ -18,29 +19,23 @@ const Feedback = () => {
     setButton(true);
     try {
       newFeedback.createdAt = new Date();
-      await axios.post("feedbacks/", newFeedback);
+      await axios.post("feedbacks", newFeedback);
 
-      setNewFeedback({
-        topic: "",
-        description: "",
-        createdAt: "",
-        category: "",
-      });
       setButton(false);
-      console.log();
+      console.log(newFeedback);
       setSuccess("Feedback is send Successfully.");
     } catch (err) {
-      console.error(err.response.message);
-      setError(err.response.message);
+      console.error(err.response.data.message);
+      setError(err.response.data.message);
       setButton(false);
     }
   };
 
   return (
     <div>
+      {error && <Error error={error} top="-top-2" />}
+      {success && <Success success={success} top="-top-2" />}
       <div className="flex mx-auto items-center justify-center shadow-lg mt-56  mb-4 max-w-lg">
-        {error && <Error error={error} top="-top-2" />}
-        {success && <Success success={success} top="-top-2" />}
         <form
           className="w-full max-w-xl bg-white rounded-lg px-4 pt-2"
           onSubmit={saveFeedback}
