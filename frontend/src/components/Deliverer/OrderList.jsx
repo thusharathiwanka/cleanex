@@ -3,10 +3,11 @@ import axios from "axios";
 
 const OrderList = () => {
 	const [orders, setOrders] = useState([]);
-	const [disable, setDisable] = useState(false);
+	const [Id, setId] = useState(null);
 
-	const update = async (id) => {
-		const res = await axios.put(`order/deliverer/${id}`);
+	const accept = (id) => {
+		orders.filter((order) => order.id !== id);
+		setId(id); //id/
 	};
 
 	const getOrders = async () => {
@@ -17,11 +18,9 @@ const OrderList = () => {
 			console.error(error);
 		}
 	};
-
 	useEffect(() => {
 		getOrders();
 	}, []);
-
 	return (
 		<div
 			style={{
@@ -71,7 +70,7 @@ const OrderList = () => {
 								<tbody className="bg-white divide-y divide-gray-200">
 									{orders.map((order) => {
 										return (
-											<tr key={order._id}>
+											<tr>
 												<td className="px-6 py-4 whitespace-nowrap">
 													<div className="flex items-center">
 														<div className="text-sm text-gray-900">
@@ -97,11 +96,7 @@ const OrderList = () => {
 
 												<td className="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
 													<button
-														disabled={disable}
-														onClick={() => {
-															update(order._id);
-															setDisable(true);
-														}}
+														onClick={() => accept(order.id)}
 														className="text-green-500 hover:text-green-200"
 													>
 														Accept

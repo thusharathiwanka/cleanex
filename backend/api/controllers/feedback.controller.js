@@ -19,8 +19,9 @@ const saveFeedback = async (req, res) => {
         category,
       });
 
-      console.log(newFeedback);
-      await newFeedback.save();
+
+			await newFeedback.save();
+
 
       // * sending as saved
       return res.status(201).send("Feedback successfully sent");
