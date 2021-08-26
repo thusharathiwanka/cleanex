@@ -208,8 +208,8 @@ const getUserDetails = async (req, res) => {
 const getUserprofileDetails = async (req, res) => {
   console.log(req.body);
   try {
-    const { email, name, mobile } = await Customer.findById(req.body.userId);
-    res.status(200).json({ customer: { email, name, mobile } });
+    const customer = await Customer.findById(req.body.userId);
+    res.status(200).json({ customer: customer });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
