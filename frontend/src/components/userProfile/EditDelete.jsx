@@ -48,10 +48,7 @@ const EditDelete = () => {
           id={useId}
         />
       )}
-      <div
-        className=" absolute bg-white shadow-lg sm:rounded-2xl sm:p-20 top-2 w-auto ml-96 my-8"
-        data-aos="fade-down"
-      >
+      <div className=" absolute bg-white shadow-lg sm:rounded-2xl sm:p-20 top-2 w-auto ml-96 my-8">
         <h1 className="text-5xl font-extrabold pb-10 text-center">
           Edit profile
         </h1>
@@ -112,7 +109,7 @@ const EditDelete = () => {
         </div>
         <div className="space-x-4">
           <button
-            className="transition duration-500 ease-in-out  py-2 px-4 bg-red-500 hover:bg-black text-white sm:rounded-3xl transform hover:-translate-y-1 hover:scale-110 "
+            className="transition duration-500 ease-in-out  py-2 px-4 bg-red-400 hover:bg-black text-white sm:rounded-3xl transform hover:-translate-y-1 hover:scale-110 "
             onClick={() => {
               setPopup(true);
               setUserId(userDetail._id);
