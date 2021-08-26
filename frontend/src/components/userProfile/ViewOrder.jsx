@@ -2,7 +2,7 @@ import React from "react";
 
 const ViewOrder = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <div className="flex mx-auto items-center justify-center shadow-lg mt-56  mb-4">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <h2 className="text-5xl font-extrabold pb-10 pt-10 text-center ml-8 ">
@@ -58,7 +58,9 @@ const ViewOrder = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">Cotton T-Shirt</div>
+                      <div className="text-sm text-gray-900">
+                        Cotton T-Shirt
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">8900</div>
@@ -82,7 +84,9 @@ const ViewOrder = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">Cotton T-Shirt</div>
+                      <div className="text-sm text-gray-900">
+                        Cotton T-Shirt
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">8900</div>
@@ -106,7 +110,9 @@ const ViewOrder = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">Cotton T-Shirt</div>
+                      <div className="text-sm text-gray-900">
+                        Cotton T-Shirt
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">8900</div>
@@ -115,9 +121,14 @@ const ViewOrder = () => {
                 </tbody>
               </table>
             </div>
-            <button className="transition duration-500 ease-in-out py-3 px-5 m-8 ml-96 bg-black hover:bg-blue-500 text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110">
-              Close
-            </button>
+            <div>
+              {/* <button className="transition duration-500 ease-in-out py-3 px-5 m-8 ml-96 bg-black hover:bg-blue-500 text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110">
+                Close
+              </button> */}
+              <button className="transition duration-500 ease-in-out py-3 px-5 m-8 ml-96 bg-green-500 hover:bg-blue-500 text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110">
+                Pay
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -51,10 +51,7 @@ const Feedback = () => {
               Feedback
             </h2>
             <div className="w-full md:w-full px-3 mb-2 mt-2">
-              <div
-                className="flex flex-col justify-start pb-5 w-full"
-                data-aos="fade-up-left"
-              >
+              <div className="flex flex-col justify-start pb-5 w-full">
                 <label htmlFor="package-name" className="pb-1">
                   Category
                 </label>
@@ -75,11 +72,8 @@ const Feedback = () => {
                   }
                 />
               </div>
-              <div
-                className="flex flex-col justify-start pb-5 w-full"
-                data-aos="fade-up-left"
-              >
-                <label htmlFor="package-name" className="pb-1">
+              <div className="flex flex-col justify-start pb-5 w-full">
+                <label htmlFor="package-topic" className="pb-1">
                   Topic
                 </label>
                 <input
@@ -96,11 +90,8 @@ const Feedback = () => {
                   }
                 />
               </div>
-              <div
-                className="flex flex-col justify-start pb-5 w-full"
-                data-aos="fade-up-left"
-              >
-                <label htmlFor="package-name" className="pb-1">
+              <div className="flex flex-col justify-start pb-5 w-full">
+                <label htmlFor="package-Description" className="pb-1">
                   Description
                 </label>
                 <input
