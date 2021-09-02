@@ -4,12 +4,15 @@ import { IoBagAdd } from "react-icons/io5";
 import { imageURL } from "../../config/paths";
 import { CartContext } from "../../contexts/CartContext";
 
-const PackageCard = ({ packageItem }) => {
+const PackageCard = ({ packageItem, setDelay }) => {
 	const { dispatch } = useContext(CartContext);
 	const [quantity, setQuantity] = useState("1");
 
 	return (
-		<div className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8 w-72">
+		<div
+			className="relative mx-8 rounded-xl shadow-xl overflow-hidden my-8 w-72"
+			data-aos="fade-up"
+		>
 			<span className="absolute top-3 left-3 inline-flex items-center justify-center px-3 py-2 mr-2 text-xs font-bold leading-none text-gray-600 bg-white blur rounded-full opacity-70">
 				{"LKR " + packageItem.price + ".00"}
 			</span>
