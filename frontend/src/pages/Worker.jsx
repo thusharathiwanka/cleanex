@@ -9,14 +9,13 @@ const Worker = () => {
 
     const [Err, setErr] = useState("")
     const [Succ, setSucc] = useState("")
-    const [SuccMsg, setSuccMsg] = useState("")
 
     return (
         <div>
             {(Err&&<Error error={"Oops! Somthing went wrong"}/>)}
-            {(Succ&&<Success success={{SuccMsg}}/>)}
+            {(Succ&&<Success success={"successfully changed status"}/>)}
             <Profile Img={WorkerImg} name="Natalia Weerasinghe" role="Worker"/>
-            <WashMenu setErr={setErr} setSucc={setSucc} setSuccMsg={setSuccMsg}  />
+            <WashMenu setErr={setErr} setSucc={setSucc}  />
         </div>
     )
 }
