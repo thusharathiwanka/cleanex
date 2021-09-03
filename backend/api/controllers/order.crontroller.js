@@ -17,6 +17,8 @@ const updateToCompleate = async (req, res) => {
 	try {
 		await order.findByIdAndUpdate(req.params.id, {
 			WashingStatus: "completed",
+			CompletedDate: req.body.date,
+			CompletedTime: req.body.time
 		});
 		res.status(200).json({ message: "order successfully approved" });
 	} catch (err) {
