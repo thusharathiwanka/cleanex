@@ -63,7 +63,7 @@ const PendingLists = (props) => {
                     </div>
                     <div className="text-center  ">
                         <form  onSubmit={(e)=>e.preventDefault()}>
-                        <input onChange={(e)=>setInput({...Input,hours:e.target.value})} className=" focus:outline-none  shadow-md py-2 px-4 rounded" placeholder="Hours" type="number" required id="quantity" name="quantity" min="1" max="24"/>
+                        <input onChange={(e)=>setInput({...Input,hours:e.target.value})} className=" focus:outline-none  shadow-md py-2 px-4 rounded" placeholder="Hours" type="number" required  id="quantity" name="quantity" min="1" max="24"/>
                         <button onClick={()=>updateStatus(data._id)} type="submit" className=" shadow-md bg-light-blue text-white py-2 px-6 rounded font-bold ml-5">
                             Accept
                         </button>
