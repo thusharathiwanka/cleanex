@@ -10,7 +10,7 @@ const PaymentForm = (props) => {
         e.preventDefault()
         const date = new Date();
         PaymentDetails.date=date.toLocaleDateString();
-        PaymentDetails.amount = "1000"
+        PaymentDetails.amount = "2000"
         console.log(PaymentDetails);
         try{
             const res = await axios.post("/payment/post", PaymentDetails)
