@@ -219,7 +219,7 @@ const getUserprofileDetails = async (req, res) => {
 
 const updateUserProfile = async (req, res) => {
   //*request params validation
-  if (req.params.id) {
+  if (req.body.userId) {
     //*request body validation
     if (req.body) {
       const { name, email, password, mobile } = req.body;
@@ -247,16 +247,19 @@ const updateUserProfile = async (req, res) => {
       }
 
       try {
-        // * update user package
-        await Package.findByIdAndUpdate(req.params.id, {
+        // * hashing the password
+        const salt = await bcrypt.genSalt();
+        const hPassword = await bcrypt.hash(password, salt);
+        // * update user userprofile Update
+        await Customer.findByIdAndUpdate(req.body.userId, {
           name,
           email,
-          password,
+          password: hPassword,
           mobile,
         });
-
+        console.log(req.body);
         // * sending as updated
-        return res.status(201).send(true);
+        return res.status(201).json("Updated Successfully");
       } catch (err) {
         console.error(err.message);
         return res.status(500).send();
@@ -267,15 +270,15 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
-// const deleteUserProfile = async (req, res) => {
-//   try {
-//     const deleteUserProfile = await blog.findByIdAndDelete(req.params.id);
-//     res.status(200);
-//   } catch (err) {
-//     res.status(400);
-//     console.log(err.message);
-//   }
-// };
+const deleteUserProfile = async (req, res) => {
+  try {
+    await Customer.findByIdAndDelete(req.body.userId);
+    res.status(200).send("Deleted Successfully");
+  } catch (err) {
+    res.status(400);
+    console.log(err.message);
+  }
+};
 
 module.exports = {
   saveCustomer,
@@ -286,5 +289,5 @@ module.exports = {
   getCustomersTotal,
   getUserprofileDetails,
   updateUserProfile,
-  //   deleteUserProfile,
+  deleteUserProfile,
 };

@@ -1,11 +1,11 @@
 import React from "react";
-import Sidebar from "../components/sidebar/Sidebar";
+import UserSidebar from "../components/userSidebar/UserSidebar";
 import UserInformation from "../components/userProfile/UserInformation";
 
 const UserProfile = () => {
   return (
     <div>
-      <Sidebar />
+      <UserSidebar />
       <UserInformation />
     </div>
   );
