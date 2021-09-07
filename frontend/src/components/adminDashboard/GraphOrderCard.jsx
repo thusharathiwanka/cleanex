@@ -1,58 +1,52 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-const GraphInfoCard = ({
-	delay,
-	graphNames,
-	pending,
-	processing,
-	completed,
-}) => {
+const GraphInfoCard = ({ graphNames }) => {
 	const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-	const pendingData = [];
-	console.log(pending);
-	// pendingData.push(
-	// 	days.map((day, index) => {
-	// 		return days[index] === pendingOrder.StartDate.substring(0, 3);
-	// 	})
-	// );
+	const [pendingData, setPendingData] = useState([]);
+	const [processingData, setProcessingData] = useState([]);
+	const [completedData, setCompletedData] = useState([]);
+
+	const getGraphInfo = async () => {
+		days.map(async (day) => {
+			const res = await axios.get(
+				`/order/${graphNames[0].toLowerCase()}/${day}`
+			);
+			setPendingData((prevData) => {
+				return [...prevData, res.data.total];
+			});
+		});
+		days.map(async (day) => {
+			const res = await axios.get(
+				`/order/${graphNames[1].toLowerCase()}/${day}`
+			);
+			setProcessingData((prevData) => {
+				return [...prevData, res.data.total];
+			});
+		});
+		days.map(async (day) => {
+			const res = await axios.get(
+				`/order/${graphNames[2].toLowerCase()}/${day}`
+			);
+			setCompletedData((prevData) => {
+				return [...prevData, res.data.total];
+			});
+		});
+	};
 
 	const series = [
 		{
 			name: graphNames[0],
-			data: [
-				{ y: 31, x: "Mon" },
-				{ y: 31, x: "Tue" },
-				{ y: 31, x: "Wed" },
-				{ y: 31, x: "Thu" },
-				{ y: 31, x: "Fri" },
-				{ y: 31, x: "Sat" },
-				{ y: 31, x: "Sun" },
-			],
+			data: pendingData,
 		},
 		{
 			name: graphNames[1],
-			data: [
-				{ y: 31, x: "Mon" },
-				{ y: 31, x: "Tue" },
-				{ y: 31, x: "Wed" },
-				{ y: 31, x: "Thu" },
-				{ y: 31, x: "Fri" },
-				{ y: 31, x: "Sat" },
-				{ y: 31, x: "Sun" },
-			],
+			data: processingData,
 		},
 		{
 			name: graphNames[2],
-			data: [
-				{ y: 31, x: "Mon" },
-				{ y: 31, x: "Tue" },
-				{ y: 31, x: "Wed" },
-				{ y: 31, x: "Thu" },
-				{ y: 31, x: "Fri" },
-				{ y: 31, x: "Sat" },
-				{ y: 31, x: "Sun" },
-			],
+			data: completedData,
 		},
 	];
 
@@ -72,7 +66,7 @@ const GraphInfoCard = ({
 			curve: "smooth",
 		},
 		xaxis: {
-			type: "month",
+			categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
 		},
 		tooltip: {
 			x: {
@@ -81,13 +75,14 @@ const GraphInfoCard = ({
 		},
 	};
 
+	useEffect(() => getGraphInfo(), []);
+
 	return (
 		<div
 			className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between flex-wrap"
 			data-aos="fade-up"
-			data-aos-delay={delay}
 		>
-			<h3>Orders Summary</h3>
+			<h3 className="text-center">Orders Summary</h3>
 			<ReactApexChart
 				options={options}
 				series={series}

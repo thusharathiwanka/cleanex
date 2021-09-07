@@ -11,10 +11,6 @@ const Dashboard = () => {
 	document.title = "CLEANEX - Dashboard";
 	const [isLoading, setIsLoading] = useState(true);
 	const [totals, setTotals] = useState([]);
-	const [orders, setOrders] = useState([]);
-	const [pending, setPending] = useState([]);
-	const [processing, setProcessing] = useState([]);
-	const [completed, setCompleted] = useState([]);
 	const graphOneNames = ["Pending", "Processing", "Completed"];
 	const graphTwoNames = ["Pending", "Processing", "Completed"];
 
@@ -33,35 +29,7 @@ const Dashboard = () => {
 		setIsLoading(false);
 	};
 
-	const getGraphInfo = async () => {
-		const res = await axios.get("/order/orders");
-		setOrders(res.data);
-
-		res.data.map((order) => console.log(order.WashingStatus));
-
-		setPending(
-			res.data.filter((order) => {
-				return order.WashingStatus === "pending";
-			})
-		);
-
-		setProcessing(
-			res.data.filter((order) => {
-				return order.WashingStatus === "processing";
-			})
-		);
-
-		setCompleted(
-			res.data.filter((order) => {
-				return order.WashingStatus === "completed";
-			})
-		);
-
-		console.log(pending, processing, completed);
-	};
-
 	useEffect(() => {
-		getGraphInfo();
 		getTotalInfo();
 	}, []);
 
@@ -85,14 +53,8 @@ const Dashboard = () => {
 							))}
 						</div>
 						<div className="px-16 flex justify-between w-full" id="chart">
-							<GraphInfoCard
-								delay={0}
-								graphNames={graphOneNames}
-								pending={pending}
-								processing={processing}
-								completed={completed}
-							/>
-							<GraphInfoCard delay={300} graphNames={graphTwoNames} />
+							<GraphInfoCard graphNames={graphOneNames} />
+							<GraphInfoCard graphNames={graphTwoNames} />
 						</div>
 					</div>
 				)}
