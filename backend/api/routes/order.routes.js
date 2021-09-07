@@ -27,7 +27,7 @@ router.get("/:id", getByIdOrder);
 router.get("/getPendingOrders", getPendingOrders);
 router.get("/getProcessingOrders", getProcessingOrders);
 router.get("/getCompletedOrders", getCompletedOrders);
-router.get("delivery/:status/:day", getTotalOrdersBasedOnDeliveryStatusAndDay);
+router.get("/delivery/:status/:day", getTotalOrdersBasedOnDeliveryStatusAndDay);
 router.get("/:status/:day", getTotalOrdersBasedOnOrderStatusAndDay);
 router.patch("/updateToProcess/:id", updateToProcess);
 router.patch("/updateToCompleate/:id", updateToCompleate);

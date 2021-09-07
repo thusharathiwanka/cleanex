@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import GraphDeliveryCard from "../components/adminDashboard/GraphDeliveryCard";
 
 import GraphInfoCard from "../components/adminDashboard/GraphOrderCard";
 import InfoCard from "../components/adminDashboard/InfoCard";
@@ -12,7 +13,6 @@ const Dashboard = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [totals, setTotals] = useState([]);
 	const graphOneNames = ["Pending", "Processing", "Completed"];
-	const graphTwoNames = ["Pending", "Processing", "Completed"];
 
 	const getTotalInfo = () => {
 		adminCardInfo.map(async (card) => {
@@ -54,7 +54,7 @@ const Dashboard = () => {
 						</div>
 						<div className="px-16 flex justify-between w-full" id="chart">
 							<GraphInfoCard graphNames={graphOneNames} />
-							<GraphInfoCard graphNames={graphTwoNames} />
+							<GraphDeliveryCard graphNames={graphOneNames} />
 						</div>
 					</div>
 				)}

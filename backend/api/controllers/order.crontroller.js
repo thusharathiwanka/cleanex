@@ -118,7 +118,7 @@ const getTotalOrdersBasedOnOrderStatusAndDay = async (req, res) => {
 	}
 
 	try {
-		const orders = await Order.find({ DeliveryStatus: req.params.status });
+		const orders = await Order.find({ WashingStatus: req.params.status });
 
 		if (orders) {
 			const filteredOrders = orders.filter((order) => {
@@ -141,7 +141,7 @@ const getTotalOrdersBasedOnDeliveryStatusAndDay = async (req, res) => {
 	}
 
 	try {
-		const orders = await Order.find({ WashingStatus: req.params.status });
+		const orders = await Order.find({ DelivaryStatus: req.params.status });
 
 		if (orders) {
 			const filteredOrders = orders.filter((order) => {
