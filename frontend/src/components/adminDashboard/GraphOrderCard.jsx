@@ -2,11 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
+import Spinner from "../loading/Spinner";
+
 const GraphInfoCard = ({ graphNames }) => {
 	const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 	const [pendingData, setPendingData] = useState([]);
 	const [processingData, setProcessingData] = useState([]);
 	const [completedData, setCompletedData] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const getGraphInfo = async () => {
 		days.map(async (day) => {
@@ -75,22 +78,31 @@ const GraphInfoCard = ({ graphNames }) => {
 		},
 	};
 
-	useEffect(() => getGraphInfo(), []);
+	useEffect(() => {
+		getGraphInfo();
+		setIsLoading(false);
+	}, []);
 
 	return (
-		<div
-			className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between flex-wrap"
-			data-aos="fade-up"
-		>
-			<h3 className="text-center">Orders Summary</h3>
-			<ReactApexChart
-				options={options}
-				series={series}
-				type="area"
-				height={350}
-				width={600}
-			/>
-		</div>
+		<>
+			{isLoading ? (
+				<Spinner />
+			) : (
+				<div
+					className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between flex-wrap"
+					data-aos="fade-up"
+				>
+					<h3 className="text-center">Orders Summary</h3>
+					<ReactApexChart
+						options={options}
+						series={series}
+						type="area"
+						height={350}
+						width={600}
+					/>
+				</div>
+			)}
+		</>
 	);
 };
 
