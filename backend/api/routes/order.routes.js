@@ -11,6 +11,7 @@ const {
 	getByIdOrder,
 	updateToProcess,
 	updateToCompleate,
+	getTotalOrdersBasedOnStatusAndDay,
 } = require("../controllers/order.crontroller");
 
 const { verifyDelivererAuth } = require("../middleware/delivererAuth");
@@ -25,6 +26,7 @@ router.get("/:id", getByIdOrder);
 router.get("/getPendingOrders", getPendingOrders);
 router.get("/getProcessingOrders", getProcessingOrders);
 router.get("/getCompletedOrders", getCompletedOrders);
+router.get("/:status/:day", getTotalOrdersBasedOnStatusAndDay);
 router.patch("/updateToProcess/:id", updateToProcess);
 router.patch("/updateToCompleate/:id", updateToCompleate);
 

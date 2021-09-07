@@ -8,19 +8,51 @@ const GraphInfoCard = ({
 	processing,
 	completed,
 }) => {
-	console.log(pending, processing, completed);
+	const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+	const pendingData = [];
+	console.log(pending);
+	// pendingData.push(
+	// 	days.map((day, index) => {
+	// 		return days[index] === pendingOrder.StartDate.substring(0, 3);
+	// 	})
+	// );
+
 	const series = [
 		{
 			name: graphNames[0],
-			data: [31, 40, 28, 51, 42, 109, 100],
+			data: [
+				{ y: 31, x: "Mon" },
+				{ y: 31, x: "Tue" },
+				{ y: 31, x: "Wed" },
+				{ y: 31, x: "Thu" },
+				{ y: 31, x: "Fri" },
+				{ y: 31, x: "Sat" },
+				{ y: 31, x: "Sun" },
+			],
 		},
 		{
 			name: graphNames[1],
-			data: [11, 32, 45, 32, 34, 52, 41],
+			data: [
+				{ y: 31, x: "Mon" },
+				{ y: 31, x: "Tue" },
+				{ y: 31, x: "Wed" },
+				{ y: 31, x: "Thu" },
+				{ y: 31, x: "Fri" },
+				{ y: 31, x: "Sat" },
+				{ y: 31, x: "Sun" },
+			],
 		},
 		{
 			name: graphNames[2],
-			data: [50, 45, 80, 15, 60, 52, 41],
+			data: [
+				{ y: 31, x: "Mon" },
+				{ y: 31, x: "Tue" },
+				{ y: 31, x: "Wed" },
+				{ y: 31, x: "Thu" },
+				{ y: 31, x: "Fri" },
+				{ y: 31, x: "Sat" },
+				{ y: 31, x: "Sun" },
+			],
 		},
 	];
 
@@ -40,16 +72,7 @@ const GraphInfoCard = ({
 			curve: "smooth",
 		},
 		xaxis: {
-			type: "datetime",
-			categories: [
-				"2018-09-19T00:00:00.000Z",
-				"2018-09-19T01:30:00.000Z",
-				"2018-09-19T02:30:00.000Z",
-				"2018-09-19T03:30:00.000Z",
-				"2018-09-19T04:30:00.000Z",
-				"2018-09-19T05:30:00.000Z",
-				"2018-09-19T06:30:00.000Z",
-			],
+			type: "month",
 		},
 		tooltip: {
 			x: {

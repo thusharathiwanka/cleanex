@@ -11,6 +11,7 @@ const Dashboard = () => {
 	document.title = "CLEANEX - Dashboard";
 	const [isLoading, setIsLoading] = useState(true);
 	const [totals, setTotals] = useState([]);
+	const [orders, setOrders] = useState([]);
 	const [pending, setPending] = useState([]);
 	const [processing, setProcessing] = useState([]);
 	const [completed, setCompleted] = useState([]);
@@ -34,6 +35,8 @@ const Dashboard = () => {
 
 	const getGraphInfo = async () => {
 		const res = await axios.get("/order/orders");
+		setOrders(res.data);
+
 		res.data.map((order) => console.log(order.WashingStatus));
 
 		setPending(
