@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import GraphDeliveryCard from "../components/adminDashboard/GraphDeliveryCard";
 
-import GraphInfoCard from "../components/adminDashboard/GraphInfoCard";
+import GraphInfoCard from "../components/adminDashboard/GraphOrderCard";
 import InfoCard from "../components/adminDashboard/InfoCard";
 import Spinner from "../components/loading/Spinner";
 import Sidebar from "../components/sidebar/Sidebar";
@@ -11,6 +12,7 @@ const Dashboard = () => {
 	document.title = "CLEANEX - Dashboard";
 	const [isLoading, setIsLoading] = useState(true);
 	const [totals, setTotals] = useState([]);
+	const graphOneNames = ["Pending", "Processing", "Completed"];
 
 	const getTotalInfo = () => {
 		adminCardInfo.map(async (card) => {
@@ -51,8 +53,8 @@ const Dashboard = () => {
 							))}
 						</div>
 						<div className="px-16 flex justify-between w-full" id="chart">
-							<GraphInfoCard delay={0} />
-							<GraphInfoCard delay={300} />
+							<GraphInfoCard graphNames={graphOneNames} />
+							<GraphDeliveryCard graphNames={graphOneNames} />
 						</div>
 					</div>
 				)}

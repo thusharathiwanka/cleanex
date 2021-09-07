@@ -3,34 +3,35 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import { AuthContext } from "../contexts/AuthContext";
 
-import Navbar from "../components/nav/Navbar";
-import Home from "../pages/Home";
-import Worker from "../pages/Worker";
-import CreateBlog from "../pages/CreateBlog";
-import EditBlog from "../pages/EditBlog";
-import Blog from "../pages/Blog";
-import SingleBlog from "../pages/SingleBlog";
-import Register from "../pages/Register";
-import Login from "../pages/Login";
-import Packages from "../pages/Packages";
-import AdminDashboard from "../pages/AdminDashboard";
-import AdminPackages from "../pages/AdminPackages";
-import AdminNewPackage from "../pages/AdminNewPackage";
 import AdminCustomer from "../pages/AdminCustomer";
+import AdminDashboard from "../pages/AdminDashboard";
 import AdminFeedback from "../pages/AdminFeedback";
-import Payment from "../pages/Payment";
-import UserProfile from "../pages/UserProfile";
-import Manager from "../pages/Manager";
 import AdminLogin from "../pages/ModeratorLogin";
+import AdminNewPackage from "../pages/AdminNewPackage";
+import AdminPackages from "../pages/AdminPackages";
+import AdminReports from "../pages/AdminReports";
+import AdminUpdatePackage from "../pages/AdminUpdatePackage";
+import AllOrderHistory from "../pages/AllOrderHistory";
+import Blog from "../pages/Blog";
+import CreateBlog from "../pages/CreateBlog";
 import Deliverer from "../pages/Deliverer";
 import DelivererHome from "../pages/Deliverer_home";
-import LaundryBag from "../pages/Laundry_bag";
-import UserProfileEditDelete from "../pages/UserProfileEditDelete";
-import AllOrderHistory from "../pages/AllOrderHistory";
-import ViewOrder from "../pages/ViewOrder";
+import EditBlog from "../pages/EditBlog";
 import Feedback from "../pages/Feedback";
+import Home from "../pages/Home";
+import LaundryBag from "../pages/Laundry_bag";
+import Login from "../pages/Login";
+import Manager from "../pages/Manager";
+import Navbar from "../components/nav/Navbar";
+import Packages from "../pages/Packages";
+import Payment from "../pages/Payment";
+import Register from "../pages/Register";
+import SingleBlog from "../pages/SingleBlog";
+import UserProfile from "../pages/UserProfile";
 import UserProfileDelete from "../pages/UserProfileDelete";
-import AdminUpdatePackage from "../pages/AdminUpdatePackage";
+import UserProfileEditDelete from "../pages/UserProfileEditDelete";
+import ViewOrder from "../pages/ViewOrder";
+import Worker from "../pages/Worker";
 
 const Routes = () => {
 	const { loggedIn, loggedInRole } = useContext(AuthContext);
@@ -74,6 +75,9 @@ const Routes = () => {
 			</Route>
 			<Route exact path="/auth/admin/feedbacks">
 				<AdminFeedback />
+			</Route>
+			<Route exact path="/auth/admin/reports">
+				<AdminReports />
 			</Route>
 			<Route exact path="/auth/worker/dashboard">
 				<Navbar />
