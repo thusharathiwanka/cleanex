@@ -81,7 +81,7 @@ const GraphDeliveryCard = ({ graphNames }) => {
 					data-aos="fade-up"
 				>
 					<p className="text-lg font-medium pt-2 text-gray-500">
-						Deliveries Summary
+						Deliveries Summary Based on Day
 					</p>
 					<ReactApexChart
 						options={options}

@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import GraphDeliveryCard from "../components/adminDashboard/GraphDeliveryCard";
+import { Link } from "react-router-dom";
+import { FiDownload } from "react-icons/fi";
+import { jsPDF } from "jspdf";
 
+import GraphDeliveryCard from "../components/adminDashboard/GraphDeliveryCard";
 import GraphInfoCard from "../components/adminDashboard/GraphOrderCard";
 import InfoCard from "../components/adminDashboard/InfoCard";
 import Spinner from "../components/loading/Spinner";
@@ -29,6 +32,13 @@ const Dashboard = () => {
 		setIsLoading(false);
 	};
 
+	const generateReport = () => {
+		const doc = new jsPDF();
+
+		doc.text("Hello world!", 10, 10);
+		doc.save(`summary-report-${Date()}.pdf`);
+	};
+
 	useEffect(() => {
 		getTotalInfo();
 	}, []);
@@ -36,6 +46,19 @@ const Dashboard = () => {
 	return (
 		<div className=" text-gray-800">
 			<div className="ml-80 mt-20">
+				<div
+					className="flex justify-end mx-10"
+					data-aos="fade-left"
+					data-aos-delay="100"
+				>
+					<button
+						className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full flex justify-center items-center"
+						onClick={generateReport}
+					>
+						<FiDownload className="text-2xl mr-2" />
+						Download Summary
+					</button>
+				</div>
 				<h1
 					className="text-5xl font-extrabold pb-10 text-center"
 					data-aos="fade-up"

@@ -9,7 +9,6 @@ import AdminFeedback from "../pages/AdminFeedback";
 import AdminLogin from "../pages/ModeratorLogin";
 import AdminNewPackage from "../pages/AdminNewPackage";
 import AdminPackages from "../pages/AdminPackages";
-import AdminReports from "../pages/AdminReports";
 import AdminUpdatePackage from "../pages/AdminUpdatePackage";
 import AllOrderHistory from "../pages/AllOrderHistory";
 import Blog from "../pages/Blog";
@@ -75,9 +74,6 @@ const Routes = () => {
 			</Route>
 			<Route exact path="/auth/admin/feedbacks">
 				<AdminFeedback />
-			</Route>
-			<Route exact path="/auth/admin/reports">
-				<AdminReports />
 			</Route>
 			<Route exact path="/auth/worker/dashboard">
 				<Navbar />

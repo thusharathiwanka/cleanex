@@ -93,7 +93,7 @@ const GraphInfoCard = ({ graphNames }) => {
 					data-aos="fade-up"
 				>
 					<p className="text-lg font-medium pt-2 text-gray-500">
-						Orders Summary
+						Orders Summary Based on Day
 					</p>
 					<ReactApexChart
 						options={options}
