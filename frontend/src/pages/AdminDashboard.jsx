@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import GraphInfoCard from "../components/adminDashboard/GraphInfoCard";
+import GraphInfoCard from "../components/adminDashboard/GraphOrderCard";
 import InfoCard from "../components/adminDashboard/InfoCard";
 import Spinner from "../components/loading/Spinner";
 import Sidebar from "../components/sidebar/Sidebar";
@@ -11,6 +11,11 @@ const Dashboard = () => {
 	document.title = "CLEANEX - Dashboard";
 	const [isLoading, setIsLoading] = useState(true);
 	const [totals, setTotals] = useState([]);
+	const [pending, setPending] = useState([]);
+	const [processing, setProcessing] = useState([]);
+	const [completed, setCompleted] = useState([]);
+	const graphOneNames = ["Pending", "Processing", "Completed"];
+	const graphTwoNames = ["Pending", "Processing", "Completed"];
 
 	const getTotalInfo = () => {
 		adminCardInfo.map(async (card) => {
@@ -27,7 +32,33 @@ const Dashboard = () => {
 		setIsLoading(false);
 	};
 
+	const getGraphInfo = async () => {
+		const res = await axios.get("/order/orders");
+		res.data.map((order) => console.log(order.WashingStatus));
+
+		setPending(
+			res.data.filter((order) => {
+				return order.WashingStatus === "pending";
+			})
+		);
+
+		setProcessing(
+			res.data.filter((order) => {
+				return order.WashingStatus === "processing";
+			})
+		);
+
+		setCompleted(
+			res.data.filter((order) => {
+				return order.WashingStatus === "completed";
+			})
+		);
+
+		console.log(pending, processing, completed);
+	};
+
 	useEffect(() => {
+		getGraphInfo();
 		getTotalInfo();
 	}, []);
 
@@ -51,8 +82,14 @@ const Dashboard = () => {
 							))}
 						</div>
 						<div className="px-16 flex justify-between w-full" id="chart">
-							<GraphInfoCard delay={0} />
-							<GraphInfoCard delay={300} />
+							<GraphInfoCard
+								delay={0}
+								graphNames={graphOneNames}
+								pending={pending}
+								processing={processing}
+								completed={completed}
+							/>
+							<GraphInfoCard delay={300} graphNames={graphTwoNames} />
 						</div>
 					</div>
 				)}

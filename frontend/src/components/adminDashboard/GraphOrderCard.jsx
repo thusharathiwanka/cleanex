@@ -1,16 +1,26 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
-const GraphInfoCard = ({ delay }) => {
-
+const GraphInfoCard = ({
+	delay,
+	graphNames,
+	pending,
+	processing,
+	completed,
+}) => {
+	console.log(pending, processing, completed);
 	const series = [
 		{
-			name: "series1",
+			name: graphNames[0],
 			data: [31, 40, 28, 51, 42, 109, 100],
 		},
 		{
-			name: "series2",
+			name: graphNames[1],
 			data: [11, 32, 45, 32, 34, 52, 41],
+		},
+		{
+			name: graphNames[2],
+			data: [50, 45, 80, 15, 60, 52, 41],
 		},
 	];
 
@@ -54,6 +64,7 @@ const GraphInfoCard = ({ delay }) => {
 			data-aos="fade-up"
 			data-aos-delay={delay}
 		>
+			<h3>Orders Summary</h3>
 			<ReactApexChart
 				options={options}
 				series={series}
