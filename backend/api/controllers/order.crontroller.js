@@ -2,6 +2,7 @@ const Order = require("../models/order.model");
 const order = require("../models/order.model");
 
 const updateToProcess = async (req, res) => {
+	
 	try {
 		await order.findByIdAndUpdate(req.params.id, {
 			WashingStatus: "processing",
