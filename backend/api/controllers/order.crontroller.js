@@ -108,7 +108,30 @@ const updateDeliverID = async (req, res) => {
 	}
 };
 
-const getTotalOrdersBasedOnStatusAndDay = async (req, res) => {
+const getTotalOrdersBasedOnOrderStatusAndDay = async (req, res) => {
+	if (!req.params) {
+		return res.status(400).send();
+	}
+
+	if (!req.params.status && req.params.day) {
+		return res.status(400).send();
+	}
+
+	try {
+		const orders = await Order.find({ DeliveryStatus: req.params.status });
+
+		if (orders) {
+			const filteredOrders = orders.filter((order) => {
+				return order.StartDate.substring(0, 3) === req.params.day;
+			});
+			return res.status(200).json({ total: filteredOrders.length });
+		}
+	} catch (err) {
+		return res.status(404).send();
+	}
+};
+
+const getTotalOrdersBasedOnDeliveryStatusAndDay = async (req, res) => {
 	if (!req.params) {
 		return res.status(400).send();
 	}
@@ -142,5 +165,6 @@ module.exports = {
 	getCompletedOrders,
 	updateToProcess,
 	updateToCompleate,
-	getTotalOrdersBasedOnStatusAndDay,
+	getTotalOrdersBasedOnOrderStatusAndDay,
+	getTotalOrdersBasedOnDeliveryStatusAndDay,
 };
