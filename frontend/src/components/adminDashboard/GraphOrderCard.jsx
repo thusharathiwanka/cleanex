@@ -92,7 +92,9 @@ const GraphInfoCard = ({ graphNames }) => {
 					className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between flex-wrap"
 					data-aos="fade-up"
 				>
-					<h3 className="text-center">Orders Summary</h3>
+					<p className="text-lg font-medium pt-2 text-gray-500">
+						Orders Summary Based on Day
+					</p>
 					<ReactApexChart
 						options={options}
 						series={series}
