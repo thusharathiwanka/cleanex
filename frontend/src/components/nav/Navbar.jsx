@@ -9,7 +9,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 const Navbar = () => {
 	const history = useHistory();
 	const { loggedIn, getLoggedIn } = useContext(AuthContext);
-	const navigation = loggedIn ? customerLoggedNavLinks : navLinks;
+	const navigation = loggedIn.state ? customerLoggedNavLinks : navLinks;
 
 	const logout = async () => {
 		await axios.get("/users/logout");
@@ -39,7 +39,7 @@ const Navbar = () => {
 							{navLink.name}
 						</Link>
 					))}
-					{loggedIn ? (
+					{loggedIn.state ? (
 						<Link
 							className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
 							onClick={logout}

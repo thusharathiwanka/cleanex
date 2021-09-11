@@ -4,16 +4,12 @@ import React, { createContext, useState, useEffect } from "react";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-	const [loggedIn, setLoggedIn] = useState(false);
-	const [LoggedInRole, setLoggedInRole] = useState("");
+	const [loggedIn, setLoggedIn] = useState({});
 
 	const getLoggedIn = async () => {
 		try {
 			const res = await axios.get("/users/logged");
-			console.log(res);
-			setLoggedIn(res.data.state);
-			setLoggedInRole(res.data.role);
-			console.log(loggedIn, LoggedInRole);
+			setLoggedIn({ state: res.data.state, role: res.data.role });
 		} catch (err) {
 			console.error(err.message);
 		}
@@ -27,9 +23,7 @@ const AuthContextProvider = ({ children }) => {
 		<AuthContext.Provider
 			value={{
 				loggedIn,
-				LoggedInRole,
 				setLoggedIn,
-				setLoggedInRole,
 				getLoggedIn,
 			}}
 		>

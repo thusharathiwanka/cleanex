@@ -6,7 +6,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import AdminCustomer from "../pages/AdminCustomer";
 import AdminDashboard from "../pages/AdminDashboard";
 import AdminFeedback from "../pages/AdminFeedback";
-import AdminLogin from "../pages/ModeratorLogin";
+import ModeratorLogin from "../pages/ModeratorLogin";
 import AdminNewPackage from "../pages/AdminNewPackage";
 import AdminPackages from "../pages/AdminPackages";
 import AdminUpdatePackage from "../pages/AdminUpdatePackage";
@@ -33,47 +33,108 @@ import ViewOrder from "../pages/ViewOrder";
 import Worker from "../pages/Worker";
 
 const Routes = () => {
-	const { loggedIn, loggedInRole } = useContext(AuthContext);
-	console.log(loggedIn, loggedInRole);
+	const { loggedIn } = useContext(AuthContext);
 
 	return (
 		<Switch>
 			<Route exact path="/">
-				<Navbar />
-				<Home />
+				{loggedIn.state && loggedIn.role !== "customer" ? (
+					<Redirect to={`/auth/${loggedIn.role}/dashboard`} />
+				) : loggedIn.state && loggedIn.role === "customer" ? (
+					<Redirect to={`/auth/user/packages`} />
+				) : (
+					<>
+						<Navbar />
+						<Home />
+					</>
+				)}
 			</Route>
 			<Route exact path="/auth/register">
-				<Navbar />
-				<Register />
+				{loggedIn.state && loggedIn.role ? (
+					<Redirect to={`/auth/${loggedIn.role}/dashboard`} />
+				) : (
+					<>
+						<Navbar />
+						<Register />
+					</>
+				)}
 			</Route>
 			<Route exact path="/auth/login">
-				<Navbar />
-				<Login />
+				{loggedIn.state && loggedIn.role ? (
+					<Redirect to={`/auth/${loggedIn.role}/dashboard`} />
+				) : (
+					<>
+						<Navbar />
+						<Login />
+					</>
+				)}
 			</Route>
 			<Route exact path="/auth/user/packages">
-				<Navbar />
-				<Packages />
+				{loggedIn.state && loggedIn.role ? (
+					<>
+						<Navbar />
+						<Packages />
+					</>
+				) : (
+					<Redirect to="/" />
+				)}
 			</Route>
 			<Route exact path="/auth/moderator/login">
-				<AdminLogin />
+				<ModeratorLogin />
 			</Route>
 			<Route exact path="/auth/admin/dashboard">
-				<AdminDashboard />
+				{loggedIn.state && loggedIn.role === "admin" ? (
+					<>
+						<AdminDashboard />
+					</>
+				) : (
+					<Redirect to="/" />
+				)}
 			</Route>
 			<Route exact path="/auth/admin/packages">
-				<AdminPackages />
+				{loggedIn.state && loggedIn.role === "admin" ? (
+					<>
+						<AdminPackages />
+					</>
+				) : (
+					<Redirect to="/" />
+				)}
 			</Route>
 			<Route exact path="/auth/admin/packages/new">
-				<AdminNewPackage />
+				{loggedIn.state && loggedIn.role === "admin" ? (
+					<>
+						<AdminNewPackage />
+					</>
+				) : (
+					<Redirect to="/" />
+				)}
 			</Route>
 			<Route exact path="/auth/admin/packages/update/:id">
-				<AdminUpdatePackage />
+				{loggedIn.state && loggedIn.role === "admin" ? (
+					<>
+						<AdminUpdatePackage />
+					</>
+				) : (
+					<Redirect to="/" />
+				)}
 			</Route>
 			<Route exact path="/auth/admin/customers">
-				<AdminCustomer />
+				{loggedIn.state && loggedIn.role === "admin" ? (
+					<>
+						<AdminCustomer />
+					</>
+				) : (
+					<Redirect to="/" />
+				)}
 			</Route>
 			<Route exact path="/auth/admin/feedbacks">
-				<AdminFeedback />
+				{loggedIn.state && loggedIn.role === "admin" ? (
+					<>
+						<AdminFeedback />
+					</>
+				) : (
+					<Redirect to="/" />
+				)}
 			</Route>
 			<Route exact path="/auth/worker/dashboard">
 				<Navbar />
@@ -124,6 +185,15 @@ const Routes = () => {
 			</Route>
 			<Route exact path="/editblogs/:id">
 				<EditBlog />
+			</Route>
+			<Route exact path="*">
+				{loggedIn.state && loggedIn.role !== "customer" ? (
+					<Redirect to={`/auth/${loggedIn.role}/dashboard`} />
+				) : loggedIn.state && loggedIn.role === "customer" ? (
+					<Redirect to={`/auth/user/packages`} />
+				) : (
+					<Redirect to={`/`} />
+				)}
 			</Route>
 		</Switch>
 	);
