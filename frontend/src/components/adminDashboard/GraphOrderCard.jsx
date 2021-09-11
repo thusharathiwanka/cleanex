@@ -58,9 +58,6 @@ const GraphInfoCard = ({ graphNames }) => {
 			height: 350,
 			type: "area",
 			width: "100%",
-			toolbar: {
-				show: false,
-			},
 		},
 		dataLabels: {
 			enabled: false,

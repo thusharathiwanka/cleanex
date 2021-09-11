@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { FiDownload } from "react-icons/fi";
 import { jsPDF } from "jspdf";
 
@@ -10,6 +9,7 @@ import InfoCard from "../components/adminDashboard/InfoCard";
 import Spinner from "../components/loading/Spinner";
 import Sidebar from "../components/sidebar/Sidebar";
 import { adminCardInfo } from "../helpers/adminCardsInfo";
+import Logo from "../assets/images/logo-blue.png";
 
 const Dashboard = () => {
 	document.title = "CLEANEX - Dashboard";
@@ -32,10 +32,32 @@ const Dashboard = () => {
 		setIsLoading(false);
 	};
 
+	const calculateTotalBasedOnPackage = async () => {
+		const res = await axios.get("/order/orders");
+		console.log(res.data);
+		// res.data.map((order) => {});
+	};
+
 	const generateReport = () => {
 		const doc = new jsPDF();
 
-		doc.text("Hello world!", 10, 10);
+		calculateTotalBasedOnPackage();
+		doc.addImage(Logo, "png", 10, 10, 30, 5);
+		doc.setFontSize(20);
+		doc.text("Summary Report", 75, 15);
+		doc.setFontSize(5);
+		doc.text(
+			"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+			10,
+			20
+		);
+		doc.setFontSize(12);
+		doc.text("Total Packages: ", 10, 30);
+		doc.text("Total Customers: ", 10, 40);
+		doc.text("Total Feedbacks: ", 10, 50);
+		doc.text(totals[0].total.toString(), 100, 30);
+		doc.text(totals[1].total.toString(), 100, 40);
+		doc.text(totals[2].total.toString(), 100, 50);
 		doc.save(`summary-report-${Date()}.pdf`);
 	};
 
