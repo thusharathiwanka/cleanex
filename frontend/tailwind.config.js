@@ -34,6 +34,12 @@ module.exports = {
 			maxWidth: {
 				"screen-2.5xl": "1728px",
 			},
+			margin:{
+				67:"275px"
+			},
+			inset:{
+				67:"280px"
+			},
 		},
 		fontFamily: {
 			sans: ["Inter", "sans-serif"],
