@@ -5,15 +5,14 @@ import { BiSearch } from "react-icons/bi";
 import Graph from './Graph';
 import axios from 'axios';
 
-
-
 const PaymentList = () => {
 
     const [PaymentDetails, setPaymentDetails] = useState([])
     const [Total, setTotal] = useState(0)
     
 
-useEffect(async() => {
+useEffect(() => {
+    async function fetchdata(){
         try{
         const res = await axios.get("/payment/get")
         setPaymentDetails(res.data.payments)
@@ -22,7 +21,10 @@ useEffect(async() => {
         }catch(err){
             console.log(err);
         }
-        
+    }
+
+    fetchdata()
+
     }, [])
 
 
@@ -55,7 +57,7 @@ useEffect(async() => {
 				</form>
 
                 {PaymentDetails.map((id)=>{
-                    return(<div className=" bg-white mb-5 rounded-lg p-5 px-8 relative shadow-xl w-2/5">
+                    return(<div key={id.name} className=" bg-white mb-5 rounded-lg p-5 px-8 relative shadow-xl w-2/5">
                         <span className="  font-medium">{id.name}</span><br/>
                         <span className="text-light-blue font-medium">{id.date}</span>
                         <span className=" absolute right-8 top-7 text-2xl font-semibold">LKR {id.amount}</span>
