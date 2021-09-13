@@ -98,7 +98,7 @@ const Dashboard = () => {
 							))}
 						</div>
 						<div className="px-16 flex justify-between w-full" id="chart">
-							<GraphInfoCard graphNames={graphOneNames} />
+							<GraphInfoCard graphNames={graphOneNames} className="static" />
 							<GraphDeliveryCard graphNames={graphOneNames} />
 						</div>
 					</div>

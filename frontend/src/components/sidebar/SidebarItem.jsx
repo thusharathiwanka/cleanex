@@ -40,7 +40,7 @@ const SidebarItem = ({ sidebarLink, activeLink }) => {
 						</span>
 					</Link>
 				) : (
-					<button
+					<Link
 						onClick={() => setShowModal(true)}
 						className="flex flex-row items-center h-16 py-2 font-semibold p-5 hover:translate-x-2 transform transition-transform ease-in duration-200"
 					>
@@ -50,7 +50,7 @@ const SidebarItem = ({ sidebarLink, activeLink }) => {
 						<span className="mx-5 font-semibold text-base">
 							{sidebarLink.name}
 						</span>
-					</button>
+					</Link>
 				)}
 			</li>
 		</>

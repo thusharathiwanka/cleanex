@@ -25,6 +25,10 @@ body {
 	animation: spin 1s linear infinite;
 }
 
+#chart {
+	position: static !important;
+}
+
 @keyframes spin {
 	to {
 		transform: rotate(360deg);
