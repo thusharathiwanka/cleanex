@@ -31,6 +31,7 @@ import UserProfileDelete from "../pages/UserProfileDelete";
 import UserProfileEditDelete from "../pages/UserProfileEditDelete";
 import ViewOrder from "../pages/ViewOrder";
 import Worker from "../pages/Worker";
+import Sidebar from "../components/sidebar/Sidebar";
 
 const Routes = () => {
 	const { loggedIn } = useContext(AuthContext);

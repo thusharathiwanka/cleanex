@@ -85,10 +85,7 @@ const GraphInfoCard = ({ graphNames }) => {
 			{isLoading ? (
 				<Spinner />
 			) : (
-				<div
-					className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between flex-wrap"
-					data-aos="fade-up"
-				>
+				<div className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between flex-wrap -z-2">
 					<p className="text-lg font-medium pt-2 text-gray-500">
 						Orders Summary Based on Day
 					</p>
