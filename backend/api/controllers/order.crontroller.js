@@ -1,4 +1,3 @@
-const Order = require("../models/order.model");
 const order = require("../models/order.model");
 
 const updateToProcess = async (req, res) => {
@@ -17,10 +16,12 @@ const updateToProcess = async (req, res) => {
 
 const updateToCompleate = async (req, res) => {
 	try {
+		const date = new Date();
+
 		await order.findByIdAndUpdate(req.params.id, {
 			WashingStatus: "completed",
-			CompletedDate: req.body.date,
-			CompletedTime: req.body.time,
+			CompletedDate: date.toDateString(),
+			CompletedTime: date.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),
 		});
 		res.status(200).json({ message: "order successfully approved" });
 	} catch (err) {
@@ -87,15 +88,15 @@ const getAllOrders = async (req, res) => {
 
 const getByIdOrder = async (req, res) => {
 	try {
-		const order = await order.findById(req.params.id);
-		res.status(200).json(order);
+		const orders = await order.findById(req.params.id);
+		res.status(200).json(orders);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
 };
 
 const updateDeliveryStatus = async (req, res) => {
-	const order = await order.findByIdAndUpdate(req.body.id, {});
+	const orders = await order.findByIdAndUpdate(req.body.id, {});
 };
 
 const updateDeliverID = async (req, res) => {
@@ -119,7 +120,7 @@ const getTotalOrdersBasedOnOrderStatusAndDay = async (req, res) => {
 	}
 
 	try {
-		const orders = await Order.find({ WashingStatus: req.params.status });
+		const orders = await order.find({ WashingStatus: req.params.status });
 
 		if (orders) {
 			const filteredOrders = orders.filter((order) => {
@@ -142,7 +143,7 @@ const getTotalOrdersBasedOnDeliveryStatusAndDay = async (req, res) => {
 	}
 
 	try {
-		const orders = await Order.find({ DelivaryStatus: req.params.status });
+		const orders = await order.find({ DelivaryStatus: req.params.status });
 
 		if (orders) {
 			const filteredOrders = orders.filter((order) => {

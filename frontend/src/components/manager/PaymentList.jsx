@@ -46,7 +46,6 @@ const PaymentList = () => {
 
 
     return (
-        <div className=" static ">
             <div className=" relative">
                 <div className=" inline-block">
                 <Profile Img={ManagerImg} name="Chamindu Jayasith" role="Manager" />
@@ -55,13 +54,13 @@ const PaymentList = () => {
                     <span className="text-light-blue ">Total Income</span><br/>
                     <span className="text-5xl font-semibold">LKR {Total}.00</span>
                 </div>
-                <div className="shadow-2xl p-3 rounded-xl  w-3/7 bg-white absolute right-24 top-60">
+                <div className="shadow-2xl p-3 rounded-xl  w-3/7 bg-white absolute right-24 top-52">
                 <Graph/>
                 </div>
                 
                 <div className="ml-20 justify-center">
                 
-                <form onSubmit={getResults} className=" w-85 mt-5 ml-40  text-center relative mb-10">
+                <form onSubmit={getResults} className=" w-85 mt-5 ml-40  text-center relative mb-5">
                         <input
                             required
                             value={SearchValue}
@@ -77,11 +76,11 @@ const PaymentList = () => {
                                 <IoIosClose className=" text-gray-400" />
                             </div>
                         )}
-                        <button className="text-white bg-light-blue absolute right-0 top-0 h-full rounded-xl w-14 flex items-center justify-center font-bold text-2xl">
+                        <button className="text-white bg-light-blue absolute right-0 top-0 h-full rounded-2xl w-14 flex items-center justify-center font-bold text-2xl">
                             <BiSearch className="w-6 h-6" />
                         </button>
                     </form>
-
+                    <div className="overflow-y-auto h-96 w-100">
                     {NoResults ? (
                         <div>
                             <h1 className="text-2xl font-bold pb-5 ml-56 text-gray-500">No Payment Found</h1>
@@ -91,17 +90,17 @@ const PaymentList = () => {
                             </button>
                         </div>): (
                         <div>{PaymentDetails.map((id)=>{
-                            return(<div key={id.name} className=" bg-white mb-5 rounded-lg p-5 px-8 relative shadow-xl w-2/5">
+                            return(<div key={id.name} className=" bg-white ml-3 mb-5 mt-2 rounded-lg p-5 px-8 relative shadow-xl w-11/12">
                                 <span className="  font-medium">{id.name}</span><br/>
                                 <span className="text-light-blue font-medium">{id.date}</span>
                                 <span className=" absolute right-8 top-7 text-2xl font-semibold">LKR {id.amount}</span>
                             </div>)})}
                         </div>)
                     }
+                    </div>
                 </div>
+                <button className="bg-light-blue rounded-full absolute right-24 top-100 text-white  font-semibold text-xl py-3 px-5">Generate Report</button>
             </div>
-            <button className="bg-light-blue rounded-lg absolute right-24 top-4/5 text-white  font-semibold text-2xl py-3 px-5">Generate Report</button>
-        </div>
     )
 }
 

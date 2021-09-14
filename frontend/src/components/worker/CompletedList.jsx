@@ -38,8 +38,8 @@ const CompletedList = () => {
                         <div className="overflow-y-auto h-16">
                         {data.items.map((id)=>{return(
                             <div>
-                                <span className="ml-24">{id.pack.name}t</span>
-                                <span className="absolute right-36">{id.quantity}</span>
+                                <span className="ml-20">{id.pack.name}t</span>
+                                <span className="absolute right-32">{id.quantity}</span>
                             </div>
                         )})}
                         </div>
@@ -47,13 +47,13 @@ const CompletedList = () => {
                     <div >
                         <div className="ml-16">
                         <span className="font-semibold">Started Date</span>
-                        <span className="ml-12">{data.StartDate}</span>
+                        <span className="ml-14">{data.StartDate}</span>
                         <br/>
                         <span className="font-semibold">Started Time</span>
-                        <span className="ml-12">2:00pm</span>
+                        <span className=" ml-14">2:00pm</span>
                         <br/>
                         <span className="font-semibold">Completed Date</span>
-                        <span className="ml-12">{data.CompletedDate}</span>
+                        <span className="ml-8">{data.CompletedDate}</span>
                         <br/>
                         <span className="font-semibold">Completed Time</span>
                         <span className="ml-8">{data.CompletedTime}</span>
