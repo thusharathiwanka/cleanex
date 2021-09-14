@@ -22,12 +22,13 @@ router.get("/orders", getAllOrders);
 
 router.put("/updateOrder", updateDeliveryStatus);
 router.put("/deliverer/:id", verifyDelivererAuth, updateDeliverID);
-router.get("/:id", getByIdOrder);
+
 
 router.get("/getPendingOrders", getPendingOrders);
 router.get("/getProcessingOrders", getProcessingOrders);
 router.get("/getCompletedOrders", getCompletedOrders);
 router.get("/delivery/:status/:day", getTotalOrdersBasedOnDeliveryStatusAndDay);
+router.get("/:id", getByIdOrder);
 router.get("/:status/:day", getTotalOrdersBasedOnOrderStatusAndDay);
 router.patch("/updateToProcess/:id", updateToProcess);
 router.patch("/updateToCompleate/:id", updateToCompleate);
