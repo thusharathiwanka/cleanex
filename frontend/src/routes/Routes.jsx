@@ -113,7 +113,7 @@ const Routes = () => {
 			<Route exact path="/auth/user/userprofiledelete">
 				<UserProfileDelete />
 			</Route>
-			<Route exact path="auth/deliverer/Deliverer">
+			<Route exact path="/auth/deliverer/Deliverer">
 				<Deliverer />
 			</Route>
 			<Route exact path="/auth/deliverer/dashboard">

@@ -1,17 +1,18 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import LocationInput from "./locationIput";
 import DatePicker from "react-datepicker";
 import Error from "../toasts/Error";
+import SuceessModal from "../modals/SuccessModal";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { AuthContext } from "../../contexts/AuthContext";
 
 const OrderSummary = () => {
 	const { items } = useContext(CartContext);
-	const { loggedIn } = useContext(AuthContext);
+
 	const [showModal, setShowModal] = useState(false);
+	const [viewModal, setViewModal] = useState(false);
 	const [Address, setAddress] = useState("");
 	const [error, setError] = useState("");
 	const [Iserror, setIsError] = useState(false);
@@ -19,35 +20,42 @@ const OrderSummary = () => {
 	let total = 0;
 	let obj = new Set();
 
+	const [userDetail, setUserDetail] = useState({});
+
+	const getUserprofileDetails = async () => {
+		try {
+			const res = await axios.get("/customers/userProfile");
+			setUserDetail(res.data.customer);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+	useEffect(() => {
+		getUserprofileDetails();
+	}, []);
+
 	items.map((packages) => {
 		total += packages.pack.price * packages.quantity;
 		obj.add("\n" + packages.pack.name + " x " + packages.quantity + " , ");
 
 		return total;
 	});
+	const CustomerName = userDetail.name;
+	console.log(items);
 
 	const handleSubmit = async (e) => {
-		if (Address != " " && total != 0 && startDate != null) {
-			e.preventDefault();
-			let Total = total.toString();
-			let StartDate = startDate.toDateString();
-			const orders = { items, Total, StartDate, Address };
-			setError(false);
-
-			try {
-				await axios.post("order/addOrder", orders).then(function (response) {
-					console.log(response.data);
-					setShowModal(false);
-					setStartDate(new Date());
-					setAddress("");
-				});
-			} catch (err) {
-				console.log(err);
-			}
-		} else {
-			setIsError(true);
-			setError("Date and Location  connot be null !");
+		e.preventDefault();
+		const Total = total.toString();
+		const StartDate = startDate.toDateString();
+		const orders = { items, Total, StartDate, Address, CustomerName };
+		console.log(orders);
+		try {
+			await axios.post("order/addOrder", orders);
+		} catch (err) {
+			console.log(err);
 		}
+
+		console.log(orders);
 	};
 
 	return items.length ? (
@@ -142,6 +150,10 @@ const OrderSummary = () => {
 												<button
 													className="bg-light-blue text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 ml-12 rounded shadow hover:shadow-lg outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150"
 													type="submit"
+													onClick={() => {
+														setShowModal(false);
+														setViewModal(true);
+													}}
 												>
 													Confirm
 												</button>
@@ -156,6 +168,12 @@ const OrderSummary = () => {
 					</>
 				) : null}
 			</div>
+			{viewModal && (
+				<SuceessModal
+					setview={setViewModal}
+					message={"Successfully placed order!! We will contact you soon!!"}
+				/>
+			)}
 		</div>
 	) : (
 		<div className="w-9/12 ml-auto text-center text-blue-400 font-bold mr-auto mb-40">

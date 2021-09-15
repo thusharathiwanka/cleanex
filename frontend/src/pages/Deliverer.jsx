@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PickUPList from "../components/Deliverer/PickUpList";
 import DeliveryList from "../components/Deliverer/DeliveryList";
 import Navbar from "../components/nav/Navbar";
+import Report from "../components/Deliverer/ReportForm";
+
+import axios from "axios";
 
 const Deliverer = () => {
 	const [isPickUp, setPickUp] = useState(true);
+
+	const [deliverer, Setdeliverer] = useState({});
+
+	const getDelivererDetails = async () => {
+		try {
+			const res = await axios.get("order/deleiverer/details");
+			Setdeliverer(res.data.deliverer);
+			console.log(res.data.deliverer);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+	useEffect(() => {
+		getDelivererDetails();
+	}, []);
 
 	return (
 		<div>
@@ -21,9 +39,14 @@ const Deliverer = () => {
 					/>
 				</div>
 				<div className="ml-4">
-					<div className="text-sm font-medium text-gray-900">Jane Cooper</div>
-					<div className="text-sm text-gray-500">jane.cooper@example.com</div>
+					<div className="text-sm font-medium text-gray-900">
+						{deliverer.name}
+					</div>
+					<div className="text-sm text-gray-500">{deliverer.email}</div>
 				</div>
+			</div>
+			<div className="flex items-end">
+				<Report />
 			</div>
 			<div
 				className="flex items-center"
