@@ -2,8 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import Error from "../toasts/Error";
 import Success from "../toasts/Success";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 const Feedback = () => {
+  const history = useHistory();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [button, setButton] = useState(false);
@@ -17,13 +18,27 @@ const Feedback = () => {
   const saveFeedback = async (e) => {
     e.preventDefault();
     setButton(true);
+    setNewFeedback({
+      topic: "",
+      description: "",
+      createdAt: "",
+      givenBy: "active",
+      category: "",
+    });
     try {
       newFeedback.createdAt = new Date();
-      await axios.post("feedbacks", newFeedback);
+      const res = await axios.post("feedbacks", newFeedback);
 
       setButton(false);
       console.log(newFeedback);
       setSuccess("Feedback is send Successfully.");
+
+      const logout = async () => {
+        await axios.get("/users/profile");
+
+        history.push("/");
+      };
+      logout();
     } catch (err) {
       console.error(err.response.data.message);
       setError(err.response.data.message);
@@ -50,22 +65,20 @@ const Feedback = () => {
                 <label htmlFor="package-name" className="pb-1">
                   Category
                 </label>
-                <input
-                  className="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
-                  value={newFeedback.category}
-                  placeholder="Catogory type"
-                  required
-                  autoComplete="off"
-                  type="text"
-                  id="category"
-                  name="category"
+                <select
+                  class=" outline-none rounded-full border px-4 py-3 focus:border-light-blue"
                   onChange={(e) =>
                     setNewFeedback({
                       ...newFeedback,
                       category: e.target.value,
                     })
                   }
-                />
+                >
+                  <option>Bug</option>
+                  <option>Features</option>
+                  <option>Positive</option>
+                  <option>Negative</option>
+                </select>
               </div>
               <div className="flex flex-col justify-start pb-5 w-full">
                 <label htmlFor="package-topic" className="pb-1">
@@ -113,7 +126,10 @@ const Feedback = () => {
                 <Link className="transition duration-500 ease-in-out py-3 px-5 bg-black hover:bg-light-blue text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110">
                   Cancle
                 </Link>
-                <button className="transition duration-500 ease-in-out py-3 px-5 bg-light-blue hover:bg-black text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110">
+                <button
+                  className="transition duration-500 ease-in-out py-3 px-5 bg-light-blue hover:bg-black text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110"
+                  to={`/auth/user/profile`}
+                >
                   {button ? "Sending" : "send"}
                 </button>
               </div>
