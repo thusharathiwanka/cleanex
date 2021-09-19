@@ -48,7 +48,7 @@ const EditDelete = () => {
           id={useId}
         />
       )}
-      <div className=" absolute bg-white shadow-lg sm:rounded-2xl sm:p-20 top-2 w-auto ml-96 my-8">
+      <div className=" absolute mx-auto bg-white shadow-lg sm:rounded-2xl sm:p-20 top-2  ml-96 my-8 w-full max-w-xl  rounded-lg px-4 pt-2 items-center justify-center">
         <h1 className="text-5xl font-extrabold pb-10 text-center">
           Edit profile
         </h1>
@@ -64,7 +64,7 @@ const EditDelete = () => {
           <label className=" font-semibold text-24px" for="username">
             User Name
             <input
-              className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border-2 border-light-blue border-opacity-100 bg-gray-100 text-gray-600 "
+              className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border border-gray-400 border-opacity-100 text-gray-600 "
               id="username"
               type="text"
               value={userDetail.name}
@@ -76,7 +76,7 @@ const EditDelete = () => {
           <label className=" font-semibold text-24px" for="email">
             Email
             <input
-              className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border-2 border-blue-500 border-opacity-100 bg-gray-100 text-gray-600"
+              className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border border-gray-400 border-opacity-100 text-gray-600"
               id="email"
               type="text"
               value={userDetail.email}
@@ -88,7 +88,7 @@ const EditDelete = () => {
           <label className=" font-semibold text-24px" for="password">
             Password
             <input
-              className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border-2 border-light-blue border-opacity-100 bg-gray-100 text-gray-600 "
+              className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border border-gray-400 border-opacity-100 text-gray-600 "
               id="password"
               type="password"
               value={userDetail.password}
@@ -100,7 +100,7 @@ const EditDelete = () => {
           <label className=" font-semibold text-24px" for="mobile">
             Mobile
             <input
-              className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border-2 border-light-blue border-opacity-100 bg-gray-100 text-gray-600"
+              className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border border-gray-400 border-opacity-100 text-gray-600"
               id="mobile"
               type="text"
               value={userDetail.mobile}
