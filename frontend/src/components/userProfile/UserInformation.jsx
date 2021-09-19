@@ -18,7 +18,7 @@ const UserInformation = () => {
   return (
     <div>
       <div
-        className="flex mx-auto items-center justify-center shadow-lg mt-56  mb-4 max-w-lg"
+        className="flex mx-auto items-center justify-center shadow-lg mt-28  mb-4 max-w-lg p-20"
         data-aos="fade-down"
       >
         <div className="flex flex-wrap -mx-3 mb-6">

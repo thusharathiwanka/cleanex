@@ -5,7 +5,6 @@ const ProcessingList = (props) => {
 
     const [ProcessingOrders, setProcessingOrders] = useState([])
     const [ID, setID] = useState("")
-    var [Input, setInput] = useState("")
 
 
     useEffect(() => {
@@ -20,11 +19,8 @@ const ProcessingList = (props) => {
     }, [ID])
 
     const updateStatus =async(id)=>{
-        const date = new Date();
-        setInput({...Input,date:date.toDateString(),time:date.toLocaleTimeString()})
-        console.log(Input);
         try{
-            const res = await axios.patch(`/order/updateToCompleate/${id}`,Input)
+            const res = await axios.patch(`/order/updateToCompleate/${id}`)
             if(res.status===200){
                 setID(id)
                 props.setSucc(true)
@@ -58,8 +54,8 @@ const ProcessingList = (props) => {
                         <div className="overflow-y-auto h-16">
                         {data.items.map((id)=>{return(
                             <div>
-                                <span className="ml-24">{id.pack.name}t</span>
-                                <span className="absolute right-36">{id.quantity}</span>
+                                <span className="ml-20">{id.pack.name}t</span>
+                                <span className="absolute right-32">{id.quantity}</span>
                             </div>
                         )})}
                         </div>

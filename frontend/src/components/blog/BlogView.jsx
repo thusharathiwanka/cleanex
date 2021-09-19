@@ -71,14 +71,14 @@ const deleteBlog= async(id)=>{
                                     <Link to={`/singleblog/${blog._id}`}>
                                     <span className="text-light-blue cursor-pointer">Read More</span>
                                     </Link>
-                                    {/* {(LoggedInRole==="admin")&& */}
+                                    {(LoggedInRole==="admin")&&
                                     <div className=" absolute right-10 bottom-5">
                                         <Link to={`/editblogs/${blog._id}`}>
                                         <FiEdit3 className="cursor-pointer text-yellow-600 inline transform hover:scale-110 motion-reduce:transform-none w-6 h-6" />
                                         </Link>
                                         <RiDeleteBin6Line onClick={()=>{setPopup(true); setBlogId(blog._id);}} className="cursor-pointer ml-2 text-red-600 transform hover:scale-110 motion-reduce:transform-none w-6 h-6 inline"/>
                                     </div>
-                                    {/* } */}
+                                    } 
                                     </div>
                                 </div>
                             </div>);

@@ -55,8 +55,8 @@ const PendingLists = (props) => {
                         <div className="overflow-y-auto h-16">
                         {data.items.map((id)=>{return(
                             <div>
-                                <span className="ml-24">{id.pack.name}t</span>
-                                <span className="absolute right-36">{id.quantity}</span>
+                                <span className=" ml-20">{id.pack.name}t</span>
+                                <span className="absolute right-32">{id.quantity}</span>
                             </div>
                         )})}
                         </div>
