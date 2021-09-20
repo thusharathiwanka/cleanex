@@ -68,7 +68,7 @@ const addOrder = async (req, res) => {
 	try {
 		const newOrder = new order(req.body);
 		await newOrder.save();
-		res.status(200);
+		res.status(200).json(newOrder);
 	} catch (error) {
 		res.status(400);
 		console.log(error);
@@ -78,8 +78,8 @@ const addOrder = async (req, res) => {
 const getAllOrders = async (req, res) => {
 	try {
 		const orders = await order.find({
-			DelivaryId: { $nin: [req.body.userId] },
-			DelivaryStatus: "pending",
+			DelivaryId: { $size: 0 },
+			PickupStatus: "pickedup",
 		});
 		res.status(200).json(orders);
 	} catch (error) {
@@ -90,8 +90,8 @@ const getAllOrders = async (req, res) => {
 const getOrdersDeliverer = async (req, res) => {
 	try {
 		const orderList = await order.find({
-			DelivaryId: { $nin: [req.body.userId] },
-			PickupStatus: "pending",
+			DelivaryId: { $size: 0 },
+			DelivaryStatus: "pending",
 		});
 		res.status(200).json(orderList);
 	} catch (error) {
@@ -103,7 +103,7 @@ const getALLOrderbyDelivererPick = async (req, res) => {
 	try {
 		const AcceptedOrders = await order.find({
 			DelivaryId: req.body.userId,
-			PickupStatus: "pending",
+
 			DelivaryStatus: "pending",
 		});
 		res.status(200).json(AcceptedOrders);
@@ -116,7 +116,6 @@ const getALLOrderbyDelivererDeliver = async (req, res) => {
 		const AcceptedOrders = await order.find({
 			DelivaryId: req.body.userId,
 			PickupStatus: "pickedup",
-			DelivaryStatus: "pending",
 		});
 		res.status(200).json(AcceptedOrders);
 	} catch (error) {
@@ -153,6 +152,34 @@ const updatePickupStatus = async (req, res) => {
 		res.status(400).json({ message: error.message });
 	}
 };
+
+const updatePickdelivery = async (req, res) => {
+	try {
+		const orderid = await order.findByIdAndUpdate(req.params.id, {
+			$pull: { DelivaryId: req.body.id },
+		});
+		res.status(200).json(orderid);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+};
+
+const GetGeneratepdf = async (req, res) => {
+	try {
+		const reportdetails = await order.find({
+			StartDate: {
+				$gte: req.params.startdate,
+				$lt: req.params.enddate,
+			},
+			DelivaryStatus: "delivered",
+			Address: req.params.Address,
+			DelivaryId: req.body.userId,
+		});
+		res.status(200).json(reportdetails);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+};
 const getDelivererprofileDetails = async (req, res) => {
 	try {
 		const moderator = await Moderator.findById(req.body.userId);
@@ -181,9 +208,11 @@ module.exports = {
 	getDelivererprofileDetails,
 	getALLOrderbyDelivererPick,
 	getALLOrderbyDelivererDeliver,
+	updatePickdelivery,
 	updatePickupStatus,
 	updateDeliverID,
 	getOrdersDeliverer,
+	GetGeneratepdf,
 	getPendingOrders,
 	getProcessingOrders,
 	getCompletedOrders,

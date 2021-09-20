@@ -4,9 +4,10 @@ import axios from "axios";
 import SuceessModal from "../modals/SuccessModal";
 const DeliveryList = () => {
 	const [orders, setOrders] = useState([]);
-	const [Id, setId] = useState(null);
+
 	const [success, setSuccess] = useState("");
 	const [viewModal, setViewModal] = useState(false);
+	let statusStyle;
 
 	const getOrders = async () => {
 		try {
@@ -17,9 +18,15 @@ const DeliveryList = () => {
 		}
 	};
 
-	const statusUpdate = async () => {
+	const statusUpdate = async (id) => {
 		try {
-		} catch (error) {}
+			const res = await axios.put(`order/deliverystatus/${id}`);
+			setSuccess("updated deliver status succesfully for order " + id);
+			getOrders();
+			setViewModal(true);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	useEffect(() => {
@@ -36,9 +43,12 @@ const DeliveryList = () => {
 		>
 			{orders.length !== 0 ? (
 				<div className="flex flex-col">
+					<h3 className="text-center text-2xl  text-gray-400 mb-20 font-semibold ">
+						Delivery order List
+					</h3>
 					<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 						<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-							<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+							<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-32">
 								<table className="min-w-full divide-y divide-gray-200">
 									<thead className="bg-gray-100">
 										<tr>
@@ -78,6 +88,11 @@ const DeliveryList = () => {
 									{orders && (
 										<tbody className="bg-white divide-y divide-gray-200">
 											{orders.map((order) => {
+												order.DelivaryStatus === "delivered"
+													? (statusStyle = "bg-green-100 text-green-800")
+													: order.DelivaryStatus === "error"
+													? (statusStyle = "bg-gray-100 text-gray-500")
+													: (statusStyle = "bg-gray-100 text-gray-500");
 												return (
 													<tr key={order._id}>
 														<td className="px-6 py-4 whitespace-nowrap">
@@ -98,26 +113,23 @@ const DeliveryList = () => {
 															</div>
 														</td>
 														<td className="px-6 py-4 whitespace-nowrap ">
-															<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-500">
+															<span
+																className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full  ${statusStyle}`}
+															>
 																{order.DelivaryStatus}
 															</span>
 														</td>
 
 														<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-															<a
-																href="www.google.com"
+															<button
+																onClick={() => {
+																	statusUpdate(order._id);
+																}}
+																disabled={order.DelivaryStatus === "delivered"}
 																className="text-green-500 hover:text-green-200"
 															>
 																Delivered
-															</a>
-														</td>
-														<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-															<a
-																href="www.google.com"
-																className="text-red-500 hover:text-red-200"
-															>
-																Error
-															</a>
+															</button>
 														</td>
 													</tr>
 												);
@@ -133,7 +145,9 @@ const DeliveryList = () => {
 					</div>
 				</div>
 			) : (
-				<div> no orders found for deliver</div>
+				<div className="font-semibold text-center text-blue-500 mb-80 mt-20 text-xl">
+					no orders found for deliver
+				</div>
 			)}
 		</div>
 	);

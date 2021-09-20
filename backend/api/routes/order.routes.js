@@ -11,8 +11,9 @@ const {
 	getALLOrderbyDelivererDeliver,
 	getALLOrderbyDelivererPick,
 	updatePickupStatus,
-
+	updatePickdelivery,
 	getOrdersDeliverer,
+	GetGeneratepdf,
 	updateDeliverID,
 	getByIdOrder,
 	updateToProcess,
@@ -31,6 +32,12 @@ router.get(
 	verifyDelivererAuth,
 	getDelivererprofileDetails
 );
+router.get(
+	"deliverer/GetGeneratepdf/:startdate/:enddate/:Address",
+	verifyDelivererAuth,
+	GetGeneratepdf
+);
+router.put("/deliverer/remove/:id", verifyDelivererAuth, updatePickdelivery);
 router.get("/deliverer/neworders", verifyDelivererAuth, getOrdersDeliverer);
 router.get(
 	"/deliverer/Pickup",

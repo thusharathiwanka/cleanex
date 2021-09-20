@@ -5,6 +5,7 @@ import LocationInput from "./locationIput";
 import DatePicker from "react-datepicker";
 import Error from "../toasts/Error";
 import SuceessModal from "../modals/SuccessModal";
+import { Link, useHistory } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -13,10 +14,12 @@ const OrderSummary = () => {
 
 	const [showModal, setShowModal] = useState(false);
 	const [viewModal, setViewModal] = useState(false);
+	const [message, setMessage] = useState("Your lundry bag is Empty !!");
 	const [Address, setAddress] = useState("");
 	const [error, setError] = useState("");
 	const [Iserror, setIsError] = useState(false);
 	const [startDate, setStartDate] = useState(new Date());
+	const history = useHistory();
 	let total = 0;
 	let obj = new Set();
 
@@ -49,8 +52,16 @@ const OrderSummary = () => {
 		const StartDate = startDate.toDateString();
 		const orders = { items, Total, StartDate, Address, CustomerName };
 		console.log(orders);
+
 		try {
-			await axios.post("order/addOrder", orders);
+			const res = await axios.post("order/addOrder", orders);
+			console.log(res);
+			setViewModal(true);
+			setShowModal(false);
+
+			localStorage.clear();
+
+			setTimeout(() => window.location.reload(), 3000);
 		} catch (err) {
 			console.log(err);
 		}
@@ -150,10 +161,6 @@ const OrderSummary = () => {
 												<button
 													className="bg-light-blue text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 ml-12 rounded shadow hover:shadow-lg outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150"
 													type="submit"
-													onClick={() => {
-														setShowModal(false);
-														setViewModal(true);
-													}}
 												>
 													Confirm
 												</button>
@@ -177,7 +184,7 @@ const OrderSummary = () => {
 		</div>
 	) : (
 		<div className="w-9/12 ml-auto text-center text-blue-400 font-bold mr-auto mb-40">
-			Your lundry bag is Empty !!
+			{message}
 		</div>
 	);
 };

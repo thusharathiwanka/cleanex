@@ -24,8 +24,11 @@ const Deliverer_home = () => {
 		<div>
 			<Navbar />
 			<div
-				className="flex items-center"
-				style={{ marginTop: "150px", marginLeft: "150px" }}
+				className="flex items-center  "
+				style={{
+					marginTop: "150px",
+					marginLeft: "150px",
+				}}
 			>
 				<div className="flex-shrink-0 h-24 w-24">
 					<img
@@ -40,12 +43,11 @@ const Deliverer_home = () => {
 					</div>
 					<div className="text-sm text-gray-500">{deliverer.email}</div>
 				</div>
-				<button
-					style={{ width: "220px", marginLeft: "515px" }}
-					className="bg-light-blue hover:bg-blue-200 text-white font-bold py-2 px-4 mr-1 rounded-full"
-				>
-					<Link to={`/auth/deliverer/Deliverer`}> My Deliveries</Link>
-				</button>
+				<div className=" max-w-5xl">
+					<button className="bg-light-blue hover:bg-blue-200  text-white font-bold py-2 px-8 rounded-full ">
+						<Link to={`/auth/deliverer/Deliverer`}> My Deliveries</Link>
+					</button>
+				</div>
 			</div>
 			<div
 				className="flex items-center"
