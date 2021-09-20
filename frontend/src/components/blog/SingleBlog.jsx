@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Blog1 from '../../assets/images/blog1.png'
 import {ImFacebook,ImTwitter} from 'react-icons/im'
 import {FaLinkedinIn,FaInstagram} from 'react-icons/fa'
 import { useParams } from 'react-router-dom'

@@ -16,10 +16,15 @@ const updateToProcess = async (req, res) => {
 
 const updateToCompleate = async (req, res) => {
 	try {
+		const date = new Date();
+
 		await order.findByIdAndUpdate(req.params.id, {
 			WashingStatus: "completed",
-			CompletedDate: req.body.date,
-			CompletedTime: req.body.time,
+			CompletedDate: date.toDateString(),
+			CompletedTime: date.toLocaleTimeString([], {
+				hour: "2-digit",
+				minute: "2-digit",
+			}),
 		});
 		res.status(200).json({ message: "order successfully approved" });
 	} catch (err) {
@@ -124,8 +129,8 @@ const getALLOrderbyDelivererDeliver = async (req, res) => {
 };
 const getByIdOrder = async (req, res) => {
 	try {
-		const order = await order.findById(req.params.id);
-		res.status(200).json(order);
+		const orders = await order.findById(req.params.id);
+		res.status(200).json(orders);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
@@ -187,6 +192,7 @@ const getDelivererprofileDetails = async (req, res) => {
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
+	const orders = await order.findByIdAndUpdate(req.body.id, {});
 };
 
 const updateDeliverID = async (req, res) => {
@@ -197,6 +203,52 @@ const updateDeliverID = async (req, res) => {
 		res.status(202).json(deliverer);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
+	}
+};
+
+const getTotalOrdersBasedOnOrderStatusAndDay = async (req, res) => {
+	if (!req.params) {
+		return res.status(400).send();
+	}
+
+	if (!req.params.status && req.params.day) {
+		return res.status(400).send();
+	}
+
+	try {
+		const orders = await order.find({ WashingStatus: req.params.status });
+
+		if (orders) {
+			const filteredOrders = orders.filter((order) => {
+				return order.StartDate.substring(0, 3) === req.params.day;
+			});
+			return res.status(200).json({ total: filteredOrders.length });
+		}
+	} catch (err) {
+		return res.status(404).send();
+	}
+};
+
+const getTotalOrdersBasedOnDeliveryStatusAndDay = async (req, res) => {
+	if (!req.params) {
+		return res.status(400).send();
+	}
+
+	if (!req.params.status && req.params.day) {
+		return res.status(400).send();
+	}
+
+	try {
+		const orders = await order.find({ DelivaryStatus: req.params.status });
+
+		if (orders) {
+			const filteredOrders = orders.filter((order) => {
+				return order.StartDate.substring(0, 3) === req.params.day;
+			});
+			return res.status(200).json({ total: filteredOrders.length });
+		}
+	} catch (err) {
+		return res.status(404).send();
 	}
 };
 
@@ -218,4 +270,6 @@ module.exports = {
 	getCompletedOrders,
 	updateToProcess,
 	updateToCompleate,
+	getTotalOrdersBasedOnOrderStatusAndDay,
+	getTotalOrdersBasedOnDeliveryStatusAndDay,
 };
