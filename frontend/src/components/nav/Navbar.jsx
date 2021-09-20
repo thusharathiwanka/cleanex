@@ -1,15 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
-import LogoBlue from "../../assets/images/logo-blue.png";
-import { navLinks, customerLoggedNavLinks } from "../../helpers/navbarLinks";
 import { AuthContext } from "../../contexts/AuthContext";
 
+import LogoBlue from "../../assets/images/logo-blue.png";
+import { navLinks, customerLoggedNavLinks } from "../../helpers/navbarLinks";
+import SignoutConfirmModal from "../modals/SignoutConfirmModal";
+
 const Navbar = () => {
+	const [showModal, setShowModal] = useState(false);
 	const history = useHistory();
 	const { loggedIn, getLoggedIn } = useContext(AuthContext);
-	const navigation = loggedIn ? customerLoggedNavLinks : navLinks;
+	const navigation = loggedIn.state ? customerLoggedNavLinks : navLinks;
 
 	const logout = async () => {
 		await axios.get("/users/logout");
@@ -25,6 +28,10 @@ const Navbar = () => {
 					: "text-gray-800"
 			}
 		>
+			{" "}
+			{showModal && (
+				<SignoutConfirmModal setShowModal={setShowModal} execute={logout} />
+			)}
 			<div className="flex mx-auto max-w-screen-2xl justify-between items-center px-4 min-h-12">
 				<Link to="/">
 					<img src={LogoBlue} alt="blue-logo" />
@@ -39,10 +46,10 @@ const Navbar = () => {
 							{navLink.name}
 						</Link>
 					))}
-					{loggedIn ? (
+					{loggedIn.state ? (
 						<Link
 							className="ml-5 font-semibold text-lg bg-light-blue text-white py-3 px-8 rounded-full"
-							onClick={logout}
+							onClick={() => setShowModal(true)}
 						>
 							Sign Out
 						</Link>

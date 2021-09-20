@@ -47,7 +47,7 @@ const ViewModal = ({ setShowViewModal, id }) => {
 								<div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-16 sm:w-16">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
-										className="h-8 w-8 text-green-600"
+										class="h-6 w-6"
 										fill="none"
 										viewBox="0 0 24 24"
 										stroke="currentColor"
@@ -56,7 +56,7 @@ const ViewModal = ({ setShowViewModal, id }) => {
 											strokeLinecap="round"
 											strokeLinejoin="round"
 											strokeWidth="2"
-											d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+											d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
 										/>
 									</svg>
 								</div>

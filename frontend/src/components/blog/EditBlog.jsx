@@ -8,19 +8,13 @@ import { useParams } from 'react-router-dom'
 
 const EditBlog = () => {
 
-const [CurrentDetails, setCurrentDetails] = useState("")
+
 const [Blog, setBlog] = useState("")
 const [Err, setErr] = useState("")
 const [Succ, setSucc] = useState("")
 const [File, setFile] = useState(null)
 const [ErrMsg, setErrMsg] = useState("")
-const [Test, setTest] = useState({
-     name:"1629816601743-Blog5.jpg",
-        topic:"b",
-        description:"b",
-        date:"b",
-        content:"b"
-})
+
 
 const {id} = useParams()
 
@@ -51,8 +45,6 @@ const updateBlog =async(e)=>{
     }
     
         console.log(Blog);
-        
-        console.log(Test);
                 const res = await axios.patch(`/blog/update/${id}`,Blog)
                     if(res.status===200){
                         setSucc(true)

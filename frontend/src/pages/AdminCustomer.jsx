@@ -70,7 +70,7 @@ const AdminCustomer = () => {
 				{isLoading ? (
 					<Spinner />
 				) : (
-					<div className="w-full px-10" data-aos="fade-up" data-aos-delay="100">
+					<div className="w-full px-10">
 						<div className="flex flex-col mt-5">
 							<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 								<div className="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">

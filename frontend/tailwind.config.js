@@ -23,7 +23,8 @@ module.exports = {
 			width: {
 				85: "23rem",
 				"w-full-90": "90%",
-				411:"411px"
+				411:"411px",
+				100:"750px",
 			},
 			height:{
 				264:"264px",
@@ -33,6 +34,13 @@ module.exports = {
 			},
 			maxWidth: {
 				"screen-2.5xl": "1728px",
+			},
+			margin:{
+				67:"275px",
+			},
+			inset:{
+				67:"280px",
+				100:"660px"
 			},
 		},
 		fontFamily: {
