@@ -1,19 +1,19 @@
 const router = require("express").Router();
 
 const {
-
-  getPendingOrders,
-  getProcessingOrders,
-  getCompletedOrders,
-  addOrder,
-  getAllOrders,
-  getUserOrders,
-  updateDeliveryStatus,
-  updateDeliverID,
-  getByIdOrder,
-  updateToProcess,
-  updateToCompleate,
-
+	getPendingOrders,
+	getProcessingOrders,
+	getCompletedOrders,
+	addOrder,
+	getAllOrders,
+	getUserOrders,
+	updateDeliveryStatus,
+	getTotalOrdersBasedOnDeliveryStatusAndDay,
+	getTotalOrdersBasedOnOrderStatusAndDay,
+	updateDeliverID,
+	getByIdOrder,
+	updateToProcess,
+	updateToCompleate,
 } = require("../controllers/order.crontroller");
 
 const { verifyDelivererAuth } = require("../middleware/delivererAuth");
