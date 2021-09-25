@@ -1,14 +1,12 @@
-import React from 'react'
+import React from "react";
 import ReactApexChart from "react-apexcharts";
 
 const Graph = () => {
-
-    const series = [
+	const series = [
 		{
 			name: "series1",
 			data: [1000, 5000, 20000, 10000, 15000, 18000, 20000],
-		}
-		
+		},
 	];
 
 	const options = {
@@ -44,18 +42,20 @@ const Graph = () => {
 			},
 		},
 	};
-    return (
-        <div className="    ">
-            <label className="flex justify-center text-xl font-semibold ">Daily Income</label>
-            <ReactApexChart
+	return (
+		<div className="    ">
+			<label className="flex justify-center text-xl font-semibold ">
+				Daily Income
+			</label>
+			<ReactApexChart
 				options={options}
 				series={series}
 				type="area"
 				height={350}
 				width={700}
 			/>
-        </div>
-    )
-}
+		</div>
+	);
+};
 
-export default Graph
+export default Graph;
