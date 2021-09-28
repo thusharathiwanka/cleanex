@@ -92,7 +92,6 @@ const getAllOrders = async (req, res) => {
 	}
 };
 const getUserOrders = async (req, res) => {
-	console.log(req.body);
 	try {
 		const orders = await order.findById(req.body.userId);
 		res.status(200).json(orders);
@@ -180,7 +179,6 @@ const updatePickdelivery = async (req, res) => {
 
 const GetGeneratepdf = async (req, res) => {
 	try {
-		console.log(req.params);
 		const reportdetails = await order.find({
 			StartDate: {
 				$gte: req.params.startdate,
@@ -190,6 +188,7 @@ const GetGeneratepdf = async (req, res) => {
 			Address: req.params.Address,
 			DelivaryId: req.body.userId,
 		});
+
 		res.status(200).json(reportdetails);
 	} catch (error) {
 		res.status(400).json({ message: error.message });

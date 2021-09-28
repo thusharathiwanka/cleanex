@@ -34,8 +34,9 @@ const Report = () => {
 				`order/deliverer/GetGeneratepdf/${startdate}/${enddate}/${Address}`
 			);
 			if (res.status == 200) {
-				setOrders(res.data);
-				console.log(res.data);
+				setOrders(res.reportdetails);
+				console.log(res.reportdetails);
+				console.log(res);
 				generateReport();
 			}
 		} catch (error) {}
@@ -52,7 +53,7 @@ const Report = () => {
 		report.text("Name : Nanduni Weerasinghe", 10, 25);
 		report.text(`Date   : ${date.toDateString()}`, 10, 30);
 		report.text(
-			`Time   : ${date.toLocaleTimeString([], {
+			`  Time  : ${date.toLocaleTimeString([], {
 				hour: "2-digit",
 				minute: "2-digit",
 			})}`,
@@ -61,7 +62,7 @@ const Report = () => {
 		);
 		report.setFontSize(8);
 		report.text(
-			`delivery recors for : from ${startDate._d.toDateString()} to ${endDate._d.toDateString()}`,
+			`delivery records for : from ${startDate._d.toDateString()} to ${endDate._d.toDateString()}`,
 			135,
 			45
 		);
