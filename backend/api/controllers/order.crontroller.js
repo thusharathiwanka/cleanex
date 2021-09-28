@@ -1,4 +1,5 @@
 const order = require("../models/order.model");
+const Moderator = require("../models/moderator.model");
 
 const updateToProcess = async (req, res) => {
 	try {
@@ -72,7 +73,7 @@ const addOrder = async (req, res) => {
 	try {
 		const newOrder = new order(req.body);
 		await newOrder.save();
-		res.status(200);
+		res.status(200).json(newOrder);
 	} catch (error) {
 		res.status(400);
 		console.log(error);
@@ -81,7 +82,10 @@ const addOrder = async (req, res) => {
 
 const getAllOrders = async (req, res) => {
 	try {
-		const orders = await order.find();
+		const orders = await order.find({
+			DelivaryId: { $size: 0 },
+			PickupStatus: "pickedup",
+		});
 		res.status(200).json(orders);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
@@ -97,6 +101,41 @@ const getUserOrders = async (req, res) => {
 	}
 };
 
+const getOrdersDeliverer = async (req, res) => {
+	try {
+		const orderList = await order.find({
+			DelivaryId: { $size: 0 },
+			DelivaryStatus: "pending",
+		});
+		res.status(200).json(orderList);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+};
+
+const getALLOrderbyDelivererPick = async (req, res) => {
+	try {
+		const AcceptedOrders = await order.find({
+			DelivaryId: req.body.userId,
+
+			DelivaryStatus: "pending",
+		});
+		res.status(200).json(AcceptedOrders);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+};
+const getALLOrderbyDelivererDeliver = async (req, res) => {
+	try {
+		const AcceptedOrders = await order.find({
+			DelivaryId: req.body.userId,
+			PickupStatus: "pickedup",
+		});
+		res.status(200).json(AcceptedOrders);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+};
 const getByIdOrder = async (req, res) => {
 	try {
 		const order = await order.findById(req.params.id);
@@ -107,7 +146,74 @@ const getByIdOrder = async (req, res) => {
 };
 
 const updateDeliveryStatus = async (req, res) => {
-	const order = await order.findByIdAndUpdate(req.body.id, {});
+	try {
+		const orderdelivery = await order.findByIdAndUpdate(req.params.id, {
+			DelivaryStatus: "delivered",
+		});
+		res.status(200).json(orderdelivery);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+};
+
+const updatePickupStatus = async (req, res) => {
+	try {
+		const orderPick = await order.findByIdAndUpdate(req.params.id, {
+			PickupStatus: "pickedup",
+		});
+		res.status(200).json(orderPick);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+};
+
+const updatePickdelivery = async (req, res) => {
+	try {
+		const orderid = await order.findByIdAndUpdate(req.params.id, {
+			$pull: { DelivaryId: req.body.id },
+		});
+		res.status(200).json(orderid);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+};
+
+const GetGeneratepdf = async (req, res) => {
+	try {
+		console.log(req.params);
+		const reportdetails = await order.find({
+			StartDate: {
+				$gte: req.params.startdate,
+				$lt: req.params.enddate,
+			},
+			DelivaryStatus: "delivered",
+			Address: req.params.Address,
+			DelivaryId: req.body.userId,
+		});
+		res.status(200).json(reportdetails);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+};
+const getDelivererprofileDetails = async (req, res) => {
+	try {
+		const moderator = await Moderator.findById(req.body.userId);
+		res.status(200).json({ deliverer: moderator });
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+};
+const deleteOrderbyID = async (req, res) => {
+	if (req.params) {
+		try {
+			if (!deleteOrder) res.status(404).send("No item found");
+			const deleteOrder = await order.findByIdAndDelete(req.params.id);
+
+			res.status(200).send();
+		} catch (error) {
+			response.status(500).send(error);
+		}
+	}
 };
 
 const updateDeliverID = async (req, res) => {
@@ -173,7 +279,15 @@ module.exports = {
 	getByIdOrder,
 	getUserOrders,
 	updateDeliveryStatus,
+	getDelivererprofileDetails,
+	getALLOrderbyDelivererPick,
+	getALLOrderbyDelivererDeliver,
+	updatePickdelivery,
+	updatePickupStatus,
 	updateDeliverID,
+	deleteOrderbyID,
+	getOrdersDeliverer,
+	GetGeneratepdf,
 	getPendingOrders,
 	getProcessingOrders,
 	getCompletedOrders,

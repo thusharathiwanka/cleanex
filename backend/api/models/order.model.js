@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moderators = require("./moderator.model");
 
 const orderSchema = new mongoose.Schema({
 	items: [{ type: Object }],
@@ -15,7 +16,13 @@ const orderSchema = new mongoose.Schema({
 
 	CustomerName: { type: String },
 	Address: { type: String },
-	DelivaryId: { type: mongoose.Schema.Types.ObjectId, ref: "moderators" },
+	DelivaryId: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+
+			ref: "moderators",
+		},
+	],
 });
 
 const Order = mongoose.model("Orders", orderSchema);
