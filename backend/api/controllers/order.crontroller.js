@@ -171,6 +171,7 @@ const updatePickdelivery = async (req, res) => {
 
 const GetGeneratepdf = async (req, res) => {
 	try {
+		console.log(req.params);
 		const reportdetails = await order.find({
 			StartDate: {
 				$gte: req.params.startdate,
@@ -192,7 +193,18 @@ const getDelivererprofileDetails = async (req, res) => {
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
-	const orders = await order.findByIdAndUpdate(req.body.id, {});
+};
+const deleteOrderbyID = async (req, res) => {
+	if (req.params) {
+		try {
+			if (!deleteOrder) res.status(404).send("No item found");
+			const deleteOrder = await order.findByIdAndDelete(req.params.id);
+
+			res.status(200).send();
+		} catch (error) {
+			response.status(500).send(error);
+		}
+	}
 };
 
 const updateDeliverID = async (req, res) => {
@@ -263,6 +275,7 @@ module.exports = {
 	updatePickdelivery,
 	updatePickupStatus,
 	updateDeliverID,
+	deleteOrderbyID,
 	getOrdersDeliverer,
 	GetGeneratepdf,
 	getPendingOrders,

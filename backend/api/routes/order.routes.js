@@ -15,6 +15,7 @@ const {
 	getOrdersDeliverer,
 	GetGeneratepdf,
 	updateDeliverID,
+	deleteOrderbyID,
 	getByIdOrder,
 	updateToProcess,
 	updateToCompleate,
@@ -35,7 +36,7 @@ router.get(
 	getDelivererprofileDetails
 );
 router.get(
-	"deliverer/GetGeneratepdf/:startdate/:enddate/:Address",
+	"/deliverer/GetGeneratepdf/:startdate/:enddate/:Address",
 	verifyDelivererAuth,
 	GetGeneratepdf
 );
@@ -59,9 +60,11 @@ router.get("/getProcessingOrders", getProcessingOrders);
 router.get("/getCompletedOrders", getCompletedOrders);
 router.get("/delivery/:status/:day", getTotalOrdersBasedOnDeliveryStatusAndDay);
 router.get("/:id", getByIdOrder);
+
 router.get("/:status/:day", getTotalOrdersBasedOnOrderStatusAndDay);
 router.patch("/updateToProcess/:id", updateToProcess);
 router.patch("/updateToCompleate/:id", updateToCompleate);
 router.get("/:id", getByIdOrder);
+router.delete("/delete/:id", deleteOrderbyID);
 
 module.exports = router;
