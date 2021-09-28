@@ -1,7 +1,6 @@
 const order = require("../models/order.model");
 
 const updateToProcess = async (req, res) => {
-	
 	try {
 		await order.findByIdAndUpdate(req.params.id, {
 			WashingStatus: "processing",
@@ -21,7 +20,10 @@ const updateToCompleate = async (req, res) => {
 		await order.findByIdAndUpdate(req.params.id, {
 			WashingStatus: "completed",
 			CompletedDate: date.toDateString(),
-			CompletedTime: date.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),
+			CompletedTime: date.toLocaleTimeString([], {
+				hour: "2-digit",
+				minute: "2-digit",
+			}),
 		});
 		res.status(200).json({ message: "order successfully approved" });
 	} catch (err) {
@@ -85,18 +87,27 @@ const getAllOrders = async (req, res) => {
 		res.status(404).json({ message: error.message });
 	}
 };
-
-const getByIdOrder = async (req, res) => {
+const getUserOrders = async (req, res) => {
+	console.log(req.body);
 	try {
-		const orders = await order.findById(req.params.id);
+		const orders = await order.findById(req.body.userId);
 		res.status(200).json(orders);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
 };
 
+const getByIdOrder = async (req, res) => {
+	try {
+		const order = await order.findById(req.params.id);
+		res.status(200).json(order);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+};
+
 const updateDeliveryStatus = async (req, res) => {
-	const orders = await order.findByIdAndUpdate(req.body.id, {});
+	const order = await order.findByIdAndUpdate(req.body.id, {});
 };
 
 const updateDeliverID = async (req, res) => {
@@ -160,6 +171,7 @@ module.exports = {
 	addOrder,
 	getAllOrders,
 	getByIdOrder,
+	getUserOrders,
 	updateDeliveryStatus,
 	updateDeliverID,
 	getPendingOrders,
