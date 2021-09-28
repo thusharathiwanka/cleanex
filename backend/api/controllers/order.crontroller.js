@@ -91,6 +91,15 @@ const getAllOrders = async (req, res) => {
 		res.status(404).json({ message: error.message });
 	}
 };
+const getUserOrders = async (req, res) => {
+	console.log(req.body);
+	try {
+		const orders = await order.findById(req.body.userId);
+		res.status(200).json(orders);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+};
 
 const getOrdersDeliverer = async (req, res) => {
 	try {
@@ -129,8 +138,8 @@ const getALLOrderbyDelivererDeliver = async (req, res) => {
 };
 const getByIdOrder = async (req, res) => {
 	try {
-		const orders = await order.findById(req.params.id);
-		res.status(200).json(orders);
+		const order = await order.findById(req.params.id);
+		res.status(200).json(order);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
@@ -268,6 +277,7 @@ module.exports = {
 	addOrder,
 	getAllOrders,
 	getByIdOrder,
+	getUserOrders,
 	updateDeliveryStatus,
 	getDelivererprofileDetails,
 	getALLOrderbyDelivererPick,

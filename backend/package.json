@@ -5,7 +5,8 @@
 	"main": "server.js",
 	"scripts": {
 		"devStart": "nodemon server.js",
-		"start": "node server.js"
+		"start": "node server.js",
+		"test": "jest"
 	},
 	"keywords": [],
 	"author": "",
@@ -22,6 +23,9 @@
 		"path": "^0.12.7"
 	},
 	"devDependencies": {
-		"nodemon": "^2.0.12"
+		"axios": "^0.21.4",
+		"jest": "^27.2.2",
+		"nodemon": "^2.0.12",
+		"supertest": "^6.1.6"
 	}
 }

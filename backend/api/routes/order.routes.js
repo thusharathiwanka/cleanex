@@ -6,6 +6,7 @@ const {
 	getCompletedOrders,
 	addOrder,
 	getAllOrders,
+	getUserOrders,
 	updateDeliveryStatus,
 	getDelivererprofileDetails,
 	getALLOrderbyDelivererDeliver,
@@ -14,16 +15,17 @@ const {
 	updatePickdelivery,
 	getOrdersDeliverer,
 	GetGeneratepdf,
+	getTotalOrdersBasedOnDeliveryStatusAndDay,
+	getTotalOrdersBasedOnOrderStatusAndDay,
 	updateDeliverID,
 	deleteOrderbyID,
 	getByIdOrder,
 	updateToProcess,
 	updateToCompleate,
-	getTotalOrdersBasedOnOrderStatusAndDay,
-	getTotalOrdersBasedOnDeliveryStatusAndDay,
 } = require("../controllers/order.crontroller");
 
 const { verifyDelivererAuth } = require("../middleware/delivererAuth");
+const { verifyCustomerAuth } = require("../middleware/customerAuth");
 
 router.post("/addOrder", addOrder);
 router.get("/orders", verifyDelivererAuth, getAllOrders);
@@ -55,6 +57,7 @@ router.get(
 router.put("/deliverystatus/:id", updateDeliveryStatus);
 router.put("/pickupstatus/:id", updatePickupStatus);
 
+router.get("/userOrders", verifyCustomerAuth, getUserOrders);
 router.get("/getPendingOrders", getPendingOrders);
 router.get("/getProcessingOrders", getProcessingOrders);
 router.get("/getCompletedOrders", getCompletedOrders);
