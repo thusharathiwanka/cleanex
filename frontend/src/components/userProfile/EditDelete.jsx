@@ -20,6 +20,7 @@ const EditDelete = () => {
     email: "",
     password: "",
     mobile: "",
+    uupdatedAt: "",
   });
 
   const getUserprofileDetails = async () => {
@@ -34,11 +35,13 @@ const EditDelete = () => {
   };
 
   const saveUpdatedUser = async (e) => {
-    e.preventDefualt();
+    e.preventDefault();
+    console.log("frfrfr");
     setButtonStatus(true);
     try {
       updateUser.updatedAt = new Date();
       const res = await axios.put(`/customers/updateUserProfile`, updateUser);
+      console.log(res);
       setButtonStatus(false);
       setUpdatUser({
         name: "",
@@ -66,9 +69,9 @@ const EditDelete = () => {
       if (res.status === 200) {
         setPopup(false);
         const logout = async () => {
-          await axios.get("/users/logout");
+          // await axios.get();
 
-          history.push("/");
+          history.push("/users/logout");
         };
         logout();
       }
@@ -168,7 +171,7 @@ const EditDelete = () => {
           <div className="space-x-4">
             <button
               className="transition duration-500 ease-in-out  py-2 px-4 bg-light-blue hover:bg-black text-white sm:rounded-3xl transform hover:-translate-y-1 hover:scale-110 "
-              to={`/auth/user/profile`}
+              to={`/auth/user/userprofileeditdelete`}
             >
               {buttonStatus ? "Saving" : "Edit"}
             </button>

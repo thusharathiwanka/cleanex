@@ -1,6 +1,32 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 const AllOrderHistory = () => {
+  const [userDetail, setUserDetail] = useState({});
+  const [userOrder, setUserOrderDetail] = useState({});
+
+  const getUserprofileDetails = async () => {
+    try {
+      const res = await axios.get("/customers/userProfile");
+      setUserDetail(res.data.customer);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  const getUserOrder = async () => {
+    try {
+      const res = await axios.post("/order/allorders", {
+        customerName: userDetail.name,
+      });
+      setUserOrderDetail(res.data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  useEffect(() => {
+    getUserprofileDetails();
+    getUserOrder();
+  }, []);
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-center ">
