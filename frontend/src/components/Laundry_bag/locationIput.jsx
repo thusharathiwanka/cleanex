@@ -16,6 +16,12 @@ export default class LocationInput extends Component {
 					value={this.state.address}
 					onChange={this.handleChange}
 					onSelect={this.handleSelect}
+					searchOptions={{
+						componentRestrictions: {
+							country: ["lk"],
+						},
+						types: ["(cities)"],
+					}}
 				>
 					{({
 						getInputProps,
@@ -34,7 +40,10 @@ export default class LocationInput extends Component {
 								type="text"
 								className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
 							/>
-							<div className="autocomplete-dropdown-container">
+							<div
+								className="autocomplete-dropdown-container"
+								style={{ position: "absolute", zIndex: 1000 }}
+							>
 								{loading && <div>Loading...</div>}
 								{suggestions.map((suggestion) => {
 									const className = suggestion.active

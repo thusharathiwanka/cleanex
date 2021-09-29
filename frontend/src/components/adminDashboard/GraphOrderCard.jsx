@@ -58,6 +58,12 @@ const GraphInfoCard = ({ graphNames }) => {
 			height: 350,
 			type: "area",
 			width: "100%",
+			toolbar: {
+				show: true,
+			},
+			zoom: {
+				enabled: true,
+			},
 		},
 		dataLabels: {
 			enabled: false,
@@ -85,7 +91,7 @@ const GraphInfoCard = ({ graphNames }) => {
 			{isLoading ? (
 				<Spinner />
 			) : (
-				<div className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between flex-wrap -z-2">
+				<div className="w-1/2 shadow-lg rounded-xl p-8 bg-white m-8 flex justify-between flex-wrap">
 					<p className="text-lg font-medium pt-2 text-gray-500">
 						Orders Summary Based on Day
 					</p>
