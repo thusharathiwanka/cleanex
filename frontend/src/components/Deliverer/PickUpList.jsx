@@ -94,7 +94,7 @@ const PickUpList = ({ order }) => {
 							name="search"
 							id="search"
 							className="outline-none rounded-full border px-5 py-1 focus:border-light-blue w-full"
-							placeholder="Search here..."
+							placeholder="Search by location"
 							value={searchQuery}
 							onChange={(e) => {
 								setSearchQuery(e.target.value);

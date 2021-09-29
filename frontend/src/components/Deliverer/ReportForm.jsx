@@ -83,7 +83,7 @@ const Report = () => {
 	};
 
 	return (
-		<div>
+		<div className="w-5/5">
 			<form onSubmit={handleSubmit}>
 				<div className="flex">
 					<label class="text-gray-500 w-2/6 font-semibold mr-24 float-right mt-4">
@@ -96,7 +96,7 @@ const Report = () => {
 					/>
 				</div>
 
-				<div className=" flex">
+				<div className=" flex mt-5">
 					<label class="text-gray-500 w-2/6 font-semibold mr-20 float-right mt-4 ">
 						Enter Date range :
 					</label>
