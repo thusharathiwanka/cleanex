@@ -206,7 +206,6 @@ const getUserDetails = async (req, res) => {
  */
 
 const getUserprofileDetails = async (req, res) => {
-  console.log(req.body);
   try {
     const customer = await Customer.findById(req.body.userId);
     res.status(200).json({ customer: customer });
@@ -257,7 +256,7 @@ const updateUserProfile = async (req, res) => {
           password: hPassword,
           mobile,
         });
-        console.log(req.body);
+
         // * sending as updated
         return res.status(201).json("Updated Successfully");
       } catch (err) {
