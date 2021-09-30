@@ -65,7 +65,7 @@ const AllOrderHistory = () => {
           </button>
         </div>
       </div>
-      <div className="flex mx-auto items-center justify-center shadow-lg mt-56  mb-4">
+      <div className="flex mx-auto items-center justify-end shadow-lg mt-56  mb-4">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <h2 className="text-5xl font-extrabold pb-10 pt-10 text-center ml-8 ">
             All Orders
@@ -106,6 +106,7 @@ const AllOrderHistory = () => {
                     <th scope="col" className="relative px-6 py-3">
                       <span className="sr-only">Edit</span>
                     </th>
+                    <th></th>
                   </tr>
                 </thead>
                 {userOrder.map((order) => (
@@ -140,6 +141,14 @@ const AllOrderHistory = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <Link className="text-red-500 hover:text-red-400">
                           Delete
+                        </Link>
+                      </td>
+                      <td>
+                        <Link
+                          className="transition duration-500 ease-in-out py-3 px-5 m-8 ml-36 bg-green-500 hover:bg-blue-500 text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110"
+                          to={`/payment/${order._id}`}
+                        >
+                          Pay
                         </Link>
                       </td>
                     </tr>
