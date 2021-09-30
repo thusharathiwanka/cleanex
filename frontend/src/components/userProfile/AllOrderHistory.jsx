@@ -1,6 +1,49 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 const AllOrderHistory = () => {
+  const [userDetail, setUserDetail] = useState({ name: "" });
+  const [userOrder, setUserOrderDetail] = useState([]);
+  // localStorage.setItem("setUserDetail", JSON.stringify(setUserDetail));
+  // const localData = localStorage.getItem("setUserDetail");
+
+  const getUserprofileDetails = async () => {
+    await axios
+      .get("/customers/userProfile")
+      .then((res) => {
+        console.log(res.data.customer);
+        setUserDetail(res.data.customer);
+        const uName = res.data.customer.name;
+        getUserOrder(uName);
+        console.log(uName);
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  };
+  // const handleId = (id) => {
+  //   setId(id);
+  //   console.log(id);
+  // };
+
+  const getUserOrder = async (userName) => {
+    console.log(userName);
+    try {
+      const formData = {
+        CustomerName: userName,
+      };
+      const res = await axios.post("/order/allorders", formData);
+      setUserOrderDetail(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getUserprofileDetails();
+    // getUserOrder();
+  }, []);
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-center ">
@@ -65,37 +108,43 @@ const AllOrderHistory = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">2021-03-08</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">009ID</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">8900</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        Active
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <Link
-                        className="text-green-600 hover:text-green-400"
-                        to={`/auth/user/vieworder`}
-                      >
-                        View
-                      </Link>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <Link className="text-red-500 hover:text-red-400">
-                        Delete
-                      </Link>
-                    </td>
-                  </tr>
-                </tbody>
+                {userOrder.map((order) => (
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    <tr key={order._id}>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-900">
+                          {order.StartDate}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-900">{order._id}</div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-900">
+                          {order.Total}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                          {order.WashingStatus}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <Link
+                          className="text-green-600 hover:text-green-400"
+                          to={`/auth/user/vieworder/${order._id}`}
+                        >
+                          View
+                        </Link>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <Link className="text-red-500 hover:text-red-400">
+                          Delete
+                        </Link>
+                      </td>
+                    </tr>
+                  </tbody>
+                ))}
               </table>
             </div>
           </div>

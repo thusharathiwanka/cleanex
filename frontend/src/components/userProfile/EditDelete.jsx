@@ -20,6 +20,7 @@ const EditDelete = () => {
     email: "",
     password: "",
     mobile: "",
+    updatedAt: "",
   });
 
   const getUserprofileDetails = async () => {
@@ -34,11 +35,13 @@ const EditDelete = () => {
   };
 
   const saveUpdatedUser = async (e) => {
-    e.preventDefualt();
+    e.preventDefault();
+    console.log("frfrfr");
     setButtonStatus(true);
     try {
       updateUser.updatedAt = new Date();
       const res = await axios.put(`/customers/updateUserProfile`, updateUser);
+      console.log(res);
       setButtonStatus(false);
       setUpdatUser({
         name: "",
@@ -66,9 +69,9 @@ const EditDelete = () => {
       if (res.status === 200) {
         setPopup(false);
         const logout = async () => {
-          await axios.get("/users/logout");
+          // await axios.get();
 
-          history.push("/");
+          history.push("/users/logout");
         };
         logout();
       }
@@ -85,12 +88,12 @@ const EditDelete = () => {
           execute={deleteprofile}
           id={useId}
         />
-      )}
+      )}{" "}
+      <div className="w-full text-center flex justify-center">
+        {error && <Error error={error} top="-top-2" />}
+        {success && <Success success={success} top="-top-2" />}
+      </div>
       <div className=" absolute mx-auto bg-white shadow-lg sm:rounded-2xl sm:p-20 top-2  ml-96 my-8 w-full max-w-xl  rounded-lg px-4 pt-2 items-center justify-center">
-        <div className="w-full text-center flex justify-center">
-          {error && <Error error={error} top="-top-2" />}
-          {success && <Success success={success} top="-top-2" />}
-        </div>
         <h1 className="text-5xl font-extrabold pb-10 text-center">
           Edit profile
         </h1>
@@ -168,7 +171,7 @@ const EditDelete = () => {
           <div className="space-x-4">
             <button
               className="transition duration-500 ease-in-out  py-2 px-4 bg-light-blue hover:bg-black text-white sm:rounded-3xl transform hover:-translate-y-1 hover:scale-110 "
-              to={`/auth/user/profile`}
+              to={`/auth/user/userprofileeditdelete`}
             >
               {buttonStatus ? "Saving" : "Edit"}
             </button>
