@@ -11,7 +11,7 @@ import { imageURL } from '../../config/paths'
 import ConfirmModal from '../modals/ConfirmModal'
 
 const BlogView = () => {
-const {LoggedInRole} = useContext(AuthContext)
+const {loggedIn} = useContext(AuthContext)
 const [AllBlogs, setAllBlogs] = useState([])
 const [BlogId, setBlogId] = useState("")
 const [Popup, setPopup] = useState("")
@@ -48,7 +48,7 @@ const deleteBlog= async(id)=>{
 					execute={deleteBlog}
 					id={BlogId}          />}
             <img src={BlogImg} alt='blog' className=" w-full" />
-            {(LoggedInRole==="admin")&&
+            {(loggedIn.role==="admin")&&
             <Link to="/createblogs">
             <IoAddCircle className=" cursor-pointer text-light-blue inline transform hover:scale-110 motion-reduce:transform-none w-28 h-28 fixed right-10 bottom-10"/> 
             </Link>}
@@ -71,7 +71,7 @@ const deleteBlog= async(id)=>{
                                     <Link to={`/singleblog/${blog._id}`}>
                                     <span className="text-light-blue cursor-pointer">Read More</span>
                                     </Link>
-                                    {(LoggedInRole==="admin")&&
+                                    {(loggedIn.role==="admin")&&
                                     <div className=" absolute right-10 bottom-5">
                                         <Link to={`/editblogs/${blog._id}`}>
                                         <FiEdit3 className="cursor-pointer text-yellow-600 inline transform hover:scale-110 motion-reduce:transform-none w-6 h-6" />
