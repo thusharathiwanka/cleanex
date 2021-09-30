@@ -91,10 +91,10 @@ const getAllOrders = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-//getuser order
+// getuser order
 const getOrders = async (req, res) => {
   try {
-    const userName = req.body.customerName;
+    const userName = req.body.CustomerName;
     const orders = await order.find({ CustomerName: userName });
 
     res.status(200).json(orders);
@@ -102,6 +102,7 @@ const getOrders = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
 const getOrdersDeliverer = async (req, res) => {
   try {
     const orderList = await order.find({
@@ -139,13 +140,26 @@ const getALLOrderbyDelivererDeliver = async (req, res) => {
 };
 const getByIdOrder = async (req, res) => {
   try {
-    const order = await order.findById(req.params.id);
-    res.status(200).json(order);
+    const Order = await order.findById(req.params.id);
+    res.status(200).json(Order);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
 
+const getItemByItem = async (request, response) => {
+  if (request.params.id) {
+    try {
+      const order = await order.findById(request.body.id);
+
+      response.status(200).json({ order: order });
+    } catch (error) {
+      response.status(404).json({ message: error.message });
+    }
+  } else {
+    response.status(406).json({ message: "request parameters are empty" });
+  }
+};
 const updateDeliveryStatus = async (req, res) => {
   try {
     const orderdelivery = await order.findByIdAndUpdate(req.params.id, {
@@ -277,6 +291,7 @@ const getTotalOrdersBasedOnDeliveryStatusAndDay = async (req, res) => {
 module.exports = {
   addOrder,
   getAllOrders,
+  getItemByItem,
   getByIdOrder,
   getOrders,
   updateDeliveryStatus,

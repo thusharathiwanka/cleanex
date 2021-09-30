@@ -7,6 +7,7 @@ const {
   addOrder,
   getAllOrders,
   getOrders,
+  getItemByItem,
   updateDeliveryStatus,
   getDelivererprofileDetails,
   getALLOrderbyDelivererDeliver,
@@ -60,11 +61,11 @@ router.get("/getPendingOrders", getPendingOrders);
 router.get("/getProcessingOrders", getProcessingOrders);
 router.get("/getCompletedOrders", getCompletedOrders);
 router.get("/delivery/:status/:day", getTotalOrdersBasedOnDeliveryStatusAndDay);
-router.get("/:id", getByIdOrder);
 router.get("/:status/:day", getTotalOrdersBasedOnOrderStatusAndDay);
 router.patch("/updateToProcess/:id", updateToProcess);
 router.patch("/updateToCompleate/:id", updateToCompleate);
-router.get("/:id", getByIdOrder);
+router.get("/getItemByItem/:id", getItemByItem);
 router.delete("/delete/:id", deleteOrderbyID);
+router.get("/:id", getByIdOrder);
 
 module.exports = router;
