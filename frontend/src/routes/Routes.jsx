@@ -34,170 +34,170 @@ import Worker from "../pages/Worker";
 import Sidebar from "../components/sidebar/Sidebar";
 
 const Routes = () => {
-	const { loggedIn } = useContext(AuthContext);
+  const { loggedIn } = useContext(AuthContext);
 
-	return (
-		<Switch>
-			<Route exact path="/">
-				{loggedIn.state && loggedIn.role !== "customer" ? (
-					<Redirect to={`/auth/${loggedIn.role}/dashboard`} />
-				) : loggedIn.state && loggedIn.role === "customer" ? (
-					<Redirect to={`/auth/user/packages`} />
-				) : (
-					<>
-						<Navbar />
-						<Home />
-					</>
-				)}
-			</Route>
-			<Route exact path="/auth/register">
-				{loggedIn.state && loggedIn.role ? (
-					<Redirect to={`/auth/${loggedIn.role}/dashboard`} />
-				) : (
-					<>
-						<Navbar />
-						<Register />
-					</>
-				)}
-			</Route>
-			<Route exact path="/auth/login">
-				{loggedIn.state && loggedIn.role ? (
-					<Redirect to={`/auth/${loggedIn.role}/dashboard`} />
-				) : (
-					<>
-						<Navbar />
-						<Login />
-					</>
-				)}
-			</Route>
-			<Route exact path="/auth/user/packages">
-				{loggedIn.state && loggedIn.role ? (
-					<>
-						<Navbar />
-						<Packages />
-					</>
-				) : (
-					<Redirect to="/" />
-				)}
-			</Route>
-			<Route exact path="/auth/moderator/login">
-				<ModeratorLogin />
-			</Route>
-			<Route exact path="/auth/admin/dashboard">
-				{loggedIn.state && loggedIn.role === "admin" ? (
-					<>
-						<AdminDashboard />
-					</>
-				) : (
-					<Redirect to="/" />
-				)}
-			</Route>
-			<Route exact path="/auth/admin/packages">
-				{loggedIn.state && loggedIn.role === "admin" ? (
-					<>
-						<AdminPackages />
-					</>
-				) : (
-					<Redirect to="/" />
-				)}
-			</Route>
-			<Route exact path="/auth/admin/packages/new">
-				{loggedIn.state && loggedIn.role === "admin" ? (
-					<>
-						<AdminNewPackage />
-					</>
-				) : (
-					<Redirect to="/" />
-				)}
-			</Route>
-			<Route exact path="/auth/admin/packages/update/:id">
-				{loggedIn.state && loggedIn.role === "admin" ? (
-					<>
-						<AdminUpdatePackage />
-					</>
-				) : (
-					<Redirect to="/" />
-				)}
-			</Route>
-			<Route exact path="/auth/admin/customers">
-				{loggedIn.state && loggedIn.role === "admin" ? (
-					<>
-						<AdminCustomer />
-					</>
-				) : (
-					<Redirect to="/" />
-				)}
-			</Route>
-			<Route exact path="/auth/admin/feedbacks">
-				{loggedIn.state && loggedIn.role === "admin" ? (
-					<>
-						<AdminFeedback />
-					</>
-				) : (
-					<Redirect to="/" />
-				)}
-			</Route>
-			<Route exact path="/auth/worker/dashboard">
-				<Navbar />
-				<Worker />
-			</Route>
-			<Route exact path="/createblogs">
-				<Navbar />
-				<CreateBlog />
-			</Route>
-			<Route exact path="/auth/user/blogs">
-				<Blog />
-			</Route>
-			<Route exact path="/singleblog/:id">
-				<SingleBlog />
-			</Route>
-			<Route exact path="/payment">
-				<Payment />
-			</Route>
-			<Route exact path="/auth/manager/dashboard">
-				<Manager />
-			</Route>
-			<Route exact path="/auth/user/profile">
-				<UserProfile />
-			</Route>
-			<Route exact path="/auth/user/userprofileeditdelete">
-				<UserProfileEditDelete />
-			</Route>
-			<Route exact path="/auth/user/allorderhistory">
-				<AllOrderHistory />
-			</Route>
-			<Route exact path="/auth/user/vieworder">
-				<ViewOrder />
-			</Route>
-			<Route exact path="/auth/user/feedback">
-				<Feedback />
-			</Route>
-			<Route exact path="/auth/user/userprofiledelete">
-				<UserProfileDelete />
-			</Route>
-			<Route exact path="/auth/deliverer/Deliverer">
-				<Deliverer />
-			</Route>
-			<Route exact path="/auth/deliverer/dashboard">
-				<DelivererHome />
-			</Route>
-			<Route exact path="/auth/user/cart">
-				<LaundryBag />
-			</Route>
-			<Route exact path="/editblogs/:id">
-				<EditBlog />
-			</Route>
-			<Route exact path="*">
-				{loggedIn.state && loggedIn.role !== "customer" ? (
-					<Redirect to={`/auth/${loggedIn.role}/dashboard`} />
-				) : loggedIn.state && loggedIn.role === "customer" ? (
-					<Redirect to={`/auth/user/packages`} />
-				) : (
-					<Redirect to={`/`} />
-				)}
-			</Route>
-		</Switch>
-	);
+  return (
+    <Switch>
+      <Route exact path="/">
+        {loggedIn.state && loggedIn.role !== "customer" ? (
+          <Redirect to={`/auth/${loggedIn.role}/dashboard`} />
+        ) : loggedIn.state && loggedIn.role === "customer" ? (
+          <Redirect to={`/auth/user/packages`} />
+        ) : (
+          <>
+            <Navbar />
+            <Home />
+          </>
+        )}
+      </Route>
+      <Route exact path="/auth/register">
+        {loggedIn.state && loggedIn.role ? (
+          <Redirect to={`/auth/${loggedIn.role}/dashboard`} />
+        ) : (
+          <>
+            <Navbar />
+            <Register />
+          </>
+        )}
+      </Route>
+      <Route exact path="/auth/login">
+        {loggedIn.state && loggedIn.role ? (
+          <Redirect to={`/auth/${loggedIn.role}/dashboard`} />
+        ) : (
+          <>
+            <Navbar />
+            <Login />
+          </>
+        )}
+      </Route>
+      <Route exact path="/auth/user/packages">
+        {loggedIn.state && loggedIn.role ? (
+          <>
+            <Navbar />
+            <Packages />
+          </>
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
+      <Route exact path="/auth/moderator/login">
+        <ModeratorLogin />
+      </Route>
+      <Route exact path="/auth/admin/dashboard">
+        {loggedIn.state && loggedIn.role === "admin" ? (
+          <>
+            <AdminDashboard />
+          </>
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
+      <Route exact path="/auth/admin/packages">
+        {loggedIn.state && loggedIn.role === "admin" ? (
+          <>
+            <AdminPackages />
+          </>
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
+      <Route exact path="/auth/admin/packages/new">
+        {loggedIn.state && loggedIn.role === "admin" ? (
+          <>
+            <AdminNewPackage />
+          </>
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
+      <Route exact path="/auth/admin/packages/update/:id">
+        {loggedIn.state && loggedIn.role === "admin" ? (
+          <>
+            <AdminUpdatePackage />
+          </>
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
+      <Route exact path="/auth/admin/customers">
+        {loggedIn.state && loggedIn.role === "admin" ? (
+          <>
+            <AdminCustomer />
+          </>
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
+      <Route exact path="/auth/admin/feedbacks">
+        {loggedIn.state && loggedIn.role === "admin" ? (
+          <>
+            <AdminFeedback />
+          </>
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
+      <Route exact path="/auth/worker/dashboard">
+        <Navbar />
+        <Worker />
+      </Route>
+      <Route exact path="/createblogs">
+        <Navbar />
+        <CreateBlog />
+      </Route>
+      <Route exact path="/auth/user/blogs">
+        <Blog />
+      </Route>
+      <Route exact path="/singleblog/:id">
+        <SingleBlog />
+      </Route>
+      <Route exact path="/payment">
+        <Payment />
+      </Route>
+      <Route exact path="/auth/manager/dashboard">
+        <Manager />
+      </Route>
+      <Route exact path="/auth/user/profile">
+        <UserProfile />
+      </Route>
+      <Route exact path="/auth/user/userprofileeditdelete">
+        <UserProfileEditDelete />
+      </Route>
+      <Route exact path="/auth/user/allorderhistory">
+        <AllOrderHistory />
+      </Route>
+      <Route exact path="/auth/user/vieworder/:id">
+        <ViewOrder />
+      </Route>
+      <Route exact path="/auth/user/feedback">
+        <Feedback />
+      </Route>
+      <Route exact path="/auth/user/userprofiledelete">
+        <UserProfileDelete />
+      </Route>
+      <Route exact path="/auth/deliverer/Deliverer">
+        <Deliverer />
+      </Route>
+      <Route exact path="/auth/deliverer/dashboard">
+        <DelivererHome />
+      </Route>
+      <Route exact path="/auth/user/cart">
+        <LaundryBag />
+      </Route>
+      <Route exact path="/editblogs/:id">
+        <EditBlog />
+      </Route>
+      <Route exact path="*">
+        {loggedIn.state && loggedIn.role !== "customer" ? (
+          <Redirect to={`/auth/${loggedIn.role}/dashboard`} />
+        ) : loggedIn.state && loggedIn.role === "customer" ? (
+          <Redirect to={`/auth/user/packages`} />
+        ) : (
+          <Redirect to={`/`} />
+        )}
+      </Route>
+    </Switch>
+  );
 };
 
 export default Routes;

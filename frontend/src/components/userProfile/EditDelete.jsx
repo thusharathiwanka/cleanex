@@ -20,7 +20,7 @@ const EditDelete = () => {
     email: "",
     password: "",
     mobile: "",
-    uupdatedAt: "",
+    updatedAt: "",
   });
 
   const getUserprofileDetails = async () => {
@@ -88,12 +88,12 @@ const EditDelete = () => {
           execute={deleteprofile}
           id={useId}
         />
-      )}
+      )}{" "}
+      <div className="w-full text-center flex justify-center">
+        {error && <Error error={error} top="-top-2" />}
+        {success && <Success success={success} top="-top-2" />}
+      </div>
       <div className=" absolute mx-auto bg-white shadow-lg sm:rounded-2xl sm:p-20 top-2  ml-96 my-8 w-full max-w-xl  rounded-lg px-4 pt-2 items-center justify-center">
-        <div className="w-full text-center flex justify-center">
-          {error && <Error error={error} top="-top-2" />}
-          {success && <Success success={success} top="-top-2" />}
-        </div>
         <h1 className="text-5xl font-extrabold pb-10 text-center">
           Edit profile
         </h1>

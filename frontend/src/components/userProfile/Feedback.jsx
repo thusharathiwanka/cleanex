@@ -74,6 +74,7 @@ const Feedback = () => {
                     })
                   }
                 >
+                  <option>Select</option>
                   <option>Bug</option>
                   <option>Features</option>
                   <option>Positive</option>
