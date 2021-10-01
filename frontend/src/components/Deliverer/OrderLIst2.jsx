@@ -29,8 +29,8 @@ const OrderList2 = () => {
 			const deliver = await axios.put(`order/deliverer/${id}`);
 			if (deliver.status == 202) {
 				setSuccess("Order" + Id + " Accepted Successfully!!");
-				console.log(deliver);
-				console.log(id);
+				// console.log(deliver);
+				// console.log(id);
 				const newlist = orders.filter((order) => order._id !== id);
 				setViewModal(true);
 				setOrders(newlist);

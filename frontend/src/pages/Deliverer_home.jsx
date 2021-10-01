@@ -12,7 +12,7 @@ const Deliverer_home = () => {
 		try {
 			const res = await axios.get("order/deleiverer/details");
 			Setdeliverer(res.data.deliverer);
-			console.log(res.data.deliverer);
+			// console.log(res.data.deliverer);
 		} catch (err) {
 			console.error(err.message);
 		}
@@ -37,13 +37,13 @@ const Deliverer_home = () => {
 						alt=""
 					/>
 				</div>
-				<div className="ml-4">
+				<div className="ml-4 ">
 					<div className="text-sm font-medium text-gray-900">
 						{deliverer.name}
 					</div>
 					<div className="text-sm text-gray-500">{deliverer.email}</div>
 				</div>
-				<div className=" max-w-5xl">
+				<div className=" max-w-6xl " style={{ marginLeft: "940px" }}>
 					<button className="bg-light-blue hover:bg-blue-200  text-white font-bold py-2 px-8 rounded-full ">
 						<Link to={`/auth/deliverer/Deliverer`}> My Deliveries</Link>
 					</button>

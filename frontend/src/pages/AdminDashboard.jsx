@@ -34,7 +34,7 @@ const Dashboard = () => {
 
 	const calculateTotalBasedOnPackage = async () => {
 		const res = await axios.get("/order/orders");
-		console.log(res.data);
+		// console.log(res.data);
 		// res.data.map((order) => {});
 	};
 
