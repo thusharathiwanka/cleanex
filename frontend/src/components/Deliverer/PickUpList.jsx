@@ -28,7 +28,7 @@ const PickUpList = ({ order }) => {
 		try {
 			const res = await axios.put(`/deliverer/remove/${id}`);
 			if (res.status == 200) {
-				console.log(res.statusText);
+				// console.log(res.statusText);
 			}
 		} catch (error) {}
 	};
