@@ -36,12 +36,12 @@ const EditDelete = () => {
 
   const saveUpdatedUser = async (e) => {
     e.preventDefault();
-    console.log("frfrfr");
+    // console.log("frfrfr");
     setButtonStatus(true);
     try {
       updateUser.updatedAt = new Date();
       const res = await axios.put(`/customers/updateUserProfile`, updateUser);
-      console.log(res);
+      // console.log(res);
       setButtonStatus(false);
       setUpdatUser({
         name: "",

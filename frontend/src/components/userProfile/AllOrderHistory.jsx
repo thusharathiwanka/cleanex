@@ -15,11 +15,11 @@ const AllOrderHistory = () => {
     await axios
       .get("/customers/userProfile")
       .then((res) => {
-        console.log(res.data.customer);
+        // console.log(res.data.customer);
         setUserDetail(res.data.customer);
         const uName = res.data.customer.name;
         getUserOrder(uName);
-        console.log(uName);
+        // console.log(uName);
       })
       .catch((err) => {
         console.error(err.message);
@@ -31,14 +31,14 @@ const AllOrderHistory = () => {
   // };
 
   const getUserOrder = async (userName) => {
-    console.log(userName);
+    // console.log(userName);
     try {
       const formData = {
         CustomerName: userName,
       };
       const res = await axios.post("/order/allorders", formData);
       setUserOrderDetail(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     } catch (err) {
       console.error(err.message);
     }

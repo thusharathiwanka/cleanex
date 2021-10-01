@@ -30,7 +30,7 @@ const Feedback = () => {
       const res = await axios.post("feedbacks", newFeedback);
 
       setButton(false);
-      console.log(newFeedback);
+      // console.log(newFeedback);
       setSuccess("Feedback is send Successfully.");
 
       const logout = async () => {
