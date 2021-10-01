@@ -21,6 +21,9 @@ const Navbar = () => {
 		await axios.get("/users/logout");
 		await getLoggedIn();
 		history.push("/");
+
+		localStorage.clear();
+		setTimeout(() => window.location.reload(), 3);
 	};
 
 	return (

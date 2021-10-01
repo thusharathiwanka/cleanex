@@ -15,7 +15,7 @@ const Deliverer = () => {
 		try {
 			const res = await axios.get("order/deleiverer/details");
 			Setdeliverer(res.data.deliverer);
-			console.log(res.data.deliverer);
+			// console.log(res.data.deliverer);
 		} catch (err) {
 			console.error(err.message);
 		}
