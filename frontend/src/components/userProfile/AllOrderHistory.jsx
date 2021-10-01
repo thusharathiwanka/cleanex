@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import Logo from "../../assets/images/logo-blue.png";
+import "jspdf-autotable";
+import { jsPDF } from "jspdf";
 const AllOrderHistory = () => {
   const [userDetail, setUserDetail] = useState({ name: "" });
   const [userOrder, setUserOrderDetail] = useState([]);
+
   // localStorage.setItem("setUserDetail", JSON.stringify(setUserDetail));
   // const localData = localStorage.getItem("setUserDetail");
 
@@ -39,7 +43,43 @@ const AllOrderHistory = () => {
       console.error(err.message);
     }
   };
+  const generateReport = () => {
+    const report = new jsPDF();
+    const date = new Date();
 
+    report.addImage(Logo, "png", 10, 10, 30, 5);
+    report.setFontSize(20);
+    report.text("All Orders History Report", 75, 14);
+    report.setFontSize(8);
+    report.text(`Name : ${userDetail.name}`, 10, 25);
+    report.text(`Date   : ${date.toDateString()}`, 10, 30);
+    report.text(
+      `  Time  : ${date.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}`,
+      10,
+      35
+    );
+    report.setFontSize(8);
+
+    report.autoTable({
+      margin: { top: 50 },
+      columns: [
+        { header: "Start Date", dataKey: "date" },
+        { header: "Order ID", dataKey: "id" },
+        { header: "Total", dataKey: "total" },
+        { header: "Status", dataKey: "status" },
+      ],
+      body: userOrder.map((order) => ({
+        date: order.StartDate,
+        id: order._id,
+        total: order.Total,
+        status: order.WashingStatus,
+      })),
+    });
+    report.save(`user-order-history-report-${Date()}.pdf`);
+  };
   useEffect(() => {
     getUserprofileDetails();
     // getUserOrder();
@@ -65,7 +105,7 @@ const AllOrderHistory = () => {
           </button>
         </div>
       </div>
-      <div className="flex mx-auto items-center justify-center shadow-lg mt-56  mb-4">
+      <div className="flex mx-auto items-center justify-end shadow-lg mt-56  mb-4">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <h2 className="text-5xl font-extrabold pb-10 pt-10 text-center ml-8 ">
             All Orders
@@ -106,6 +146,8 @@ const AllOrderHistory = () => {
                     <th scope="col" className="relative px-6 py-3">
                       <span className="sr-only">Edit</span>
                     </th>
+                    <th></th>
+                    <th></th>
                   </tr>
                 </thead>
                 {userOrder.map((order) => (
@@ -121,7 +163,7 @@ const AllOrderHistory = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
-                          {order.Total}
+                          Rs. {order.Total}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -142,11 +184,26 @@ const AllOrderHistory = () => {
                           Delete
                         </Link>
                       </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"></td>
+                      <td>
+                        <Link
+                          className="transition duration-500 ease-in-out py-3 px-5 m-8 ml-36 bg-green-500 hover:bg-blue-500 text-white rounded-3xl transform hover:-translate-y-1 hover:scale-110"
+                          to={`/payment/${order._id}`}
+                        >
+                          Pay
+                        </Link>
+                      </td>
                     </tr>
                   </tbody>
                 ))}
               </table>
             </div>
+            <button
+              onClick={generateReport}
+              className="bg-light-blue rounded-full absolute right-24 top-100 text-white  font-semibold text-xl py-3 px-5"
+            >
+              Generate Report
+            </button>
           </div>
         </div>
       </div>
