@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import React from "react";
 import axios from "axios";
 import SuceessModal from "../modals/SuccessModal";
+import { BiSearch } from "react-icons/bi";
+import { IoIosClose } from "react-icons/io";
 const DeliveryList = () => {
 	const [orders, setOrders] = useState([]);
-
+	const [searchQuery, setSearchQuery] = useState("");
+	const [isSearchEmpty, setIsSearchEmpty] = useState(false);
 	const [success, setSuccess] = useState("");
 	const [viewModal, setViewModal] = useState(false);
 	let statusStyle;
@@ -29,6 +32,27 @@ const DeliveryList = () => {
 		}
 	};
 
+	const getOrdersBasedOnSearchQuery = async (e) => {
+		e.preventDefault();
+		if (searchQuery) {
+			//setIsLoading(true);
+			const res = await axios.get("order/deliverer/Pickup");
+			const filteredorders = res.data.filter((AcceptedOrders) =>
+				AcceptedOrders.Address.toLowerCase().includes(searchQuery.toLowerCase())
+			);
+
+			if (filteredorders.length === 0) {
+				setOrders([]);
+				setIsSearchEmpty(true);
+				//setIsLoading(false);
+				return;
+			}
+
+			setOrders(filteredorders);
+			//setIsLoading(false);
+		}
+	};
+
 	useEffect(() => {
 		getOrders();
 	}, []);
@@ -46,6 +70,37 @@ const DeliveryList = () => {
 					<h3 className="text-center text-2xl  text-gray-400 mb-20 font-semibold ">
 						Delivery order List
 					</h3>
+					<form
+						className="w-2/5 text-center relative mb-12"
+						onSubmit={getOrdersBasedOnSearchQuery}
+					>
+						<input
+							type="text"
+							name="search"
+							id="search"
+							className="outline-none rounded-full border px-5 py-1 focus:border-light-blue w-full"
+							placeholder="Search by location"
+							value={searchQuery}
+							onChange={(e) => {
+								setSearchQuery(e.target.value);
+							}}
+						/>
+						<button className="text-white bg-light-blue absolute right-0 top-0 h-full rounded-full w-16 flex items-center justify-center font-bold text-2xl">
+							<BiSearch />
+						</button>
+						{searchQuery && (
+							<div
+								className="absolute right-24 top-0 h-full rounded-full p-2 flex items-center justify-center font-bold text-3xl cursor-pointer"
+								onClick={() => {
+									setSearchQuery("");
+									getOrders();
+								}}
+							>
+								<IoIosClose className="text-red-400" />
+							</div>
+						)}
+					</form>
+
 					<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 						<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 							<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-32">
