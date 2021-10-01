@@ -151,7 +151,7 @@ const Routes = () => {
       <Route exact path="/singleblog/:id">
         <SingleBlog />
       </Route>
-      <Route exact path="/payment">
+      <Route exact path="/payment/:id">
         <Payment />
       </Route>
       <Route exact path="/auth/manager/dashboard">
