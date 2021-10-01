@@ -20,23 +20,23 @@ const Report = () => {
 	const handleDatesChange = ({ startDate, endDate }) => {
 		setStartDate(startDate);
 		setEndDate(endDate);
-		console.log(startDate);
-		console.log(endDate);
+		// console.log(startDate);
+		// console.log(endDate);
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			const enddate = endDate._d.toDateString();
 			const startdate = startDate._d.toDateString();
-			console.log(startdate);
-			console.log(enddate);
+			// console.log(startdate);
+			// console.log(enddate);
 			const res = await axios.get(
 				`order/deliverer/GetGeneratepdf/${startdate}/${enddate}/${Address}`
 			);
 			if (res.status == 200) {
 				setOrders(res.reportdetails);
-				console.log(res.reportdetails);
-				console.log(res);
+				// console.log(res.reportdetails);
+				// console.log(res);
 				generateReport();
 			}
 		} catch (error) {}
@@ -83,7 +83,7 @@ const Report = () => {
 	};
 
 	return (
-		<div>
+		<div className="w-5/5">
 			<form onSubmit={handleSubmit}>
 				<div className="flex">
 					<label class="text-gray-500 w-2/6 font-semibold mr-24 float-right mt-4">
@@ -96,7 +96,7 @@ const Report = () => {
 					/>
 				</div>
 
-				<div className=" flex">
+				<div className=" flex mt-5">
 					<label class="text-gray-500 w-2/6 font-semibold mr-20 float-right mt-4 ">
 						Enter Date range :
 					</label>

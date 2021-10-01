@@ -13,8 +13,8 @@ const OrderList = () => {
 			const deliver = await axios.put(`order/deliverer/${id}`);
 			if (deliver.status == 202) {
 				setSuccess("Order" + Id + " Accepted Successfully!!");
-				console.log(deliver);
-				console.log(id);
+				// console.log(deliver);
+				// console.log(id);
 				const newlist = orders.filter((order) => order._id !== id);
 
 				setOrders(newlist);
@@ -119,7 +119,7 @@ const OrderList = () => {
 														<button
 															onClick={() => {
 																accept(order._id);
-																console.log("hi");
+																// console.log("hi");
 															}}
 															className="text-green-500 hover:text-green-200"
 														>

@@ -10,7 +10,7 @@ const addBlogs = async (req, res) => {
 			name: req.body.name,
 			date: req.body.date,
 		});
-		console.log(req.body.topic);
+		// console.log(req.body.topic);
 		await newBlog.save();
 		res.status(200).json(newBlog._id);
 	} catch (err) {
@@ -22,7 +22,7 @@ const addBlogs = async (req, res) => {
 const getAllBlogs = async (req, res) => {
 	try {
 		const blogs = await blog.find();
-		res.status(200).json({blogs:blogs});
+		res.status(200).json({ blogs: blogs });
 	} catch (err) {
 		res.status(400);
 		console.log(err.message);
@@ -31,39 +31,34 @@ const getAllBlogs = async (req, res) => {
 const getBlog = async (req, res) => {
 	try {
 		const singleBlog = await blog.findById(req.params.id);
-		res.status(200).json({singleBlog:singleBlog});
+		res.status(200).json({ singleBlog: singleBlog });
 	} catch (err) {
 		res.status(400);
 		console.log(err.message);
-
 	}
 };
 
-const updateImage = async (req, res) =>{
-		console.log(req.body);
-		fs.unlink(
-				`${process.env.UPLOAD_DIR}/${req.body.previousname}`,
-				(err) => {
-					if (err) {
-						console.error(err.message);
-						return res.status(500).send();
-					}
-				}
-			);
-			res.status(200).json("image updated")
-
-}
+const updateImage = async (req, res) => {
+	// console.log(req.body);
+	fs.unlink(`${process.env.UPLOAD_DIR}/${req.body.previousname}`, (err) => {
+		if (err) {
+			console.error(err.message);
+			return res.status(500).send();
+		}
+	});
+	res.status(200).json("image updated");
+};
 const updateBlogs = async (req, res) => {
-	console.log("req.body");
+	// console.log("req.body");
 	try {
 		const singleBlog = await blog.findByIdAndUpdate(req.params.id, {
 			topic: req.body.topic,
 			description: req.body.description,
 			content: req.body.content,
 			name: req.body.name,
-			date: req.body.date
+			date: req.body.date,
 		});
-		console.log(req.body);
+		// console.log(req.body);
 		res.status(200).json("update successful");
 	} catch (err) {
 		res.status(400);
@@ -81,6 +76,11 @@ const deleteBlogs = async (req, res) => {
 	}
 };
 
-
-
-module.exports = { getAllBlogs, getBlog, addBlogs, deleteBlogs, updateBlogs, updateImage };
+module.exports = {
+	getAllBlogs,
+	getBlog,
+	addBlogs,
+	deleteBlogs,
+	updateBlogs,
+	updateImage,
+};
