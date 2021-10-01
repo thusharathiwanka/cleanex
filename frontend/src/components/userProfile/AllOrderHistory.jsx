@@ -80,6 +80,14 @@ const AllOrderHistory = () => {
 		});
 		report.save(`user-order-history-report-${Date()}.pdf`);
 	};
+	const deleteOrder = async (id) => {
+		await axios.delete(`/order/delete/${id}`);
+		const orderList = userOrder.filter((or) => {
+			return or._id !== id;
+		});
+		console.log(id);
+		setUserOrderDetail(orderList);
+	};
 	useEffect(() => {
 		getUserprofileDetails();
 		// getUserOrder();
@@ -180,9 +188,14 @@ const AllOrderHistory = () => {
 												</Link>
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-												<Link className="text-red-500 hover:text-red-400">
+												<button
+													className="text-red-500 hover:text-red-400"
+													onClick={() => {
+														deleteOrder(order._id);
+													}}
+												>
 													Delete
-												</Link>
+												</button>
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"></td>
 											<td>
