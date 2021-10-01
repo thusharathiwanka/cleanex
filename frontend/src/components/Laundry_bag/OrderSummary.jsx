@@ -44,18 +44,18 @@ const OrderSummary = () => {
 		return total;
 	});
 	const CustomerName = userDetail.name;
-	console.log(items);
+	// console.log(items);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const Total = total.toString();
 		const StartDate = startDate.toDateString();
 		const orders = { items, Total, StartDate, Address, CustomerName };
-		console.log(orders);
+		// console.log(orders);
 
 		try {
 			const res = await axios.post("order/addOrder", orders);
-			console.log(res);
+			// console.log(res);
 			setViewModal(true);
 			setShowModal(false);
 
@@ -66,7 +66,7 @@ const OrderSummary = () => {
 			console.log(err);
 		}
 
-		console.log(orders);
+		// console.log(orders);
 	};
 
 	return items.length ? (

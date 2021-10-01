@@ -14,7 +14,7 @@ const savePackage = async (req, res) => {
 			req.body;
 
 		if (!src) {
-			console.log(src);
+			// console.log(src);
 			return res.status(400).json({ message: "Please select an image" });
 		}
 
@@ -146,7 +146,7 @@ const updatePackage = async (req, res) => {
 		const { name, description, price, status, src, updatedAt } = req.body;
 
 		if (!src) {
-			console.log(src);
+			// console.log(src);
 			return res.status(400).json({ message: "Please select an image" });
 		}
 
@@ -184,7 +184,7 @@ const updatePackage = async (req, res) => {
 			// * sending as updated
 			return res.status(201).send(true);
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			console.error(err.message);
 			return res.status(500).send();
 		}
