@@ -20,23 +20,23 @@ const Report = () => {
 	const handleDatesChange = ({ startDate, endDate }) => {
 		setStartDate(startDate);
 		setEndDate(endDate);
-		console.log(startDate);
-		console.log(endDate);
+		// console.log(startDate);
+		// console.log(endDate);
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			const enddate = endDate._d.toDateString();
 			const startdate = startDate._d.toDateString();
-			console.log(startdate);
-			console.log(enddate);
+			// console.log(startdate);
+			// console.log(enddate);
 			const res = await axios.get(
 				`order/deliverer/GetGeneratepdf/${startdate}/${enddate}/${Address}`
 			);
 			if (res.status == 200) {
 				setOrders(res.reportdetails);
-				console.log(res.reportdetails);
-				console.log(res);
+				// console.log(res.reportdetails);
+				// console.log(res);
 				generateReport();
 			}
 		} catch (error) {}
