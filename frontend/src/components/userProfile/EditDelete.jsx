@@ -34,33 +34,34 @@ const EditDelete = () => {
 		}
 	};
 
-	const saveUpdatedUser = async (e) => {
-		e.preventDefault();
-		console.log("frfrfr");
-		setButtonStatus(true);
-		try {
-			updateUser.updatedAt = new Date();
-			const res = await axios.put(`/customers/updateUserProfile`, updateUser);
-			console.log(res);
-			setButtonStatus(false);
-			setUpdatUser({
-				name: "",
-				email: "",
-				password: "",
-				mobile: "",
-			});
-			setSuccess("User updated successfully.");
-			getUserprofileDetails();
-			setTimeout(() => history.push("/auth/user/profile"), 2000);
-		} catch (err) {
-			setError(err.response);
-			console.log(err.response);
-			setButtonStatus(false);
-		}
-	};
-	useEffect(() => {
-		getUserprofileDetails();
-	}, []);
+  const saveUpdatedUser = async (e) => {
+    e.preventDefault();
+    // console.log("frfrfr");
+    setButtonStatus(true);
+    try {
+      updateUser.updatedAt = new Date();
+      const res = await axios.put(`/customers/updateUserProfile`, updateUser);
+      // console.log(res);
+      setButtonStatus(false);
+      setUpdatUser({
+        name: "",
+        email: "",
+        password: "",
+        mobile: "",
+      });
+      setSuccess("User updated successfully.");
+      getUserprofileDetails();
+      setTimeout(() => history.push("/auth/user/profile"), 2000);
+    } catch (err) {
+      setError(err.response);
+      console.log(err.response);
+      setButtonStatus(false);
+    }
+  };
+  useEffect(() => {
+    getUserprofileDetails();
+  }, []);
+
 
 	const deleteprofile = async (id) => {
 		try {

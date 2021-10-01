@@ -1,28 +1,29 @@
 const router = require("express").Router();
 
 const {
-	getPendingOrders,
-	getProcessingOrders,
-	getCompletedOrders,
-	addOrder,
-	getAllOrders,
-	getOrders,
-	getItemByItem,
-	updateDeliveryStatus,
-	getDelivererprofileDetails,
-	getALLOrderbyDelivererDeliver,
-	getALLOrderbyDelivererPick,
-	updatePickupStatus,
-	updatePickdelivery,
-	getOrdersDeliverer,
-	GetGeneratepdf,
-	getTotalOrdersBasedOnDeliveryStatusAndDay,
-	getTotalOrdersBasedOnOrderStatusAndDay,
-	updateDeliverID,
-	deleteOrderbyID,
-	getByIdOrder,
-	updateToProcess,
-	updateToCompleate,
+
+  getPendingOrders,
+  getProcessingOrders,
+  getCompletedOrders,
+  addOrder,
+  getAllOrders,
+  getOrders,
+  updateDeliveryStatus,
+  getDelivererprofileDetails,
+  getALLOrderbyDelivererDeliver,
+  getALLOrderbyDelivererPick,
+  updatePickupStatus,
+  updatePickdelivery,
+  getOrdersDeliverer,
+  GetGeneratepdf,
+  getTotalOrdersBasedOnDeliveryStatusAndDay,
+  getTotalOrdersBasedOnOrderStatusAndDay,
+  updateDeliverID,
+  deleteOrderbyID,
+  getByIdOrder,
+  updateToProcess,
+  updateToCompleate,
+
 } = require("../controllers/order.crontroller");
 
 const { verifyDelivererAuth } = require("../middleware/delivererAuth");
@@ -64,8 +65,6 @@ router.get("/delivery/:status/:day", getTotalOrdersBasedOnDeliveryStatusAndDay);
 router.get("/:status/:day", getTotalOrdersBasedOnOrderStatusAndDay);
 router.patch("/updateToProcess/:id", updateToProcess);
 router.patch("/updateToCompleate/:id", updateToCompleate);
-router.get("/getItemByItem/:id", getItemByItem);
-
 router.get("/:id", getByIdOrder);
 router.delete("/delete/:id", deleteOrderbyID);
 
