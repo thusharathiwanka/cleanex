@@ -17,51 +17,47 @@ const UserInformation = () => {
   }, []);
   return (
     <div>
-      <div
-        className="flex mx-auto items-center justify-center shadow-lg mt-28  mb-4 max-w-lg p-20"
-        data-aos="fade-down"
-      >
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <h1 className="text-5xl font-extrabold pb-10 pt-10 text-center ml-8">
-            Profile Details
-          </h1>
+      <div className="flex mx-auto items-center justify-center shadow-lg mt-56  mb-4 max-w-lg">
+        <form className="w-2/4 text-gray-800 font-semibold relative">
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <h1 className="text-5xl font-extrabold pb-10 pt-10 text-center ml-7">
+              Profile
+            </h1>
 
-          <div className="w-full md:w-full px-3 mb-2 mt-2 m-5">
-            <div className=" mb-4 ">
-              <label className=" font-semibold text-24px" for="username">
-                User Name
-                <input
-                  className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border border-light-blue border-opacity-100 bg-gray-100 text-gray-600 "
-                  type="text"
-                  value={userDetail.name}
-                />
-              </label>
-            </div>
+            <div className="w-full md:w-full px-3 mb-2 mt-2">
+              <div className="mb-6">
+                <label className=" pb-1" htmlFor="username">
+                  User Name
+                  <input
+                    class="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+                    value={userDetail.name}
+                  />
+                </label>
+              </div>
 
-            <div className="mb-6">
-              <label className=" font-semibold text-24px" for="email">
-                Email
-                <input
-                  className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border border-light-blue border-opacity-100 bg-gray-100 text-gray-600"
-                  type="text"
-                  value={userDetail.email}
-                />
-              </label>
-            </div>
+              <div className="mb-6">
+                <label className=" pb-1" htmlfor="email">
+                  Email
+                  <input
+                    class="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+                    value={userDetail.email}
+                  />
+                </label>
+              </div>
 
-            <div className="mb-8">
-              <label className=" font-semibold text-24px" for="mobile">
-                Mobile
-                <input
-                  className=" block md:text-left mb-1 md:mb-0 pr-4 p-1 sm:rounded-3xl border border-light-blue border-opacity-100 bg-gray-100 text-gray-600"
-                  id="mobile"
-                  type="text"
-                  value={userDetail.mobile}
-                />
-              </label>
+              <div className="mb-6">
+                <label className=" pb-1" for="mobile">
+                  Mobile
+                  <input
+                    class="outline-none rounded-full border px-4 py-3 focus:border-light-blue"
+                    id="mobile"
+                    value={userDetail.mobile}
+                  />
+                </label>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
