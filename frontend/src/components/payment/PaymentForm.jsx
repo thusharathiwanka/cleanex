@@ -5,12 +5,14 @@ const PaymentForm = (props) => {
 
     const [PaymentDetails, setPaymentDetails] = useState({})
 
+    const subTotal = props.AllOrders.Total
+    const Total = parseInt(subTotal) +500;
 
     const payment= async(e)=>{
         e.preventDefault()
         const date = new Date();
         PaymentDetails.date=date.toLocaleDateString();
-        PaymentDetails.amount = "2000"
+        PaymentDetails.amount = Total;
         console.log(PaymentDetails);
         try{
             const res = await axios.post("/payment/post", PaymentDetails)
