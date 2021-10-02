@@ -43,7 +43,7 @@ const Deliverer_home = () => {
 					</div>
 					<div className="text-sm text-gray-500">{deliverer.email}</div>
 				</div>
-				<div className=" max-w-6xl " style={{ marginLeft: "940px" }}>
+				<div className=" max-w-6xl " style={{ marginLeft: "1250px" }}>
 					<button className="bg-light-blue hover:bg-blue-200  text-white font-bold py-2 px-8 rounded-full ">
 						<Link to={`/auth/deliverer/Deliverer`}> My Deliveries</Link>
 					</button>

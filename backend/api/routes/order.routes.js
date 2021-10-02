@@ -39,7 +39,7 @@ router.get(
 	getDelivererprofileDetails
 );
 router.get(
-	"/deliverer/GetGeneratepdf/:startdate/:enddate/:Address",
+	"/deliverer/GetGeneratepdf/:Address",
 	verifyDelivererAuth,
 	GetGeneratepdf
 );

@@ -10,34 +10,36 @@ import Logo from "../../assets/images/logo-blue.png";
 import "jspdf-autotable";
 import "react-dates/lib/css/_datepicker.css";
 import LocationInput from "../Laundry_bag/locationIput";
+import Error from "../toasts/Error";
 
 const Report = () => {
-	const [startDate, setStartDate] = useState(null);
-	const [endDate, setEndDate] = useState(null);
-	const [focusedInput, setFocusedInput] = useState(null);
+	const [isloading, setIsLoading] = useState(false);
 	const [Address, setAddress] = useState("");
+	const [error, setError] = useState("");
 	const [orders, setOrders] = useState([]);
-	const handleDatesChange = ({ startDate, endDate }) => {
-		setStartDate(startDate);
-		setEndDate(endDate);
-		// console.log(startDate);
-		// console.log(endDate);
-	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const enddate = endDate._d.toDateString();
-			const startdate = startDate._d.toDateString();
-			// console.log(startdate);
-			// console.log(enddate);
-			const res = await axios.get(
-				`order/deliverer/GetGeneratepdf/${startdate}/${enddate}/${Address}`
-			);
+			const res = await axios.get(`order/deliverer/GetGeneratepdf/${Address}`);
 			if (res.status == 200) {
-				setOrders(res.reportdetails);
-				// console.log(res.reportdetails);
-				// console.log(res);
-				generateReport();
+				setOrders(res.data);
+				console.log(res.data);
+				setIsLoading(true);
+				console.log(res.data.length);
+				if (isloading) {
+					// setTimeout(() => , 5000);
+					generateReport();
+					setIsLoading(false);
+				}
+				// if (res.data.length !== 0) {
+				// 	setAddress("");
+				// 	setError(
+				// 		"Please enter a  different location!" +
+				// 			"\n" +
+				// 			"Looks like you don't have any delivered orders for this location."
+				// 	);
+				// }
 			}
 		} catch (error) {}
 	};
@@ -61,11 +63,7 @@ const Report = () => {
 			35
 		);
 		report.setFontSize(8);
-		report.text(
-			`delivery records for : from ${startDate._d.toDateString()} to ${endDate._d.toDateString()}`,
-			135,
-			45
-		);
+		report.text(` Location : ${Address}`, 135, 45);
 		report.autoTable({
 			margin: { top: 50 },
 			columns: [
@@ -96,23 +94,8 @@ const Report = () => {
 					/>
 				</div>
 
-				<div className=" flex mt-5">
-					<label class="text-gray-500 w-2/6 font-semibold mr-20 float-right mt-4 ">
-						Enter Date range :
-					</label>
-
-					<DateRangePicker
-						startDate={startDate}
-						startDateId="tata-start-date"
-						endDate={endDate}
-						endDateId="tata-end-date"
-						onDatesChange={handleDatesChange}
-						focusedInput={focusedInput}
-						onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
-						isOutsideRange={() => false}
-					/>
-				</div>
 				<div className="mb-6">
+					{error && <Error error={error} top="-top-2" />}
 					<button
 						type="submit"
 						className="bg-light-blue float-right  mt-6 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 ml-36 rounded-xl  shadow hover:shadow-lg outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150"

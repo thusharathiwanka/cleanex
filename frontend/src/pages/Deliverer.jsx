@@ -44,7 +44,10 @@ const Deliverer = () => {
 						<div className="text-sm text-gray-500">{deliverer.email}</div>
 					</div>
 				</div>
-				<div className="max-w-2xl float-right mt-28 ml-44  p-7">
+				<div
+					className="max-w-2xl float-right mt-28   p-7 "
+					style={{ marginLeft: "1350px" }}
+				>
 					<Report />
 				</div>
 			</div>
