@@ -23,6 +23,7 @@ const Register = () => {
 	const registerCustomer = async (e) => {
 		e.preventDefault();
 		setButtonStatus(true);
+		console.log(customer);
 
 		customer.createdAt = customer.updatedAt = new Date();
 
@@ -49,7 +50,7 @@ const Register = () => {
 					>
 						Create an Account
 					</h1>
-					<form onSubmit={registerCustomer}>
+					<form>
 						<div
 							className="flex flex-col justify-start pb-5"
 							data-aos="fade-up-left"
@@ -144,6 +145,7 @@ const Register = () => {
 							className="bg-light-blue text-white py-4 px-14 rounded-full mt-8 font-semibold"
 							data-aos-delay="250"
 							data-aos="fade-up-left"
+							onClick={registerCustomer}
 						>
 							{!buttonStatus ? "Sign Up" : "Signing Up"}
 						</button>
