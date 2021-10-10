@@ -14,8 +14,8 @@ Member Details
 | ---------------------- | :--------: | ---------------: |
 | Jayasith H. B. C       | IT19079264 |         jayasith |
 | Thiwnaka K. A. T       | IT19076362 | thusharathiwanka |
-| Onella Natalie P. A. D | IT19041926 |    OnellaNatalie |
 | Weerasinghe D. N. H    | IT19070704 |         hasansin |
+| Onella Natalie P. A. D | IT19041926 |    OnellaNatalie |
 
 ## Project Description
 
