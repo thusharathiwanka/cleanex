@@ -85,7 +85,7 @@ In the backend directory, you can run:
 Runs the backend server.\
 Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 
-### `npm devStart`
+### `npm run devStart`
 
 Runs the backend server on development mode.\
 Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
