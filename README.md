@@ -6,11 +6,7 @@
 
 ## Project Name - CLEANEX
 
----
-
 ## Group Details
-
----
 
 Member Details
 
@@ -22,8 +18,6 @@ Member Details
 | Weerasinghe D. N. H    | IT19070704 |         hasansin |
 
 ## Project Description
-
----
 
 Cleanex is a laundry and cleaning company, which provides laundry services to their customers and save customer’s valuable time with allowing
 user to make their laundry with a high responsibility. When a customer wants to use Cleanex's services, they must bring their laundry items to
@@ -37,13 +31,9 @@ the item to the customer's doorstep when the laundry service is completed.
 
 ## Technologies
 
----
-
 ![](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) ![](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge) ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white) ![](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ## Getting Started
-
----
 
 ### Prerequisites
 
