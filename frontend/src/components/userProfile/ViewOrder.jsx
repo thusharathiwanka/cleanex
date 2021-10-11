@@ -9,9 +9,9 @@ const ViewOrder = () => {
 
   const { id } = useParams();
   const getItems = async () => {
-    console.log(id + "uhj");
+    // console.log(id + "uhj");
     const res = await axios.get(`/order/${id}`);
-    console.log(res.data.items);
+    // console.log(res.data.items);
     setItems(res.data.items);
   };
   useEffect(() => {

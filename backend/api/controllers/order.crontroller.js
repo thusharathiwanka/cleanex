@@ -147,19 +147,7 @@ const getByIdOrder = async (req, res) => {
 	}
 };
 
-const getItemByItem = async (request, response) => {
-	if (request.params.id) {
-		try {
-			const order = await order.findById(request.body.id);
 
-			response.status(200).json({ order: order });
-		} catch (error) {
-			response.status(404).json({ message: error.message });
-		}
-	} else {
-		response.status(406).json({ message: "request parameters are empty" });
-	}
-};
 const updateDeliveryStatus = async (req, res) => {
 	try {
 		const orderdelivery = await order.findByIdAndUpdate(req.params.id, {
@@ -285,26 +273,27 @@ const getTotalOrdersBasedOnDeliveryStatusAndDay = async (req, res) => {
 };
 
 module.exports = {
-	addOrder,
-	getAllOrders,
-	getItemByItem,
-	getByIdOrder,
-	getOrders,
-	updateDeliveryStatus,
-	getDelivererprofileDetails,
-	getALLOrderbyDelivererPick,
-	getALLOrderbyDelivererDeliver,
-	updatePickdelivery,
-	updatePickupStatus,
-	updateDeliverID,
-	deleteOrderbyID,
-	getOrdersDeliverer,
-	GetGeneratepdf,
-	getPendingOrders,
-	getProcessingOrders,
-	getCompletedOrders,
-	updateToProcess,
-	updateToCompleate,
-	getTotalOrdersBasedOnOrderStatusAndDay,
-	getTotalOrdersBasedOnDeliveryStatusAndDay,
+
+  addOrder,
+  getAllOrders,
+  getByIdOrder,
+  getOrders,
+  updateDeliveryStatus,
+  getDelivererprofileDetails,
+  getALLOrderbyDelivererPick,
+  getALLOrderbyDelivererDeliver,
+  updatePickdelivery,
+  updatePickupStatus,
+  updateDeliverID,
+  deleteOrderbyID,
+  getOrdersDeliverer,
+  GetGeneratepdf,
+  getPendingOrders,
+  getProcessingOrders,
+  getCompletedOrders,
+  updateToProcess,
+  updateToCompleate,
+  getTotalOrdersBasedOnOrderStatusAndDay,
+  getTotalOrdersBasedOnDeliveryStatusAndDay,
+
 };

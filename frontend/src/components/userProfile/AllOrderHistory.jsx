@@ -14,41 +14,43 @@ const AllOrderHistory = () => {
 	// localStorage.setItem("setUserDetail", JSON.stringify(setUserDetail));
 	// const localData = localStorage.getItem("setUserDetail");
 
-	const getUserprofileDetails = async () => {
-		await axios
-			.get("/customers/userProfile")
-			.then((res) => {
-				console.log(res.data.customer);
-				setUserDetail(res.data.customer);
-				const uName = res.data.customer.name;
-				getUserOrder(uName);
-				console.log(uName);
-			})
-			.catch((err) => {
-				console.error(err.message);
-			});
-	};
-	// const handleId = (id) => {
-	//   setId(id);
-	//   console.log(id);
-	// };
 
-	const getUserOrder = async (userName) => {
-		console.log(userName);
-		try {
-			const formData = {
-				CustomerName: userName,
-			};
-			const res = await axios.post("/order/allorders", formData);
-			setUserOrderDetail(res.data);
-			console.log(res.data);
-		} catch (err) {
-			console.error(err.message);
-		}
-	};
-	const generateReport = () => {
-		const report = new jsPDF();
-		const date = new Date();
+  const getUserprofileDetails = async () => {
+    await axios
+      .get("/customers/userProfile")
+      .then((res) => {
+        // console.log(res.data.customer);
+        setUserDetail(res.data.customer);
+        const uName = res.data.customer.name;
+        getUserOrder(uName);
+        // console.log(uName);
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  };
+  // const handleId = (id) => {
+  //   setId(id);
+  //   console.log(id);
+  // };
+
+  const getUserOrder = async (userName) => {
+    // console.log(userName);
+    try {
+      const formData = {
+        CustomerName: userName,
+      };
+      const res = await axios.post("/order/allorders", formData);
+      setUserOrderDetail(res.data);
+      // console.log(res.data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  const generateReport = () => {
+    const report = new jsPDF();
+    const date = new Date();
+
 
 		report.addImage(Logo, "png", 10, 10, 30, 5);
 		report.setFontSize(20);
