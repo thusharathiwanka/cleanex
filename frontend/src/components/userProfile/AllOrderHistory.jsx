@@ -4,8 +4,11 @@ import React, { useState, useEffect } from "react";
 import Logo from "../../assets/images/logo-blue.png";
 import "jspdf-autotable";
 import { jsPDF } from "jspdf";
+import ConfirmModal from "../modals/ConfirmModal";
 const AllOrderHistory = () => {
 	const [userDetail, setUserDetail] = useState({ name: "" });
+	const [Popup, setPopup] = useState(false);
+	const [orderId, setOrderId] = useState("");
 	const [userOrder, setUserOrderDetail] = useState([]);
 
 	// localStorage.setItem("setUserDetail", JSON.stringify(setUserDetail));
@@ -82,13 +85,15 @@ const AllOrderHistory = () => {
 		});
 		report.save(`user-order-history-report-${Date()}.pdf`);
 	};
-	const deleteOrder = async (id) => {
+	const deleteOrder = async () => {
+		let id = orderId;
 		await axios.delete(`/order/delete/${id}`);
 		const orderList = userOrder.filter((or) => {
 			return or._id !== id;
 		});
 		console.log(id);
 		setUserOrderDetail(orderList);
+		setPopup(false);
 	};
 	useEffect(() => {
 		getUserprofileDetails();
@@ -193,7 +198,8 @@ const AllOrderHistory = () => {
 												<button
 													className="text-red-500 hover:text-red-400"
 													onClick={() => {
-														deleteOrder(order._id);
+														setPopup(true);
+														setOrderId(order._id);
 													}}
 												>
 													Delete
@@ -221,6 +227,14 @@ const AllOrderHistory = () => {
 						</button>
 					</div>
 				</div>
+				{Popup && (
+					<ConfirmModal
+						setShowModal={setPopup}
+						showModal={Popup}
+						execute={deleteOrder}
+						id={orderId}
+					/>
+				)}
 			</div>
 		</div>
 	);

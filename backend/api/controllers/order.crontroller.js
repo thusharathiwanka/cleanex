@@ -184,10 +184,6 @@ const updatePickdelivery = async (req, res) => {
 const GetGeneratepdf = async (req, res) => {
 	try {
 		const reportdetails = await order.find({
-			StartDate: {
-				$gte: req.params.startdate,
-				$lt: req.params.enddate,
-			},
 			DelivaryStatus: "delivered",
 			Address: req.params.Address,
 			DelivaryId: req.body.userId,
