@@ -27,13 +27,11 @@ const Feedback = () => {
 		});
 		try {
 			newFeedback.createdAt = new Date();
-			const res = await axios.post("feedbacks", newFeedback);
+			await axios.post("feedbacks", newFeedback);
 
-
-      setButton(false);
-      // console.log(newFeedback);
-      setSuccess("Feedback is send Successfully.");
-
+			setButton(false);
+			// console.log(newFeedback);
+			setSuccess("Feedback is send Successfully.");
 
 			const logout = async () => {
 				await axios.get("/users/profile");

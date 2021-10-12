@@ -4,7 +4,6 @@ import axios from "axios";
 import { AiOutlineRollback } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "react-dates/initialize";
-import { DateRangePicker } from "react-dates";
 import { jsPDF } from "jspdf";
 import Logo from "../../assets/images/logo-blue.png";
 import "jspdf-autotable";
@@ -15,7 +14,6 @@ import Error from "../toasts/Error";
 const Report = () => {
 	const [isloading, setIsLoading] = useState(false);
 	const [Address, setAddress] = useState("");
-	const [error, setError] = useState("");
 	const [orders, setOrders] = useState([]);
 
 	const handleSubmit = async (e) => {
@@ -28,18 +26,9 @@ const Report = () => {
 				setIsLoading(true);
 				console.log(res.data.length);
 				if (isloading) {
-					// setTimeout(() => , 5000);
 					generateReport();
 					setIsLoading(false);
 				}
-				// if (res.data.length !== 0) {
-				// 	setAddress("");
-				// 	setError(
-				// 		"Please enter a  different location!" +
-				// 			"\n" +
-				// 			"Looks like you don't have any delivered orders for this location."
-				// 	);
-				// }
 			}
 		} catch (error) {}
 	};
@@ -95,7 +84,6 @@ const Report = () => {
 				</div>
 
 				<div className="mb-6">
-					{error && <Error error={error} top="-top-2" />}
 					<button
 						type="submit"
 						className="bg-light-blue float-right  mt-6 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 ml-36 rounded-xl  shadow hover:shadow-lg outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150"

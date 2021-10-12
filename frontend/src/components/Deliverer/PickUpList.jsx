@@ -5,7 +5,7 @@ import SuceessModal from "../modals/SuccessModal";
 import { IoIosClose } from "react-icons/io";
 import { BiSearch } from "react-icons/bi";
 
-const PickUpList = ({ order }) => {
+const PickUpList = () => {
 	const [orders, setOrders] = useState([]);
 	const [load, setLoad] = useState(true);
 	const [success, setSuccess] = useState("");
@@ -27,15 +27,15 @@ const PickUpList = ({ order }) => {
 	const deliverIdupdate = async (id) => {
 		try {
 			const res = await axios.put(`/deliverer/remove/${id}`);
-			if (res.status == 200) {
-				// console.log(res.statusText);
+			if (res.status === 200) {
+				console.log(load, isSearchEmpty);
 			}
 		} catch (error) {}
 	};
 	const statusUpdate = async (id) => {
 		try {
 			const res = await axios.put(`order/pickupstatus/${id}`);
-			if (res.status == 200) {
+			if (res.status === 200) {
 				deliverIdupdate(id);
 				setSuccess("Status updated to picked up for order " + id);
 				setViewModal(true);

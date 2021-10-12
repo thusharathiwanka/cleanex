@@ -23,10 +23,11 @@ const DeliveryList = () => {
 
 	const statusUpdate = async (id) => {
 		try {
-			const res = await axios.put(`order/deliverystatus/${id}`);
+			await axios.put(`order/deliverystatus/${id}`);
 			setSuccess("updated deliver status succesfully for order " + id);
 			getOrders();
 			setViewModal(true);
+			console.log(isSearchEmpty);
 		} catch (error) {
 			console.log(error);
 		}
@@ -145,8 +146,6 @@ const DeliveryList = () => {
 											{orders.map((order) => {
 												order.DelivaryStatus === "delivered"
 													? (statusStyle = "bg-green-100 text-green-800")
-													: order.DelivaryStatus === "error"
-													? (statusStyle = "bg-gray-100 text-gray-500")
 													: (statusStyle = "bg-gray-100 text-gray-500");
 												return (
 													<tr key={order._id}>

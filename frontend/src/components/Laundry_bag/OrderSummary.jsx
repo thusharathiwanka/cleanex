@@ -3,9 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import LocationInput from "./locationIput";
 import DatePicker from "react-datepicker";
-import Error from "../toasts/Error";
 import SuceessModal from "../modals/SuccessModal";
-import { Link, useHistory } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -16,10 +14,8 @@ const OrderSummary = () => {
 	const [viewModal, setViewModal] = useState(false);
 	const [message, setMessage] = useState("Your lundry bag is Empty !!");
 	const [Address, setAddress] = useState("");
-	const [error, setError] = useState("");
-	const [Iserror, setIsError] = useState(false);
 	const [startDate, setStartDate] = useState(new Date());
-	const history = useHistory();
+
 	let total = 0;
 	let obj = new Set();
 
@@ -142,11 +138,6 @@ const OrderSummary = () => {
 													}}
 													className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
 												/>
-												{Iserror ? (
-													<Error error={error} top={5} left={1} />
-												) : (
-													<p></p>
-												)}
 											</div>
 											<div className="flex items-center justify-center p-6  rounded-b mt-10 mb-20">
 												<button
@@ -178,7 +169,11 @@ const OrderSummary = () => {
 			{viewModal && (
 				<SuceessModal
 					setview={setViewModal}
-					message={"Successfully placed order!! We will contact you soon!!"}
+					message={() => {
+						setMessage(
+							"Successfully placed order!! We will contact you soon!!"
+						);
+					}}
 				/>
 			)}
 		</div>
