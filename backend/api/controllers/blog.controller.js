@@ -51,7 +51,7 @@ const updateImage = async (req, res) => {
 const updateBlogs = async (req, res) => {
 	// console.log("req.body");
 	try {
-		const singleBlog = await blog.findByIdAndUpdate(req.params.id, {
+		await blog.findByIdAndUpdate(req.params.id, {
 			topic: req.body.topic,
 			description: req.body.description,
 			content: req.body.content,
@@ -68,8 +68,8 @@ const updateBlogs = async (req, res) => {
 
 const deleteBlogs = async (req, res) => {
 	try {
-		const singleBlog = await blog.findByIdAndDelete(req.params.id);
-		res.status(200).json("deleet successful");
+		await blog.findByIdAndDelete(req.params.id);
+		res.status(200).json("delete successful");
 	} catch (err) {
 		res.status(400);
 		console.log(err.message);
