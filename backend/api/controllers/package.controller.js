@@ -109,8 +109,8 @@ const getPackagesBasedOnStatus = async (req, res) => {
 const getPackage = async (req, res) => {
 	if (req.params.id) {
 		try {
-			const package = await Package.findById(req.params.id);
-			return res.status(200).json({ package: package });
+			const singlePackage = await Package.findById(req.params.id);
+			return res.status(200).json({ package: singlePackage });
 		} catch (err) {
 			console.error(err.message);
 			return res.status(500).send();
