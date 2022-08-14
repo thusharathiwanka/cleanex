@@ -12,8 +12,8 @@ Member Details
 
 | Name                   | Student ID |         Username |
 | ---------------------- | :--------: | ---------------: |
-| Jayasith H. B. C       | IT19079264 |         jayasith |
 | Thiwanka K. A. T       | IT19076362 | thusharathiwanka |
+| Jayasith H. B. C       | IT19079264 |         jayasith |
 | Weerasinghe D. N. H    | IT19070704 |         hasansin |
 | Onella Natalie P. A. D | IT19041926 |    OnellaNatalie |
 
