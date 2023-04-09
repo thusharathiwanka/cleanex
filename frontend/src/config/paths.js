@@ -1,3 +1,3 @@
-const imageURL = "http://localhost:5000/api/public/uploads/";
+const imageURL = "https://cleanex-api.onrender.com/api/public/uploads/";
 
 export { imageURL };
